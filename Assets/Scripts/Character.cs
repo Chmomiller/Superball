@@ -48,19 +48,17 @@ public class Character : MonoBehaviour
 			loseStamina (1);
 			if (this.Stamina <= 0)
 				this.dead = true; 
-			return 0;
+			return -1;
 		}
     }
 
-    public int throwBall(Character target) {
-        if(this.Stamina > 0){ //successful throw
-			// Add the succesful throw statement
-            return target.catchBall();
-        } else
-        {
-			return 0;
-            print("you failed to throw");
-        }
+    public bool throwBall(Character target) 
+	{
+		if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Accuracy) {
+			return true;
+		} else {
+			return false;
+		}
     }
 
     public void Rest()

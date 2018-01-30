@@ -25,34 +25,44 @@ public class CombatManager : MonoBehaviour
 	private bool conflictInQueue;								
 
 	// Used to see if balls were caught and by who
-	private int [] ballCaught;
+	private System.Collections.Generic.List<bool> ballsCaught;
 	public bool win = false;
 	public bool lose = false;
 
 	void Start()
 	{
 		conflictInQueue = false;
-		Player[0] = GameObject.Find ("player").GetComponent<Character>();
-		Player[1] = GameObject.Find ("player (1)").GetComponent<Character>();
-		Player[2] = GameObject.Find ("player (2)").GetComponent<Character>();
+		Player = new Character[3];
+		Player[0] = GameObject.Find ("Player").GetComponent<Character>();
+		Player[1] = GameObject.Find ("Player (1)").GetComponent<Character>();
+		Player[2] = GameObject.Find ("Player (2)").GetComponent<Character>();
+		Enemy = new Character[3];
 		Enemy[0] = GameObject.Find ("Enemy").GetComponent<Character>();
 		Enemy[1] = GameObject.Find ("Enemy (1)").GetComponent<Character>();
-		Enemy[2] = GameObject.Find ("player (2)").GetComponent<Character>();
-		//Player.GetComponent<Button>().onClick.AddListener (()=>CharacterSelect (0));
+		Enemy[2] = GameObject.Find ("Enemy (2)").GetComponent<Character>();
+		playerSelect = new Button [3];
+		playerSelect [0] = GameObject.Find ("Player").GetComponent<Button>();
+		playerSelect[1] = GameObject.Find ("Player (1)").GetComponent<Button>();
+		playerSelect[2] = GameObject.Find ("Player (2)").GetComponent<Button>();
 		playerSelect [0].onClick.AddListener (()=>CharacterSelect (Player[0]));
 		playerSelect [1].onClick.AddListener (()=>CharacterSelect (Player[1]));
 		playerSelect [2].onClick.AddListener (()=>CharacterSelect (Player[2]));
+		enemySelect = new Button [3];
+		enemySelect [0] = GameObject.Find ("Enemy").GetComponent<Button>();
+		enemySelect[1] = GameObject.Find ("Enemy (1)").GetComponent<Button>();
+		enemySelect[2] = GameObject.Find ("Enemy (2)").GetComponent<Button>();
 		enemySelect [0].onClick.AddListener (()=>CharacterSelect (Enemy[0]));
 		enemySelect [1].onClick.AddListener (()=>CharacterSelect (Enemy[1]));
 		enemySelect [2].onClick.AddListener (()=>CharacterSelect (Enemy[2]));
+		action = new Button[1];
+		action [0] = GameObject.Find ("AttackButton").GetComponent<Button> ();
 		action[0].onClick.AddListener (()=>ActionSelect(ACTION.THROW));		
+		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
 		//action[1].onClick.AddListener (()=>ActionSelect(ACTION.CATCH));
 		//action[2].onClick.AddListener (()=>ActionSelect(ACTION.GATHER));
 		//action[3].onClick.AddListener (()=>ActionSelect(ACTION.SKILL));
 		//action[4].onClick.AddListener (()=>ActionSelect(ACTION.REST));
-		ballCaught = new int[2];
-		ballCaught [0] = 0;
-		ballCaught [1] = 0;
+		ballsCaught = new System.Collections.Generic.List<bool>();
 	}
 
 	void Update()
@@ -193,13 +203,14 @@ public class CombatManager : MonoBehaviour
 			{
 			case(ACTION.THROW):
 				// This calls the charcter's throwBall function and increments ballCaught as necessary for resurrections
-				if (combatQueue [i].character.tag == "Player") 
-				{
-					ballCaught[0] += combatQueue [i].character.throwBall (combatQueue [i].target);
-				} 
-				else 
-				{
-					ballCaught[1] += combatQueue [i].character.throwBall (combatQueue [i].target);
+				if (combatQueue [i].character.throwBall ()) {
+					if (combatQueue [i].target.catchBall () == 1) {
+						if (combatQueue [i].target.tag == "Player") {
+							ballsCaught.Add (true);
+						} else {
+							ballsCaught.Add (false);
+						}
+					}
 				}
 				break;
 			case(ACTION.GATHER):
@@ -236,24 +247,18 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 		// rez players as needed
-		while (ballCaught [0] > 0) 
-		{
-			Resurrect ("Player");
-			ballCaught [0]--;
-		}
-		while (ballCaught [1] > 0) 
-		{
-			Resurrect ("Enemy");
-			ballCaught [0]--;
+		while (ballsCaught.Count > 0) {
+			Resurrect (ballsCaught[0]);
+			ballsCaught.RemoveAt (0);
 		}
 	}
 
 	// This function puts players back into the game
-	void Resurrect(string team)
+	void Resurrect(bool player)
 	{
 		int highestStamina = 0;
 		bool Res = false;
-		if (team == "Player") 
+		if (player) 
 		{
 			for (int i = 0; i < 3; i++) 
 			{
