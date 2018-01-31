@@ -105,6 +105,8 @@ public class DialogueManager : MonoBehaviour {
 					}
 				}
 
+
+
 				//should check if one is speaking to another
 				if (insertText [lineNum, 1] != character1 && insertText [lineNum, 1] != character2) {
 					if (insertText [lineNum, 0] == character1) {
