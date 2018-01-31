@@ -58,20 +58,14 @@ public class Dialogue{
 		{"Seymour", "Chalmers" , "... Yes."},
 		{"Chalmers", "Seymour" , "May I see it?"},
 		{"Seymour", "Chalmers" , "No."},
+		{"", "Seymour", "Seymour! The house is on fire!"},
+		{"Seymour", "Chalmers" , "No, Mother. It's just the northern lights."},
+		{"Chalmers", "Seymour" , "Well, Seymour, you are an odd fellow but I must say you steam a good ham."},
 
 
 
 
-
-
-
-
-		{"Chalmers", "Seymour" , ""},
-
-		{"Seymour", "Chalmers" , ""},
-
-
-
+		{"", "Seymour" , "Help! Help!"},
 	};
 
 	public Dictionary<string, string[,]> allDialogue = new Dictionary<string,string[,]> {

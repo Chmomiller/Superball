@@ -105,6 +105,22 @@ public class DialogueManager : MonoBehaviour {
 					}
 				}
 
+				//should check if one is speaking to another
+				if (insertText [lineNum, 1] != character1 && insertText [lineNum, 1] != character2) {
+					if (insertText [lineNum, 0] == character1) {
+						char2Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
+						character2 = insertText [lineNum, 1];
+					} else if (insertText [lineNum, 0] == character2) {
+						char1Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
+						character1 = insertText [lineNum, 1];
+
+					} /*else {
+						char1Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 0]) as Sprite;
+						character1 = insertText [lineNum, 0];
+						char2Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
+						character2 = insertText [lineNum, 1];
+					}*/
+				}
 
 					
 
@@ -124,26 +140,35 @@ public class DialogueManager : MonoBehaviour {
 				}
 
 				//if only one or none is talking
-				if (insertText [lineNum, 1] == "") {
+				if (insertText [lineNum, 1] == "" || insertText [lineNum, 0] == "") {
 
-					if (insertText [lineNum, 0] == "") {
+					if (insertText [lineNum, 0] == "" && insertText [lineNum, 1] == "") {
 						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 						character1 = "";
 						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 						character2 = "";
-					} else if (insertText [lineNum, 0] == character1) {
+					} else if (insertText [lineNum, 0] == character1 && insertText [lineNum, 1] == "") {
 						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 						character2 = "";
-					} else if (insertText [lineNum, 0] == character2) {
+					} else if (insertText [lineNum, 0] == character2 && insertText [lineNum, 1] == "") {
 						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 						character1 = "";
-					} else {
+					}else if (insertText [lineNum, 1] == character1) {
+						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
+						character2 = "";
+					}else if (insertText [lineNum, 1] == character2){
+						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
+						character1 = "";
+					}
+
+
+					/* else {
 						//just in case of exposition
 						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 						character1 = "";
 						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 						character2 = "";
-					}
+					}*/
 				}
 
 
