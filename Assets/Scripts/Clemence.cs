@@ -5,8 +5,10 @@ using UnityEngine;
 public class Clemence : Character
 {
 
-  
-    
+    public Character person1;
+    public Character person2;
+    bool plantedStance = false;
+    bool rainShield = false;
 
     // Use this for initialization
     void Start()
@@ -19,6 +21,7 @@ public class Clemence : Character
         Stamina = 10;
         heldBalls = 0;
         Role = "Catcher";
+        
     }
 
     // Update is called once per frame
@@ -27,9 +30,67 @@ public class Clemence : Character
 
     }
 
-    void Skill1()
+    public override int catchBall()
     {
+        if (this.rainShield)
+        {
+            if (this.heldBalls > 0)
+            {
+                this.rainShield = false;
+                this.catching = false;
+                this.throwBall();
+                heldBalls++;
+            }
+            return 0;
+        }
+        else if (this.catching)
+        {
+            if ((Random.Range(1, 100) + Random.Range(1, 100) / 2) < this.Catch)
+            { // you can catch it
+                if (!this.plantedStance)
+                {
+                    this.catching = false;
+                }
+                if (this.heldBalls < Capacity)
+                {
+                    this.heldBalls++;
+                }
+                return 1;
+            }
+           
+        }
+        else if ((Random.Range(1, 100) + Random.Range(1, 100) / 2) < this.Stamina * 100)
+        {//dodge success
+            loseStamina(0);
+            return 0;
+        }
+        else
+        {
+            loseStamina(1);
+            if (this.Stamina <= 0)
+                this.dead = true;
+            return -1;
+        }
+        return 0;
+    }
 
+     public override void Skill1() //Special move #1 PicketFences
+    {
+        //Activates catching for both other characters
+         person1.catching = true;
+         person2.catching = true;
+    }
+
+    void Skill2() //Planted stance
+    {
+        this.catching = true;
+        this.plantedStance = true;
+    }
+
+    void Skill3() //Rain Shield
+    {
+        this.catching = true;
+        this.rainShield = true;
     }
 
 }

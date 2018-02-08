@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
-	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL, REST}
+	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL1, SKILL2, SKILL3, REST}
 	public enum PHASE{START, CONFLICT, SELECT, ACTION, TARGET, EXECUTE, RESULTS}
 
 	public struct Combat{public Character character; 
@@ -21,9 +21,6 @@ public class CombatManager : MonoBehaviour
 	public Button[] action;
 	// This is for debug purposes
 	public Text battleText;										
-	// true if the player has to choose turn order.
-	public int selection;	
-	public ACTION actionSelection;
 
 	// Used to see if balls were caught and by who
 	private System.Collections.Generic.List<bool> ballsCaught;
@@ -33,7 +30,6 @@ public class CombatManager : MonoBehaviour
 
 	void Start()
 	{
-		selection = -1;
 		Player = new Character[3];
 		Enemy = new Character[3];
 		playerSelect = new Button [3];
@@ -44,25 +40,22 @@ public class CombatManager : MonoBehaviour
 			Enemy[i] = GameObject.Find ("Enemy"+i).GetComponent<Character>();
 
 			playerSelect [i] = GameObject.Find ("Player"+i).GetComponent<Button>();
-			playerSelect [i].onClick.AddListener (()=>CharacterSelect (i));
 			enemySelect [i] = GameObject.Find ("Enemy"+i).GetComponent<Button>();
-			enemySelect [i].onClick.AddListener (()=>CharacterSelect (i));
 		}
-		action = new Button[1];
-		action [0] = GameObject.Find ("AttackButton").GetComponent<Button> ();
-		action[0].onClick.AddListener (()=>ActionSelect(0));		
+		action = new Button[6];
+		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
+		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
+		action [2] = GameObject.Find ("GatherButton").GetComponent<Button> ();
+		action [3] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
+		action [4] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
+		action [5] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
 		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
-		//action[1].onClick.AddListener (()=>ActionSelect(ACTION.CATCH));
-		//action[2].onClick.AddListener (()=>ActionSelect(ACTION.GATHER));
-		//action[3].onClick.AddListener (()=>ActionSelect(ACTION.SKILL));
 		ballsCaught = new System.Collections.Generic.List<bool>();
 		combatQueue = new Combat[6];
 	}
 
 	void Update()
 	{
-		// Currently the coin toss is not implememted
-
 		switch (currentPhase) 
 		{
 		case(PHASE.START):
@@ -89,9 +82,10 @@ public class CombatManager : MonoBehaviour
 		}
 	}
 
-
+	// This function is the start of the turn. It orders the characters by stamina
 	void StartQueue()								
 	{
+		// Create a temperary array of charcters
 		Character[] tempChar = new Character[6];
 		for (int i = 0; i < 3; i++) 
 		{
@@ -99,6 +93,7 @@ public class CombatManager : MonoBehaviour
 			tempChar [i + 3] = Enemy [i];
 		}
 
+		// Sort the temperary array by stamina
 		for (int i = 0; i < 6; i++) 
 		{
 			for (int j = i+1; j < 6; j++) 
@@ -112,23 +107,23 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 
+		// Assign each element of the temperary array to the approrpiate element in CombatQueue
 		for (int i = 0; i < 6; i++) 
 		{
 			combatQueue [i].character = tempChar [i];
 			combatQueue [i].action = ACTION.NONE;
-			Debug.Log("Player " + i + " is " + combatQueue[i].character.name);
 		}
 		currentPhase = PHASE.CONFLICT;
 	}
 
 
-	// This phase is used to check if there are still conflicts in the queue and set current phase to the correct phase
+	// This function is used to check if there are still conflicts in the queue and set current phase to the correct phase
 	void Conflict()
 	{
+		// Check if there is a conflict in the queue
 		conflictInQueue = -1;
 		for(int i = 4; i > -1; i--)
 		{
-			Debug.Log (""+combatQueue[i].action+", "+combatQueue[i].character.tag+", "+combatQueue[i+1].character.tag+", "+combatQueue[i].character.Stamina+", "+combatQueue[i+1].character.Stamina);
 			if (combatQueue[i].action == ACTION.NONE 
 				&& combatQueue [i].character.tag == "Player"
 				&& combatQueue [i+1].character.tag == "Player"
@@ -137,11 +132,13 @@ public class CombatManager : MonoBehaviour
 				conflictInQueue = i;
 			}
 		}
-		Debug.Log (combatQueue [0].character.Name+", "+combatQueue [1].character.Name+", "+combatQueue [2].character.Name);
+
+		// Disable all enemy buttons
 		foreach(Button B in enemySelect)
 		{
 			B.enabled = false;
 		}
+		// Get the position of the first player without an action
 		int firstAction = -1;
 		for (int i = 5; i > -1; i--)
 		{
@@ -150,8 +147,7 @@ public class CombatManager : MonoBehaviour
 				firstAction = i;
 			}
 		}
-
-		Debug.Log("conflictInQueue: " +conflictInQueue + " firstAction: " + firstAction);
+			
 		// If there is a conflict in the queue but someone else has priority
 		if (conflictInQueue != -1 && firstAction >= conflictInQueue) 
 		{
@@ -159,6 +155,7 @@ public class CombatManager : MonoBehaviour
 		} 
 		else 
 		{
+			// If there is a character without an action
 			if(firstAction != -1)
 			{
 				if(!combatQueue[firstAction].character.dead)
@@ -174,6 +171,7 @@ public class CombatManager : MonoBehaviour
 				}
 				else
 				{
+					// All downed character are given the rest action
 					for (int i = firstAction; i < 6; i++) 
 					{
 						combatQueue [i].action = ACTION.REST;
@@ -181,13 +179,9 @@ public class CombatManager : MonoBehaviour
 				}
 			}
 		}		
+		// If there are no characters without actions
 		if (firstAction == -1) 
 		{
-			for(int i = 0; i < 6; i++)
-			{
-				Debug.Log ("CombatQueue["+i+"] is "+ combatQueue[i].character.Name+" performing "+combatQueue[i].action);
-			}
-
 			// This block does a stable sort to move the players who are catching to the front of the queue
 			int j = 0;
 			for (int i = 0; i < 6; i++) 
@@ -210,6 +204,7 @@ public class CombatManager : MonoBehaviour
 	}
 
 
+	// This function activates player select buttons if there is a conflict in the queue
 	void Select()
 	{
 		// delegates would help here
@@ -220,6 +215,7 @@ public class CombatManager : MonoBehaviour
 	}
 
 
+	// This function deactivates player select buttons
 	void Action()
 	{
 		battleText.text = "Choose your action";
@@ -229,6 +225,8 @@ public class CombatManager : MonoBehaviour
 		}
 	}
 
+
+	// This function enables all enemy buttons for selection(This will need to be changed when actions that can target allies are implemented)
 	void Target ()
 	{
 		battleText.text = "Choose the target";
@@ -285,7 +283,7 @@ public class CombatManager : MonoBehaviour
 				combatQueue [i].character.catching = true;
 				Debug.Log (combatQueue [i].character.Name + " is ready to catch!");
 				break;
-			case(ACTION.SKILL):
+			case(ACTION.SKILL1):
 				combatQueue [i].character.Skill1 ();
 				Debug.Log (combatQueue [i].character.Name + " used Skill!");
 				break;
@@ -325,12 +323,17 @@ public class CombatManager : MonoBehaviour
 	}
 
 
+	// This function is called when a character button is pressed.
 	public void CharacterSelect(int character)
 	{
-		if (currentPhase == PHASE.SELECT && character < 3) // The character < 3 is required because of a wierd error where 3 is passed as an argument for no reason after the first click
+		// If this is the player SELECT phase
+		// The (character < 3) is required because of a wierd error where 3 is passed as an argument for no reason after the first click
+		if (currentPhase == PHASE.SELECT && character < 3) 
 		{
+			// If the selected character is not the first one in the combat queue that is also in conflict with another allies position
 			if (Player [character] != combatQueue [conflictInQueue].character) 
 			{
+				// Swap the characters
 				Character temp = combatQueue [conflictInQueue].character;
 				combatQueue [conflictInQueue].character = combatQueue [conflictInQueue + 1].character;
 				combatQueue [conflictInQueue + 1].character = temp;
@@ -340,6 +343,7 @@ public class CombatManager : MonoBehaviour
 		}
 		if (currentPhase == PHASE.TARGET) 
 		{
+			// Get the position of the first actionless character and set this character as the target of the action before that
 			int firstAction = 5;
 			for(int i = 5; i > -1; i--)
 			{
@@ -348,40 +352,60 @@ public class CombatManager : MonoBehaviour
 					firstAction = i;
 				}
 			}
-			Debug.Log ("CharacterSelect(): firstAction: " + firstAction + ", character:" + character);
-			combatQueue [firstAction - 1].target = Enemy [character - 3];		// I'm not sure why this works.
+			combatQueue [firstAction - 1].target = Enemy [character - 3];
 			currentPhase = PHASE.CONFLICT;
 		}
 	}
 
 
+	// This function is called when an action button is selected. It sets the appropriate action for the current character
 	public void ActionSelect(int action)
 	{
-		int firstAction = 5;
-		for(int i = 5; i > -1; i--)
+		if(currentPhase == PHASE.ACTION)
 		{
-			if(combatQueue[i].action == ACTION.NONE)
+			int firstAction = 5;
+			for(int i = 5; i > -1; i--)
 			{
-				firstAction = i;
+				if(combatQueue[i].action == ACTION.NONE)
+				{
+					firstAction = i;
+				}
 			}
-		}
-		switch (action) 
-		{
-		case(0):
-			combatQueue [firstAction].action = ACTION.THROW;
-			break;
-		}
-		if (combatQueue [firstAction].action == ACTION.THROW) 
-		{
-			currentPhase = PHASE.TARGET;
-		} 
-		else 
-		{
-			currentPhase = PHASE.CONFLICT;
+			switch (action) 
+			{
+			case(0):
+				combatQueue [firstAction].action = ACTION.THROW;
+				break;
+			case(1):
+				combatQueue [firstAction].action = ACTION.CATCH;
+				break;
+			case(2):
+				combatQueue [firstAction].action = ACTION.GATHER;
+				break;
+			case(3):
+				combatQueue [firstAction].action = ACTION.SKILL1;
+				break;
+			case(4):
+				combatQueue [firstAction].action = ACTION.SKILL2;
+				break;
+			case(5):
+				combatQueue [firstAction].action = ACTION.SKILL3;
+				break;
+			}
+			// This will need to be changed when actions that target allies or non-throw actions that target enemies are added
+			if (combatQueue [firstAction].action == ACTION.THROW) 
+			{
+				currentPhase = PHASE.TARGET;
+			} 
+			else 
+			{
+				currentPhase = PHASE.CONFLICT;
+			}
 		}
 	}
 
 
+	// This function randomly assigns actions and targets for enemies.
 	void EnemyTurn(int current)
 	{
 		int choice = Random.Range (0, 4);
@@ -397,7 +421,7 @@ public class CombatManager : MonoBehaviour
 			combatQueue [current].action = ACTION.GATHER;
 			break;
 		case(3):
-			combatQueue [current].action = ACTION.SKILL;
+			combatQueue [current].action = ACTION.SKILL1;
 			break;
 		}
 		if (combatQueue [current].action != ACTION.GATHER) 
@@ -417,8 +441,10 @@ public class CombatManager : MonoBehaviour
 	{
 		int highestStamina = 0;
 		bool Res = false;
+		// If the character to be rezzed is an ally
 		if (player) 
 		{
+			// Get the player with the hishest stamina that is benched
 			for (int i = 0; i < 3; i++) 
 			{
 				if(Player[i].dead)
@@ -430,6 +456,7 @@ public class CombatManager : MonoBehaviour
 					}
 				}
 			}
+			// If there is a benched player
 			if (Res) 
 			{
 				Player [highestStamina].dead = false;
@@ -437,6 +464,7 @@ public class CombatManager : MonoBehaviour
 		} 
 		else 
 		{
+			// Get the enemy with the hishest stamina that is benched
 			for (int i = 0; i < 3; i++) 
 			{
 				if(Player[i].dead)
@@ -448,6 +476,7 @@ public class CombatManager : MonoBehaviour
 					}
 				}
 			}
+			// If there is a benched enemy
 			if (Res) 
 			{
 				Enemy [highestStamina].dead = false;

@@ -30,13 +30,14 @@ public class Character : MonoBehaviour
     }
     
 
-    void loseStamina(int staminaLoss) { this.Stamina -= staminaLoss; }
-    void gainStamina(int staminaLoss) { this.Stamina += staminaLoss; }
+    public void loseStamina(int staminaLoss) { this.Stamina -= staminaLoss; }
+    public void gainStamina(int staminaLoss) { this.Stamina += staminaLoss; }
 
-	public int catchBall(){
+	public virtual int catchBall(){
 		if (this.catching) {
 			if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Catch) { // you can catch it
-				if (this.heldBalls < Capacity) {
+                this.catching = false;
+                if (this.heldBalls < Capacity) {
 					this.heldBalls++;
 				}
 				return 1;
@@ -66,19 +67,19 @@ public class Character : MonoBehaviour
 		this.gainStamina (1);
     }
 
-    public void Skill1(){
+    public virtual void Skill1(){
 
     }
 
-    void Skill2(){
+    public virtual void Skill2(){
 
     }
 
-    void Skill3(){
+    public virtual void Skill3(){
 
     }
 
-    void Skill4(){
+    public void Skill4(){
 
     }
 }
