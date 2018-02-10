@@ -248,13 +248,15 @@ public class CombatManager : MonoBehaviour
 				// This calls the charcter's throwBall function and increments ballCaught as necessary for resurrections
 				if (combatQueue [i].character.tag == "Player") 
 				{
+					StartCoroutine (PrintOut(combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!", i+1));
 					battleText.text = "Player attacks Enemy!";
-					Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
+					//Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
 				} 
 				else 
 				{
+					StartCoroutine (PrintOut (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!", i+1));
 					battleText.text = "Enemy attacks Player!";
-					Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
+					//Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
 				}
 				if (combatQueue [i].character.throwBall ()) 
 				{
@@ -262,15 +264,17 @@ public class CombatManager : MonoBehaviour
 					{
 						if (combatQueue [i].target.tag == "Player") 
 						{
+							StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
 							ballsCaught.Add (true);
 							battleText.text = "Player caught the ball!";
-							Debug.Log (combatQueue [i].target.Name + " caught the ball!");
+							//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
 						} 
 						else 
 						{
+							StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
 							ballsCaught.Add (false);
 							battleText.text = "Enemy caught the ball!";
-							Debug.Log (combatQueue [i].target.Name + " caught the ball!");
+							//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
 						}
 					}
 				}
@@ -482,5 +486,11 @@ public class CombatManager : MonoBehaviour
 				Enemy [highestStamina].dead = false;
 			}
 		}
+	}
+
+	IEnumerator PrintOut(string whatToSay, int delay)
+	{
+		yield return new WaitForSeconds (delay);
+		Debug.Log (whatToSay);
 	}
 }

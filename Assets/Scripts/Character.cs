@@ -19,53 +19,73 @@ public class Character : MonoBehaviour
 	public bool catching = false;
 
 
-    // Use this for initialization
-    void Start(){
-
-    }
-
-    // Update is called once per frame
-    void Update(){
-
-    }
-    
-
     public void loseStamina(int staminaLoss) { this.Stamina -= staminaLoss; }
     public void gainStamina(int staminaLoss) { this.Stamina += staminaLoss; }
 
-	public virtual int catchBall(){
-		if (this.catching) {
-			if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Catch) { // you can catch it
-                this.catching = false;
-                if (this.heldBalls < Capacity) {
+	public virtual int catchBall()
+	{
+		int caught = 0;
+		if (this.catching) 
+		{
+			if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Catch) 
+			{ // you can catch it
+				this.catching = false;
+				if (this.heldBalls < Capacity) 
+				{
 					this.heldBalls++;
 				}
-				return 1;
+				caught = 1;
 			}
-		} if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Stamina * 100) {//dodge success
-			loseStamina (0);
-			return 0;
-		} else {
+		}
+		if(this.Stamina > this.Stamina/2)
+		{
 			loseStamina (1);
-			if (this.Stamina <= 0)
-				this.dead = true; 
-			return -1;
+			return caught;
+		}
+		else
+		{
+			 
+			if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Stamina * 100) 
+			{//dodge success
+				loseStamina (1);
+				return 0;
+			} 
+			else 
+			{
+				if (this.Stamina <= 0)
+					this.dead = true; 
+				loseStamina (1);
+				return 0;
+			}
 		}
     }
 
-    public bool throwBall() 
+	public bool throwBall()
 	{
-		if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Accuracy) {
+		heldBalls--;
+		if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Accuracy) 
+		{
 			return true;
-		} else {
+		} 
+		else 
+		{
 			return false;
 		}
-    }
+	}
 
     public void Rest()
 	{
 		this.gainStamina (1);
     }
+
+	public void gatherBall()
+	{
+		heldBalls += Gather;
+		if(heldBalls > Capacity)
+		{
+			heldBalls = Capacity;
+		}
+	}
 
     public virtual void Skill1(){
 
