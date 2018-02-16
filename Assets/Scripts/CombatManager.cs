@@ -258,24 +258,21 @@ public class CombatManager : MonoBehaviour
 					battleText.text = "Enemy attacks Player!";
 					//Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
 				}
-				if (combatQueue [i].character.throwBall ()) 
+				if (combatQueue [i].character.throwBall (combatQueue[i].target) == 1) 
 				{
-					if (combatQueue [i].target.catchBall () == 1) 
+					if (combatQueue [i].target.tag == "Player") 
 					{
-						if (combatQueue [i].target.tag == "Player") 
-						{
-							StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
-							ballsCaught.Add (true);
-							battleText.text = "Player caught the ball!";
-							//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
-						} 
-						else 
-						{
-							StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
-							ballsCaught.Add (false);
-							battleText.text = "Enemy caught the ball!";
-							//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
-						}
+						StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
+						ballsCaught.Add (true);
+						battleText.text = "Player caught the ball!";
+						//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
+					} 
+					else 
+					{
+						StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
+						ballsCaught.Add (false);
+						battleText.text = "Enemy caught the ball!";
+						//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
 					}
 				}
 				break;
@@ -453,7 +450,8 @@ public class CombatManager : MonoBehaviour
 			{
 				if(Player[i].dead)
 				{
-					if (Player [i].Stamina > Player [highestStamina].Stamina) 
+					if (Player [i].Stamina > Player [highestStamina].Stamina 
+						&& Player[i].Stamina >= Player[i].Stamina/2) 
 					{
 						highestStamina = i;
 						Res = true;
@@ -473,7 +471,8 @@ public class CombatManager : MonoBehaviour
 			{
 				if(Player[i].dead)
 				{
-					if (Player [i].Stamina > Player [highestStamina].Stamina) 
+					if (Enemy [i].Stamina > Enemy[highestStamina].Stamina 
+						&& Enemy[i].Stamina >= Enemy[i].Stamina/2) 
 					{
 						highestStamina = i;
 						Res = true;
