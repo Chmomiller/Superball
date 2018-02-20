@@ -14,6 +14,15 @@ public class Character : MonoBehaviour
 	public int maxStamina = 10;
     public int heldBalls = 0;
     public string Role = "Supporter";
+	public Character Target; //Create an empty Character in the combat manager that other charaters can select when not targetting
+	public string action = "";
+	public string actionType = "";
+	public int targetingType = 0; //0 for self/predetermined, 1 for enemies, 2 for allies
+	//Following 3 arrays are paired, so when an action is selected it can look at the same index
+	//of the different arrays and set the corresponding variable to the array value
+	private string[] actions = {"Catch", "Throw", "Gather", "Skill1", "Skill2", "Skill3" };
+	private string[] actionTypes = { "Defense", "Offense", "Utility", "Utility", "Utility" };
+	private int[] targetingTypes = { 0, 1, 0, 0, 0 };
 
     public bool dead = false;
 	public bool catching = false;

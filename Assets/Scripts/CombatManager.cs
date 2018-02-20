@@ -223,6 +223,7 @@ public class CombatManager : MonoBehaviour
 		{
 			B.enabled = false;
 		}
+		// Get the active player, set the skill names tho their names.
 	}
 
 
@@ -230,6 +231,44 @@ public class CombatManager : MonoBehaviour
 	void Target ()
 	{
 		battleText.text = "Choose the target";
+		// Get the active player's action's targets
+		/*
+		int current = 5;
+		while(combatQueue[current].action == ACTION.NONE)
+		{
+			current++;
+		}
+		if(combatQueue[current].action == ACTION.THROW)
+		{
+			foreach (Button B in enemySelect) 
+			{
+				B.enabled = true;
+			}
+		}
+		else if(static_caset(int)(combatQueue[current].action)
+		{
+			int target = static_cast(int)(combatQueue[current].action);
+			
+			switch(combatQueue[].character.skillTarget[target - 4])
+			{
+				case(0):
+				currentPhase = PHASE.CONFLICT;
+				break;
+				case(1):
+				foreach (Button B in enemySelect) 
+				{
+					B.enabled = true;
+				}
+				break;
+				case(2):
+				foreach (Button B in playerSelect) 
+				{
+					B.enabled = true;
+				}
+				break;
+			}
+		}
+		*/
 		foreach (Button B in enemySelect) 
 		{
 			B.enabled = true;
