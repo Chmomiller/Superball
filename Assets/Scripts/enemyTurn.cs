@@ -127,10 +127,10 @@ public class enemyTurn : Character {
     void TakeAction(string choice) {
         switch (choice) {
             case "throw":
-                player.throwBall();
+                //player.throwBall();
                 break;
             case "catch":
-                player.catchBall();
+                //player.catchBall();
 
                 break;
             case "skill1":

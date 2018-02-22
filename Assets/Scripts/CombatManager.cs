@@ -175,6 +175,9 @@ public class CombatManager : MonoBehaviour
 					for (int i = firstAction; i < 6; i++) 
 					{
 						combatQueue [i].action = ACTION.REST;
+						combatQueue [i].character.action = "Rest";
+						combatQueue [i].character.actionType = "Utility";
+						combatQueue [i].character.Target = combatQueue [i].character;
 					}
 				}
 			}
@@ -281,6 +284,8 @@ public class CombatManager : MonoBehaviour
 	{
 		for (int i = 0; i < 6; i++) 
 		{
+			DoAction (combatQueue [i].character, combatQueue [i].action, combatQueue [i].target);
+			/*
 			switch (combatQueue [i].action) 
 			{
 			case(ACTION.THROW):
@@ -316,7 +321,7 @@ public class CombatManager : MonoBehaviour
 				}
 				break;
 			case(ACTION.GATHER):
-				// Add a gatherBall() function in Character.cs if the action makes the final cut
+				combatQueue [i].character.gatherBall ();
 				Debug.Log (combatQueue [i].character.Name + " picked up a ball!");
 				break;
 			case(ACTION.CATCH):
@@ -328,6 +333,7 @@ public class CombatManager : MonoBehaviour
 				Debug.Log (combatQueue [i].character.Name + " used Skill!");
 				break;
 			}
+			*/
 		}
 		currentPhase = PHASE.RESULTS;
 	}
@@ -392,7 +398,16 @@ public class CombatManager : MonoBehaviour
 					firstAction = i;
 				}
 			}
-			combatQueue [firstAction - 1].target = Enemy [character - 3];
+			if (character < 3) 
+			{
+				combatQueue [firstAction - 1].target = Player [character];
+				combatQueue [firstAction - 1].character.Target = Player [character];
+			} 
+			else 
+			{
+				combatQueue [firstAction - 1].target = Enemy [character - 3];
+				combatQueue [firstAction - 1].character.Target = Enemy [character - 3];
+			}
 			currentPhase = PHASE.CONFLICT;
 		}
 	}
@@ -411,59 +426,244 @@ public class CombatManager : MonoBehaviour
 					firstAction = i;
 				}
 			}
-			switch (action) 
+			// Check if the action is valid
+			if(combatQueue[firstAction].character.GetActionCost(action) > combatQueue[firstAction].character.heldBalls 
+				|| combatQueue[firstAction].character.actionCooldowns[action] > 0)
+			{
+				return;
+			}
+
+			combatQueue [firstAction].action = (ACTION)(action);
+			combatQueue [firstAction].character.action = combatQueue [firstAction].character.GetAction (action);
+			combatQueue [firstAction].character.actionType = combatQueue [firstAction].character.GetActionType(action);
+			combatQueue [firstAction].character.targetingType = combatQueue [firstAction].character.GetTargetingType(action);	
+			if (combatQueue [firstAction].character.actionType == "Defense") 
+			{
+				combatQueue [firstAction].character.catching = true;
+			}
+			switch (combatQueue [firstAction].character.GetTargetingType (action)) 
 			{
 			case(0):
-				combatQueue [firstAction].action = ACTION.THROW;
-				break;
-			case(1):
-				combatQueue [firstAction].action = ACTION.CATCH;
-				break;
-			case(2):
-				combatQueue [firstAction].action = ACTION.GATHER;
-				break;
-			case(3):
-				combatQueue [firstAction].action = ACTION.SKILL1;
-				break;
-			case(4):
-				combatQueue [firstAction].action = ACTION.SKILL2;
-				break;
-			case(5):
-				combatQueue [firstAction].action = ACTION.SKILL3;
-				break;
-			}
-			// This will need to be changed when actions that target allies or non-throw actions that target enemies are added
-			if (combatQueue [firstAction].action == ACTION.THROW) 
-			{
-				currentPhase = PHASE.TARGET;
-			} 
-			else 
-			{
 				currentPhase = PHASE.CONFLICT;
+				combatQueue [firstAction].character.Target = combatQueue [firstAction].character;
+				break;
+				case(1):
+				currentPhase = PHASE.TARGET;
+				foreach(Button B in enemySelect)
+				{
+					B.enabled = true;
+				}
+				break;
+				case(2):
+				currentPhase = PHASE.TARGET;
+				foreach(Button B in playerSelect)
+				{
+					B.enabled = true;
+				}
+				break;
 			}
 		}
 	}
+		
 
+	void DoAction(Character character, ACTION action, Character target)
+	{
+		switch (action) 
+		{
+			case(ACTION.THROW):
+			if(target.actionType == "Defense")
+			{
+				Debug.Log (character.Name + " attacks " + target.Name + "!");
+				switch(target.action)
+				{
+				case("Catch"):
+					if(target.catchBall (character.Damage, character) == 1)
+					{
+						if(character.tag == "Player")
+						{
+							ballsCaught.Add (true);
+						}
+						else
+						{
+							ballsCaught.Add (false);
+						}
+						Debug.Log (target.Name + " caught the ball!");
+					}
+				break;
+				case("Skill1"):
+				target.Skill1 ();
+					Debug.Log (target.Name + " used Skill 1!");
+				break;
+				case("Skill2"):
+				target.Skill2 ();
+					Debug.Log (target.Name + " used Skill 2!");
+				break;
+				case("Skill3"):
+				target.Skill3 ();
+					Debug.Log (target.Name + " used Skill 3!");
+				break;
+				}
+			}	
+			character.heldBalls--;
+			break;
+			case(ACTION.CATCH):
+			for(int i = 0; i < 6; i++)
+			{
+				if(combatQueue[i].character.Target == target 
+					&& combatQueue[i].character.actionType == "Offensive")
+				{
+					combatQueue[i].character.Target = character;
+					combatQueue[i].target = character;
+				}
+				Debug.Log (character.Name + " is ready to catch!");
+			}
+			break;
+			case(ACTION.GATHER):
+			character.gatherBall();
+			Debug.Log (character.Name + " picked up a ball!");
+			break;
+			case(ACTION.SKILL1):
+			// check if the action is offensive and the target is using a defensive move.
+			Debug.Log (character.Name + " used Skill 1!");
+			if (character.actionType == "Offense"
+			    && target.actionType == "Defense") 
+			{
+				switch (target.action) 
+				{
+				case("Catch"):
+					if(target.catchBall (character.Damage, character) == 1)
+					{
+						if(character.tag == "Player")
+						{
+							ballsCaught.Add (true);
+						}
+						else
+						{
+							ballsCaught.Add (false);
+						}
+					}
+					character.heldBalls--;
+					Debug.Log (target.Name + " caught the ball!");
+					break;
+				case("Skill1"):
+					target.Skill1 ();
+					Debug.Log (target.Name + " used Skill 1!");
+					break;
+				case("Skill2"):
+					target.Skill2 ();
+					Debug.Log (target.Name + " used Skill 2!");
+					break;
+				case("Skill3"):
+					target.Skill3 ();
+					Debug.Log (target.Name + " used Skill 3!");
+					break;
+				}
+			}
+			character.Skill1 ();
+			break;
+			case(ACTION.SKILL2):
+			Debug.Log (character.Name + " used Skill 2!");
+			if (character.actionType == "Offense"
+				&& target.actionType == "Defense") 
+			{
+				switch (target.action) 
+				{
+				case("Catch"):
+				if(target.catchBall (character.Damage, character) == 1)
+				{
+					if(character.tag == "Player")
+					{
+						ballsCaught.Add (true);
+					}
+					else
+					{
+						ballsCaught.Add (false);
+					}
+				}
+				character.heldBalls--;
+					Debug.Log (target.Name + " caught the ball!");
+					break;
+				case("Skill1"):
+					target.Skill1 ();
+					Debug.Log (target.Name + " used Skill 1!");
+					break;
+				case("Skill2"):
+					target.Skill2 ();
+					Debug.Log (target.Name + " used Skill 2!");
+					break;
+				case("Skill3"):
+					target.Skill3 ();
+					Debug.Log (target.Name + " used Skill 3!");
+					break;
+				}
+			}
+			character.Skill2 ();
+			break;
+			case(ACTION.SKILL3):
+			Debug.Log (character.Name + " used Skill 3!");
+			if (character.actionType == "Offense"
+				&& target.actionType == "Defense") 
+			{
+				switch (target.action) 
+				{
+				case("Catch"):
+					if(target.catchBall (character.Damage, character) == 1)
+					{
+						if(character.tag == "Player")
+						{
+							ballsCaught.Add (true);
+						}
+						else
+						{
+							ballsCaught.Add (false);
+						}
+					}
+					character.heldBalls--;
+					Debug.Log (target.Name + " caught the ball!");
+					break;
+				case("Skill1"):
+					target.Skill1 ();
+					Debug.Log (target.Name + " used Skill 1!");
+					break;
+				case("Skill2"):
+					target.Skill2 ();
+					Debug.Log (target.Name + " used Skill 2!");
+					break;
+				case("Skill3"):
+					target.Skill3 ();
+					Debug.Log (target.Name + " used Skill 3!");
+					break;
+				}
+			}
+			character.Skill3 ();
+			break;
+		}
+	}
 
 	// This function randomly assigns actions and targets for enemies.
 	void EnemyTurn(int current)
 	{
-		int choice = Random.Range (0, 4);
+		int choice = Random.Range (0, 6);
 		switch (choice) 
 		{
 		case(0):
 			combatQueue [current].action = ACTION.THROW;
+			combatQueue [current].character.action = "Throw";
 			break;
 		case(1):
 			combatQueue [current].action = ACTION.CATCH;
+			combatQueue[current].character.action = "Catch";
 			break;
 		case(2):
 			combatQueue [current].action = ACTION.GATHER;
+			combatQueue[current].character.action = "Gather";
 			break;
 		case(3):
 			combatQueue [current].action = ACTION.SKILL1;
+			combatQueue[current].character.action = "Skill1";
 			break;
 		}
+		combatQueue [current].character.actionType = combatQueue [current].character.GetActionType (choice + 1);
 		if (combatQueue [current].action != ACTION.GATHER) 
 		{
 			choice = Random.Range (0, 3);
