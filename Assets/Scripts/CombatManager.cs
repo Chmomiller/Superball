@@ -491,8 +491,8 @@ public class CombatManager : MonoBehaviour
 					}
 				break;
 				case("Skill1"):
-				target.Skill1 ();
-					Debug.Log (target.Name + " used Skill 1!");
+					target.Skill1 (character);
+					Debug.Log (target.Name + " used Skill " + target.GetActionName(4) + " !");
 				break;
 				case("Skill2"):
 				target.Skill2 ();
@@ -524,7 +524,7 @@ public class CombatManager : MonoBehaviour
 			break;
 			case(ACTION.SKILL1):
 			// check if the action is offensive and the target is using a defensive move.
-			Debug.Log (character.Name + " used Skill 1!");
+			Debug.Log (character.Name + " used " + character.GetActionName(4) + " !");
 			if (character.actionType == "Offense"
 			    && target.actionType == "Defense") 
 			{
@@ -546,8 +546,8 @@ public class CombatManager : MonoBehaviour
 					Debug.Log (target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
-					target.Skill1 ();
-					Debug.Log (target.Name + " used Skill 1!");
+					target.Skill1 (character);
+					Debug.Log (target.Name + " used Skill " + target.GetActionName(4) + " !");
 					break;
 				case("Skill2"):
 					target.Skill2 ();
@@ -584,8 +584,8 @@ public class CombatManager : MonoBehaviour
 					Debug.Log (target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
-					target.Skill1 ();
-					Debug.Log (target.Name + " used Skill 1!");
+					target.Skill1 (character);
+					Debug.Log (target.Name + " used " + target.GetActionName(4) + " !");
 					break;
 				case("Skill2"):
 					target.Skill2 ();
@@ -622,8 +622,8 @@ public class CombatManager : MonoBehaviour
 					Debug.Log (target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
-					target.Skill1 ();
-					Debug.Log (target.Name + " used Skill 1!");
+					target.Skill1 (character);
+					Debug.Log (target.Name + " used " + target.GetActionName(4) + " !");
 					break;
 				case("Skill2"):
 					target.Skill2 ();

@@ -24,7 +24,7 @@ public class Theodore : Character {
 		
 	}
 
-    void Skill1()
+	public override void Skill1()
     {
 
     }
