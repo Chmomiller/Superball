@@ -45,8 +45,8 @@ public class Frank : Character
 					attacker = players[i].GetComponent<Character>();
 				}
 			}
-			attacker.Target = this;
-			this.Target = attacker;
+			target.Target = this;
+			this.Target = target;
 		}
 		else
 		{
@@ -55,7 +55,7 @@ public class Frank : Character
 			{
 				return;
 			}
-			catchBall (target.Damage, target);
+			catchBall (target);
 		}
 
     }

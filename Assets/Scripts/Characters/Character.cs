@@ -40,54 +40,48 @@ public class Character : MonoBehaviour
 	public int GetActionCost(int index){return this.actionCosts [index];}
 
 	// Currently the character is still catching if they weren't targeted in the last round
-	public virtual int catchBall(int damage, Character attacker)
+	public virtual int catchBall(Character attacker)
 	{
-		int caught = 0;
-		if (this.catching) 
-		{
-			if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Catch) 
-			{ // you can catch it
-				if (this.heldBalls < Capacity) 
-				{
-					this.heldBalls++;
-				}
-				caught = 1;
-			}
-			this.catching = false;
-		}
-		if(this.Stamina > this.maxStamina/2)
-		{
-			loseStamina (damage);
-			return caught;
-		}
-		else
-		{
-			 
-			if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < (this.Stamina/this.maxStamina) * 100) 
-			{//dodge success
-				loseStamina (1);
-				return 0;
-			} 
-			else 
+		if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < this.Catch) 
+		{ // you can catch it
+			if (this.heldBalls < Capacity) 
 			{
-				if (this.Stamina <= 0)
-					this.dead = true; 
-				loseStamina (1);
-				return 0;
+				this.heldBalls++;
 			}
+			return 1;
 		}
-    }
+		return 0;
+	}
+
+
+	public void dodgeBall(Character attacker)
+	{
+		/*
+		if ((Random.Range (1, 100) + Random.Range (1, 100) / 2) < (this.Stamina/this.maxStamina) * 100) 
+		{//dodge success
+			loseStamina (attacker.Damage);
+		} 
+		else 
+		{*/
+		if (this.Stamina <= 0) {
+			this.dead = true; 
+		}
+		loseStamina (attacker.Damage);//attacker.Damage);
+		//}
+	}
 
 	public int throwBall(Character target)
 	{
 		heldBalls--;
-		return target.catchBall (this.Damage, target);
+		target.dodgeBall (this);
+		return 0;
 	}
 
     public void Rest()
 	{
 		this.gainStamina (1);
     }
+
 
 	public void gatherBall()
 	{
@@ -98,7 +92,8 @@ public class Character : MonoBehaviour
 		}
 	}
 
-    public virtual void Skill1(){
+
+	public virtual void Skill1(Character target){
 
     }
 

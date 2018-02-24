@@ -24,7 +24,7 @@ public class Greg: Character
 	// This skill is Greg's Terrapin skill
 	// If a hit is successful against Greg and terrapin has been used it rebounds into Trevor's ball pool
 	// Is there a cost for this?
-	public override void Skill1(Character target)
+	public  void Skill1(Character target)
     {
 		actionCooldowns [4] = 4;
 		Character Trevor = GameObject.Find ("Trevor").GetComponent<Character> ();

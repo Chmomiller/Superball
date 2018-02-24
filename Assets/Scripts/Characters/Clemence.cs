@@ -29,7 +29,7 @@ public class Clemence : Character
     {
 
     }
-
+	/*
 	public override int catchBall(int damage, Character attacker)
     {
         if (this.rainShield)
@@ -74,8 +74,9 @@ public class Clemence : Character
         }
         return 0;
     }
+	*/
 
-     public override void Skill1() //Special move #1 PicketFences
+	public override void Skill1(Character target) //Special move #1 PicketFences
     {
         //Activates catching for both other characters
          person1.catching = true;

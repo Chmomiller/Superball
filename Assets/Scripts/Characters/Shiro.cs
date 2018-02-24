@@ -23,7 +23,7 @@ public class Shiro : Character{
 
     }
 
-	public override void Skill1()
+	public override void Skill1(Character target)
     {
 
     }

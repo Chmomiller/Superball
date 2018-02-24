@@ -26,13 +26,13 @@ public class Trevor: Character
 
 	// Thrash: Throws 3 balls at three random targets on your team. 1 turn cooldown. Cost: 3 balls
     // Currently doesn't allow players to res off of a catch from this skill
-	public override void Skill1()
+	public override void Skill1(Character target)
     {
 		this.actionCooldowns [4] = 2;
 		GameObject[] targets = GameObject.FindGameObjectsWithTag ("Player");
 		for(int i = 0; i < 3; i++)
 		{
-			throwBall (targets[Random.Range(0,4)]);
+			throwBall (targets[Random.Range(0,4)].GetComponent<Character>());
 		}
     }
 
