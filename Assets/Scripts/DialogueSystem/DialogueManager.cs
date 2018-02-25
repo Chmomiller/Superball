@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour {
@@ -13,17 +14,32 @@ public class DialogueManager : MonoBehaviour {
 	bool isSpeaking;
 	bool fading;
 	float fadeTime;
+	bool initialFade;
+
+	//black beginning
+	bool blackStart = false;
+	int blackFade = 0;
+	float bColor =0.0f;
+
+	//transitions
+
+	public GameObject bg;
+	public Image screen;
+	bool transition= false;
+	bool changeBG = false;
 
 	//Speaking characters
 	public string character1 = "";
 	public string character2 = "";
+	public string[] onScreenChars = {"", "", "", "", "", "" };
 	List<string> sceneCharacters;
-	public Image char1Sprite;
-	public Image char2Sprite;
+	string[] group1;
+	string[] group2;
+
+	public Image[] charSprites = new Image[6];
+
 	bool newLine = true;
 	string prevSpeaker = "";
-
-	Dictionary<string, Image> charSprites;
 
 	//lines
 	public Dialogue textLines;
@@ -45,26 +61,8 @@ public class DialogueManager : MonoBehaviour {
 		sceneCharacters = new List<string>();
 		textLines = new Dialogue ();
 		insertText = textLines.allDialogue[sceneTitle];
-		foreach (string c in textLines.characters[sceneTitle]) {
-			sceneCharacters.Add (c);
-		}
 
-		if (insertText [0, 0] != "" ) {
-			char1Sprite.sprite = Resources.Load<Sprite> (insertText [0, 0]) as Sprite;
-			character1 = insertText [0, 0];
-		}else{
-			char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-			character1 = "";
-		}
-
-		if (insertText [0, 1] != ""){
-			char2Sprite.sprite = Resources.Load<Sprite> (insertText [0, 1]) as Sprite;
-			character2 = insertText [0, 1];
-		}else{
-			char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-			character2 = "";
-		
-		}
+		startConvo (sceneTitle);
 
 
 	}
@@ -75,13 +73,26 @@ public class DialogueManager : MonoBehaviour {
 		//fade in
 		if (fading && fadeTime < fadeDuration) {
 			fadeTime += Time.deltaTime;
-			dialogueBox.color = new Color (1.0f, 1.0f, 1.0f, dialogueBox.color.a + Time.deltaTime / fadeDuration);
+			if (initialFade) {
+				dialogueBox.color = new Color (1.0f, 1.0f, 1.0f, dialogueBox.color.a + Time.deltaTime / fadeDuration);
+			} else if (transition) {
+				//bg.GetComponent<SpriteRenderer> ().color = new Color (bg.GetComponent<SpriteRenderer> ().color.r - (Time.deltaTime / fadeDuration)*4,bg.GetComponent<SpriteRenderer> ().color.g - (Time.deltaTime / fadeDuration)*4, bg.GetComponent<SpriteRenderer> ().color.b - (Time.deltaTime / fadeDuration)*4,1.0f);
+				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a + Time.deltaTime / fadeDuration);
+			}
+
 		} else {
+			if (transition) {
+				bg.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
+				bg.GetComponent<FullScreenBG> ().ResetScale ();
+				changeBG = true;
+			}
 			fading = false;
+			initialFade = false;
+			transition = false;
 		}
 
 
-		if (Input.GetKeyDown("space")){
+		if (Input.GetKeyDown("space") || Input.GetMouseButtonDown(0)){
 			nextLine ();
 		}
 
@@ -89,89 +100,32 @@ public class DialogueManager : MonoBehaviour {
 			
 			if (newLine && lineNum < insertText.GetLength(0)) {
 				
-				if (insertText [lineNum, 0] != character1 && insertText [lineNum, 0] != character2) {
-					if (insertText [lineNum, 1] == character1) {
-						char2Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 0]) as Sprite;
-						character2 = insertText [lineNum, 0];
-					} else if (insertText [lineNum, 1] == character2) {
-						char1Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 0]) as Sprite;
-						character1 = insertText [lineNum, 0];
+				
+	
+
+
+				//set characters on screen
+				string[] speakerSet = insertText [lineNum, 7].Split (' ');
+
+				for(int ch=0; ch < 6; ++ch) {
+					if (insertText [lineNum, ch] != "") {
+						charSprites [ch].sprite = Resources.Load<Sprite> ("Characters/" + insertText [lineNum, ch]) as Sprite;
+						charSprites [ch].preserveAspect = true;
+
+						if (speakerSet.Contains (insertText [lineNum, ch])) {
+							charSprites [ch].color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+						} else {
+							//darken the character that is not speaking
+
+							charSprites [ch].color = new Color (0.8f, 0.8f, 0.8f, 1.0f);
+
+						}
 
 					} else {
-						char1Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 0]) as Sprite;
-						character1 = insertText [lineNum, 0];
-						char2Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
-						character2 = insertText [lineNum, 1];
+						charSprites [ch].color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 					}
 				}
 
-
-
-				//should check if one is speaking to another
-				if (insertText [lineNum, 1] != character1 && insertText [lineNum, 1] != character2) {
-					if (insertText [lineNum, 0] == character1) {
-						char2Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
-						character2 = insertText [lineNum, 1];
-					} else if (insertText [lineNum, 0] == character2) {
-						char1Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
-						character1 = insertText [lineNum, 1];
-
-					} /*else {
-						char1Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 0]) as Sprite;
-						character1 = insertText [lineNum, 0];
-						char2Sprite.sprite = Resources.Load<Sprite> (insertText [lineNum, 1]) as Sprite;
-						character2 = insertText [lineNum, 1];
-					}*/
-				}
-
-					
-
-				//darken the character that is not speaking
-				if (insertText [lineNum, 0] == character1) {
-					char1Sprite.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
-					char2Sprite.color = new Color (0.8f, 0.8f, 0.8f, 1.0f);
-				} else if (insertText [lineNum, 0] == character2) {
-					char2Sprite.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
-					char1Sprite.color = new Color (0.8f, 0.8f, 0.8f, 1.0f);
-				} else if (insertText [lineNum, 0] == character1 + " " + character2) {
-					char2Sprite.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
-					char1Sprite.color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
-				} else {
-					char1Sprite.color = new Color (0.8f, 0.8f, 0.8f, 1.0f);
-					char2Sprite.color = new Color (0.8f, 0.8f, 0.8f, 1.0f);
-				}
-
-				//if only one or none is talking
-				if (insertText [lineNum, 1] == "" || insertText [lineNum, 0] == "") {
-
-					if (insertText [lineNum, 0] == "" && insertText [lineNum, 1] == "") {
-						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character1 = "";
-						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character2 = "";
-					} else if (insertText [lineNum, 0] == character1 && insertText [lineNum, 1] == "") {
-						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character2 = "";
-					} else if (insertText [lineNum, 0] == character2 && insertText [lineNum, 1] == "") {
-						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character1 = "";
-					}else if (insertText [lineNum, 1] == character1) {
-						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character2 = "";
-					}else if (insertText [lineNum, 1] == character2){
-						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character1 = "";
-					}
-
-
-					/* else {
-						//just in case of exposition
-						char1Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character1 = "";
-						char2Sprite.color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-						character2 = "";
-					}*/
-				}
 
 
 
@@ -186,11 +140,11 @@ public class DialogueManager : MonoBehaviour {
 			
 
 				textTime += Time.deltaTime;
-				if (textTime > textSpeed && lineI < insertText [lineNum, 2].Length) {
-					currentLine += insertText [lineNum, 2] [lineI++];
-					dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText (insertText [lineNum, 0] + "\n" +currentLine);
+				if (textTime > textSpeed && lineI < insertText [lineNum, 6].Length) {
+					currentLine += insertText [lineNum, 6] [lineI++];
+					dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText (insertText [lineNum, 7] + "\n" +currentLine);
 					textTime = 0.0f;
-				} else if (lineI >= insertText [lineNum, 2].Length) {
+				} else if (lineI >= insertText [lineNum, 6].Length) {
 					isSpeaking = false;
 
 				}
@@ -198,7 +152,9 @@ public class DialogueManager : MonoBehaviour {
 			} else if (lineNum < insertText.GetLength(0)) {
 				currentLine = "";
 				lineI = 0;
-				dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText (insertText [lineNum, 0] + "\n" + insertText [lineNum, 2]);
+				dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText (insertText [lineNum, 7] + "\n" + insertText [lineNum, 6]);
+
+			
 			} else {
 				endConvo ();
 			}
@@ -207,15 +163,43 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	public void nextLine(){
-		if (isSpeaking) {
+
+
+
+		if (isSpeaking && !fading && !transition) {
 			isSpeaking = false;
-		} else if (lineNum < insertText.GetLength(0)){
+		} else if (lineNum < insertText.GetLength(0) && !fading && !transition){
+			
 			currentLine = "";
 			lineI = 0;
-			prevSpeaker = insertText [lineNum, 0];
+			prevSpeaker = insertText [lineNum, 7];
 			lineNum++;
 			newLine = true;
 			isSpeaking = true;
+			//special case transition
+			if (lineNum < insertText.GetLength(0)) {
+				if (insertText [lineNum, 8] == "transition") {
+					transition = true;
+					fading = true;
+					fadeTime = 0;
+				}
+			}
+
+
+		}
+		//special cases
+		if (bColor < blackFade && isSpeaking && !fading) {
+			bColor += 1.0f / blackFade;
+			bg.GetComponent<SpriteRenderer> ().color = new Color (bColor,bColor,bColor,1.0f);
+		}
+
+
+
+		if (changeBG) {
+			//bg.GetComponent<SpriteRenderer> ().color = new Color (1.0f,1.0f,1.0f,1.0f);
+			screen.color = new Color (0.0f,0.0f,0.0f,0.0f);
+			changeBG = false;
+
 
 		}
 
@@ -232,6 +216,41 @@ public class DialogueManager : MonoBehaviour {
 
 
 	public void endConvo(){
+		
 
+	}
+
+	public void startConvo (string newSceneName){
+		sceneTitle = newSceneName;
+		fadeTime = 0;
+		fading = true;
+		initialFade = true;
+		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
+
+
+
+		isSpeaking = true;
+
+		insertText = textLines.allDialogue[sceneTitle];
+
+		if (insertText [0, 8] == "black") {
+			blackStart = true;
+			blackFade = int.Parse (insertText [0, 9]);
+			bg.GetComponent<SpriteRenderer> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
+				
+		}
+	
+		string[] speakerSet = insertText [0, 7].Split (' ');
+
+		//set the character sprites
+		for(int c=0; c < 6; ++c) {
+			if (insertText [0, c] != "") {
+				charSprites [c].sprite = Resources.Load<Sprite> ("Characters/" + insertText [0, c]) as Sprite;
+				charSprites [c].preserveAspect = true;
+			} else {
+				charSprites [c].color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
+			}
+		}
+			
 	}
 }
