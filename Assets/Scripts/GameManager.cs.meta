@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 29030b61c2a85ec4da741e734d06a702
+timeCreated: 1515826201
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - yourButton: {instanceID: 0}
+  - battleText: {instanceID: 0}
+  - cursorHead: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
