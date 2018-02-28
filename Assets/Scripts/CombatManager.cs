@@ -238,56 +238,13 @@ public class CombatManager : MonoBehaviour
 		{
 			B.enabled = false;
 		}
-		// Get the active player, set the skill names tho their names.
 	}
 
 
-	// This function enables all enemy buttons for selection(This will need to be changed when actions that can target allies are implemented)
+	// This function effectively does nothing since targets are made availible in actionSelect and the phase is changed in characterSelect
 	void Target ()
 	{
 		battleText.text = "Choose the target";
-		// Get the active player's action's targets
-		/*
-		int current = 5;
-		while(combatQueue[current].action == ACTION.NONE)
-		{
-			current++;
-		}
-		if(combatQueue[current].action == ACTION.THROW)
-		{
-			foreach (Button B in enemySelect) 
-			{
-				B.enabled = true;
-			}
-		}
-		else if(static_caset(int)(combatQueue[current].action)
-		{
-			int target = static_cast(int)(combatQueue[current].action);
-			
-			switch(combatQueue[].character.skillTarget[target - 4])
-			{
-				case(0):
-				currentPhase = PHASE.CONFLICT;
-				break;
-				case(1):
-				foreach (Button B in enemySelect) 
-				{
-					B.enabled = true;
-				}
-				break;
-				case(2):
-				foreach (Button B in playerSelect) 
-				{
-					B.enabled = true;
-				}
-				break;
-			}
-		}
-		*/
-		foreach (Button B in enemySelect) 
-		{
-			B.enabled = true;
-		}
 	}
 
 
@@ -302,56 +259,15 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < 6; i++) 
 		{
 			print (i);
-			DoAction (combatQueue [i].character, combatQueue [i].action);
-			/*
-			switch (combatQueue [i].action) 
+			if(! combatQueue[i].character.dead)
 			{
-			case(ACTION.THROW):
-				// This calls the charcter's throwBall function and increments ballCaught as necessary for resurrections
-				if (combatQueue [i].character.tag == "Player") 
-				{
-					StartCoroutine (PrintOut(combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!", i+1));
-					battleText.text = "Player attacks Enemy!";
-					//Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
-				} 
-				else 
-				{
-					StartCoroutine (PrintOut (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!", i+1));
-					battleText.text = "Enemy attacks Player!";
-					//Debug.Log (combatQueue [i].character.Name + " attacks " + combatQueue [i].target.Name + "!");
-				}
-				if (combatQueue [i].character.throwBall (combatQueue[i].target) == 1) 
-				{
-					if (combatQueue [i].target.tag == "Player") 
-					{
-						StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
-						ballsCaught.Add (true);
-						battleText.text = "Player caught the ball!";
-						//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
-					} 
-					else 
-					{
-						StartCoroutine (PrintOut (combatQueue [i].target.Name + " caught the ball!", i+1));
-						ballsCaught.Add (false);
-						battleText.text = "Enemy caught the ball!";
-						//Debug.Log (combatQueue [i].target.Name + " caught the ball!");
-					}
-				}
-				break;
-			case(ACTION.GATHER):
-				combatQueue [i].character.gatherBall ();
-				Debug.Log (combatQueue [i].character.Name + " picked up a ball!");
-				break;
-			case(ACTION.CATCH):
-				combatQueue [i].character.catching = true;
-				Debug.Log (combatQueue [i].character.Name + " is ready to catch!");
-				break;
-			case(ACTION.SKILL1):
-				combatQueue [i].character.Skill1 ();
-				Debug.Log (combatQueue [i].character.Name + " used Skill!");
-				break;
+				DoAction (combatQueue [i].character, combatQueue [i].action);
 			}
-			*/
+			else
+			{
+				combatQueue[i].character.action = "Rest";
+				combatQueue[i].action = ACTION.REST;
+			}
 		}
 		currentPhase = PHASE.RESULTS;
 	}
@@ -526,6 +442,22 @@ public class CombatManager : MonoBehaviour
 			character.heldBalls--;
 			break;
 		case(ACTION.CATCH):
+			// This can be implemented when the character needs multiple targets designated
+			/*
+				for(int i = 0; i < 6; i++)
+				{
+					for(int j = 0; j < 3; j++)
+					{
+						if(combatQueue[i].character.Target[j] == character.Target[0] 
+							&& combatQueue[i].character.actionType == "Offensive")
+						{
+							combatQueue[i].character.Target[j] = character;
+							combatQueue[i].target = character;
+						}	
+					}
+				}
+				*/
+
 			for(int i = 0; i < 6; i++)
 			{
 				if(combatQueue[i].character.Target == character.Target 
