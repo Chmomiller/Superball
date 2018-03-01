@@ -16,7 +16,7 @@ public class Shiro : Character{
         heldBalls = 0;
         Role = "Support";
     }
-
+		
     // Update is called once per frame
     void Update()
     {
@@ -25,7 +25,7 @@ public class Shiro : Character{
 
 	public override void Skill1(Character target)
     {
-
+		
     }
 
 }
