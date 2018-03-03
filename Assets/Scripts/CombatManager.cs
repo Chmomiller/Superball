@@ -46,7 +46,6 @@ public class CombatManager : MonoBehaviour
 		action = new Button[6];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
-		action [2] = GameObject.Find ("GatherButton").GetComponent<Button> ();
 		action [3] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
 		action [4] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
 		action [5] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
