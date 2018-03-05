@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
-	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL1, SKILL2, SKILL3, REST}
+	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL1, SKILL2, SKILL3, REST, WAIT}
 	public enum PHASE{START, CONFLICT, SELECT, ACTION, TARGET, EXECUTE, RESULTS}
 
 	public struct Combat{public Character character; 
@@ -28,6 +28,8 @@ public class CombatManager : MonoBehaviour
 	private int conflictInQueue = -1;
 	public bool win = false;
 	public bool lose = false;
+
+	public int currentCharacter = 0;
 
 	void Start()
 	{
@@ -150,6 +152,16 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 
+		if(firstAction != -1 
+			&& combatQueue[firstAction].character.findStatus("stun") != -1)
+		{
+			combatQueue[firstAction].character.action = "None";
+			combatQueue [firstAction].character.actionType = "None";
+			combatQueue [firstAction].action = ACTION.WAIT;
+			combatQueue [firstAction].character.Target = combatQueue [firstAction].character;
+			return;
+		}
+
 		// If there is a conflict in the queue but someone else has priority
 		if (conflictInQueue != -1 && firstAction >= conflictInQueue) 
 		{
@@ -168,9 +180,6 @@ public class CombatManager : MonoBehaviour
 					} 
 					else 
 					{
-						//combatQueue [firstAction].action = ACTION.SKILL1;
-						//combatQueue[firstAction].target = Player[0];
-						//combatQueue [firstAction].character.Target = Player [0];
 						EnemyTurn (firstAction);
 					}
 				}
@@ -211,9 +220,7 @@ public class CombatManager : MonoBehaviour
 		}
 		if (firstAction != -1) 
 		{
-			Cursor.transform.position = new Vector3 (combatQueue[firstAction].character.transform.position.x, 
-				combatQueue[firstAction].character.transform.position.y + 1, 
-				combatQueue[firstAction].character.transform.position.z);
+			currentCharacter = firstAction;
 		}
 	}
 
@@ -257,12 +264,12 @@ public class CombatManager : MonoBehaviour
 
 		for (int i = 0; i < 6; i++) 
 		{
-			print (i);
-			if(! combatQueue[i].character.dead)
+			if(! combatQueue[i].character.dead 
+				&& combatQueue[i].character.findStatus("stun") != -1)
 			{
 				DoAction (combatQueue [i].character, combatQueue [i].action);
 			}
-			else
+			if(combatQueue[i].character.dead)
 			{
 				combatQueue[i].character.action = "Rest";
 				combatQueue[i].action = ACTION.REST;
@@ -298,6 +305,11 @@ public class CombatManager : MonoBehaviour
 			Resurrect (ballsCaught[0]);
 			ballsCaught.RemoveAt (0);
 		}
+
+		foreach(Combat C in combatQueue)
+		{
+			CleanUp(C.character);
+		}
 		currentPhase = PHASE.START;
 	}
 
@@ -324,24 +336,15 @@ public class CombatManager : MonoBehaviour
 		}
 		if (currentPhase == PHASE.TARGET) 
 		{
-			// Get the position of the first actionless character and set this character as the target of the action before that
-			int firstAction = 5;
-			for(int i = 5; i > -1; i--)
-			{
-				if(combatQueue[i].action == ACTION.NONE)
-				{
-					firstAction = i;
-				}
-			}
 			if (character < 3) 
 			{
-				combatQueue [firstAction - 1].target = Player [character];
-				combatQueue [firstAction - 1].character.Target = Player [character];
+				combatQueue [currentCharacter].target = Player [character];
+				combatQueue [currentCharacter].character.Target = Player [character];
 			} 
 			else 
 			{
-				combatQueue [firstAction - 1].target = Enemy [character - 3];
-				combatQueue [firstAction - 1].character.Target = Enemy [character - 3];
+				combatQueue [currentCharacter].target = Enemy [character - 3];
+				combatQueue [currentCharacter].character.Target = Enemy [character - 3];
 			}
 			currentPhase = PHASE.CONFLICT;
 		}
@@ -353,34 +356,26 @@ public class CombatManager : MonoBehaviour
 	{
 		if(currentPhase == PHASE.ACTION)
 		{
-			int firstAction = 5;
-			for(int i = 5; i > -1; i--)
-			{
-				if(combatQueue[i].action == ACTION.NONE)
-				{
-					firstAction = i;
-				}
-			}
 			// Check if the action is valid
-			if(combatQueue[firstAction].character.GetActionCost(action) > combatQueue[firstAction].character.heldBalls 
-				|| combatQueue[firstAction].character.actionCooldowns[action] > 0)
+			if(combatQueue[currentCharacter].character.GetActionCost(action) > combatQueue[currentCharacter].character.heldBalls 
+				|| combatQueue[currentCharacter].character.actionCooldowns[action] > 0)
 			{
 				return;
 			}
 
-			combatQueue [firstAction].action = (ACTION)(action);
-			combatQueue [firstAction].character.action = combatQueue [firstAction].character.GetAction (action);
-			combatQueue [firstAction].character.actionType = combatQueue [firstAction].character.GetActionType(action);
-			combatQueue [firstAction].character.targetingType = combatQueue [firstAction].character.GetTargetingType(action);	
-			if (combatQueue [firstAction].character.actionType == "Defense") 
+			combatQueue [currentCharacter].action = (ACTION)(action);
+			combatQueue [currentCharacter].character.action = combatQueue [currentCharacter].character.GetAction (action);
+			combatQueue [currentCharacter].character.actionType = combatQueue [currentCharacter].character.GetActionType(action);
+			combatQueue [currentCharacter].character.targetingType = combatQueue [currentCharacter].character.GetTargetingType(action);	
+			if (combatQueue [currentCharacter].character.actionType == "Defense") 
 			{
-				combatQueue [firstAction].character.catching = true;
+				combatQueue [currentCharacter].character.catching = true;
 			}
-			switch (combatQueue [firstAction].character.GetTargetingType (action)) 
+			switch (combatQueue [currentCharacter].character.GetTargetingType (action)) 
 			{
 			case(0):
 				currentPhase = PHASE.CONFLICT;
-				combatQueue [firstAction].character.Target = combatQueue [firstAction].character;
+				combatQueue [currentCharacter].character.Target = combatQueue [currentCharacter].character;
 				break;
 			case(1):
 				currentPhase = PHASE.TARGET;
@@ -411,17 +406,21 @@ public class CombatManager : MonoBehaviour
 				Debug.Log (character.Name + " attacks " + character.Target.Name + "!");
 				switch (character.Target.action) {
 				case("Catch"):
-					if (character.Target.catchBall (character) == 1) {
-						if (character.tag == "Player") {
+					if (character.Target.catchBall (character)) 
+					{
+						if (character.tag == "Player") 
+						{
 							ballsCaught.Add (true);
-						} else {
+						} 
+						else 
+						{
 							ballsCaught.Add (false);
 						}
 						Debug.Log (character.Target.Name + " caught the ball!");
 					}
 					break;
 				case("Skill1"):
-					character.Target.Skill1 (character);
+					character.Target.Skill1 ();
 					Debug.Log (character.Target.Name + " used Skill " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
@@ -479,10 +478,14 @@ public class CombatManager : MonoBehaviour
 			    && character.Target.actionType == "Defense") {
 				switch (character.Target.action) {
 				case("Catch"):
-					if (character.Target.catchBall (character) == 1) {
-						if (character.tag == "Player") {
+					if (character.Target.catchBall (character)) 
+					{
+						if (character.tag == "Player") 
+						{
 							ballsCaught.Add (true);
-						} else {
+						} 
+						else 
+						{
 							ballsCaught.Add (false);
 						}
 					}
@@ -490,7 +493,7 @@ public class CombatManager : MonoBehaviour
 					Debug.Log (character.Target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
-					character.Target.Skill1 (character);
+					character.Target.Skill1 ();
 					Debug.Log (character.Target.Name + " used Skill " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
@@ -505,7 +508,7 @@ public class CombatManager : MonoBehaviour
 			} 
 			else
 			{
-				character.Skill1 (character.Target);
+				character.Skill1 ();
 			}
 			break;
 		case(ACTION.SKILL2):
@@ -514,10 +517,14 @@ public class CombatManager : MonoBehaviour
 			    && character.Target.actionType == "Defense") {
 				switch (character.Target.action) {
 				case("Catch"):
-					if (character.Target.catchBall (character) == 1) {
-						if (character.tag == "Player") {
+					if (character.Target.catchBall (character)) 
+					{
+						if (character.tag == "Player") 
+						{
 							ballsCaught.Add (true);
-						} else {
+						} 
+						else 
+						{
 							ballsCaught.Add (false);
 						}
 					}
@@ -525,7 +532,7 @@ public class CombatManager : MonoBehaviour
 					Debug.Log (character.Target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
-					character.Target.Skill1 (character);
+					character.Target.Skill1 ();
 					Debug.Log (character.Target.Name + " used " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
@@ -549,10 +556,14 @@ public class CombatManager : MonoBehaviour
 			    && character.Target.actionType == "Defense") {
 				switch (character.Target.action) {
 				case("Catch"):
-					if (character.Target.catchBall (character) == 1) {
-						if (character.tag == "Player") {
+					if (character.Target.catchBall (character)) 
+					{
+						if (character.tag == "Player") 
+						{
 							ballsCaught.Add (true);
-						} else {
+						} 
+						else 
+						{
 							ballsCaught.Add (false);
 						}
 					}
@@ -560,7 +571,7 @@ public class CombatManager : MonoBehaviour
 					Debug.Log (character.Target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
-					character.Target.Skill1 (character);
+					character.Target.Skill1 ();
 					Debug.Log (character.Target.Name + " used " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
@@ -614,6 +625,29 @@ public class CombatManager : MonoBehaviour
 			}
 			combatQueue [current].target = Player [choice];
 			combatQueue [current].character.Target = Player[choice];
+		}
+	}
+
+
+	void CleanUp(Character current)
+	{
+		current.removeDoneStatusEffects ();
+		for (int i = 0; i < current.statusEffects.Length; i++) 
+		{
+			if(current.statusEffects[i].duration > 0)
+			{
+				current.statusEffects [i].duration--;
+			}
+		}
+		current.action = "None";
+		current.actionType = "None";
+		current.Target = current;
+		for (int i = 0; i < current.actionCooldowns.Length; i++) 
+		{
+			if(current.actionCooldowns[i] > 0)
+			{
+				current.actionCooldowns [i]--;
+			}
 		}
 	}
 

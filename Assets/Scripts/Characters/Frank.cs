@@ -2,63 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Frank : Character
-{
-	private string[] actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Rumble", "Skill2", "Skill3", "Rest" }; 
-	private string[] actionTypes = new string[]{ "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility" };
-	private int[] actionCosts = new int[]{ 0, 1, 0, 1, 0, 0, 0 };
-
+public class Frank : Character {
+	
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         Name = "Frank";
-		Damage = 1;
+        Damage = 1;
         Catch = 100;
         Capacity = 4;
         Gather = 1;
         Stamina = 10;
         heldBalls = 0;
         Role = "Catcher";
-        
+
+	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rumble", "Skill2", "Skill3", "Skill4" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Blocks any balls aimed at Trevor", "", "", "" };
+	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility" };
+	    defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
+	    alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };        
+	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
+    void Update() {
+        if (allegiance == 1) {
+            this.targetingTypes = alternateTargetingTypes;
+            allies = combat.Player;
+            enemies = combat.Enemy;
+        } else {
+            this.targetingTypes = defaultTargetingTypes;
+            allies = combat.Enemy;
+            enemies = combat.Player;
+        }
     }
 
 
-	// Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
-	public override void Skill1(Character target)
-    {
-		actionCooldowns [4] = 2;
-		if(this.Target == this)
-		{
-			int highestStamina = 0;
-			Character attacker;
-			GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
-			for (int i = 0; i < 3; i++) 
-			{
-				if(players[i].GetComponent<Character>().Stamina > highestStamina)
-				{
-					attacker = players[i].GetComponent<Character>();
-				}
-			}
-			target.Target = this;
-			this.Target = target;
-		}
-		else
-		{
-			// Blocks the attack but does not catch(no stamina lost)
-			if(catching)
-			{
-				return;
-			}
-			catchBall (target);
-		}
-
+    // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
+    public override void Skill1() {
+        //Rumble: Blocks all attacks aimed at Trevor for 1 turn;
+        if (combat.Player[0].Target = GameObject.Find("Trevor").GetComponent<Trevor>() ){
+            combat.Player[0].action = "NONE";
+            combat.Player[0].heldBalls--;
+        }
+        if (combat.Player[1].Target = GameObject.Find("Trevor").GetComponent<Trevor>() ){
+            combat.Player[1].action = "NONE";
+            combat.Player[1].heldBalls--;
+        }
+        if (combat.Player[2].Target = GameObject.Find("Trevor").GetComponent<Trevor>() ){
+            combat.Player[2].action = "NONE";
+            combat.Player[2].heldBalls--;
+        }
     }
 
+    public override void Skill2() { }
+
+    public override void Skill3() { }
+
+    public override void Skill4() { }    
 
 }
