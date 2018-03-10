@@ -5,11 +5,6 @@ using UnityEngine;
 public class Clemence : Character
 {
 
-    public Character person1;
-    public Character person2;
-    bool plantedStance = false;
-    bool rainShield = false;
-
     // Use this for initialization
     void Start()
     {
@@ -21,78 +16,77 @@ public class Clemence : Character
         Stamina = 10;
         heldBalls = 0;
         Role = "Catcher";
-        
-    }
+		actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Catches for both allies but not yourself", "enemy is blocked from throwing balls and must do something else next", "Blocks the first attack on the next two turns", "" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0 };
 
-    // Update is called once per frame
-    void Update()
-    {
-
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 1, 0 };
     }
-	/*
-	public override int catchBall(int damage, Character attacker)
-    {
-        if (this.rainShield)
-        {
-            if (this.heldBalls > 0)
-            {
-                this.rainShield = false;
-                this.catching = false;
-				// This uses Clemence's Damage instead of the attackers Damage
-				this.throwBall(attacker);
-                heldBalls++;
+    /*
+    void Update(){
+        combat = GameObject.Find("EmptyCombatManagerPrefab").GetComponent<CombatManager>();
+        if (combat != null) {
+            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+                this.targetingTypes = defaultTargetingTypes;
+                allies = combat.Player;
+                enemies = combat.Enemy;
+            } else {
+                this.targetingTypes = alternateTargetingTypes;
+                allies = combat.Enemy;
+                enemies = combat.Player;
             }
-            return 0;
         }
-        else if (this.catching)
-        {
-            if ((Random.Range(1, 100) + Random.Range(1, 100) / 2) < this.Catch)
-            { // you can catch it
-                if (!this.plantedStance)
-                {
-                    this.catching = false;
-                }
-                if (this.heldBalls < Capacity)
-                {
-                    this.heldBalls++;
-                }
-                return 1;
+   //     this should be set in battle simulator
+    }
+    */
+	
+    public override void Skill1() {
+        int catchAttempts = 0;
+        for (int i = 3; i < combat.Enemy.Length; i++) {
+            if (enemies[i].Target == allies[0]) {
+                enemies[i].Target = this;
+                enemies[i].action = "THROW";
+                catchAttempts++;
             }
-           
+            if (enemies[i].Target == allies[1]) {
+                enemies[i].Target = this;
+                enemies[i].action= "THROW";
+                catchAttempts++;
+            }
         }
-		else if ((Random.Range(1, 100) + Random.Range(1, 100) / 2) < (this.Stamina/this.maxStamina) * 100)
-        {//dodge success
-			loseStamina(damage);
-            return 0;
+        for (int i = 0; i < catchAttempts; i++) {
+            this.catchBall(this);
         }
-        else
-        {
-            loseStamina(1);
-            if (this.Stamina <= 0)
-                this.dead = true;
-            return -1;
-        }
-        return 0;
-    }
-	*/
+        actionCooldowns[4] = 1; //Where N is the ability number-1
 
-	public override void Skill1(Character target) //Special move #1 PicketFences
-    {
-        //Activates catching for both other characters
-         person1.catching = true;
-         person2.catching = true;
     }
 
-    void Skill2() //Planted stance
-    {
-        this.catching = true;
-        this.plantedStance = true;
+    public override void Skill2() {
+        while (Target.actionType == "Offensive") {
+            // have them re choose or give them a random other ability. IDK
+        }
+        actionCooldowns[4] = 4;
     }
 
-    void Skill3() //Rain Shield
-    {
-        this.catching = true;
-        this.rainShield = true;
+    public override void Skill3() {
+        if (enemies[3].actionType == "Offensive") {
+            enemies[3].action = "NONE";
+            enemies[3].heldBalls--;
+        } else if (enemies[3].actionType == "Offensive") {
+            enemies[3].action = "NONE";
+            enemies[3].heldBalls--;
+        } else if (enemies[3].actionType == "Offensive") {
+            enemies[3].action = "NONE";
+            enemies[3].heldBalls--;
+        }
+        actionCooldowns[5] = 2;
+    }
+
+    public override void Skill4() {
+
     }
 
 }

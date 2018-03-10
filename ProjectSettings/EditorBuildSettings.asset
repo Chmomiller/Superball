@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Salt Pitt High Gym.unity
+    guid: 9f510dcea7d58504caa2d5ea4be71688
