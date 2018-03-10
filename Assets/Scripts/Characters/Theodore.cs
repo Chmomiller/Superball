@@ -24,6 +24,7 @@ public class Theodore : Character {
 
     }
 
+	/*
     // Update is called once per frame
     void Update() {
         if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
@@ -36,6 +37,7 @@ public class Theodore : Character {
             enemies = combat.Player;
         }
     }
+	*/
 
     public override void Skill1() {
         //Rook: slightly weaker attack and enemy is stunned for one turn. Cost: 2 balls

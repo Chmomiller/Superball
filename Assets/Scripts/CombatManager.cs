@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
-	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL1, SKILL2, SKILL3, REST, WAIT}
+	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL1, SKILL2, SKILL3, SKILL4, REST, WAIT}
 	public enum PHASE{START, CONFLICT, SELECT, ACTION, TARGET, EXECUTE, RESULTS}
 
 	public struct Combat{public Character character; 
@@ -20,16 +20,18 @@ public class CombatManager : MonoBehaviour
 	public Button[] enemySelect;
 	public Button[] action;
 	// This is for debug purposes
-	public Text battleText;		
-	public GameObject Cursor;
+	public Text battleText;	
+	public Text combatAction;
+	public CombatUI CUI;
 
 	// Used to see if balls were caught and by who
 	private System.Collections.Generic.List<bool> ballsCaught;
-	private int conflictInQueue = -1;
+	public int conflictInQueue = -1;
 	public bool win = false;
 	public bool lose = false;
 
 	public int currentCharacter = 0;
+	public float delay = 0f;
 
 	void Start()
 	{
@@ -37,24 +39,35 @@ public class CombatManager : MonoBehaviour
 		Enemy = new Character[3];
 		playerSelect = new Button [3];
 		enemySelect = new Button [3];
+		GameObject[] P = GameObject.FindGameObjectsWithTag("Player");
+		GameObject[] E = GameObject.FindGameObjectsWithTag ("Enemy");
 		for (int i = 0; i < 3; i++) 
 		{
-			Player[i] = GameObject.Find ("Player"+i).GetComponent<Character>();
-			Enemy[i] = GameObject.Find ("Enemy"+i).GetComponent<Character>();
+			Player [i] = P [i].GetComponent<Character>();
+			Enemy [i] = E [i].GetComponent<Character>();
+			GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().character = i;
+			GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().character = i;
 
-			playerSelect [i] = GameObject.Find ("Player"+i).GetComponent<Button>();
-			enemySelect [i] = GameObject.Find ("Enemy"+i).GetComponent<Button>();
+			playerSelect [i] = GameObject.Find ("Player" + i).GetComponent<Button> ();
+			enemySelect [i] = GameObject.Find ("Enemy" + i).GetComponent<Button> ();
+			GameObject.Find ("CharacterUI" + i).GetComponent<CharacterUI> ().character = Player [i];
+			GameObject.Find ("CharacterUI" + (i+3)).GetComponent<CharacterUI> ().character = Enemy [i];
+
+			P [i].transform.position = playerSelect [i].transform.position;
+			E [i].transform.position = enemySelect [i].transform.position;
 		}
-		action = new Button[6];
+		action = new Button[7];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
 		action [3] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
 		action [4] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
 		action [5] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
+		action [6] = GameObject.Find ("Skill4Button").GetComponent<Button> ();
 		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
+		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
+		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		ballsCaught = new System.Collections.Generic.List<bool>();
 		combatQueue = new Combat[6];
-		Cursor = GameObject.Find ("Cursor");
 	}
 
 	void Update()
@@ -118,6 +131,7 @@ public class CombatManager : MonoBehaviour
 			combatQueue [i].character.gatherBall ();
 		}
 		currentPhase = PHASE.CONFLICT;
+		CUI.ShowPhase ();
 	}
 
 
@@ -257,6 +271,7 @@ public class CombatManager : MonoBehaviour
 	// This function has the charcters perform their actions in the correct order
 	void Execute()
 	{
+		CUI.ShowPhase ();
 		for (int i = 0; i < 6; i++) 
 		{
 			print (combatQueue[i].character.Name + combatQueue[i].action);
@@ -264,8 +279,9 @@ public class CombatManager : MonoBehaviour
 
 		for (int i = 0; i < 6; i++) 
 		{
-			if(! combatQueue[i].character.dead 
-				&& combatQueue[i].character.findStatus("stun") != -1)
+			print (combatQueue[i].character.Name+": " + combatQueue[i].character.dead);
+			if(! combatQueue[i].character.dead) 
+				//&& combatQueue[i].character.findStatus("stun") != -1)
 			{
 				DoAction (combatQueue [i].character, combatQueue [i].action);
 			}
@@ -276,6 +292,7 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 		currentPhase = PHASE.RESULTS;
+
 	}
 
 
@@ -310,100 +327,21 @@ public class CombatManager : MonoBehaviour
 		{
 			CleanUp(C.character);
 		}
-		currentPhase = PHASE.START;
-	}
-
-
-	// This function is called when a character button is pressed.
-	public void CharacterSelect(int character)
-	{
-		// If this is the player SELECT phase
-		// The (character < 3) is required because of a wierd error where 3 is passed as an argument for no reason after the first click
-		if (currentPhase == PHASE.SELECT && character < 3) 
-		{
-			// If the selected character is not the first one in the combat queue that is also in conflict with another allies position
-			if (Player [character] != combatQueue [conflictInQueue].character) 
-			{
-				// Swap the characters
-				Character temp = combatQueue [conflictInQueue].character;
-				combatQueue [conflictInQueue].character = combatQueue [conflictInQueue + 1].character;
-				combatQueue [conflictInQueue + 1].character = temp;
-				Cursor.transform.position = new Vector3 (temp.transform.position.x, temp.transform.position.y + 1, temp.transform.position.z);
-			}
-			conflictInQueue = -1;
-			currentPhase = PHASE.ACTION;
-
-		}
-		if (currentPhase == PHASE.TARGET) 
-		{
-			if (character < 3) 
-			{
-				combatQueue [currentCharacter].target = Player [character];
-				combatQueue [currentCharacter].character.Target = Player [character];
-			} 
-			else 
-			{
-				combatQueue [currentCharacter].target = Enemy [character - 3];
-				combatQueue [currentCharacter].character.Target = Enemy [character - 3];
-			}
-			currentPhase = PHASE.CONFLICT;
-		}
-	}
-
-
-	// This function is called when an action button is selected. It sets the appropriate action for the current character
-	public void ActionSelect(int action)
-	{
-		if(currentPhase == PHASE.ACTION)
-		{
-			// Check if the action is valid
-			if(combatQueue[currentCharacter].character.GetActionCost(action) > combatQueue[currentCharacter].character.heldBalls 
-				|| combatQueue[currentCharacter].character.actionCooldowns[action] > 0)
-			{
-				return;
-			}
-
-			combatQueue [currentCharacter].action = (ACTION)(action);
-			combatQueue [currentCharacter].character.action = combatQueue [currentCharacter].character.GetAction (action);
-			combatQueue [currentCharacter].character.actionType = combatQueue [currentCharacter].character.GetActionType(action);
-			combatQueue [currentCharacter].character.targetingType = combatQueue [currentCharacter].character.GetTargetingType(action);	
-			if (combatQueue [currentCharacter].character.actionType == "Defense") 
-			{
-				combatQueue [currentCharacter].character.catching = true;
-			}
-			switch (combatQueue [currentCharacter].character.GetTargetingType (action)) 
-			{
-			case(0):
-				currentPhase = PHASE.CONFLICT;
-				combatQueue [currentCharacter].character.Target = combatQueue [currentCharacter].character;
-				break;
-			case(1):
-				currentPhase = PHASE.TARGET;
-				foreach(Button B in enemySelect)
-				{
-					B.enabled = true;
-				}
-				break;
-			case(2):
-				currentPhase = PHASE.TARGET;
-				foreach(Button B in playerSelect)
-				{
-					B.enabled = true;
-				}
-				break;
-			}
-		}
+		//currentPhase = PHASE.START;
+		
+		this.enabled = false;
+		StartCoroutine(PhaseChange());
 	}
 
 
 	void DoAction(Character character, ACTION action)
 	{
+		print ("DoAction running");
 		switch (action) 
 		{
 		case(ACTION.THROW):
-			print (character.Target.actionType);
+			StartCoroutine (PrintOut (character.Name + " attacks " + character.Target.Name + "!"));
 			if (character.Target.actionType == "Defense") {
-				Debug.Log (character.Name + " attacks " + character.Target.Name + "!");
 				switch (character.Target.action) {
 				case("Catch"):
 					if (character.Target.catchBall (character)) 
@@ -416,20 +354,34 @@ public class CombatManager : MonoBehaviour
 						{
 							ballsCaught.Add (false);
 						}
+						
+						StartCoroutine (PrintOut (character.Target.Name + " caught the ball!"));
 						Debug.Log (character.Target.Name + " caught the ball!");
 					}
 					break;
 				case("Skill1"):
 					character.Target.Skill1 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (4) + " !"));
 					Debug.Log (character.Target.Name + " used Skill " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					character.Target.Skill2 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (5) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					character.Target.Skill3 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (6) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 3!");
+					break;
+				case("Skill4"):
+					character.Target.Skill4 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (7) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 4!");
 					break;
 				}
 			} 
@@ -464,45 +416,61 @@ public class CombatManager : MonoBehaviour
 					combatQueue[i].character.Target = character;
 					combatQueue[i].target = character;
 				}
+				
+				StartCoroutine (PrintOut (character.Name + " is ready to catch!"));
 				Debug.Log (character.Name + " is ready to catch!");
 			}
 			break;
 		case(ACTION.GATHER):
 			character.gatherBall();
+			
+			StartCoroutine (PrintOut (character.Name + " picked up a ball!"));
 			Debug.Log (character.Name + " picked up a ball!");
 			break;
 		case(ACTION.SKILL1):
 			// check if the action is offensive and the target is using a defensive move.
+			
+			StartCoroutine (PrintOut (character.Name + " used " + character.GetActionName (4) + " !"));
 			Debug.Log (character.Name + " used " + character.GetActionName (4) + " !");
 			if (character.actionType == "Offense"
 			    && character.Target.actionType == "Defense") {
 				switch (character.Target.action) {
 				case("Catch"):
-					if (character.Target.catchBall (character)) 
-					{
-						if (character.tag == "Player") 
-						{
+					if (character.Target.catchBall (character)) {
+						if (character.tag == "Player") {
 							ballsCaught.Add (true);
-						} 
-						else 
-						{
+						} else {
 							ballsCaught.Add (false);
 						}
 					}
 					character.heldBalls--;
+					
+					StartCoroutine (PrintOut (character.Target.Name + " caught the ball!"));
 					Debug.Log (character.Target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
 					character.Target.Skill1 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (4) + " !"));
 					Debug.Log (character.Target.Name + " used Skill " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					character.Target.Skill2 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (5) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					character.Target.Skill3 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (6) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 3!");
+					break;
+				case("Skill4"):
+					character.Target.Skill4 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used Skill " + character.Target.GetActionName (7) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 4!");
 					break;
 				}
 			} 
@@ -512,6 +480,8 @@ public class CombatManager : MonoBehaviour
 			}
 			break;
 		case(ACTION.SKILL2):
+			
+			StartCoroutine (PrintOut (character.Name + " used Skill 2!"));
 			Debug.Log (character.Name + " used Skill 2!");
 			if (character.actionType == "Offense"
 			    && character.Target.actionType == "Defense") {
@@ -529,19 +499,33 @@ public class CombatManager : MonoBehaviour
 						}
 					}
 					character.heldBalls--;
+					
+					StartCoroutine (PrintOut (character.Target.Name + " caught the ball!"));
 					Debug.Log (character.Target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
 					character.Target.Skill1 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (4) + " !"));
 					Debug.Log (character.Target.Name + " used " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					character.Target.Skill2 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (5) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					character.Target.Skill3 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (6) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 3!");
+					break;
+				case("Skill4"):
+					character.Target.Skill4 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (7) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 4!");
 					break;
 				}
 			}
@@ -551,6 +535,8 @@ public class CombatManager : MonoBehaviour
 			}
 			break;
 		case(ACTION.SKILL3):
+			
+			StartCoroutine (PrintOut (character.Name + " used Skill 3!"));
 			Debug.Log (character.Name + " used Skill 3!");
 			if (character.actionType == "Offense"
 			    && character.Target.actionType == "Defense") {
@@ -568,25 +554,94 @@ public class CombatManager : MonoBehaviour
 						}
 					}
 					character.heldBalls--;
+					
+					StartCoroutine (PrintOut (character.Target.Name + " caught the ball!"));
 					Debug.Log (character.Target.Name + " caught the ball!");
 					break;
 				case("Skill1"):
 					character.Target.Skill1 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (4) + " !"));
 					Debug.Log (character.Target.Name + " used " + character.Target.GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					character.Target.Skill2 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (5) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					character.Target.Skill3 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (6) + " !"));
 					Debug.Log (character.Target.Name + " used Skill 3!");
+					break;
+				case("Skill4"):
+					character.Target.Skill4 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (7) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 4!");
 					break;
 				}
 			}
 			else
 			{
 				character.Skill3 ();	
+			}
+			break;
+		case(ACTION.SKILL4):
+			
+			StartCoroutine (PrintOut (character.Name + " used Skill 4!"));
+			Debug.Log (character.Name + " used Skill 4!");
+			if (character.actionType == "Offense"
+				&& character.Target.actionType == "Defense") {
+				switch (character.Target.action) {
+				case("Catch"):
+					if (character.Target.catchBall (character)) 
+					{
+						if (character.tag == "Player") 
+						{
+							ballsCaught.Add (true);
+						} 
+						else 
+						{
+							ballsCaught.Add (false);
+						}
+					}
+					character.heldBalls--;
+					
+					StartCoroutine (PrintOut (character.Target.Name + " caught the ball!"));
+					Debug.Log (character.Target.Name + " caught the ball!");
+					break;
+				case("Skill1"):
+					character.Target.Skill1 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (4) + " !"));
+					Debug.Log (character.Target.Name + " used " + character.Target.GetActionName (4) + " !");
+					break;
+				case("Skill2"):
+					character.Target.Skill2 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (5) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 2!");
+					break;
+				case("Skill3"):
+					character.Target.Skill3 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (6) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 3!");
+					break;
+				case("Skill4"):
+					character.Target.Skill4 ();
+					
+					StartCoroutine (PrintOut (character.Target.Name + " used " + character.Target.GetActionName (7) + " !"));
+					Debug.Log (character.Target.Name + " used Skill 4!");
+					break;
+				}
+			}
+			else
+			{
+				character.Skill4 ();	
 			}
 			break;
 		}
@@ -702,9 +757,22 @@ public class CombatManager : MonoBehaviour
 		}
 	}
 
-	IEnumerator PrintOut(string whatToSay, int delay)
+	IEnumerator PrintOut(string whatToSay)
 	{
+		delay += 1f;
+		print (whatToSay + ", delay is: " + delay);
 		yield return new WaitForSeconds (delay);
-		Debug.Log (whatToSay);
+		combatAction.text = whatToSay;
+	}
+
+	IEnumerator PhaseChange()
+	{
+		this.enabled = false;
+		delay += 2f;
+		yield return new WaitForSeconds (delay);
+		combatAction.text = "";
+		delay = 0f;
+		this.enabled = true;
+		currentPhase = PHASE.START;
 	}
 }

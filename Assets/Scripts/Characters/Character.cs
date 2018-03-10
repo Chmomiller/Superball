@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
 	public int maxStamina = 10;
     public int heldBalls = 0;
     public int maxBalls = 2;
+    public int Level = 1;
+
     public string Role = "Supporter";
 	public Character Target; //Create an empty Character in the combat manager that other charaters can select when not targetting
 	public string action = "";
@@ -36,10 +38,12 @@ public class Character : MonoBehaviour
 	public double dodge;
 	//Following 3 arrays are paired, so when an action is selected it can look at the same index
 	//of the different arrays and set the corresponding variable to the array value
-	public string[] actions = {"None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-	public string[] actionNames = { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-	public string[] actionDescription = { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "", "" };
-	public string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
+
+	// I changed these from private to protected, this is important for Character derived classes
+	protected string[] actions = {"None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+	protected string[] actionNames = { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+    public string[] actionDescription = { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "", "" };
+    protected string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
 
     //These are to dictate who each ability can target: 0 for none or predetermined, 1 for Enemy[], 2 for Player[]
     //default is for what you would expect, alternate is if they switched teams. 
@@ -67,7 +71,7 @@ public class Character : MonoBehaviour
 	public string GetAction(int index){return this.actions [index];}
 	public string GetActionName(int index){return this.actionNames [index];}
 	public string GetActionType(int index){return this.actionTypes [index];}
-	public int GetTargetingType(int index){return this.targetingTypes [index];}
+	public int GetTargetingType(int index){return /*This had to be changed for testing purposes*/this.defaultTargetingTypes [index];}
 	public int GetActionCost(int index){return this.actionCosts [index];}
 
 	public struct status {
@@ -77,7 +81,6 @@ public class Character : MonoBehaviour
 
 
     void Awake() {
-       combat  = GameObject.Find("CombatManager").GetComponent<CombatManager>();
     }
 
     void Start() {
@@ -87,13 +90,16 @@ public class Character : MonoBehaviour
         //can be relative. That is: Enemy[1] will always be the same, but enemies[1] 
         //will be the Player[1] if you have allegiance 2 (ie on team 2, aiming at team 1)
         //and will be Enemy [1] if you have allegiance 1 (ie on team 1, aiming at team 2)
-        if(allegiance == 1) { 
+        combat = GameObject.Find("EmptyCombatManager").GetComponent<CombatManager>();
+
+        /*
+        if (allegiance == 1) { 
             allies = combat.Player;
             enemies = combat.Enemy;
         } else {
             allies = combat.Enemy;
             enemies = combat.Player;
-        }
+        } */
     }
 
 
@@ -123,6 +129,7 @@ public class Character : MonoBehaviour
     //There is also a applyStatusEffect() and removeStatusEffect() function that serves to add or remove one status effect chosen. Here is where the actual effects are applied to the player. apply should add the numerical effects, remove should reverse that
 
     //Characters also have a statusEffects array of status structs 6 long. This serves to hold all status effects you can have. EX. status statusEffects[6];
+    // changed this to public because I need access to it's length
 	public status[] statusEffects = new status[6];
 
 	public void addStatusEffect(string name, int duration){
@@ -142,6 +149,7 @@ public class Character : MonoBehaviour
 	}
 
 	//called at the end of your turn
+	// Changed this to public, not public in other versions
 	public void removeDoneStatusEffects(){
 		for(int i =0; i<statusEffects.Length; i++){
 			if(statusEffects[i].duration == 0){
@@ -209,6 +217,8 @@ public class Character : MonoBehaviour
 		}
 	}
 
+
+	// I added this function, it is not in the character file normally
 	public int findStatus(string effect)
 	{
 		for (int i = 0; i < statusEffects.Length; i++) 

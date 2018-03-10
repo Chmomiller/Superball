@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Battle_Screen.unity
+- path: Assets/Salt Pitt High Gym.unity
   isLoaded: 1
   isActive: 1

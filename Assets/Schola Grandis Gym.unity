@@ -141,89 +141,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &202445080 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1694682511634506, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
---- !u!114 &202445082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 202445080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eea9eb8f3a90bf4cb0b4f258a16c737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
-  Transform: 0
 --- !u!1 &281614433
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +253,7 @@ MonoBehaviour:
   enemySelect: []
   action: []
   battleText: {fileID: 0}
-  Cursor: {fileID: 0}
+  conflictInQueue: -1
   win: 0
   lose: 0
   currentCharacter: 0
@@ -496,88 +413,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &592824223 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1677291022536708, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
---- !u!114 &592824225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 592824223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82e631a3ecaefe408b94d5218b3c5f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!1 &613819599
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,93 +677,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1265778510}
---- !u!1 &1282904771 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1617455638371312, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
---- !u!114 &1282904773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1282904771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfd6b36311f9f4547896789ee4ed78a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
---- !u!224 &1287062481 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
 --- !u!1 &1383534983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,7 +767,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1287062481}
+  - {fileID: 1687314718}
   - {fileID: 1087821897}
   - {fileID: 1265778511}
   m_Father: {fileID: 0}
@@ -1030,171 +778,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1473008634 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1905600206606060, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
---- !u!114 &1473008636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1473008634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0ab69ddba1c0c45a7dcd3491cc6b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
---- !u!1 &1588995868 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1278860839581710, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
---- !u!114 &1588995870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1588995868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f2c35d5d54b8a4db2b83829e50addb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
-  Transform: 0
 --- !u!1001 &1687314717
 Prefab:
   m_ObjectHideFlags: 0
@@ -1202,265 +785,74 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1383534987}
     m_Modifications:
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 102.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 205.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224626832177480212, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114121073562580978, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114527101051918370, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114416973042008154, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114414006774154026, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114539531760241692, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114824236137363280, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114962703712939958, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305958}
-    - target: {fileID: 114821875287446550, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114513515463713652, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114992791376285904, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305959}
-    - target: {fileID: 114843339918395678, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 393305958}
-    - target: {fileID: 224152340299833828, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224866834473495920, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224146104687288506, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224476614863714458, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224129707251767348, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224654221411975486, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224460230308183024, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224856773732960354, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224212818031460702, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224758252057502874, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224416433168877358, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224123697388729894, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224358074004580680, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224573102582823472, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224063043507109346, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224138682565310848, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224724688670704912, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224816328357026470, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224616273513892478, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224491091958945822, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224253957199186860, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224742326549935466, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224318559114919068, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224055618918529088, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114281978651154838, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Text
-      value: Clemence
-      objectReference: {fileID: 0}
-    - target: {fileID: 114600705811449004, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Text
-      value: Shiro
-      objectReference: {fileID: 0}
-    - target: {fileID: 114303366242430980, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Text
-      value: Theodore
-      objectReference: {fileID: 0}
-    - target: {fileID: 114775520732917562, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 2079362918}
-    - target: {fileID: 114228980780019954, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1473008636}
-    - target: {fileID: 114118976068198474, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 592824225}
-    - target: {fileID: 114984862284176500, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Text
-      value: Haruna
-      objectReference: {fileID: 0}
-    - target: {fileID: 114854999957385412, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Text
-      value: Mei
-      objectReference: {fileID: 0}
-    - target: {fileID: 114730708880575644, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Text
-      value: Chikako
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114311724884021026, guid: 8816f530933511049b637d01a9973e77, type: 2}
-    - {fileID: 114080570172782152, guid: 8816f530933511049b637d01a9973e77, type: 2}
-    - {fileID: 114689730977480706, guid: 8816f530933511049b637d01a9973e77, type: 2}
-    - {fileID: 114405718799969154, guid: 8816f530933511049b637d01a9973e77, type: 2}
-    - {fileID: 114450976005770196, guid: 8816f530933511049b637d01a9973e77, type: 2}
-    - {fileID: 114355907440422934, guid: 8816f530933511049b637d01a9973e77, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &1687314718 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224371692604726960, guid: 8816f530933511049b637d01a9973e77,
+    type: 2}
+  m_PrefabInternal: {fileID: 1687314717}
 --- !u!1 &1862253759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1501,85 +893,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2079362916 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1787005341671958, guid: 8816f530933511049b637d01a9973e77,
-    type: 2}
-  m_PrefabInternal: {fileID: 1687314717}
---- !u!114 &2079362918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2079362916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9def0d90b580a4f8ac1c521094fe3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0

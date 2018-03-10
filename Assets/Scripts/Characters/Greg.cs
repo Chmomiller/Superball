@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Greg: Character
 {
+	Character Trevor;
+
     void Start()
     {
         Name = "Greg";
@@ -21,9 +23,26 @@ public class Greg: Character
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+
+		GameObject[] P = GameObject.FindGameObjectsWithTag ("Player");
+		GameObject[] E = GameObject.FindGameObjectsWithTag ("Enemy");
+		for(int i = 0; i < P.Length; i ++)
+		{
+			if(P[i].GetComponent<Character>().Name == "Trevor")
+			{
+				Trevor = P [i].GetComponent<Trevor> ();
+			}
+		}
+		for(int i = 0; i < E.Length; i ++)
+		{
+			if(P[i].GetComponent<Character>().Name == "Trevor")
+			{
+				Trevor = E [i].GetComponent<Trevor> ();
+			}
+		}
     }
 
-
+	/*
     void Update() {
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -35,6 +54,7 @@ public class Greg: Character
             enemies = combat.Player;
         }
     }
+    */
 
 	// This skill is Greg's Terrapin skill
 	// If a hit is successful against Greg and terrapin has been used it rebounds into Trevor's ball pool
@@ -42,7 +62,6 @@ public class Greg: Character
 	public override void Skill1()
     {
         //recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
-        Character Trevor = GameObject.Find("Trevor").GetComponent<Trevor>();
         if (Trevor.heldBalls < Trevor.Capacity) Trevor.heldBalls++;
         actionCooldowns[4] = 3;
         heldBalls--;

@@ -13,11 +13,17 @@ public class CursorManager : MonoBehaviour
 
 	void Update () 
 	{
-		if (CM.currentCharacter > -1 && CM.currentCharacter < 6) 
+		if(CM.currentPhase != CombatManager.PHASE.START && CM.currentPhase != CombatManager.PHASE.EXECUTE)
 		{
-			gameObject.transform.position = new Vector3 (CM.combatQueue[CM.currentCharacter].character.transform.position.x, 
-				CM.combatQueue[CM.currentCharacter].character.transform.position.y + 1, 2);
+			if (CM.currentCharacter > -1 && CM.currentCharacter < 6) 
+			{
+				gameObject.transform.position = new Vector3 (CM.combatQueue[CM.currentCharacter].character.transform.position.x, 
+					CM.combatQueue[CM.currentCharacter].character.transform.position.y + 1, 2);
+			}
 		}
-
+		else
+		{
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 100f);
+		}
 	}
 }

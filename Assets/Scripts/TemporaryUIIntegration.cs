@@ -15,7 +15,7 @@ public class TemporaryUIIntegration : MonoBehaviour
 		//Name = gameObject.GetComponent<Text> ();
 		Player = gameObject.GetComponent<Character> ();
 		//Name.text = Player.Name;
-		//HealthBar = gameObject.GetComponent<Slider> ();
+		HealthBar = gameObject.GetComponentInChildren<Slider> ();
 		HealthMax = Player.Stamina;
 		HealthBar.maxValue = (float) Player.Stamina;
 		HealthBar.value = (float) Player.Stamina;

@@ -23,6 +23,7 @@ public class Frank : Character {
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
     }
 
+	/*
     // Update is called once per frame
     void Update() {
         if (allegiance == 1) {
@@ -35,6 +36,7 @@ public class Frank : Character {
             enemies = combat.Player;
         }
     }
+	*/
 
 
     // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball

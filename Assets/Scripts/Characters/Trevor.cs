@@ -23,6 +23,7 @@ public class Trevor : Character {
     }
 
     // Update is called once per frame
+	/*
     void Update() {
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -34,6 +35,7 @@ public class Trevor : Character {
             enemies = combat.Player;
         }
 	}
+	*/
 
 	// Thrash: Throws 3 balls at three random targets on your team. 1 turn cooldown. Cost: 3 balls
     // Currently doesn't allow players to res off of a catch from this skill
