@@ -102,6 +102,7 @@ public class DialogueManager : MonoBehaviour {
 			if (transition) {
 				bg.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
 				bg.GetComponent<FullScreenBG> ().ResetScale ();
+
 				//set next characters
 				for(int c=0; c < 6; ++c) {
 					if (insertText [lineNum, c] != "") {
