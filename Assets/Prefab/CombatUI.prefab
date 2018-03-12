@@ -341,12 +341,11 @@ GameObject:
   - component: {fileID: 222570099211786374}
   - component: {fileID: 114132210309658588}
   - component: {fileID: 114910640768729014}
-  - component: {fileID: 114317082370169454}
   - component: {fileID: 114923927461593016}
   - component: {fileID: 114871612254420930}
   m_Layer: 5
   m_Name: Enemy2
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,12 +361,11 @@ GameObject:
   - component: {fileID: 222943945861213986}
   - component: {fileID: 114139161365451386}
   - component: {fileID: 114019328817133816}
-  - component: {fileID: 114116515205412186}
   - component: {fileID: 114241438871049106}
   - component: {fileID: 114918965612317468}
   m_Layer: 5
   m_Name: Player1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -553,12 +551,11 @@ GameObject:
   - component: {fileID: 222268288680193342}
   - component: {fileID: 114985093247298340}
   - component: {fileID: 114687172008826156}
-  - component: {fileID: 114941532278053468}
   - component: {fileID: 114505764961229650}
   - component: {fileID: 114570756373090632}
   m_Layer: 5
   m_Name: Enemy1
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,7 +722,7 @@ GameObject:
   - component: {fileID: 222579724237173264}
   - component: {fileID: 114645329496764642}
   m_Layer: 5
-  m_Name: BattleText
+  m_Name: CombatAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1006,12 +1003,11 @@ GameObject:
   - component: {fileID: 222561272829643442}
   - component: {fileID: 114133571102114044}
   - component: {fileID: 114255202903518450}
-  - component: {fileID: 114932005336371450}
   - component: {fileID: 114294323309385056}
   - component: {fileID: 114686099884648802}
   m_Layer: 5
   m_Name: Player2
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1076,12 +1072,11 @@ GameObject:
   - component: {fileID: 222359216217629678}
   - component: {fileID: 114185837059161384}
   - component: {fileID: 114167889883229086}
-  - component: {fileID: 114083223163269894}
   - component: {fileID: 114790687394337002}
   - component: {fileID: 114203238048426232}
   m_Layer: 5
   m_Name: Player0
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1584,12 +1579,11 @@ GameObject:
   - component: {fileID: 222933242229651840}
   - component: {fileID: 114479288942769272}
   - component: {fileID: 114253562617290602}
-  - component: {fileID: 114428180655021938}
   - component: {fileID: 114921397795829450}
   - component: {fileID: 114577308882758388}
   m_Layer: 5
   m_Name: Enemy0
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2640,7 +2634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfo: {fileID: 0}
   characterPanel: {fileID: 0}
-  character: {fileID: 114428180655021938}
+  character: {fileID: 0}
 --- !u!114 &114019328817133816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2830,58 +2824,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114083223163269894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1602462245558626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f537c260712d34aab8062f03c1192b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: Hope
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  targetingTypes: 00000000010000000000000000000000000000000000000000000000
-  actionCooldowns: 00000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!114 &114083258714078076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3013,58 +2955,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114116515205412186
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1219999965536030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f537c260712d34aab8062f03c1192b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: Future
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  targetingTypes: 00000000010000000000000000000000000000000000000000000000
-  actionCooldowns: 00000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!114 &114121175255192046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3078,7 +2968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfo: {fileID: 0}
   characterPanel: {fileID: 0}
-  character: {fileID: 114932005336371450}
+  character: {fileID: 0}
 --- !u!114 &114121816063325560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3986,58 +3876,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hope
---- !u!114 &114317082370169454
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1209385858606998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f537c260712d34aab8062f03c1192b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: Kuro
-  Damage: 1
-  Catch: 100
-  Gather: 0
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  targetingTypes: 00000000010000000000000000000000000000000000000000000000
-  actionCooldowns: 00000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!114 &114317358295229470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4180,7 +4018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfo: {fileID: 0}
   characterPanel: {fileID: 0}
-  character: {fileID: 114083223163269894}
+  character: {fileID: 0}
 --- !u!114 &114359556086943468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4368,7 +4206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfo: {fileID: 0}
   characterPanel: {fileID: 0}
-  character: {fileID: 114116515205412186}
+  character: {fileID: 0}
 --- !u!114 &114402035035802632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4592,58 +4430,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114428180655021938
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1853451736193634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f537c260712d34aab8062f03c1192b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: Shiro
-  Damage: 1
-  Catch: 100
-  Gather: 0
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  targetingTypes: 00000000010000000000000000000000000000000000000000000000
-  actionCooldowns: 00000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!114 &114430615310600924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5646,7 +5432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfo: {fileID: 0}
   characterPanel: {fileID: 0}
-  character: {fileID: 114941532278053468}
+  character: {fileID: 0}
 --- !u!114 &114832776526543746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5997,58 +5783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: 0
   CM: {fileID: 0}
---- !u!114 &114932005336371450
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1550350755191382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f537c260712d34aab8062f03c1192b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: Truth
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  targetingTypes: 00000000010000000000000000000000000000000000000000000000
-  actionCooldowns: 00000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!114 &114939102755766390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6109,58 +5843,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114941532278053468
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1308082770903252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f537c260712d34aab8062f03c1192b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: Mono
-  Damage: 1
-  Catch: 100
-  Gather: 0
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  targetingTypes: 00000000010000000000000000000000000000000000000000000000
-  actionCooldowns: 00000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
 --- !u!114 &114944381789280474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6348,7 +6030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfo: {fileID: 0}
   characterPanel: {fileID: 0}
-  character: {fileID: 114317082370169454}
+  character: {fileID: 0}
 --- !u!222 &222006280724422184
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -7545,7 +7227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -72.2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224389561199195980
@@ -7581,7 +7263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 446.50266, y: 61.298916}
+  m_AnchoredPosition: {x: 0, y: 127.2}
   m_SizeDelta: {x: 348.6, y: 99.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224419628573050374

@@ -10,8 +10,8 @@ public class CharacterSelectUI : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();	
 		gameObject.GetComponent<Button> ().onClick.AddListener (CharacterSelect);
+		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();	
 	}
 	
 	// Update is called once per frame

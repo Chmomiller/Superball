@@ -21,7 +21,6 @@ public class CombatUI : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 		backButton = GameObject.Find ("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener (ToggleSkillMenu);
 		skillButton = GameObject.FindGameObjectsWithTag ("Skill");
@@ -39,6 +38,7 @@ public class CombatUI : MonoBehaviour
 			actionButtons [i + 2] = skillButton [i].GetComponent<ButtonsUI> ();
 		}
 		openMenu = false;
+		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 	}
 	
 	// Update is called once per frame

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Dialogue{
-	
 	//characters appear in order
+	//special include offscreen
 	//{character,character,character,character,character,character,dialogue,whose talking split by a space,special, special param}
 	static string[,] sceneName = new string[,] {
-		{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "", "" },
-		{ "", "", "char1", "char2", "", "", "text","char1","", "" },
-		{ "", "", "char1", "char2", "", "", "text","x","", "" },
-		{ "shiro", "shiro", "shiro", "shiro", "shiro", "shiro", "text","shiro","", "" },
-
+		{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "" },
+		{ "", "", "char1", "char2", "", "", "text","char1","" },
+		{ "", "", "char1", "char2", "", "", "text","x","" },
 
 	};
 
@@ -63,7 +61,6 @@ public class Dialogue{
 			"Shiro","", ""
 
 		},
-
 		{
 			"","","","","","",
 			"",
@@ -148,19 +145,17 @@ public class Dialogue{
 
 		{
 			"","Shiro","","","","",
-			"Ah, I’ve checked out the library, the music room, the field…",
+			"Shiro: Ah, I’ve checked out the library, the music room, the field…",
 			"Shiro","", ""
 
 		},
 
 		{
 			"","Shiro","","","","",
-			"Wait, what’s this place? It looks so big! Well, only one way to find out.",
+			"Shiro: Wait, what’s this place? It looks so big! Well, only one way to find out.",
 			"Shiro","", ""
 
 		},
-
-
 
 	};
 
@@ -229,7 +224,13 @@ public class Dialogue{
 		//{"steamed hams",steamedHam}
 
 	};
-
+	/*
+	public Dictionary<string, string[][]> characters = new Dictionary<string, string[][]> {
+		//must have 3 in each
+		{"test scene", new string[][]{ new string[]{"char1","char2",""}, new string[]{"char3","char3",""}} },
+		{"steamed hams", new string[][]{new string[]{"Chalmers","Seymour"}} }
+	};
+	*/
 
 
 

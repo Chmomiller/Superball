@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4968510826021772}
-  - component: {fileID: 114309617115528776}
   - component: {fileID: 114594670049378730}
   - component: {fileID: 212309271615673600}
   m_Layer: 0
@@ -42,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114309617115528776
+--- !u!114 &114594670049378730
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1365132067671048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e2b594fdddf8247bb6e2e7c16b7add, type: 3}
+  m_Script: {fileID: 11500000, guid: bf485a6e5bd64544e89d546e49b39600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
@@ -80,65 +79,6 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
---- !u!114 &114594670049378730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1365132067671048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf485a6e5bd64544e89d546e49b39600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
   actionDescription:
   - Wait
   - Throw ball at target enemy
@@ -149,14 +89,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
   targetingTypes: 
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0

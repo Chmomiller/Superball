@@ -15,9 +15,13 @@ public class BattleSimulator : MonoBehaviour {
         //ChooseExtras();
        // print(i);
         if (i == 6) {
+			// This will need to be changed later to fit different screens
+			//GameObject.Find ("CombatUI").transform.position = new Vector3 (400, 150, 0);//GetComponent<RectTransform>()
             combatObj.AddComponent<CombatManager>();
           //  combatObj.name = "Combat_Manager";
           //  Finish(combatObj.GetComponent<CombatManager>());
+			//CallInit();
+			GameObject.Find("BattleSimHelper").AddComponent<BattleSimHelper>();
             Destroy(this);
         }
     }
@@ -70,5 +74,20 @@ public class BattleSimulator : MonoBehaviour {
             
         }
     }
+
+	void CallInit () 
+	{
+		CombatUI CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI>();
+		ButtonsUI[] buttonsUIs = FindObjectsOfType<ButtonsUI> ();
+		TemporaryUIIntegration[] temporaryUIIntegrations = TemporaryUIIntegration.FindObjectsOfType<TemporaryUIIntegration> ();
+
+		CUI.CM = combatObj.GetComponent<CombatManager>();
+
+		GameObject.Find ("Cursor").GetComponent<CursorManager> ().CM = combatObj.GetComponent<CombatManager>();
+		for(int i = 0; i < buttonsUIs.Length; i++)
+		{
+			buttonsUIs [i].CM = combatObj.GetComponent<CombatManager>();
+		}
+	}
 
 }

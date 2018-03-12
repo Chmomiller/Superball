@@ -27,10 +27,10 @@ public class DialogueManager : MonoBehaviour {
 	public Image screen;
 	bool transition= false;
 	bool changeBG = false;
-	bool fadeIn = false;
 
 	//Speaking characters
-
+	public string character1 = "";
+	public string character2 = "";
 	public string[] onScreenChars = {"", "", "", "", "", "" };
 	List<string> sceneCharacters;
 	string[] group1;
@@ -50,10 +50,6 @@ public class DialogueManager : MonoBehaviour {
 	string currentLine = "";
 	public float textSpeed = 0.05f;
 	float textTime = 0.0f;
-
-	//ending a scene
-	public bool combatDialogue = false;
-	public string nextScene;
 
 	// Use this for initialization
 	void Start () {
@@ -82,53 +78,15 @@ public class DialogueManager : MonoBehaviour {
 			} else if (transition) {
 				//bg.GetComponent<SpriteRenderer> ().color = new Color (bg.GetComponent<SpriteRenderer> ().color.r - (Time.deltaTime / fadeDuration)*4,bg.GetComponent<SpriteRenderer> ().color.g - (Time.deltaTime / fadeDuration)*4, bg.GetComponent<SpriteRenderer> ().color.b - (Time.deltaTime / fadeDuration)*4,1.0f);
 				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a + Time.deltaTime / fadeDuration);
-			} else if (fadeIn) {
-				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a - Time.deltaTime / fadeDuration);
-
 			}
 
 		} else {
-			fading = false;
-			if (fadeIn) {
-				fadeIn = false;
-				changeBG = true;
-				fading = false;
-				nextLine ();
-
-
-			}
-
-
 			if (transition) {
 				bg.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
 				bg.GetComponent<FullScreenBG> ().ResetScale ();
-
-				//set next characters
-				for(int c=0; c < 6; ++c) {
-					if (insertText [lineNum, c] != "") {
-						charSprites [c].sprite = Resources.Load<Sprite> ("Characters/" + insertText [lineNum, c]) as Sprite;
-						charSprites [c].preserveAspect = true;
-						if (c > 2) {
-
-							charSprites [c].GetComponent<RectTransform> ().localScale = new Vector3 (
-								charSprites [c].GetComponent<RectTransform> ().localScale.x * -1,
-								charSprites [c].GetComponent<RectTransform> ().localScale.y,
-								charSprites [c].GetComponent<RectTransform> ().localScale.z
-
-
-							);
-						}
-					} else {
-						charSprites [c].color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-					}
-				}
-				//clear text
-				dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText("");
-
-				fadeIn = true;
-				fading = true;
-				fadeTime = 0;
+				changeBG = true;
 			}
+			fading = false;
 			initialFade = false;
 			transition = false;
 		}
@@ -153,17 +111,6 @@ public class DialogueManager : MonoBehaviour {
 					if (insertText [lineNum, ch] != "") {
 						charSprites [ch].sprite = Resources.Load<Sprite> ("Characters/" + insertText [lineNum, ch]) as Sprite;
 						charSprites [ch].preserveAspect = true;
-
-						if (ch > 2) {
-							charSprites [ch].GetComponent<RectTransform> ().localScale = new Vector3 (
-								charSprites [ch].GetComponent<RectTransform> ().localScale.x * -1,
-								charSprites [ch].GetComponent<RectTransform> ().localScale.y,
-								charSprites [ch].GetComponent<RectTransform> ().localScale.z
-
-
-							);
-
-						}
 
 						if (speakerSet.Contains (insertText [lineNum, ch])) {
 							charSprites [ch].color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
@@ -254,7 +201,6 @@ public class DialogueManager : MonoBehaviour {
 			changeBG = false;
 
 
-
 		}
 
 	}
@@ -270,17 +216,7 @@ public class DialogueManager : MonoBehaviour {
 
 
 	public void endConvo(){
-		if (combatDialogue) {
-			dialogueBox.color = new Color (0.8f, 0.8f, 0.8f, 0.0f);
-			dialogueBox.gameObject.SetActive (false);
-			foreach (Image cha in charSprites) {
-				cha.color = new Color (1f, 1f, 1f, 0f);
-				cha.gameObject.SetActive (false);
-			}
-		} else {
-			//insert scene change here
-			UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
-		}
+		
 
 	}
 
@@ -289,13 +225,8 @@ public class DialogueManager : MonoBehaviour {
 		fadeTime = 0;
 		fading = true;
 		initialFade = true;
-		dialogueBox.gameObject.SetActive (true);
-
 		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
 
-		foreach (Image cha in charSprites) {
-			cha.gameObject.SetActive (true);
-		}
 
 
 		isSpeaking = true;
@@ -308,8 +239,6 @@ public class DialogueManager : MonoBehaviour {
 			bg.GetComponent<SpriteRenderer> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
 				
 		}
-
-
 	
 		string[] speakerSet = insertText [0, 7].Split (' ');
 
@@ -318,16 +247,6 @@ public class DialogueManager : MonoBehaviour {
 			if (insertText [0, c] != "") {
 				charSprites [c].sprite = Resources.Load<Sprite> ("Characters/" + insertText [0, c]) as Sprite;
 				charSprites [c].preserveAspect = true;
-				if (c > 2) {
-					
-					charSprites [c].GetComponent<RectTransform> ().localScale = new Vector3 (
-						charSprites [c].GetComponent<RectTransform> ().localScale.x * -1,
-						charSprites [c].GetComponent<RectTransform> ().localScale.y,
-						charSprites [c].GetComponent<RectTransform> ().localScale.z
-
-
-					);
-				}
 			} else {
 				charSprites [c].color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 			}

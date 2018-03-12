@@ -45,29 +45,37 @@ public class CombatManager : MonoBehaviour
 		{
 			Player [i] = P [i].GetComponent<Character>();
 			Enemy [i] = E [i].GetComponent<Character>();
+			Player [i].combat = this;
+			Enemy [i].combat = this;
 			GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().character = i;
-			GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().character = i;
+			GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().CM = this;
+			GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().character = i+3;
+			GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().CM = this;
 
 			playerSelect [i] = GameObject.Find ("Player" + i).GetComponent<Button> ();
 			enemySelect [i] = GameObject.Find ("Enemy" + i).GetComponent<Button> ();
 			GameObject.Find ("CharacterUI" + i).GetComponent<CharacterUI> ().character = Player [i];
 			GameObject.Find ("CharacterUI" + (i+3)).GetComponent<CharacterUI> ().character = Enemy [i];
 
-			P [i].transform.position = playerSelect [i].transform.position;
-			E [i].transform.position = enemySelect [i].transform.position;
+			P [i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, P [i].transform.position.z);
+			E [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, E [i].transform.position.z);
 		}
-		action = new Button[7];
+		action = new Button[6];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
-		action [3] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
-		action [4] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
-		action [5] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
-		action [6] = GameObject.Find ("Skill4Button").GetComponent<Button> ();
+		action [2] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
+		action [3] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
+		action [4] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
+		action [5] = GameObject.Find ("Skill4Button").GetComponent<Button> ();
 		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		ballsCaught = new System.Collections.Generic.List<bool>();
 		combatQueue = new Combat[6];
+		for (int i = 0; i < action.Length; i++) 
+		{
+			action [i].GetComponent<ButtonsUI> ().CM = this;
+		}
 	}
 
 	void Update()
@@ -166,7 +174,9 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 
-		if(firstAction != -1 
+		// This block will run when findstatus can work properly
+		/*
+		if(firstAction != -1
 			&& combatQueue[firstAction].character.findStatus("stun") != -1)
 		{
 			combatQueue[firstAction].character.action = "None";
@@ -175,6 +185,7 @@ public class CombatManager : MonoBehaviour
 			combatQueue [firstAction].character.Target = combatQueue [firstAction].character;
 			return;
 		}
+		*/
 
 		// If there is a conflict in the queue but someone else has priority
 		if (conflictInQueue != -1 && firstAction >= conflictInQueue) 
@@ -244,8 +255,16 @@ public class CombatManager : MonoBehaviour
 	{
 		// delegates would help here
 		battleText.text = "Choose " + combatQueue[conflictInQueue].character.Name + " or " + combatQueue[conflictInQueue+1].character.Name;
-		combatQueue [conflictInQueue].character.gameObject.GetComponent<Button> ().enabled = true;
-		combatQueue [conflictInQueue+1].character.gameObject.GetComponent<Button> ().enabled = true;
+		for(int i = 0; i < 3; i++)
+		{
+			if(combatQueue[conflictInQueue].character == Player[i] 
+				|| combatQueue[conflictInQueue+1].character == Player[i])
+			{
+				playerSelect [i].enabled = true;
+			}
+		}
+		//combatQueue [conflictInQueue].character.gameObject.GetComponent<Button> ().enabled = true;
+		//combatQueue [conflictInQueue+1].character.gameObject.GetComponent<Button> ().enabled = true;
 		// If the player has selected a character to go first
 	}
 

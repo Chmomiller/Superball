@@ -78,10 +78,7 @@ public class Character : MonoBehaviour
 		public string name;
 		public int duration;
 	}
-
-
-    void Awake() {
-    }
+		
 
     void Start() {
         //allegiance of 1 is to the player controlled team. The allies and the enemies 

@@ -17,9 +17,9 @@ public class ButtonsUI : MonoBehaviour
 	{
 		gameObject.GetComponent<Button> ().onClick.AddListener (ActionSelect);
 		this.GetComponent<Image>().alphaHitTestMinimumThreshold = AlphaThreshold;
-		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();	
 		actionDescription = GameObject.Find ("ActionPanel").GetComponentInChildren<Text>();
 		menuOpen = false;
+		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 	}
 	
 	// Update is called once per frame
