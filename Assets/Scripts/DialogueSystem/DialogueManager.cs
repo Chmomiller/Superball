@@ -17,9 +17,8 @@ public class DialogueManager : MonoBehaviour {
 	bool initialFade;
 
 	//black beginning
-	bool blackStart = false;
 	int blackFade = 0;
-	float bColor =0.0f;
+	float bColor = 0.0f;
 
 	//transitions
 
@@ -32,14 +31,12 @@ public class DialogueManager : MonoBehaviour {
 	//Speaking characters
 
 	public string[] onScreenChars = {"", "", "", "", "", "" };
-	List<string> sceneCharacters;
 	string[] group1;
 	string[] group2;
 
 	public Image[] charSprites = new Image[6];
 
 	bool newLine = true;
-	string prevSpeaker = "";
 
 	//lines
 	public Dialogue textLines;
@@ -50,6 +47,11 @@ public class DialogueManager : MonoBehaviour {
 	string currentLine = "";
 	public float textSpeed = 0.05f;
 	float textTime = 0.0f;
+
+	//unskippable stuff
+	bool unskip = false;
+	float unskipTime = 0f;
+	float unskipDuration = 0f;
 
 	//ending a scene
 	public bool combatDialogue = false;
@@ -62,7 +64,6 @@ public class DialogueManager : MonoBehaviour {
 		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
 
 		isSpeaking = true;
-		sceneCharacters = new List<string>();
 		textLines = new Dialogue ();
 		insertText = textLines.allDialogue[sceneTitle];
 
@@ -199,6 +200,10 @@ public class DialogueManager : MonoBehaviour {
 					textTime = 0.0f;
 				} else if (lineI >= insertText [lineNum, 6].Length) {
 					isSpeaking = false;
+					if (insertText [lineNum, 8] == "unskippable"){
+						unskip = true;
+						unskipDuration = float.Parse (insertText [lineNum, 9] );
+					}
 
 				}
 
@@ -206,7 +211,13 @@ public class DialogueManager : MonoBehaviour {
 				currentLine = "";
 				lineI = 0;
 				dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText (insertText [lineNum, 7] + "\n" + insertText [lineNum, 6]);
-
+				if (unskip){
+					if(unskipTime > unskipDuration){
+						unskip = false;
+						nextLine ();
+					}
+					unskipTime += Time.deltaTime;
+				}
 			
 			} else {
 				endConvo ();
@@ -220,12 +231,18 @@ public class DialogueManager : MonoBehaviour {
 
 
 		if (isSpeaking && !fading && !transition) {
+			if (insertText [lineNum, 8] == "unskippable") {
+				return;
+			}
+
 			isSpeaking = false;
 		} else if (lineNum < insertText.GetLength(0) && !fading && !transition){
-			
+			if (unskip) {
+				return;
+			}
 			currentLine = "";
 			lineI = 0;
-			prevSpeaker = insertText [lineNum, 7];
+			//prevSpeaker = insertText [lineNum, 7];
 			lineNum++;
 			newLine = true;
 			isSpeaking = true;
@@ -303,7 +320,7 @@ public class DialogueManager : MonoBehaviour {
 		insertText = textLines.allDialogue[sceneTitle];
 
 		if (insertText [0, 8] == "black") {
-			blackStart = true;
+			//blackStart = true;
 			blackFade = int.Parse (insertText [0, 9]);
 			bg.GetComponent<SpriteRenderer> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
 				
@@ -311,7 +328,7 @@ public class DialogueManager : MonoBehaviour {
 
 
 	
-		string[] speakerSet = insertText [0, 7].Split (' ');
+		//string[] speakerSet = insertText [0, 7].Split (' ');
 
 		//set the character sprites
 		for(int c=0; c < 6; ++c) {
