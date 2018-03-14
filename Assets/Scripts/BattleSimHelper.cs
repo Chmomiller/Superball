@@ -13,7 +13,7 @@ public class BattleSimHelper : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		combatObj = GameObject.Find ("EmptyCombatManagerPrefab").GetComponent<CombatManager>();
+		combatObj = GameObject.Find ("CombatManager").GetComponent<CombatManager>();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		CUI.CM = combatObj;
 		buttonsUIs = FindObjectsOfType<ButtonsUI> ();

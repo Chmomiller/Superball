@@ -27,7 +27,7 @@ public class Clemence : Character
     }
     /*
     void Update(){
-        combat = GameObject.Find("EmptyCombatManagerPrefab").GetComponent<CombatManager>();
+        combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         if (combat != null) {
             if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
                 this.targetingTypes = defaultTargetingTypes;

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleSimulator : MonoBehaviour {
-    int i = 0;
+    public int i = 0;
     public GameObject combatObj;
     public GameObject[] players = new GameObject[6];
     
     // Use this for initialization
     void Start() {
-        combatObj = GameObject.Find("EmptyCombatManagerPrefab");
+        combatObj = GameObject.Find("CombatManager");
     }
     void Update() {
         //ChooseExtras();

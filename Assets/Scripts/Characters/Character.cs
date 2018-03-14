@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     public int Gather = 1;
     public int Capacity = 4;
     public int Stamina = 10;
-	public int maxStamina = 10;
+	public int maxStamina;
     public int heldBalls = 0;
     public int maxBalls = 2;
     public int Level = 1;
@@ -81,13 +81,14 @@ public class Character : MonoBehaviour
 		
 
     void Start() {
+		maxStamina = Stamina;
         //allegiance of 1 is to the player controlled team. The allies and the enemies 
         //array now refer to your teammates and the other teams respectively. This is 
         //done beacuse the Player[] and Enemy[] are absolute, but allies and enemies
         //can be relative. That is: Enemy[1] will always be the same, but enemies[1] 
         //will be the Player[1] if you have allegiance 2 (ie on team 2, aiming at team 1)
         //and will be Enemy [1] if you have allegiance 1 (ie on team 1, aiming at team 2)
-        combat = GameObject.Find("EmptyCombatManager").GetComponent<CombatManager>();
+        combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
 
         /*
         if (allegiance == 1) { 
@@ -263,7 +264,6 @@ public class Character : MonoBehaviour
 
         public int throwBall(Character target)
 	{
-		heldBalls--;
 		target.dodgeBall (this);
 		return 0;
 	}

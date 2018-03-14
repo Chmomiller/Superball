@@ -33,12 +33,14 @@ public class CharacterUI : MonoBehaviour
 
 	void OnMouseEnter()
 	{
+		print ("OnMouseOver");
 		characterInfo.enabled = true;
 		characterPanel.enabled = true;
 	}
 
 	void OnMouseExit()
 	{
+		print ("OnMouseExit");
 		characterInfo.enabled = false;
 		characterPanel.enabled = false;
 	}

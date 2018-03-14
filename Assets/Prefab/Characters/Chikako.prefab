@@ -19,12 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4865733603385898}
-  - component: {fileID: 114143050469436178}
   - component: {fileID: 114031006542337376}
   - component: {fileID: 212664085548278922}
   m_Layer: 0
   m_Name: Chikako
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1009911100724650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 504.12082, y: 273.6363, z: 0.27645728}
+  m_LocalPosition: {x: 504.12082, y: 273.6363, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,84 +50,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f2c35d5d54b8a4db2b83829e50addb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  actions:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionNames:
-  - None
-  - Throw
-  - Catch
-  - Gather
-  - Skill1
-  - Skill2
-  - Skill3
-  - Skill4
-  actionDescription:
-  - Wait
-  - Throw ball at target enemy
-  - Attempt to catch any incoming balls
-  - Gather balls from the ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
-  targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
-  Transform: 0
---- !u!114 &114143050469436178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1009911100724650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9658f8c20348ee46ac8264137f9cbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
@@ -158,6 +79,16 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actionDescription:
+  - Wait
+  - Throw ball at target enemy
+  - Attempt to catch any incoming balls
+  - Gather balls from the ground
+  - 
+  - 
+  - 
+  - 
+  - 
   targetingTypes: 
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0

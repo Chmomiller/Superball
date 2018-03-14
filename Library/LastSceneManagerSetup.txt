@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Battle_Simulator.unity
+- path: Assets/Schola Grandis Gym.unity
   isLoaded: 1
   isActive: 1
