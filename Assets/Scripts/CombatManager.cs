@@ -39,12 +39,10 @@ public class CombatManager : MonoBehaviour
 		Enemy = new Character[3];
 		playerSelect = new Button [3];
 		enemySelect = new Button [3];
-		GameObject[] P = GameObject.FindGameObjectsWithTag("Player");
-		GameObject[] E = GameObject.FindGameObjectsWithTag ("Enemy");
 		for (int i = 0; i < 3; i++) 
 		{
-			Player [i] = P [i].GetComponent<Character>();
-			Enemy [i] = E [i].GetComponent<Character>();
+			Player[i] = GameObject.Find("Character"+i).GetComponent<Character>();
+			Enemy [i] = GameObject.Find ("Character" + (i + 3)).GetComponent<Character> ();
 			Player [i].combat = this;
 			Enemy [i].combat = this;
 			GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().character = i;
@@ -54,19 +52,22 @@ public class CombatManager : MonoBehaviour
 
 			playerSelect [i] = GameObject.Find ("Player" + i).GetComponent<Button> ();
 			enemySelect [i] = GameObject.Find ("Enemy" + i).GetComponent<Button> ();
-			GameObject.Find ("CharacterUI" + i).GetComponent<CharacterUI> ().character = Player [i];
-			GameObject.Find ("CharacterUI" + (i+3)).GetComponent<CharacterUI> ().character = Enemy [i];
 
-			P [i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, P [i].transform.position.z);
-			E [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, E [i].transform.position.z);
+			GameObject.Find ("CharacterUI" + i).GetComponent<CharacterUI> ().Init(Player [i]);
+			GameObject.Find ("CharacterUI" + (i+3)).GetComponent<CharacterUI> ().Init(Enemy [i]);
+
+			Player[i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, 90);
+			Enemy [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, 90);
 		}
-		action = new Button[6];
+		action = new Button[8];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
 		action [2] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
 		action [3] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
 		action [4] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
 		action [5] = GameObject.Find ("Skill4Button").GetComponent<Button> ();
+		action [6] = GameObject.Find ("Skill5Button").GetComponent<Button> ();
+		action [7] = GameObject.Find ("Skill6Button").GetComponent<Button> ();
 		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
@@ -122,7 +123,8 @@ public class CombatManager : MonoBehaviour
 		{
 			for (int j = i+1; j < 6; j++) 
 			{
-				if (tempChar [j-1].Stamina < tempChar [j].Stamina) 
+				//The first clause orders by stamina, the second ignores the case where j is out but j-1 is active
+				if (tempChar [j-1].Stamina < tempChar [j].Stamina && !(tempChar [j].dead && !tempChar [j-1].dead)) 
 				{
 					Character temp = tempChar [j];
 					tempChar [j] = tempChar [j - 1];
@@ -685,7 +687,10 @@ public class CombatManager : MonoBehaviour
 	// This function randomly assigns actions and targets for enemies.
 	void EnemyTurn(int current)
 	{
+		combatQueue [current].action = ACTION.THROW;
+		combatQueue [current].character.action = "Throw";
 		int choice = Random.Range (0, 4);
+		/*
 		switch (choice) 
 		{
 		case(0):
@@ -705,7 +710,8 @@ public class CombatManager : MonoBehaviour
 			combatQueue[current].character.action = "Skill1";
 			break;
 		}
-		combatQueue [current].character.actionType = combatQueue [current].character.GetActionType (choice + 1);
+*/
+		combatQueue [current].character.actionType = combatQueue [current].character.GetActionType (1);
 		if (combatQueue [current].action != ACTION.GATHER) 
 		{
 			choice = Random.Range (0, 3);
@@ -716,6 +722,7 @@ public class CombatManager : MonoBehaviour
 			combatQueue [current].target = Player [choice];
 			combatQueue [current].character.Target = Player[choice];
 		}
+
 	}
 
 

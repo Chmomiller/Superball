@@ -18,6 +18,7 @@ public class BattleSimHelper : MonoBehaviour
 		CUI.CM = combatObj;
 		buttonsUIs = FindObjectsOfType<ButtonsUI> ();
 		GameObject.Find ("Cursor").GetComponent<CursorManager> ().CM = combatObj;
+		//Destroy(GameObject.Find ("BattleButtonsCanvas"));
 
 		characters = FindObjectsOfType<Character> ();
 		characterselectUIs = CharacterSelectUI.FindObjectsOfType<CharacterSelectUI> ();

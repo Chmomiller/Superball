@@ -13,12 +13,8 @@ public class BattleSimulator : MonoBehaviour {
     }
     void Update() {
         //ChooseExtras();
-       // print(i);
         if (i == 6) {
-			// This will need to be changed later to fit different screens
-			//GameObject.Find ("CombatUI").transform.position = new Vector3 (400, 150, 0);//GetComponent<RectTransform>()
             combatObj.AddComponent<CombatManager>();
-          //  combatObj.name = "Combat_Manager";
           //  Finish(combatObj.GetComponent<CombatManager>());
 			//CallInit();
 			GameObject.Find("BattleSimHelper").AddComponent<BattleSimHelper>();
@@ -33,7 +29,6 @@ public class BattleSimulator : MonoBehaviour {
     }
 
     public void createCharacter(GameObject G) {
-        Instantiate(G);
         if (i < 3) {
             G.tag = "Player";
             print("player");
@@ -43,6 +38,8 @@ public class BattleSimulator : MonoBehaviour {
             print("enemy");
             players[i] = G;
         }
+		GameObject clone  = Instantiate(G);
+		clone.name = "Character" + i;
         i++;
     }
 
