@@ -8,7 +8,6 @@ public class CharacterUI : MonoBehaviour
 	public Text characterInfo;
 	public Image characterPanel;
 	public Character character;
-	public Slider HealthBar;
 	float HealthMax;
 	Text characterName;
 
@@ -16,27 +15,20 @@ public class CharacterUI : MonoBehaviour
 	{
 		characterInfo = gameObject.GetComponentsInChildren<Text> ()[0];
 		characterName = gameObject.GetComponentsInChildren<Text> ()[1];
-		characterPanel = gameObject.GetComponentsInChildren<Image> ()[1];
-		HealthBar = gameObject.GetComponentInChildren<Slider> ();
+		characterPanel = gameObject.GetComponentsInChildren<Image> ()[2];
 		characterInfo.enabled = false;
 		characterPanel.enabled = false;
-		//characterName.text = character.Name;
-		//HealthBar.maxValue = (float) character.maxStamina;
-		//HealthBar.value = (float) character.Stamina;
 	}
 
 	public void Init(Character characterToSet)
 	{
 		characterInfo = gameObject.GetComponentsInChildren<Text> ()[0];
 		characterName = gameObject.GetComponentsInChildren<Text> ()[1];
-		characterPanel = gameObject.GetComponentsInChildren<Image> ()[1];
-		HealthBar = gameObject.GetComponentInChildren<Slider> ();
+		characterPanel = gameObject.GetComponentsInChildren<Image> ()[2];
 		characterInfo.enabled = false;
 		characterPanel.enabled = false;
 		character = characterToSet;
 		characterName.text = character.Name;
-		HealthBar.maxValue = (float)character.maxStamina;
-		HealthBar.value = (float)character.Stamina;
 	}
 
 	void Update()
@@ -49,7 +41,6 @@ public class CharacterUI : MonoBehaviour
 			+ "\n\t" + character.GetActionName(5)
 			+ "\n\t" + character.GetActionName(6);
 
-		HealthBar.value = (float) character.Stamina;
 	}
 
 	void OnMouseEnter()

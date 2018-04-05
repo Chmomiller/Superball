@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88dde0ebbc5e51e44ab8d350c2f98e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatQueue: []
   currentPhase: 0
   Player: []
   Enemy: []
@@ -227,6 +228,7 @@ MonoBehaviour:
   battleText: {fileID: 0}
   combatAction: {fileID: 0}
   CUI: {fileID: 0}
+  tempUI: []
   conflictInQueue: -1
   win: 0
   lose: 0
@@ -627,7 +629,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1757739480
+--- !u!1001 &1839111193
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -724,91 +726,41 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224726275190679146, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 114015979506818544, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: Player
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 224090232453750748, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 114162616038844360, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: Player
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 224051629113899324, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 114775723339116336, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: Player
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 224039828140159834, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 114665883326389682, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: Player
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 224844762267278146, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 114960438125111756, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: Player
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 224701221035110842, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 114265939931883218, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224244130022115510, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224026613030699328, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224855175463612660, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224707144835258228, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224208720226402078, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224750602876976058, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: Player
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 223426691818721964, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519878006}
-    - target: {fileID: 114114163317060210, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Salt Pitt High Gym
-      objectReference: {fileID: 0}
-    - target: {fileID: 114004863669673454, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: actionNumber
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114055342123704082, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: actionNumber
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114392519233051680, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: actionNumber
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0

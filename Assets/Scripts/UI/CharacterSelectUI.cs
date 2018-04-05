@@ -26,12 +26,12 @@ public class CharacterSelectUI : MonoBehaviour
 		if (CM.currentPhase == CombatManager.PHASE.SELECT && character < 3) 
 		{
 			// If the selected character is not the first one in the combat queue that is also in conflict with another allies position
-			if (CM.Player [character] != CM.combatQueue [CM.conflictInQueue].character) 
+			if (CM.Player [character] != CM.combatQueue [CM.conflictInQueue]) 
 			{
 				// Swap the characters
-				Character temp = CM.combatQueue [CM.conflictInQueue].character;
-				CM.combatQueue [CM.conflictInQueue].character = CM.combatQueue [CM.conflictInQueue + 1].character;
-				CM.combatQueue [CM.conflictInQueue + 1].character = temp;
+				Character temp = CM.combatQueue [CM.conflictInQueue];
+				CM.combatQueue [CM.conflictInQueue] = CM.combatQueue [CM.conflictInQueue + 1];
+				CM.combatQueue [CM.conflictInQueue + 1] = temp;
 			}
 			CM.conflictInQueue = -1;
 			CM.currentPhase = CombatManager.PHASE.ACTION;
@@ -41,13 +41,11 @@ public class CharacterSelectUI : MonoBehaviour
 		{
 			if (character < 3) 
 			{
-				CM.combatQueue [CM.currentCharacter].target = CM.Player [character];
-				CM.combatQueue [CM.currentCharacter].character.Target = CM.Player [character];
+				CM.combatQueue [CM.currentCharacter].Target = CM.Player [character];
 			} 
 			else 
 			{
-				CM.combatQueue [CM.currentCharacter].target = CM.Enemy [character - 3];
-				CM.combatQueue [CM.currentCharacter].character.Target = CM.Enemy [character - 3];
+				CM.combatQueue [CM.currentCharacter].Target = CM.Enemy [character - 3];
 			}
 			CM.currentPhase = CombatManager.PHASE.CONFLICT;
 		}

@@ -27,7 +27,7 @@ public class ButtonsUI : MonoBehaviour
 	{
 		if (CM.currentPhase == CombatManager.PHASE.ACTION) 
 		{
-			desc = CM.combatQueue [CM.currentCharacter].character.actionDescription [actionNumber];
+			desc = CM.combatQueue [CM.currentCharacter].actionDescription [actionNumber];
 		}
 	}
 
@@ -37,26 +37,25 @@ public class ButtonsUI : MonoBehaviour
 		if(CM.currentPhase == CombatManager.PHASE.ACTION)
 		{
 			// Check if the action is valid
-			if(CM.combatQueue[CM.currentCharacter].character.GetActionCost(actionNumber) > CM.combatQueue[CM.currentCharacter].character.heldBalls 
-				|| CM.combatQueue[CM.currentCharacter].character.actionCooldowns[actionNumber] > 0)
+			if(CM.combatQueue[CM.currentCharacter].GetActionCost(actionNumber) > CM.combatQueue[CM.currentCharacter].heldBalls 
+				|| CM.combatQueue[CM.currentCharacter].actionCooldowns[actionNumber] > 0)
 			{
 				return;
 			}
-
-			CM.combatQueue [CM.currentCharacter].action = (CombatManager.ACTION)(actionNumber);
-			CM.combatQueue [CM.currentCharacter].character.action = CM.combatQueue [CM.currentCharacter].character.GetAction (actionNumber);
-			CM.combatQueue [CM.currentCharacter].character.actionType = CM.combatQueue [CM.currentCharacter].character.GetActionType(actionNumber);
-			CM.combatQueue [CM.currentCharacter].character.targetingType = CM.combatQueue [CM.currentCharacter].character.GetTargetingType(actionNumber);	
+				
+			CM.combatQueue [CM.currentCharacter].action = CM.combatQueue [CM.currentCharacter].GetAction (actionNumber);
+			CM.combatQueue [CM.currentCharacter].actionType = CM.combatQueue [CM.currentCharacter].GetActionType(actionNumber);
+			CM.combatQueue [CM.currentCharacter].targetingType = CM.combatQueue [CM.currentCharacter].GetTargetingType(actionNumber);	
 			// This will need to change if there is a non-catching defensive move
-			if (CM.combatQueue [CM.currentCharacter].character.actionType == "Defense") 
+			if (CM.combatQueue [CM.currentCharacter].actionType == "Defense") 
 			{
-				CM.combatQueue [CM.currentCharacter].character.catching = true;
+				CM.combatQueue [CM.currentCharacter].catching = true;
 			}
-			switch (CM.combatQueue [CM.currentCharacter].character.GetTargetingType (actionNumber)) 
+			switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
 			{
 			case(0):
 				CM.currentPhase = CombatManager.PHASE.CONFLICT;
-				CM.combatQueue [CM.currentCharacter].character.Target = CM.combatQueue [CM.currentCharacter].character;
+				CM.combatQueue [CM.currentCharacter].Target = CM.combatQueue [CM.currentCharacter];
 				break;
 			case(1):
 				CM.currentPhase = CombatManager.PHASE.TARGET;

@@ -17,8 +17,8 @@ public class CursorManager : MonoBehaviour
 		{
 			if (CM.currentCharacter > -1 && CM.currentCharacter < 6) 
 			{
-				gameObject.transform.position = new Vector3 (CM.combatQueue[CM.currentCharacter].character.transform.position.x, 
-					CM.combatQueue[CM.currentCharacter].character.transform.position.y + 2, -5f);
+				gameObject.transform.position = new Vector3 (CM.combatQueue[CM.currentCharacter].transform.position.x, 
+					CM.combatQueue[CM.currentCharacter].transform.position.y + 2, -5f);
 			}
 		}
 		else

@@ -12,7 +12,7 @@ public class CombatManager : MonoBehaviour
 		public Character target;}
 
 	// Used for storing turn order and actions
-	public Combat[] combatQueue;								
+	public Character[] combatQueue;								
 	public PHASE currentPhase;
 	public Character[] Player;
 	public Character[] Enemy;
@@ -23,6 +23,8 @@ public class CombatManager : MonoBehaviour
 	public Text battleText;	
 	public Text combatAction;
 	public CombatUI CUI;
+
+	public TemporaryUIIntegration[] tempUI;
 
 	// Used to see if balls were caught and by who
 	private System.Collections.Generic.List<bool> ballsCaught;
@@ -35,6 +37,8 @@ public class CombatManager : MonoBehaviour
 
 	void Start()
 	{
+		GameObject[] CharUI = new GameObject[3];
+		GameObject[] EnemyUI = new GameObject[3];
 		Player = new Character[3];
 		Enemy = new Character[3];
 		playerSelect = new Button [3];
@@ -53,8 +57,10 @@ public class CombatManager : MonoBehaviour
 			playerSelect [i] = GameObject.Find ("Player" + i).GetComponent<Button> ();
 			enemySelect [i] = GameObject.Find ("Enemy" + i).GetComponent<Button> ();
 
-			GameObject.Find ("CharacterUI" + i).GetComponent<CharacterUI> ().Init(Player [i]);
-			GameObject.Find ("CharacterUI" + (i+3)).GetComponent<CharacterUI> ().Init(Enemy [i]);
+			CharUI [i] = GameObject.Find ("CharacterUI" + i);
+			CharUI [i].GetComponent<CharacterUI> ().Init(Player [i]);
+			EnemyUI [i] = GameObject.Find ("CharacterUI" + (i + 3));
+			EnemyUI [i].GetComponent<CharacterUI> ().Init(Enemy [i]);
 
 			Player[i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, 90);
 			Enemy [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, 90);
@@ -72,10 +78,16 @@ public class CombatManager : MonoBehaviour
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		ballsCaught = new System.Collections.Generic.List<bool>();
-		combatQueue = new Combat[6];
+		combatQueue = new Character[6];
 		for (int i = 0; i < action.Length; i++) 
 		{
 			action [i].GetComponent<ButtonsUI> ().CM = this;
+		}
+			
+		for(int i = 0; i < 3; i++)
+		{
+			CharUI [i].GetComponentInChildren<TemporaryUIIntegration> ().Init(Player [i]);
+			EnemyUI [i].GetComponentInChildren<TemporaryUIIntegration> ().Init(Enemy [i]);
 		}
 	}
 
@@ -136,9 +148,9 @@ public class CombatManager : MonoBehaviour
 		// Assign each element of the temperary array to the approrpiate element in CombatQueue
 		for (int i = 0; i < 6; i++) 
 		{
-			combatQueue [i].character = tempChar [i];
-			combatQueue [i].action = ACTION.NONE;
-			combatQueue [i].character.gatherBall ();
+			combatQueue [i] = tempChar [i];
+			combatQueue [i].action = "None";
+			combatQueue [i].gatherBall ();
 		}
 		currentPhase = PHASE.CONFLICT;
 		CUI.ShowPhase ();
@@ -152,10 +164,10 @@ public class CombatManager : MonoBehaviour
 		conflictInQueue = -1;
 		for(int i = 4; i > -1; i--)
 		{
-			if (combatQueue[i].action == ACTION.NONE 
-				&& combatQueue [i].character.tag == "Player"
-				&& combatQueue [i+1].character.tag == "Player"
-				&& combatQueue [i].character.Stamina == combatQueue [i+1].character.Stamina) 
+			if (combatQueue[i].action == "None" 
+				&& combatQueue [i].tag == "Player"
+				&& combatQueue [i+1].tag == "Player"
+				&& combatQueue [i].Stamina == combatQueue [i+1].Stamina) 
 			{
 				conflictInQueue = i;
 			}
@@ -170,7 +182,7 @@ public class CombatManager : MonoBehaviour
 		int firstAction = -1;
 		for (int i = 5; i > -1; i--)
 		{
-			if (combatQueue [i].action == ACTION.NONE) 
+			if (combatQueue [i].action == "None") 
 			{
 				firstAction = i;
 			}
@@ -199,9 +211,9 @@ public class CombatManager : MonoBehaviour
 			// If there is a character without an action
 			if(firstAction != -1)
 			{
-				if(!combatQueue[firstAction].character.dead)
+				if(!combatQueue[firstAction].dead)
 				{
-					if (combatQueue [firstAction].character.tag == "Player") 
+					if (combatQueue [firstAction].tag == "Player") 
 					{
 						currentPhase = PHASE.ACTION;
 					} 
@@ -215,10 +227,9 @@ public class CombatManager : MonoBehaviour
 					// All downed character are given the rest action
 					for (int i = firstAction; i < 6; i++) 
 					{
-						combatQueue [i].action = ACTION.REST;
-						combatQueue [i].character.action = "Rest";
-						combatQueue [i].character.actionType = "Utility";
-						combatQueue [i].character.Target = combatQueue [i].character;
+						combatQueue [i].action = "Rest";
+						combatQueue [i].actionType = "Utility";
+						combatQueue [i].Target = combatQueue [i];
 					}
 				}
 			}
@@ -231,9 +242,9 @@ public class CombatManager : MonoBehaviour
 			for (int i = 0; i < 6; i++) 
 			{
 				int k = 0;
-				if(combatQueue[i].action == ACTION.CATCH)
+				if(combatQueue[i].action == "Catch")
 				{
-					Combat temp = combatQueue [i];
+					Character temp = combatQueue [i];
 					while (i - k > j) 
 					{
 						combatQueue [i - k] = combatQueue [i - k - 1];
@@ -256,11 +267,11 @@ public class CombatManager : MonoBehaviour
 	void Select()
 	{
 		// delegates would help here
-		battleText.text = "Choose " + combatQueue[conflictInQueue].character.Name + " or " + combatQueue[conflictInQueue+1].character.Name;
+		battleText.text = "Choose " + combatQueue[conflictInQueue].Name + " or " + combatQueue[conflictInQueue+1].Name;
 		for(int i = 0; i < 3; i++)
 		{
-			if(combatQueue[conflictInQueue].character == Player[i] 
-				|| combatQueue[conflictInQueue+1].character == Player[i])
+			if(combatQueue[conflictInQueue] == Player[i] 
+				|| combatQueue[conflictInQueue+1] == Player[i])
 			{
 				playerSelect [i].enabled = true;
 			}
@@ -295,21 +306,20 @@ public class CombatManager : MonoBehaviour
 		CUI.ShowPhase ();
 		for (int i = 0; i < 6; i++) 
 		{
-			print (combatQueue[i].character.Name + combatQueue[i].action);
+			print (combatQueue[i].Name + combatQueue[i].action);
 		}
 
 		for (int i = 0; i < 6; i++) 
 		{
-			print (combatQueue[i].character.Name+": " + combatQueue[i].character.dead);
-			if(! combatQueue[i].character.dead) 
+			print (combatQueue[i].Name+": " + combatQueue[i].dead);
+			if(! combatQueue[i].dead) 
 				//&& combatQueue[i].character.findStatus("stun") != -1)
 			{
-				DoAction (combatQueue [i].character, combatQueue [i].action);
+				DoAction (combatQueue [i], combatQueue [i].action);
 			}
-			if(combatQueue[i].character.dead)
+			if(combatQueue[i].dead)
 			{
-				combatQueue[i].character.action = "Rest";
-				combatQueue[i].action = ACTION.REST;
+				combatQueue[i].action = "Rest";
 			}
 		}
 		currentPhase = PHASE.RESULTS;
@@ -332,9 +342,9 @@ public class CombatManager : MonoBehaviour
 		// Heal benched characters
 		for (int i = 0; i < 6; i++) 
 		{
-			if (combatQueue [i].character.dead) 
+			if (combatQueue [i].dead) 
 			{
-				combatQueue [i].character.Rest ();
+				combatQueue [i].Rest ();
 			}
 		}
 		// rez players as needed
@@ -344,9 +354,9 @@ public class CombatManager : MonoBehaviour
 			ballsCaught.RemoveAt (0);
 		}
 
-		foreach(Combat C in combatQueue)
+		foreach(Character C in combatQueue)
 		{
-			CleanUp(C.character);
+			CleanUp(C);
 		}
 		//currentPhase = PHASE.START;
 		
@@ -355,12 +365,12 @@ public class CombatManager : MonoBehaviour
 	}
 
 
-	void DoAction(Character character, ACTION action)
+	void DoAction(Character character, string action)///////////////////////////////
 	{
 		print ("DoAction running");
 		switch (action) 
 		{
-		case(ACTION.THROW):
+		case("Throw"):
 			StartCoroutine (PrintOut (character.Name + " attacks " + character.Target.Name + "!"));
 			if (character.Target.actionType == "Defense") {
 				switch (character.Target.action) {
@@ -416,7 +426,7 @@ public class CombatManager : MonoBehaviour
 				character.throwBall (character.Target);
 			}
 			break;
-		case(ACTION.CATCH):
+		case("Catch"):
 			// This can be implemented when the character needs multiple targets designated
 			/*
 				for(int i = 0; i < 6; i++)
@@ -435,24 +445,23 @@ public class CombatManager : MonoBehaviour
 
 			for(int i = 0; i < 6; i++)
 			{
-				if(combatQueue[i].character.Target == character.Target 
-					&& combatQueue[i].character.actionType == "Offensive")
+				if(combatQueue[i].Target == character.Target 
+					&& combatQueue[i].actionType == "Offensive")
 				{
-					combatQueue[i].character.Target = character;
-					combatQueue[i].target = character;
+					combatQueue[i].Target = character;
 				}
 				
 				StartCoroutine (PrintOut (character.Name + " is ready to catch!"));
 				Debug.Log (character.Name + " is ready to catch!");
 			}
 			break;
-		case(ACTION.GATHER):
+		case("Gather"):
 			character.gatherBall();
 			
 			StartCoroutine (PrintOut (character.Name + " picked up a ball!"));
 			Debug.Log (character.Name + " picked up a ball!");
 			break;
-		case(ACTION.SKILL1):
+		case("Skill1"):
 			// check if the action is offensive and the target is using a defensive move.
 			character.heldBalls -= character.GetActionCost(4);
 			StartCoroutine (PrintOut (character.Name + " used " + character.GetActionName (4) + " !"));
@@ -507,7 +516,7 @@ public class CombatManager : MonoBehaviour
 				character.Skill1 ();
 			}
 			break;
-		case(ACTION.SKILL2):
+		case("Skill2"):
 			character.heldBalls -= character.GetActionCost(5);
 			StartCoroutine (PrintOut (character.Name + " used Skill 2!"));
 			Debug.Log (character.Name + " used Skill 2!");
@@ -565,7 +574,7 @@ public class CombatManager : MonoBehaviour
 				character.Skill2 ();	
 			}
 			break;
-		case(ACTION.SKILL3):
+		case("Skill3"):
 			character.heldBalls -= character.GetActionCost(6);
 			StartCoroutine (PrintOut (character.Name + " used Skill 3!"));
 			Debug.Log (character.Name + " used Skill 3!");
@@ -623,7 +632,7 @@ public class CombatManager : MonoBehaviour
 				character.Skill3 ();	
 			}
 			break;
-		case(ACTION.SKILL4):
+		case("Skill4"):
 			character.heldBalls -= character.GetActionCost (7);
 			StartCoroutine (PrintOut (character.Name + " used Skill 4!"));
 			Debug.Log (character.Name + " used Skill 4!");
@@ -687,41 +696,63 @@ public class CombatManager : MonoBehaviour
 	// This function randomly assigns actions and targets for enemies.
 	void EnemyTurn(int current)
 	{
-		combatQueue [current].action = ACTION.THROW;
-		combatQueue [current].character.action = "Throw";
+		//combatQueue [current].action = "Throw";
 		int choice = Random.Range (0, 4);
 		/*
 		switch (choice) 
 		{
 		case(0):
-			combatQueue [current].action = ACTION.THROW;
-			combatQueue [current].character.action = "Throw";
+			combatQueue [current].action = "Throw";
 			break;
 		case(1):
-			combatQueue [current].action = ACTION.CATCH;
-			combatQueue[current].character.action = "Catch";
+			combatQueue[current].action = "Catch";
 			break;
 		case(2):
-			combatQueue [current].action = ACTION.GATHER;
-			combatQueue[current].character.action = "Gather";
+			combatQueue[current].action = "Gather";
 			break;
 		case(3):
-			combatQueue [current].action = ACTION.SKILL1;
-			combatQueue[current].character.action = "Skill1";
+			combatQueue[current].action = "Skill1";
 			break;
 		}
-*/
-		combatQueue [current].character.actionType = combatQueue [current].character.GetActionType (1);
-		if (combatQueue [current].action != ACTION.GATHER) 
+
+		combatQueue [current].actionType = combatQueue [current].GetActionType (choice);
+		if (combatQueue [current].GetTargetingType(choice) != 0) 
 		{
-			choice = Random.Range (0, 3);
-			while (Player [choice].dead) 
+			if (combatQueue [current].GetTargetingType(choice) == 1) 
 			{
 				choice = Random.Range (0, 3);
+				while (Player [choice].dead) 
+				{
+					choice = Random.Range (0, 3);
+				}
+				combatQueue [current].Target = Player [choice];
 			}
-			combatQueue [current].target = Player [choice];
-			combatQueue [current].character.Target = Player[choice];
+			if (combatQueue [current].GetTargetingType(choice) == 2) 
+			{
+				choice = Random.Range (0, 3);
+				while (Enemy [choice].dead) 
+				{
+					choice = Random.Range (0, 3);
+				}
+				combatQueue [current].Target = Enemy [choice];
+			}
 		}
+		else
+		{
+			combatQueue [current].action = "None";
+			combatQueue [current].actionType = combatQueue [current].GetActionType (choice);
+		}
+		*/
+
+		combatQueue [current].action = "Throw";
+		combatQueue [current].actionType = "Offense";
+
+		choice = Random.Range (0, 3);
+		while (Player [choice].dead) 
+		{
+			choice = Random.Range (0, 3);
+		}
+		combatQueue [current].Target = Player [choice];
 
 	}
 

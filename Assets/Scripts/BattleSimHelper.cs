@@ -13,11 +13,13 @@ public class BattleSimHelper : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		Destroy( GameObject.Find ("BattleButtonsCanvas"));
 		combatObj = GameObject.Find ("CombatManager").GetComponent<CombatManager>();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		CUI.CM = combatObj;
 		buttonsUIs = FindObjectsOfType<ButtonsUI> ();
 		GameObject.Find ("Cursor").GetComponent<CursorManager> ().CM = combatObj;
+		GameObject.Find ("ConflictCursor").GetComponent<ConflictCursorManager> ().CM = combatObj;
 		//Destroy(GameObject.Find ("BattleButtonsCanvas"));
 
 		characters = FindObjectsOfType<Character> ();
@@ -27,5 +29,7 @@ public class BattleSimHelper : MonoBehaviour
 		{
 			buttonsUIs [i].CM = combatObj;
 		}
+		Destroy (GameObject.Find ("BattleSimulator"));
+		Destroy (this);
 	}
 }

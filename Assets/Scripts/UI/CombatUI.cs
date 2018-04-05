@@ -9,6 +9,7 @@ public class CombatUI : MonoBehaviour
 	public GameObject[] skillButton;
 	public Button skillMenu;
 	public Button backButton;
+	public Button cancelButton;
 	public Button pageNextButton;
 	public Button pageBackButton;
 	public Image phasePanel;
@@ -25,6 +26,8 @@ public class CombatUI : MonoBehaviour
 	{
 		backButton = GameObject.Find ("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener (ToggleSkillMenu);
+		cancelButton = GameObject.Find ("CancelButton").GetComponent<Button> ();
+		cancelButton.onClick.AddListener (CancelAction);
 		//skillButton = GameObject.FindGameObjectsWithTag ("Skill");
 		skillButton = new GameObject[6];
 		skillButton [0] = GameObject.Find ("Skill1Button");
@@ -53,10 +56,24 @@ public class CombatUI : MonoBehaviour
 		openMenu = 0;
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
+		if(CM.currentPhase == CombatManager.PHASE.TARGET)
+		{
+			cancelButton.enabled = true;
+			cancelButton.GetComponentInChildren<Text> ().enabled = true;
+			cancelButton.GetComponent<Image> ().enabled = true;
+		}
+		else
+		{
+			cancelButton.enabled = false;
+			cancelButton.GetComponentInChildren<Text> ().enabled = false;
+			cancelButton.GetComponent<Image> ().enabled = false;
+		}
+
+		// This massive block of code makes the appropriate buttons from the action menu visible based on which phase its in and which page the player is looking at
 		if(CM.currentPhase == CombatManager.PHASE.ACTION)
 		{
 			bool actionOpen = false;
@@ -175,18 +192,6 @@ public class CombatUI : MonoBehaviour
 	public void ToggleVisibleSkills(int page)
 	{
 		openMenu = page;
-		/*
-		if (page == 1) 
-		{
-			pageBackButton.enabled = false;
-			pageNextButton.enabled = true;
-		}
-		else
-		{
-			pageBackButton.enabled = true;
-			pageNextButton.enabled = false;
-		}
-		*/
 	}
 
 	public void ShowPhase()
@@ -194,6 +199,13 @@ public class CombatUI : MonoBehaviour
 		phasePanel.enabled = true;
 		phaseText.enabled = true;
 		StartCoroutine (HidePhase());
+	}
+
+	public void CancelAction()
+	{
+		CM.combatQueue [CM.currentCharacter].action = "None";
+		CM.combatQueue [CM.currentCharacter].actionType = "None";
+		CM.currentPhase = CombatManager.PHASE.ACTION;
 	}
 
 	IEnumerator HidePhase()
