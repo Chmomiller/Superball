@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Haruna : Character {
+public class Elizabeth : Character {
 	
     public bool Transform = false;
     // Use this for initialization
     void Start() {
-        Name = "Haruna";
+        Name = "Elizabeth";
         Damage = 1;
         Catch = 100;
         Capacity = 4;
@@ -26,14 +26,18 @@ public class Haruna : Character {
 
     // Update is called once per frame
     void Update() {
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
+        if (combat == null) {
+            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
+            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+                this.targetingTypes = alternateTargetingTypes;
+                allies = combat.Player;
+                enemies = combat.Enemy;
+            } else {
+                this.targetingTypes = defaultTargetingTypes;
+                allies = combat.Enemy;
+                enemies = combat.Player;
+            }
         }
     }
 
@@ -58,7 +62,7 @@ public class Haruna : Character {
         //cant do stacking buffs yet   
     }
 
-    public override void Skill2() {
+  public override void Skill2() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (!Target.dodgeBall(this)) {
             Target.loseStamina(  (int)( (this.attack + 35)*variance ) );

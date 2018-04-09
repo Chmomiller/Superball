@@ -23,20 +23,24 @@ public class Frank : Character {
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
     }
 
-	/*
+    
     // Update is called once per frame
     void Update() {
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
+        if (combat == null) {
+            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        }else{
+            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+                this.targetingTypes = alternateTargetingTypes;
+                allies = combat.Player;
+                enemies = combat.Enemy;
+            } else {
+                this.targetingTypes = defaultTargetingTypes;
+                allies = combat.Enemy;
+                enemies = combat.Player;
+            }
         }
     }
-	*/
+	
 
 
     // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball

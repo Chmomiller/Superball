@@ -42,21 +42,19 @@ public class Greg: Character
 		}
     }
 
-	void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        }else{
-            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
+	/*
+    void Update() {
+        if (allegiance == 1) {
+            this.targetingTypes = alternateTargetingTypes;
+            allies = combat.Player;
+            enemies = combat.Enemy;
+        } else {
+            this.targetingTypes = defaultTargetingTypes;
+            allies = combat.Enemy;
+            enemies = combat.Player;
         }
     }
+    */
 
 	// This skill is Greg's Terrapin skill
 	// If a hit is successful against Greg and terrapin has been used it rebounds into Trevor's ball pool

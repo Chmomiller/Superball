@@ -27,18 +27,14 @@ public class Mei : Character {
 
     // Update is called once per frame
     void Update () {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        if (allegiance == 1) {
+            this.targetingTypes = alternateTargetingTypes;
+            allies = combat.Player;
+            enemies = combat.Enemy;
         } else {
-            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
+            this.targetingTypes = defaultTargetingTypes;
+            allies = combat.Enemy;
+            enemies = combat.Player;
         }
     }
 
@@ -73,17 +69,17 @@ public class Mei : Character {
     }
 
     public override void Skill3() {
-        if ( Target == GameObject.Find("Elizabeth").GetComponent<Elizabeth>()){
+        if ( Target == GameObject.Find("Haruna").GetComponent<Haruna>()){
             if (Target.allegiance == this.allegiance) { //is Haruna on our team?
-                Elizabeth elizabeth = GameObject.Find("Elizabeth").GetComponent<Elizabeth>();
-                elizabeth.Stamina += 15;
-                elizabeth.Transform = false; //recall transform is a unique boolean to the Schola Grandis girls
+                Haruna haruna = GameObject.Find("Haruna").GetComponent<Haruna>();
+                haruna.Stamina += 15;
+                haruna.Transform = false; //recall transform is a unique boolean to the Schola Grandis girls
             }
-        } else if (Target == GameObject.Find("Victoria").GetComponent<Victoria>() ){
+        } else if (Target == GameObject.Find("Chikako").GetComponent<Chikako>() ){
             if (Target.allegiance == this.allegiance) { //is Chikako on our team?
-               Victoria victoria = GameObject.Find("Victoria").GetComponent<Victoria>();
-                victoria.Stamina += 15;
-                victoria.Transform = false; //recall transform is a unique boolean to the Schola Grandis girls
+                Chikako chikako = GameObject.Find("Chikako").GetComponent<Chikako>();
+                chikako.Stamina += 15;
+                chikako.Transform = false; //recall transform is a unique boolean to the Schola Grandis girls
             }
         }
     }

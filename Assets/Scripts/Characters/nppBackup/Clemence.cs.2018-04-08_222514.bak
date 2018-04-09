@@ -20,12 +20,12 @@ public class Clemence : Character
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Catches for both allies but not yourself", "enemy is blocked from throwing balls and must do something else next", "Blocks the first attack on the next two turns", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0 };
 
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 1, 0 };
     }
-    
+    /*
     void Update(){
         combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         if (combat != null) {
@@ -41,6 +41,7 @@ public class Clemence : Character
         }
    //     this should be set in battle simulator
     }
+    */
 	
     public override void Skill1() {
         int catchAttempts = 0;
@@ -71,15 +72,15 @@ public class Clemence : Character
     }
 
     public override void Skill3() {
-        if (enemies[0].actionType == "Offensive") {
-            enemies[0].action = "NONE";
-            enemies[0].heldBalls--;
-        } else if (enemies[1].actionType == "Offensive") {
-            enemies[1].action = "NONE";
-            enemies[1].heldBalls--;
-        } else if (enemies[2].actionType == "Offensive") {
-            enemies[2].action = "NONE";
-            enemies[2].heldBalls--;
+        if (enemies[3].actionType == "Offensive") {
+            enemies[3].action = "NONE";
+            enemies[3].heldBalls--;
+        } else if (enemies[3].actionType == "Offensive") {
+            enemies[3].action = "NONE";
+            enemies[3].heldBalls--;
+        } else if (enemies[3].actionType == "Offensive") {
+            enemies[3].action = "NONE";
+            enemies[3].heldBalls--;
         }
         actionCooldowns[5] = 2;
     }

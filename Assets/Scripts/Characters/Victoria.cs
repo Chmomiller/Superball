@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chikako : Character {
+public class Victoria : Character {
 
     public bool Transform = false;
 
     // Use this for initialization
     void Start() {
-        Name = "Chikako";
+        Name = "Victoria";
         Damage = 1;
         Catch = 100;
         Capacity = 4;
@@ -28,14 +28,18 @@ public class Chikako : Character {
 
     // Update is called once per frame
     void Update() {
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
+        if (combat == null) {
+            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
+            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+                this.targetingTypes = alternateTargetingTypes;
+                allies = combat.Player;
+                enemies = combat.Enemy;
+            } else {
+                this.targetingTypes = defaultTargetingTypes;
+                allies = combat.Enemy;
+                enemies = combat.Player;
+            }
         }
     }
 

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rikuto : Character {
+public class Harold : Character {
     
     void Start() {
-        Name = "Rikuto";
+        Name = "Harold";
         Damage = 1;
         Catch = 100;
         Gather = 1;
@@ -25,20 +25,24 @@ public class Rikuto : Character {
     }
 
     void Update() {
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
+        if (combat == null) {
+            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
+            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+                this.targetingTypes = alternateTargetingTypes;
+                allies = combat.Player;
+                enemies = combat.Enemy;
+            } else {
+                this.targetingTypes = defaultTargetingTypes;
+                allies = combat.Enemy;
+                enemies = combat.Player;
+            }
         }
     }
 
     public override void Skill1() {
         float variance = UnityEngine.Random.Range(.9f, 1.5f); //higher damage 
-        if (!Target.dodgeBall(this)) Target.loseStamina( (int)(this.attack * variance) );
+        Target.dodgeBall( (int)(this.attack * variance) );
         actionCooldowns[4] = 3;
     }
 

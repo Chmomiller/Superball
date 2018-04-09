@@ -1,0 +1,63 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Ash : Character {
+
+    void Start() {
+        Name = "Ash";
+        Damage = 1;
+        Catch = 100;
+        Gather = 1;
+        Stamina = 10;
+        maxStamina = 10;
+        heldBalls = 0;
+        Capacity = 4;
+        Role = "Catcher";
+        
+        actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+        actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Meat Shield", "Swineflesh", "Fiery Masterpiece", "" };
+        actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Halves damage you take for 1 turn", "Buffs yourself and gives 20 stamina", "Hit an enemy with a 1.5x attack with a chance to debuff", "" };
+        actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Offense", "Offense" };
+        defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 0, 2, 0 };
+        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 0, 1, 0 };
+        actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 5, 0 };
+    }
+
+    void Update() {
+        if (allegiance == 1 && combat != null) {
+            this.targetingTypes = alternateTargetingTypes;
+            allies = combat.Player;
+            enemies = combat.Enemy;
+        } else {
+            this.targetingTypes = defaultTargetingTypes;
+            allies = combat.Enemy;
+            enemies = combat.Player;
+        }
+    }
+
+    public override void Skill1() {
+        this.addStatusEffect("halfDmg", 1);
+        actionCooldowns[4] = 3;
+    }
+
+    public override void Skill2() {
+        this.addStatusEffect("buff", 3);
+        if(this.Stamina +20 < this.maxStamina) {
+            this.gainStamina(20);
+        } else {
+            this.gainStamina(Mathf.Abs(this.Stamina + 20 - this.maxStamina));
+        }
+        actionCooldowns[2] = 3;
+    }
+
+    public override void Skill3() {
+        float variance = UnityEngine.Random.Range(.8f, 1.2f);
+        Target.loseStamina((int)(this.Damage * 1.5f * variance));
+        if (Random.Range(0, 10) > 6){Target.addStatusEffect("debuff", 2); }
+        actionCooldowns[6] = 3;
+    }
+
+    public override void Skill4() {
+    }
+}

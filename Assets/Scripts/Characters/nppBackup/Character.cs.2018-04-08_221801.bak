@@ -8,12 +8,12 @@ public class Character : MonoBehaviour
     public CombatManager combat;
 
     public string Name = "default";
-	 public int Damage = 1;
+	public int Damage = 1;
     public int Catch = 100;
     public int Gather = 1;
     public int Capacity = 4;
     public int Stamina = 10;
-	 public int maxStamina;
+	public int maxStamina;
     public int heldBalls = 0;
     public int maxBalls = 2;
     public int Level = 1;
@@ -264,7 +264,6 @@ public class Character : MonoBehaviour
 
         public int throwBall(Character target)
 	{
-      this.heldBalls--;
 		target.dodgeBall (this);
 		return 0;
 	}

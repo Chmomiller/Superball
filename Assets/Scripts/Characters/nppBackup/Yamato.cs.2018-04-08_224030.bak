@@ -27,19 +27,6 @@ public class Yamato : Character {
     }
 
     void Update() {
-                 if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }                
         if (yamatoCharge == 100) {
             enemies[0].dead = true;
             enemies[1].dead = true;
