@@ -53,16 +53,22 @@ public class Fulton : Character {
 
     public override void Skill1() {
         float variance = Random.Range(0.8f, 1.2f);
-        Target.dodgeBall( (int)(this.Damage*variance) );
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * variance));
+        }
         variance = Random.Range(0.8f, 1.2f);
-        Target.dodgeBall((int)(this.Damage * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * variance));
+        }
     }
 
     public override void Skill2() {
         float variance;
         for(int i = 0; i< 4; i++) {
             variance = Random.Range(0.8f, 1.2f);
-            enemies[i].dodgeBall( (int)(this.Damage * variance) );
+            if (!enemies[i].dodgeBall(this)) {
+                Target.loseStamina((int)((this.attack) * variance));
+            }
         }
     }
 
@@ -70,15 +76,21 @@ public class Fulton : Character {
         float variance = Random.Range(0.8f, 1.2f);
         //If target is stunned
         if (Target.findStatus("stun") != -1) {
-            Target.dodgeBall((int)(this.Damage * 1.5 * variance));
+            if (!Target.dodgeBall(this)) {
+                Target.loseStamina((int)((this.attack) * 1.5f * variance));
+            }
         } else {
-            Target.dodgeBall((int)(this.Damage * variance));
+            if (!Target.dodgeBall(this)) {
+                Target.loseStamina((int)((this.attack) * variance));
+            }
         }
     }
 
     public override void Skill4() {
         float variance = Random.Range(0.8f, 1.2f);
-        Target.dodgeBall((int)(this.Damage * 1.5 * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 1.5f * variance));
+        }
         this.addStatusEffect("steady", 2);
     }
 

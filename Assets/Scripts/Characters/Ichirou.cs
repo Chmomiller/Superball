@@ -42,7 +42,9 @@ public class Ichirou : Character {
     public override void Skill1() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (Target.Stamina < Target.maxStamina/2) { Target.addStatusEffect("stun", 1); }
-        Target.dodgeBall((int)((this.attack) * 0.5f * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 0.5f * variance));
+        }
         actionCooldowns[4] = 3;
     }
 
@@ -59,7 +61,9 @@ public class Ichirou : Character {
     public override void Skill4() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (this.Stamina > Target.Stamina) { variance *= 1.25f; }
-        Target.dodgeBall((int)((this.attack)* variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 0.5f * variance));
+        }
         actionCooldowns[7] = 2;
     }
 }

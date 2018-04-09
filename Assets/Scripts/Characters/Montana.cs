@@ -61,7 +61,9 @@ public class Montana : Character {
     public override void Skill2() {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
         for (int i = 0; i < 4; i++) {
-            Target.dodgeBall((int)(this.Damage * variance));
+            if (!Target.dodgeBall(this)) {
+                Target.loseStamina((int)((this.attack) * variance));
+            }
         }
         actionCooldowns[5] = 2;
     }

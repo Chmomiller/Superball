@@ -43,14 +43,18 @@ public class Kazuto : Character {
         float variance;
         for (int i = 0; i < 3; i++) {
             variance = UnityEngine.Random.Range(.7f, 1.3f);
-            enemies[i].dodgeBall((int)((this.attack * 0.75) * variance));
+            if (!enemies[i].dodgeBall(this)) {
+                Target.loseStamina((int)((this.attack) * 0.75f * variance));
+            }
         }
         actionCooldowns[4] = 2;
     }
 
     public override void Skill2() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        Target.dodgeBall((int)((this.attack) * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * variance));
+        }
         if (UnityEngine.Random.Range(0, 4) > 3) {
             Target.addStatusEffect("unsteady", 2);
         }
@@ -60,13 +64,17 @@ public class Kazuto : Character {
     public override void Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if(Target.findStatus("unsteady") != -1) { variance *= 1.25f; } //if stunned do more damage
-        Target.dodgeBall((int)((this.attack) * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * variance));
+        }
         actionCooldowns[6] = 2;
     }
 
     public override void Skill4() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        Target.dodgeBall((int)((this.attack)* 1.75 * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 1.75 * variance));
+        }
         this.addStatusEffect("debuff", 2);
         actionCooldowns[7] = 4;
     }

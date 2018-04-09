@@ -84,7 +84,9 @@ public class Cygnus : Character {
 
     public override void Skill4() {
         float variance = Random.Range(0.8f, 1.2f);
-        Target.dodgeBall( (int)(this.Damage * variance) );
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * variance));
+        }
         Target.addStatusEffect("stun", 2);
         actionCooldowns[7] = 2;
     }

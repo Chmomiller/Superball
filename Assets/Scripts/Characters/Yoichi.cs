@@ -62,8 +62,10 @@ public class Yoichi : Character {
     public override void Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (Target.findStatus("unsteady") != -1) { variance *= 1.25f; } //if stunned do more damage
-        Target.dodgeBall((int)((this.attack)* 1.15 * variance));
-        if(Target.Stamina - (int)((this.attack) * 1.15 * variance) < Target.maxStamina) {
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 1.15 * variance));
+        }
+        if (Target.Stamina - (int)((this.attack) * 1.15 * variance) < Target.maxStamina) {
             this.addStatusEffect("buff", 2);
         }
         actionCooldowns[6] = 2;
@@ -71,7 +73,9 @@ public class Yoichi : Character {
 
     public override void Skill4() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        Target.dodgeBall((int)((this.attack) * 1.25 * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 1.25f * variance));
+        }
         this.addStatusEffect("unsteady", 2);
         actionCooldowns[7] = 4;
     }

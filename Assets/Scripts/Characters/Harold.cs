@@ -42,7 +42,9 @@ public class Harold : Character {
 
     public override void Skill1() {
         float variance = UnityEngine.Random.Range(.9f, 1.5f); //higher damage 
-        Target.dodgeBall( (int)(this.attack * variance) );
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * variance));
+        }
         actionCooldowns[4] = 3;
     }
 

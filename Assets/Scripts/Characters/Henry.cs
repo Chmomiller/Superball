@@ -53,7 +53,9 @@ public class Henry : Character {
 
     public override void Skill1() {
         float variance = Random.Range(0.8f, 1.2f);
-        Target.dodgeBall((int)(this.Damage * 0.5f * variance));
+        if (!Target.dodgeBall(this)) {
+            Target.loseStamina((int)((this.attack) * 0.5f* variance));
+        }
         Target.addStatusEffect("unsteady", 2);
         actionCooldowns[4] = 2;
     }
