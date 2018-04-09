@@ -24,7 +24,6 @@ public class Theodore : Character {
 
     }
 
-	/*
     // Update is called once per frame
 void Update() {
         if (combat == null) {

@@ -25,14 +25,18 @@ public class Ash : Character {
     }
 
     void Update() {
-        if (allegiance == 1 && combat != null) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
+        if (combat == null) {
+            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
+            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+                this.targetingTypes = alternateTargetingTypes;
+                allies = combat.Player;
+                enemies = combat.Enemy;
+            } else {
+                this.targetingTypes = defaultTargetingTypes;
+                allies = combat.Enemy;
+                enemies = combat.Player;
+            }
         }
     }
 

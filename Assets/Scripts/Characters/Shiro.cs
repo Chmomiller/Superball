@@ -25,7 +25,6 @@ public class Shiro : Character{
     }
 		
     // Update is called once per frame
-	/*
     void Update()
     {
         if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
@@ -38,7 +37,6 @@ public class Shiro : Character{
             enemies = combat.Player;
         }
     }
-    */
 
 	public override void Skill1() //Pass off
     {

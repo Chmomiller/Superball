@@ -27,7 +27,7 @@ public class Kazuto : Character {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
-            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
+            if (allegiance == 1) { 
                 this.targetingTypes = alternateTargetingTypes;
                 allies = combat.Player;
                 enemies = combat.Enemy;
