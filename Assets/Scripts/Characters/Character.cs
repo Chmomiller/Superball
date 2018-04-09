@@ -265,7 +265,10 @@ public class Character : MonoBehaviour
         public int throwBall(Character target)
 	{
       this.heldBalls--;
-		target.dodgeBall (this);
+		public float variance = UnityEngine.Random(0.8f, 1.2f);
+      if(!target.dodgeBall (this)){
+         target.loseStamina((int) (this.Damage * variance));
+      }
 		return 0;
 	}
 
@@ -299,5 +302,10 @@ public class Character : MonoBehaviour
 
     public virtual void Skill4(){
 
+    }
+    
+    public virtual void gainLevel(){
+      this.maxStamina *= 1.1f;
+      this.Damage *= 1.1f;
     }
 }
