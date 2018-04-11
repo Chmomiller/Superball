@@ -20,6 +20,8 @@ public class Yoichi : Character {
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 1, 0, 2, 2 };
         alternateTargetingTypes = new int[] { 0, 1, 0, 0, 2, 0, 1, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 0, 0, 3, 2 };
+
+		base.Start ();
     }
 
     // Update is called once per frame
@@ -39,44 +41,48 @@ public class Yoichi : Character {
         }
     }
 
-    public override void Skill1() {
-        int statusEffectIndex = Target.findStatus("unsteady");
+	public override bool Skill1() {
+        int statusEffectIndex = Target[0].findStatus("unsteady");
         if (statusEffectIndex != -1) {
-            Target.statusEffects[statusEffectIndex].duration = 0;
-            Target.removeDoneStatusEffects();
+            Target[0].statusEffects[statusEffectIndex].duration = 0;
+            Target[0].removeDoneStatusEffects();
         }
-        statusEffectIndex = Target.findStatus("debuff");
+        statusEffectIndex = Target[0].findStatus("debuff");
         if (statusEffectIndex != -1) {
-            Target.statusEffects[statusEffectIndex].duration = 0;
-            Target.removeDoneStatusEffects();
+            Target[0].statusEffects[statusEffectIndex].duration = 0;
+            Target[0].removeDoneStatusEffects();
         }
         actionCooldowns[4] = 3;
+		return false;
     }
 
-    public override void Skill2() {
+	public override bool Skill2() {
         this.heldBalls += 2;
         if(this.heldBalls > this.maxBalls) { this.heldBalls = this.maxBalls; }
         actionCooldowns[5] = 2;
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        if (Target.findStatus("unsteady") != -1) { variance *= 1.25f; } //if stunned do more damage
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * 1.15 * variance));
+        if (Target[0].findStatus("unsteady") != -1) { variance *= 1.25f; } //if stunned do more damage
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * 1.15 * variance));
         }
-        if (Target.Stamina - (int)((this.attack) * 1.15 * variance) < Target.maxStamina) {
+        if (Target[0].Stamina - (int)((this.attack) * 1.15 * variance) < Target[0].maxStamina) {
             this.addStatusEffect("buff", 2);
         }
         actionCooldowns[6] = 2;
+		return false;
     }
 
-    public override void Skill4() {
+	public override bool Skill4() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * 1.25f * variance));
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * 1.25f * variance));
         }
         this.addStatusEffect("unsteady", 2);
         actionCooldowns[7] = 4;
+		return false;
     }
 }

@@ -46,52 +46,56 @@ public class Fulton : Character {
         for (int i = 0; i < 3; i++) {
             if (combat.Player[i].actionType == "Offensive") {
                 combat.Player[i].action = "Throw";
-                combat.Player[i].Target = this;
+                combat.Player[i].Target[0] = this;
             }
         }
     }
 
-    public override void Skill1() {
+	public override bool Skill1() {
         float variance = Random.Range(0.8f, 1.2f);
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * variance));
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * variance));
         }
         variance = Random.Range(0.8f, 1.2f);
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * variance));
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * variance));
         }
+		return false;
     }
 
-    public override void Skill2() {
+	public override bool Skill2() {
         float variance;
         for(int i = 0; i< 4; i++) {
             variance = Random.Range(0.8f, 1.2f);
             if (!enemies[i].dodgeBall(this)) {
-                Target.loseStamina((int)((this.attack) * variance));
+                Target[0].loseStamina((int)((this.attack) * variance));
             }
         }
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         float variance = Random.Range(0.8f, 1.2f);
         //If target is stunned
-        if (Target.findStatus("stun") != -1) {
-            if (!Target.dodgeBall(this)) {
-                Target.loseStamina((int)((this.attack) * 1.5f * variance));
+        if (Target[0].findStatus("stun") != -1) {
+            if (!Target[0].dodgeBall(this)) {
+                Target[0].loseStamina((int)((this.attack) * 1.5f * variance));
             }
         } else {
-            if (!Target.dodgeBall(this)) {
-                Target.loseStamina((int)((this.attack) * variance));
+            if (!Target[0].dodgeBall(this)) {
+                Target[0].loseStamina((int)((this.attack) * variance));
             }
         }
+		return false;
     }
 
-    public override void Skill4() {
+	public override bool Skill4() {
         float variance = Random.Range(0.8f, 1.2f);
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * 1.5f * variance));
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * 1.5f * variance));
         }
         this.addStatusEffect("steady", 2);
+		return false;
     }
 
 }

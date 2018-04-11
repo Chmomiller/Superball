@@ -42,13 +42,13 @@ public class Harold : Character {
 
     public override bool Skill1() {
         float variance = UnityEngine.Random.Range(.9f, 1.5f); //higher damage 
-<<<<<<< HEAD:Assets/Scripts/Characters/Rikuto.cs
+
         if (!Target[0].dodgeBall(this)) Target[0].loseStamina( (int)(this.attack * variance) );
-=======
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * variance));
+
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * variance));
         }
->>>>>>> eecdd9c19311954960a82a252353dc6f13bc3c55:Assets/Scripts/Characters/Harold.cs
+
         actionCooldowns[4] = 3;
 		return true;
     }

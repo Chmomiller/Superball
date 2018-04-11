@@ -22,6 +22,8 @@ public class Morgan : Character {
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 2, 0, 0 };
         alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 5, 0 };
+
+		base.Start ();
     }
 
     void Update() {
@@ -40,18 +42,20 @@ public class Morgan : Character {
         }
     }
 
-    public override void Skill1() {
+	public override bool Skill1() {
         float variance = UnityEngine.Random.Range(.8f, 1.25f);
-        Target.loseStamina((int) ( (this.Damage * 1.15) * (variance) ) );
-    }
+        Target[0].loseStamina((int) ( (this.Damage * 1.15) * (variance) ) );
+		return false;
+	}
 
-    public override void Skill2() {
+	public override bool Skill2() {
         float variance = UnityEngine.Random.Range(.8f, 1.25f);
-        Target.loseStamina((int)(this.Damage * variance));
+        Target[0].loseStamina((int)(this.Damage * variance));
         this.addStatusEffect("steady", 2);
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         Character [] randomTargets = new Character[3];
         for (int i = 0; i < 3; i++) {
             Character target = this.enemies[Random.Range(0, 2)];
@@ -59,8 +63,10 @@ public class Morgan : Character {
             target.loseStamina((int)((this.Damage * 1.5) * (variance)));
             if(Random.Range(0,10) > 7) { target.addStatusEffect("unsteady", 2);}
         }
+		return false;
     }
 
-    public override void Skill4() {
+	public override bool Skill4() {
+		return false;
     }
 }

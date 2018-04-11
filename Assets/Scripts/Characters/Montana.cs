@@ -24,6 +24,8 @@ public class Montana : Character {
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 2, 0, 0 };
         alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 1, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 2, 3, 3, 6, 0 };
+
+		base.Start ();
     }
 
     void Update() {
@@ -53,31 +55,34 @@ public class Montana : Character {
         return false;
     }
 
-    public override void Skill1() {
+	public override bool Skill1() {
         yamatoCharge += 10;
         heldBalls -= 3;
+		return false;
     }
 
-    public override void Skill2() {
+	public override bool Skill2() {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
         for (int i = 0; i < 4; i++) {
-            if (!Target.dodgeBall(this)) {
-                Target.loseStamina((int)((this.attack) * variance));
+            if (!Target[0].dodgeBall(this)) {
+                Target[0].loseStamina((int)((this.attack) * variance));
             }
         }
         actionCooldowns[5] = 2;
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         float variance;
         for (int i = 0; i < 6; i++) {
             variance = UnityEngine.Random.Range(0.7f, 1.0f);
-            Target = enemies[UnityEngine.Random.Range(0, 2)];
-            if (!Target.catchBall(this)) Target.loseStamina((int)(this.attack * variance));
+            Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
+            if (!Target[0].catchBall(this)) Target[0].loseStamina((int)(this.attack * variance));
         }
+		return false;
     }
 
-    public override void Skill4() {
-
+	public override bool Skill4() {
+		return false;
     }
 }

@@ -46,21 +46,22 @@ public class Henry : Character {
         for (int i = 0; i < 3; i++) {
             if (combat.Player[i].actionType == "Offensive") {
                 combat.Player[i].action = "Throw";
-                combat.Player[i].Target = this;
+                combat.Player[i].Target[0] = this;
             }
         }
     }
 
-    public override void Skill1() {
+	public override bool Skill1() {
         float variance = Random.Range(0.8f, 1.2f);
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * 0.5f* variance));
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * 0.5f* variance));
         }
-        Target.addStatusEffect("unsteady", 2);
+        Target[0].addStatusEffect("unsteady", 2);
         actionCooldowns[4] = 2;
+		return false;
     }
 
-    public override void Skill2() {
+	public override bool Skill2() {
         for(int i = 0; i< this.statusEffects.Length; i++) {
             combat.Player[0].statusEffects[i].duration = 0;
             combat.Player[0].removeDoneStatusEffects();
@@ -76,18 +77,21 @@ public class Henry : Character {
             combat.Enemy[2].removeDoneStatusEffects();
         }
         actionCooldowns[5] = 3;
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         for(int i = 0; i<=3; i++) {
             enemies[i].addStatusEffect("unsteady", 2);
         }
         actionCooldowns[6] = 4;
+		return false;
     }
 
-    public override void Skill4() {
-        Target.heldBalls += 3;
-        if (Target.heldBalls > Target.maxBalls) Target.heldBalls = Target.maxBalls;
+	public override bool Skill4() {
+        Target[0].heldBalls += 3;
+        if (Target[0].heldBalls > Target[0].maxBalls) Target[0].heldBalls = Target[0].maxBalls;
+		return false;
     }
 
 }

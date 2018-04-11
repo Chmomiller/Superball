@@ -22,6 +22,8 @@ public class Cygnus : Character {
           defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 0, 0, 2 };
         alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 0, 0, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 2, 3, 0 };
+
+		base.Start ();
     }
 
     void Update() {
@@ -40,7 +42,7 @@ public class Cygnus : Character {
         }
     }
 
-    public override void Skill1() {
+	public override bool Skill1() {
         if(allies[0] != this) {
             allies[0].addStatusEffect("buff", 2);
         }
@@ -51,16 +53,18 @@ public class Cygnus : Character {
             allies[2].addStatusEffect("buff", 2);
         }
         actionCooldowns[4] = 4;
+		return false;
     }
 
-    public override void Skill2() {
+	public override bool Skill2() {
         for(int i = 0; i <= 3; i++) {
             enemies[i].addStatusEffect("debuff", 2);
         }
         actionCooldowns[5] = 3;
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         if (allies[0] != this) {
             if(allies[0].Stamina + 20 > allies[0].maxStamina) {
                 allies[0].gainStamina(Mathf.Abs(allies[0].maxStamina - allies[0].Stamina + 20));
@@ -80,14 +84,16 @@ public class Cygnus : Character {
             allies[2].gainStamina(20);
         }
         actionCooldowns[6] = 3;
+		return false;
     }
 
-    public override void Skill4() {
+	public override bool Skill4() {
         float variance = Random.Range(0.8f, 1.2f);
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * variance));
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * variance));
         }
-        Target.addStatusEffect("stun", 2);
+        Target[0].addStatusEffect("stun", 2);
         actionCooldowns[7] = 2;
+		return false;
     }
 }

@@ -39,31 +39,36 @@ public class Ichirou : Character {
         }
     }
 
-    public override void Skill1() {
+	public override bool Skill1() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        if (Target.Stamina < Target.maxStamina/2) { Target.addStatusEffect("stun", 1); }
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * 0.5f * variance));
+        if (Target[0].Stamina < Target[0].maxStamina/2) { Target[0].addStatusEffect("stun", 1); }
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * 0.5f * variance));
         }
         actionCooldowns[4] = 3;
+		return false;
     }
 
-    public override void Skill2() {
-        Target.addStatusEffect("debuff", 2);
+	public override bool Skill2() {
+        Target[0].addStatusEffect("debuff", 2);
         actionCooldowns[5] = 2;
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
         this.addStatusEffect("halfDmg", 1);
         actionCooldowns[6] = 3;
+		// Check if this should be true
+		return false;
     }
 
-    public override void Skill4() {
+	public override bool Skill4() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        if (this.Stamina > Target.Stamina) { variance *= 1.25f; }
-        if (!Target.dodgeBall(this)) {
-            Target.loseStamina((int)((this.attack) * 0.5f * variance));
+        if (this.Stamina > Target[0].Stamina) { variance *= 1.25f; }
+        if (!Target[0].dodgeBall(this)) {
+            Target[0].loseStamina((int)((this.attack) * 0.5f * variance));
         }
         actionCooldowns[7] = 2;
+		return false;
     }
 }

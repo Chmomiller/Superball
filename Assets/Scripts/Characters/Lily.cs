@@ -22,6 +22,8 @@ public class Lily : Character {
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 1, 0, 2, 0 };
         alternateTargetingTypes = new int[] { 0, 1, 0, 0, 2, 0, 1, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 1, 3, 2, 0 };
+
+		base.Start ();
     }
 
     void Update() {
@@ -40,31 +42,35 @@ public class Lily : Character {
         }
     }
 
-    public override void Skill1() {
-        if (Target.Stamina + 30 < Target.maxStamina) {
-            Target.gainStamina(30);
+	public override bool Skill1() {
+        if (Target[0].Stamina + 30 < Target[0].maxStamina) {
+            Target[0].gainStamina(30);
         } else {
-            Target.gainStamina(Mathf.Abs(Target.Stamina + 30 - Target.maxStamina));
+            Target[0].gainStamina(Mathf.Abs(Target[0].Stamina + 30 - Target[0].maxStamina));
         }
         actionCooldowns[4] = 3;
+		return false;
     }
 
-    public override void Skill2() {
+	public override bool Skill2() {
         for (int i = 0; i < 3; i++) {
             if (allies[i] != this) {
                 allies[i].addStatusEffect("buff", 3);
             }
         }
         actionCooldowns[5] = 3;
+		return false;
     }
 
-    public override void Skill3() {
+	public override bool Skill3() {
             float variance = UnityEngine.Random.Range(.8f, 1.0f);
-            Target.loseStamina((int)(this.Damage * variance));
-            Target.addStatusEffect("debuff", 2);
+            Target[0].loseStamina((int)(this.Damage * variance));
+            Target[0].addStatusEffect("debuff", 2);
         actionCooldowns[6] = 3;
+		return false;
     }
 
-    public override void Skill4() {
+    public override bool Skill4() {
+		return false;
     }
 }
