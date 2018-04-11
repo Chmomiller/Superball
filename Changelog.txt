@@ -1,0 +1,19 @@
+4/8/18
+Tristian:
+	Changed Character.Start from public to protected
+	Added base.Start() to all derived characters in SaltPitt High Scene
+	Set statusEffects[] in Character.Start()
+	Changed Character.dodgeBall() and Character.throwBall() so that damage is dealt in throwBall not dodgeBall in order to keep consistency with other skills
+	Changed Character.Target to Character.Target[]
+	Updated all dependant scripts to work with Tartget as an array
+	Changed ball loss so that it is not done in CombatManager but in each Character's functions
+	Changed skill functions to bools so that defensive actions control whether players perform offensive actions or not
+
+4/10/18
+Tristian:
+	Incorporated new character's into current Character standards
+	Changed Frank and Greg's skills so that don't spawn errors if Trevor isn't there
+	Changed Trevor's skill to work with assigning targets after blocking, now it checks if anyone is trying to block for any of his targets, assigns the new targets and calls CombatManager.DoAction(this, "throw") three times
+	Renamed Chikako and Haruna to Elizabeth and Victoria(I should have done this on my version a long time ago) and added base.Start() to their start functions
+	Separated transformation and life-gain in Mei's Skill3(Cup of Tea) according to the skill doc
+	Added code to Skill2(Clean-Up) so that she moves herself to the end of the queue and collects half of all balls used this turn(this may be buggy because of how it alters the queue; needs testing)

@@ -37,15 +37,24 @@ public class CharacterSelectUI : MonoBehaviour
 			CM.currentPhase = CombatManager.PHASE.ACTION;
 
 		}
+		// This block runs for target selection during the TARGET phase and assigns all Targets for the current Character based on the value of int character
 		if (CM.currentPhase == CombatManager.PHASE.TARGET) 
 		{
+			// Numbers 0 - 2 are for players
 			if (character < 3) 
 			{
-				CM.combatQueue [CM.currentCharacter].Target = CM.Player [character];
+				for (int i = 0; i < 3; i++) 
+				{
+					CM.combatQueue [CM.currentCharacter].Target[i] = CM.Player [character];
+				}
 			} 
+			// Numbers 3 - 5 are for enemies
 			else 
 			{
-				CM.combatQueue [CM.currentCharacter].Target = CM.Enemy [character - 3];
+				for (int i = 0; i < 3; i++) 
+				{
+					CM.combatQueue [CM.currentCharacter].Target[i] = CM.Enemy [character - 3];
+				}
 			}
 			CM.currentPhase = CombatManager.PHASE.CONFLICT;
 		}

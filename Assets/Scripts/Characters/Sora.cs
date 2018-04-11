@@ -37,15 +37,16 @@ public class Sora : Character {
         }
     }
 
-    public override void Skill1() {
+    public override bool Skill1() {
         this.heldBalls -= 2;
-        Target.heldBalls += 3;
-        if (Target.heldBalls > Target.Capacity) Target.heldBalls = Target.Capacity;
-        Target.Stamina += 20;
+        Target[0].heldBalls += 3;
+        if (Target[0].heldBalls > Target[0].Capacity) Target[0].heldBalls = Target[0].Capacity;
+        Target[0].Stamina += 20;
         actionCooldowns[4] = 3;
+		return true;
     }
 
-    public override void Skill2() {
+    public override bool Skill2() {
         this.heldBalls -= 5;
         allies[0].Stamina = enemies[0].maxStamina;
         allies[0].addStatusEffect("buff",3);
@@ -53,22 +54,25 @@ public class Sora : Character {
         allies[1].Stamina = enemies[1].maxStamina;
         allies[1].addStatusEffect("buff", 3);
         actionCooldowns[5] = 20;
+		return true;
     }
 
-    public override void Skill3() {
+    public override bool Skill3() {
         this.heldBalls -= 4;
         enemies[0].addStatusEffect("unsteady", 3);
         enemies[1].addStatusEffect("unsteady", 3);
         enemies[2].addStatusEffect("unsteady", 3);
         actionCooldowns[6] = 6;
+		return true;
     }
 
-    public override void Skill4() {
+    public override bool Skill4() {
         this.heldBalls -= 3;
         enemies[0].addStatusEffect("confuse", 3);
         enemies[1].addStatusEffect("confuse", 3);
         enemies[2].addStatusEffect("confuse", 3);
         actionCooldowns[6] = 4;
+		return true;
     }
 
 }

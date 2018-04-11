@@ -36,13 +36,14 @@ public class Rikuto : Character {
         }
     }
 
-    public override void Skill1() {
+    public override bool Skill1() {
         float variance = UnityEngine.Random.Range(.9f, 1.5f); //higher damage 
-        if (!Target.dodgeBall(this)) Target.loseStamina( (int)(this.attack * variance) );
+        if (!Target[0].dodgeBall(this)) Target[0].loseStamina( (int)(this.attack * variance) );
         actionCooldowns[4] = 3;
+		return true;
     }
 
-    public override void Skill2() {
+    public override bool Skill2() {
         float variance = UnityEngine.Random.Range(.6f, 1.1f); //most likely to throw weaker variance
         if (this.heldBalls == 0) print("Rikuto has no ammo!");
         while (this.heldBalls > 0) {
@@ -51,19 +52,22 @@ public class Rikuto : Character {
             if (target.actionType == "Defensive") target.catchBall(this);
             this.heldBalls--;
         }
+		return true;
     }
 
-    public override void Skill3() {
+    public override bool Skill3() {
         //Suppressing Fire!: tthrows at a player with a reduced hit chance. target gets a large devuff to hit and dodge calculations
 
         //Not sure how hit is calculated
+		return true;
     }
 
-    public override void Skill4() {
+    public override bool Skill4() {
         //Five rounds rapid
         float variance = UnityEngine.Random.Range(.6f, 1.1f); //most likely to throw weaker variance
         for(int i = 0; i <= 5; i++) {
-            Target.loseStamina((int)(this.attack * variance));
+            Target[0].loseStamina((int)(this.attack * variance));
         }
+		return true;
     }
 }

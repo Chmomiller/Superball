@@ -42,20 +42,21 @@ public class Kuro : Character {
         for (int i = 0; i < 3; i++) {
             if (combat.Player[i].actionType == "Offensive") {
                 combat.Player[i].action = "Throw";
-                combat.Player[i].Target = this;
+                combat.Player[i].Target[0] = this;
             }
         }
     }
 
-    public override void Skill1() {
+    public override bool Skill1() {
         if (this.heldBalls < this.Capacity) { this.heldBalls++; }
         actionCooldowns[6] = 4;
+		return true;
     }
 
-    public override void Skill2() { }
+	public override bool Skill2() { return true;}
 
-    public override void Skill3() { }
+	public override bool Skill3() { return true;}
 
-    public override void Skill4() { }
+	public override bool Skill4() { return true;}
 
 }

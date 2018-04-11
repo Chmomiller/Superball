@@ -39,30 +39,33 @@ public class Yamato : Character {
         return false;
     }
 
-    public override void Skill1() {
+    public override bool Skill1() {
         yamatoCharge += 10;
         heldBalls -= 3;
+		return false;
     }
 
-    public override void Skill2() {
+    public override bool Skill2() {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
-        if (!Target.dodgeBall(this)) Target.loseStamina(  (int)(this.Damage * variance) );
-        if (!Target.dodgeBall(this)) Target.loseStamina( (int)(this.Damage * variance) );
-        if (!Target.dodgeBall(this)) Target.loseStamina( (int)(this.Damage * variance) );
+        if (!Target[0].dodgeBall(this)) Target[0].loseStamina(  (int)(this.Damage * variance) );
+        if (!Target[0].dodgeBall(this)) Target[0].loseStamina( (int)(this.Damage * variance) );
+        if (!Target[0].dodgeBall(this)) Target[0].loseStamina( (int)(this.Damage * variance) );
         this.heldBalls -= 3;
         actionCooldowns[5] = 2;
+		return false;
     }
 
-    public override void Skill3() {
+    public override bool Skill3() {
         float variance;
         for (int i = 0; i < 6; i++) {
             variance = UnityEngine.Random.Range(0.7f, 1.0f);
-            Target = enemies[UnityEngine.Random.Range(0, 2)];
-        if (!Target.catchBall(this)) Target.loseStamina( (int)(this.attack * variance) );
+            Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
+        if (!Target[0].catchBall(this)) Target[0].loseStamina( (int)(this.attack * variance) );
     }
+		return true;
 }
 
-    public override void Skill4() {
-
+    public override bool Skill4() {
+		return false;
     }
 }

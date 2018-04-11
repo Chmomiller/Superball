@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     public int Level = 1;
 
     public string Role = "Supporter";
-	public Character Target; //Create an empty Character in the combat manager that other charaters can select when not targetting
+	public Character[] Target = new Character[3]; //Create an empty Character in the combat manager that other charaters can select when not targetting
 	public string action = "";
 	public string actionType = ""; //Offense, Defense, Utility
 	public int targetingType = 0; //0 for self/predetermined, 1 for enemies, 2 for allies
@@ -41,7 +41,7 @@ public class Character : MonoBehaviour
 
 	// I changed these from private to protected, this is important for Character derived classes
 	protected string[] actions = {"None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-	protected string[] actionNames = { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+	public string[] actionNames = { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
     public string[] actionDescription = { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "", "" };
     protected string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
 
@@ -62,7 +62,7 @@ public class Character : MonoBehaviour
     //How many turns is the cooldown of each action?
     public int[] actionCooldowns = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    public bool dead = false;
+	public bool dead = false;
 	public bool catching = false;
 
 
@@ -79,9 +79,31 @@ public class Character : MonoBehaviour
 		public int duration;
 	}
 		
+	//status effects should both be checked before actions are chosen for a character and ALSO when they are about to execute an action. This is because some status effects affect your ability to choose actions but moves may change status effects during combat. Prime example is stun.  
 
-    void Start() {
+
+	//New function called addStatusEffect() should be added in that serves to handle adding multiple status effects. 
+	//Conversely there is also a new Function called removeDoneStatusEffects() that is called at the end of your action that serves to remove all status effects that are over. 
+	//There is also a applyStatusEffect() and removeStatusEffect() function that serves to add or remove one status effect chosen. Here is where the actual effects are applied to the player. apply should add the numerical effects, remove should reverse that
+
+	//Characters also have a statusEffects array of status structs 6 long. This serves to hold all status effects you can have. EX. status statusEffects[6];
+	// changed this to public because I need access to it's length
+	public status[] statusEffects;// = new status[6];
+
+    protected void Start() {
 		maxStamina = Stamina;
+		Target = new Character[3];
+		for(int i = 0; i < 3; i++)
+		{
+			Target [i] = this;
+		}
+		statusEffects = new status[6];
+		for(int i = 0; i < 6; i++)
+		{
+			statusEffects [i].duration = 0;
+			statusEffects [i].name = "none";
+		}
+
         //allegiance of 1 is to the player controlled team. The allies and the enemies 
         //array now refer to your teammates and the other teams respectively. This is 
         //done beacuse the Player[] and Enemy[] are absolute, but allies and enemies
@@ -107,7 +129,7 @@ public class Character : MonoBehaviour
     //NOTE: AS SHIRO, CLEMENCE,AND THEODORE ARE PLAYERS BY DEFAULT, THEIR DEFAULT TARGETTING IS AIMED TOWARDS
     //ENEMIES, WHEREAS EVERYONE ELSE'S DEFAULT TARGETTING TYPE IS SET TO THE PLAYERS AS THEY ARE USUALLY THE ENEMY TEAM
     //IE: Shiro, Clemence, and Theodore have it look reversed. That is on purpose
-    void Update() { }
+	void Update() { }
 
 
 
@@ -119,16 +141,7 @@ public class Character : MonoBehaviour
         this.allies = temp;
     }
 
-    //status effects should both be checked before actions are chosen for a character and ALSO when they are about to execute an action. This is because some status effects affect your ability to choose actions but moves may change status effects during combat. Prime example is stun.  
 
-
-    //New function called addStatusEffect() should be added in that serves to handle adding multiple status effects. 
-    //Conversely there is also a new Function called removeDoneStatusEffects() that is called at the end of your action that serves to remove all status effects that are over. 
-    //There is also a applyStatusEffect() and removeStatusEffect() function that serves to add or remove one status effect chosen. Here is where the actual effects are applied to the player. apply should add the numerical effects, remove should reverse that
-
-    //Characters also have a statusEffects array of status structs 6 long. This serves to hold all status effects you can have. EX. status statusEffects[6];
-    // changed this to public because I need access to it's length
-	public status[] statusEffects = new status[6];
 
 	public void addStatusEffect(string name, int duration){
 		for(int i =0; i<statusEffects.Length; i++){
@@ -248,24 +261,24 @@ public class Character : MonoBehaviour
 
 
     public bool dodgeBall(Character attacker) {
-        if ((UnityEngine.Random.Range(1f, 100f) + UnityEngine.Random.Range(1f, 100f) / 2) < (this.Stamina / this.maxStamina) * 100) {//dodge success
-            loseStamina(attacker.Damage);
+        if (this.maxStamina / 2 < this.Stamina || (UnityEngine.Random.Range(1f, 100f) + UnityEngine.Random.Range(1f, 100f) / 2) < (this.Stamina / this.maxStamina) * 100) {//dodge success
             return true;
         } else {
             if (this.Stamina <= 0) {
                 this.dead = true;
             }
-            loseStamina(attacker.Damage);//attacker.Damage);
-                                         //}
             return false;
 
         }
     }
 
-        public int throwBall(Character target)
+	public void throwBall(Character target)
 	{
-		target.dodgeBall (this);
-		return 0;
+		this.heldBalls--;
+		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
+      	if(!target.dodgeBall (this)){
+        	target.loseStamina((int) (this.Damage * variance));
+      }
 	}
 
     public void Rest()
@@ -284,19 +297,19 @@ public class Character : MonoBehaviour
 	}
 
 
-	public virtual void Skill1(){
-
+	public virtual bool Skill1(){
+		return true;
     }
 
-    public virtual void Skill2(){
-
+    public virtual bool Skill2(){
+		return true;
     }
 
-    public virtual void Skill3(){
-
+    public virtual bool Skill3(){
+		return true;
     }
 
-    public virtual void Skill4(){
-
+    public virtual bool Skill4(){
+		return true;
     }
 }

@@ -726,36 +726,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114015979506818544, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114162616038844360, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114775723339116336, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665883326389682, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114960438125111756, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114265939931883218, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 223426691818721964, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_Camera

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Frank : Character {
-	
+
+	private Trevor trevor;
+
     // Use this for initialization
     void Start() {
         Name = "Frank";
@@ -16,22 +18,24 @@ public class Frank : Character {
         Role = "Catcher";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rumble", "Skill2", "Skill3", "Skill4" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Blocks any balls aimed at Trevor", "", "", "" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at Target[0] enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Blocks any balls aimed at Trevor", "", "", "" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility" };
 	    defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
 	    alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };        
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
+
+		base.Start ();
     }
 
 	/*
     // Update is called once per frame
     void Update() {
         if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
+            this.Target[0]ingTypes = alternateTarget[0]ingTypes;
             allies = combat.Player;
             enemies = combat.Enemy;
         } else {
-            this.targetingTypes = defaultTargetingTypes;
+            this.Target[0]ingTypes = defaultTarget[0]ingTypes;
             allies = combat.Enemy;
             enemies = combat.Player;
         }
@@ -40,26 +44,29 @@ public class Frank : Character {
 
 
     // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
-    public override void Skill1() {
+    public override bool Skill1() {
         //Rumble: Blocks all attacks aimed at Trevor for 1 turn;
-        if (combat.Player[0].Target = GameObject.Find("Trevor").GetComponent<Trevor>() ){
-            combat.Player[0].action = "NONE";
-            combat.Player[0].heldBalls--;
-        }
-        if (combat.Player[1].Target = GameObject.Find("Trevor").GetComponent<Trevor>() ){
-            combat.Player[1].action = "NONE";
-            combat.Player[1].heldBalls--;
-        }
-        if (combat.Player[2].Target = GameObject.Find("Trevor").GetComponent<Trevor>() ){
-            combat.Player[2].action = "NONE";
-            combat.Player[2].heldBalls--;
-        }
+		for(int i = 0; i < 3; i++)
+		{
+			if (enemies[i].Target[0].Name == "Trevor"){
+				
+				for(int j = 0; j < enemies[0].actionNames.Length; j++)
+				{
+					if (enemies [0].action == enemies [0].actionNames [j]) 
+					{
+						enemies[0].heldBalls -= enemies[0].GetActionCost(j);
+					}
+				}
+				enemies[i].action = "None";
+	        }
+		}
+		return false;
     }
 
-    public override void Skill2() { }
+	public override bool Skill2() { return true; }
 
-    public override void Skill3() { }
+	public override bool Skill3() { return true;}
 
-    public override void Skill4() { }    
+	public override bool Skill4() { return true;}    
 
 }

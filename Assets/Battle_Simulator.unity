@@ -651,7 +651,7 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1717792754}
     - target: {fileID: 224829276743078918, guid: 4aad6a4538f399944804e3c0d299fe64,
         type: 2}
       propertyPath: m_LocalScale.x
@@ -667,6 +667,22 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.028901733
       objectReference: {fileID: 0}
+    - target: {fileID: 114362030324117100, guid: 4aad6a4538f399944804e3c0d299fe64,
+        type: 2}
+      propertyPath: m_Text
+      value: Elizabeth
+      objectReference: {fileID: 0}
+    - target: {fileID: 114855992836538326, guid: 4aad6a4538f399944804e3c0d299fe64,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: createCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 114855992836538326, guid: 4aad6a4538f399944804e3c0d299fe64,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1724158506477910, guid: 06dd61255bdf2d8498658ebb1f698c02,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4aad6a4538f399944804e3c0d299fe64, type: 2}
   m_IsPrefabParent: 0
@@ -2379,6 +2395,11 @@ Prefab:
         type: 2}
       propertyPath: m_LocalScale.z
       value: 0.028901733
+      objectReference: {fileID: 0}
+    - target: {fileID: 114498100721227580, guid: 8f79ac5a0da7da34ebeb55fb575eacc2,
+        type: 2}
+      propertyPath: m_Text
+      value: Victoria
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f79ac5a0da7da34ebeb55fb575eacc2, type: 2}

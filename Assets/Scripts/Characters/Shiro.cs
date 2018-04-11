@@ -22,11 +22,12 @@ public class Shiro : Character{
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 1, 0, 0 };
+		base.Start ();
     }
 		
     // Update is called once per frame
 	/*
-    void Update()
+    bool Update()
     {
         if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
             this.targetingTypes = defaultTargetingTypes;
@@ -40,27 +41,28 @@ public class Shiro : Character{
     }
     */
 
-	public override void Skill1() //Pass off
+	public override bool Skill1() //Pass off
     {
 
-        while (this.heldBalls > 0 && Target.heldBalls < Target.maxBalls) {
+        while (this.heldBalls > 0 && Target[0].heldBalls < Target[0].maxBalls) {
             this.heldBalls--;
-            Target.heldBalls++;
+            Target[0].heldBalls++;
         }
-        return;
+		return false;
 
     }
 
-    public override void Skill2() {
-        Target.Stamina += Target.maxStamina / 4;
-        if (Target.Stamina > Target.maxStamina) {
-            Target.Stamina = Target.maxStamina;
+    public override bool Skill2() {
+        Target[0].Stamina += Target[0].maxStamina / 4;
+        if (Target[0].Stamina > Target[0].maxStamina) {
+            Target[0].Stamina = Target[0].maxStamina;
         }
         actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
+		return false;
     }
 
 
-    public override void Skill3() { //keep fighting
+    public override bool Skill3() { //keep fighting
         if (allies[0] != this) {
             allies[0].addStatusEffect("halfDmg", 2);
         }
@@ -71,6 +73,7 @@ public class Shiro : Character{
             allies[2].addStatusEffect("halfDmg", 2);
         }
         actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
+		return false;
     }
 
 

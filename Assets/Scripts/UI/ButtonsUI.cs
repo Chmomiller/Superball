@@ -51,27 +51,61 @@ public class ButtonsUI : MonoBehaviour
 			{
 				CM.combatQueue [CM.currentCharacter].catching = true;
 			}
-			switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
+			//if(CM.combatQueue[CM.currentCharacter].tag == "Player")
+			//{
+				switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
+				{
+				case(0):
+					CM.currentPhase = CombatManager.PHASE.CONFLICT;
+					for(int i = 0; i < 3; i ++)
+					{
+						CM.combatQueue [CM.currentCharacter].Target[i] = CM.combatQueue [CM.currentCharacter];
+					}
+					break;
+				case(1):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					foreach(Button B in CM.enemySelect)
+					{
+						B.enabled = true;
+					}
+					break;
+				case(2):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					foreach(Button B in CM.playerSelect)
+					{
+						B.enabled = true;
+					}
+					break;
+				}
+			/*}
+			else
 			{
-			case(0):
-				CM.currentPhase = CombatManager.PHASE.CONFLICT;
-				CM.combatQueue [CM.currentCharacter].Target = CM.combatQueue [CM.currentCharacter];
-				break;
-			case(1):
-				CM.currentPhase = CombatManager.PHASE.TARGET;
-				foreach(Button B in CM.enemySelect)
+				switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
 				{
-					B.enabled = true;
+				case(0):
+					CM.currentPhase = CombatManager.PHASE.CONFLICT;
+					for(int i = 0; i < 3; i ++)
+					{
+						CM.combatQueue [CM.currentCharacter].Target[i] = CM.combatQueue [CM.currentCharacter];
+					}
+					break;
+				case(1):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					foreach(Button B in CM.enemySelect)
+					{
+						B.enabled = true;
+					}
+					break;
+				case(2):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					foreach(Button B in CM.playerSelect)
+					{
+						B.enabled = true;
+					}
+					break;
 				}
-				break;
-			case(2):
-				CM.currentPhase = CombatManager.PHASE.TARGET;
-				foreach(Button B in CM.playerSelect)
-				{
-					B.enabled = true;
-				}
-				break;
 			}
+			*/
 		}
 	}
 

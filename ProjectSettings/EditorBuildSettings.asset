@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Salt Pitt High Gym.unity
     guid: 9f510dcea7d58504caa2d5ea4be71688
   - enabled: 0
     path: Assets/Schola Grandis Gym.unity
     guid: 0cb1d0d548dac744aa0cdc11639ce4bc
-  - enabled: 1
+  - enabled: 0
     path: Assets/MightMain Academy Gym.unity
     guid: eca5630992aadd54f8b69b241ac53a34
