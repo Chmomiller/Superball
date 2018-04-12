@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88dde0ebbc5e51e44ab8d350c2f98e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatQueue: []
   currentPhase: 0
   Player: []
   Enemy: []
@@ -323,6 +324,7 @@ MonoBehaviour:
   battleText: {fileID: 0}
   combatAction: {fileID: 0}
   CUI: {fileID: 0}
+  tempUI: []
   conflictInQueue: -1
   win: 0
   lose: 0
@@ -649,7 +651,7 @@ Prefab:
     - target: {fileID: 114114163317060210, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MightMain Gym
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
@@ -938,16 +940,19 @@ MonoBehaviour:
   combat: {fileID: 0}
   Name: Yamato
   Damage: 15
-  Stamina: 986
-  maxStamina: 1250
-  Level: 1
   Catch: 100
   Gather: 1
   Capacity: 4
+  Stamina: 986
+  maxStamina: 1250
   heldBalls: 0
   maxBalls: 2
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
   Role: Supporter
-  Target: {fileID: 0}
+  Target:
+  - {fileID: 0}
   action: 
   actionType: 
   targetingType: 0
@@ -962,6 +967,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionDescription:
   - Wait
   - Throw ball at target enemy
@@ -992,7 +1006,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 92f161029a6d3c54a92d9d283352a135, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
