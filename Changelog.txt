@@ -17,3 +17,6 @@ Tristian:
 	Renamed Chikako and Haruna to Elizabeth and Victoria(I should have done this on my version a long time ago) and added base.Start() to their start functions
 	Separated transformation and life-gain in Mei's Skill3(Cup of Tea) according to the skill doc
 	Added code to Skill2(Clean-Up) so that she moves herself to the end of the queue and collects half of all balls used this turn(this may be buggy because of how it alters the queue; needs testing)
+4/11/18
+Tristian:
+	Incorporated ALL new character's into current Character standards
