@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
     public int heldBalls = 0;
     public int maxBalls = 2;
     public int Level = 1;
+	public float attackMultiplier = 1.0f;
+	public float defenseMultiplier = 1.0f;
 
     public string Role = "Supporter";
 	public Character[] Target = new Character[3]; //Create an empty Character in the combat manager that other charaters can select when not targetting
@@ -179,19 +181,39 @@ public class Character : MonoBehaviour
 			// remember we can check a player's statusEffects anywhere
 			break;
 		case "debuff":
+			if(findStatus("buff") != -1)
+			{
+				statusEffects [findStatus ("buff")].duration = 0;
+				removeDoneStatusEffects ("buff");
+			}
 				this.attack = Math.Floor(0.75 * this.attack);
 			break;
 		case "buff":
+			if(findStatus("debuff") != -1)
+			{
+				statusEffects [findStatus ("debuff")].duration = 0;
+				removeDoneStatusEffects ("debuff");
+			}
 				this.attack = Math.Floor(1.25 * this.attack);
 			break;
 		case "unsteady":
-				this.dodge = Math.Floor(0.66 * this.dodge);//or however we check dodge;
+			if(findStatus("steady") != -1)
+			{
+				statusEffects [findStatus ("steady")].duration = 0;
+				removeDoneStatusEffects ("steady");
+			}
+			this.defenseMultiplier = 1.25;
 			break;
 		case "steady":
-				this.dodge = Math.Floor(1.33 * this.dodge);//or however we check dodge;
+			if(findStatus("steady") != -1)
+			{
+				statusEffects [findStatus ("steady")].duration = 0;
+				removeDoneStatusEffects ("steady");
+			}
+			this.defenseMultiplier = .75;
 			break;
 		case "halfDmg":
-				break;
+			break;
 		case "moreDmg":
 				break;
 		case "confused":
@@ -214,10 +236,10 @@ public class Character : MonoBehaviour
 				this.attack = Math.Floor(0.8 * this.attack);
 			break;
 		case "unsteady":
-				this.dodge *= 1.33;//or however we check dodge;
+			this.defenseMultiplier = 1.0f;
 			break;
 		case "steady":
-				this.dodge *= .66;//or however we check dodge;
+			this.defenseMultiplier = 1.0f;
 			break;
 		case "halfDmg":
 				break;
@@ -261,7 +283,7 @@ public class Character : MonoBehaviour
 
 
     public bool dodgeBall(Character attacker) {
-        if (this.maxStamina / 2 < this.Stamina || (UnityEngine.Random.Range(1f, 100f) + UnityEngine.Random.Range(1f, 100f) / 2) < (this.Stamina / this.maxStamina) * 100) {//dodge success
+        if (this.maxStamina / 4 < this.Stamina || (UnityEngine.Random.Range(1f, 100f) + UnityEngine.Random.Range(1f, 100f) / 2) < (this.Stamina / this.maxStamina) * 100) {//dodge success
             return true;
         } else {
             if (this.Stamina <= 0) {

@@ -17,7 +17,7 @@ public class Elizabeth : Character {
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Preen", "Royal Touch", "Skill3", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Stacking self buff to damage", "Strong attack that may stun against one enemy", "", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Elizabeth is staggered until attacked, then she becomes steady", "Stacking self buff to damage", "Strong attack that may stun against one enemy", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Offense", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
@@ -41,7 +41,9 @@ public class Elizabeth : Character {
 
     //Unfocused/Attack: Elizabeth is now unsteady, taking more dmg until she is attacked. When attacked, she switches to steady (less dmg);
     //this one is kinda weird since its more of a passive to be checked at the beginning of the execute phase, like the other abilities that occur post planning (change target to me, all attack me, etc.) 
-    public void preTransform() {
+	public override bool Skill1() {
+
+		this.addStatusEffect ("lessDmg", 1);
         if (enemies[0].Target[0] == this || enemies[1].Target[0] == this || enemies[2].Target[0] == this) {
             this.addStatusEffect("lessDmg", 1);
             this.removeStatusEffect("moreDmg");
@@ -51,17 +53,16 @@ public class Elizabeth : Character {
             this.removeStatusEffect("lessDmg");
             Transform = false;
         }
+		return false;
     }
 
-
-
-    public override bool Skill1() {
-        //   Preen (Unfocused): stacking self damage buff to stamina dmg.
-        //cant do stacking buffs yet   
-		return true;
-    }
-
-    public override bool Skill2() {
+	//   Preen (Unfocused): stacking self damage buff to stamina dmg.
+	// cant do stacking buffs yet    //
+	public override bool Skill2(){
+		return false;
+	}
+	// Royal Touch: Hard Hitting Attack that may stun an enemy
+    public override bool Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (!Target[0].dodgeBall(this)) {
             Target[0].loseStamina(  (int)( (this.attack + 35)*variance ) );
@@ -72,9 +73,7 @@ public class Elizabeth : Character {
         actionCooldowns[5] = 3;
 		return true;
     }
-
-	public override bool Skill3() { return true;}
-
+		
 	public override bool Skill4() { return true;}
 
 }
