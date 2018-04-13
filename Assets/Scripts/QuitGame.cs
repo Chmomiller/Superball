@@ -61,7 +61,7 @@ public class QuitGame : MonoBehaviour
             case "Yamato Gym":
                 Audio.resetAllAudio();
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_3");
-                StartCoroutine(StartBattle("Yamato Gym", 0, sceneName));
+                StartCoroutine(StartBattle("Yamato Battle", 0, sceneName));
                 break;
             default:
                 Audio.resetAllAudio();
