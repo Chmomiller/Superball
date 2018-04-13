@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Greg: Character
 {
-	Character trevor;
+	public Character trevor;
 
     void Start()
     {
         Name = "Greg";
-		Damage = 1;
+		Damage = 10;
         Catch = 50;
         Capacity = 8;
         Gather = 2;
-        Stamina = 14;
+        Stamina = 140;
         heldBalls = 0;
         Role = "Support";
 
@@ -25,6 +25,7 @@ public class Greg: Character
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
 		base.Start ();
+		/*
 		foreach (Character C in enemies) 
 		{
 			if(C.Name == "Trevor")
@@ -38,7 +39,7 @@ public class Greg: Character
 			{
 				trevor = C;
 			}
-		}
+		}*/
     }
 
 	/*
@@ -55,7 +56,7 @@ public class Greg: Character
     }
     */
 
-	public void Init()
+	public override void Init()
 	{
 		foreach (Character C in enemies) 
 		{

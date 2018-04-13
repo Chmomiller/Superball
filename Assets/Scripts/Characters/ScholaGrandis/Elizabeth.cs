@@ -5,6 +5,8 @@ using UnityEngine;
 public class Elizabeth : Character {
 	
     public bool Transform = false;
+	// this is used to keep track of stamina for Skill1
+	public int lastStamina;
     // Use this for initialization
     void Start() {
         Name = "Elizabeth";
@@ -23,6 +25,8 @@ public class Elizabeth : Character {
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
 
+		lastStamina = Stamina;
+
 		base.Start ();
     }
 
@@ -39,20 +43,12 @@ public class Elizabeth : Character {
         }
     }
 
-    //Unfocused/Attack: Elizabeth is now unsteady, taking more dmg until she is attacked. When attacked, she switches to steady (less dmg);
+    //Unfocused/Attack: Elizabeth is now unsteady, taking more dmg until she is attacked. At end of turn if she was attacked she switches to steady (less dmg);
     //this one is kinda weird since its more of a passive to be checked at the beginning of the execute phase, like the other abilities that occur post planning (change target to me, all attack me, etc.) 
 	public override bool Skill1() {
-
-		this.addStatusEffect ("lessDmg", 1);
-        if (enemies[0].Target[0] == this || enemies[1].Target[0] == this || enemies[2].Target[0] == this) {
-            this.addStatusEffect("lessDmg", 1);
-            this.removeStatusEffect("moreDmg");
-            Transform = true;
-        } else {
-            this.addStatusEffect("moreDmg", 1);
-            this.removeStatusEffect("lessDmg");
-            Transform = false;
-        }
+		// adds unsteady status for a period no player should be able to reach
+		addStatusEffect ("unsteady", 100);
+		print (statusEffects [findStatus ("unsteady")].name + ": " + statusEffects [findStatus ("unsteady")].duration);
 		return false;
     }
 
@@ -75,5 +71,23 @@ public class Elizabeth : Character {
     }
 		
 	public override bool Skill4() { return true;}
+
+	public override void cleanUp()
+	{
+		print ("in Elizabeth.cleanUp()");
+		base.cleanUp ();
+
+		// This checks if Elizabeth was attacked this turn, isn't transformed, and is unsteady
+		if(this.lastStamina < Stamina && !Transform && findStatus("unsteady") != -1)
+		{
+			this.Transform = true;
+			addStatusEffect ("buff", 1);
+			addStatusEffect ("steady", 1);
+			print (statusEffects [findStatus ("buff")].name + ": " + statusEffects [findStatus ("buff")].duration);
+
+		}
+
+		lastStamina = Stamina;
+	}
 
 }

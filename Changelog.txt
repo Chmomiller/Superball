@@ -20,3 +20,7 @@ Tristian:
 4/11/18
 Tristian:
 	Incorporated ALL new character's into current Character standards
+	Reorganized Character Script files
+	Changed Elizabeth pretransform() to Skill1()
+	Added defenseMultiplier and attackMultiplier for implementation of steady, unsteady, buff, and debuff
+	Added steady/unsteady check to Character.throwBall()

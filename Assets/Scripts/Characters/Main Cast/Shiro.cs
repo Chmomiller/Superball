@@ -7,11 +7,11 @@ public class Shiro : Character{
     void Start()
     {
         Name = "Shiro";
-		Damage = 1;
+		Damage = 10;
         Catch = 50;
         Capacity = 8;
         Gather = 3;
-        Stamina = 8;
+        Stamina = 80;
         heldBalls = 0;
         maxBalls = 10;
         Role = "Support";

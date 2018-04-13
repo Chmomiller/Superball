@@ -68,7 +68,7 @@ public class Character : MonoBehaviour
 	public bool catching = false;
 
 
-    public void loseStamina(int staminaLoss) { this.Stamina -= staminaLoss; }
+	public void loseStamina(int staminaLoss) { this.Stamina -= staminaLoss; }
     public void gainStamina(int staminaLoss) { this.Stamina += staminaLoss; }
 	public string GetAction(int index){return this.actions [index];}
 	public string GetActionName(int index){return this.actionNames [index];}
@@ -124,6 +124,10 @@ public class Character : MonoBehaviour
         } */
     }
 
+	public virtual void Init()
+	{
+		
+	}
 
 
     //In decendant classes, update is used to set the allies,enemies,and targettingType arrays
@@ -181,36 +185,36 @@ public class Character : MonoBehaviour
 			// remember we can check a player's statusEffects anywhere
 			break;
 		case "debuff":
-			if(findStatus("buff") != -1)
-			{
+			if (findStatus ("buff") != -1) {
 				statusEffects [findStatus ("buff")].duration = 0;
-				removeDoneStatusEffects ("buff");
+				removeDoneStatusEffects ();
 			}
-				this.attack = Math.Floor(0.75 * this.attack);
+			this.attack = Math.Floor (0.75 * this.attack);
+			this.attackMultiplier = .75f;
 			break;
 		case "buff":
-			if(findStatus("debuff") != -1)
-			{
+			if (findStatus ("debuff") != -1) {
 				statusEffects [findStatus ("debuff")].duration = 0;
-				removeDoneStatusEffects ("debuff");
+				removeDoneStatusEffects ();
 			}
-				this.attack = Math.Floor(1.25 * this.attack);
+			this.attack = Math.Floor (1.25 * this.attack);
+			this.attackMultiplier = 1.25f;
 			break;
 		case "unsteady":
 			if(findStatus("steady") != -1)
 			{
 				statusEffects [findStatus ("steady")].duration = 0;
-				removeDoneStatusEffects ("steady");
+				removeDoneStatusEffects ();
 			}
-			this.defenseMultiplier = 1.25;
+			this.defenseMultiplier = 1.25f;
 			break;
 		case "steady":
 			if(findStatus("steady") != -1)
 			{
 				statusEffects [findStatus ("steady")].duration = 0;
-				removeDoneStatusEffects ("steady");
+				removeDoneStatusEffects ();
 			}
-			this.defenseMultiplier = .75;
+			this.defenseMultiplier = .75f;
 			break;
 		case "halfDmg":
 			break;
@@ -230,10 +234,12 @@ public class Character : MonoBehaviour
 			// remember we can check a player's statusEffects anywhere
 			break;
 		case "debuff":
-				this.attack = Math.Floor(1.35 * this.attack);
+			this.attack = Math.Floor (1.35 * this.attack);
+			this.attackMultiplier = 1.0f;
 			break;
 		case "buff":
-				this.attack = Math.Floor(0.8 * this.attack);
+			this.attack = Math.Floor (0.8 * this.attack);
+			this.attackMultiplier = 1.0f;
 			break;
 		case "unsteady":
 			this.defenseMultiplier = 1.0f;
@@ -298,9 +304,8 @@ public class Character : MonoBehaviour
 	{
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
-      	if(!target.dodgeBall (this)){
-        	target.loseStamina((int) (this.Damage * variance));
-      }
+		target.dodgeBall (this);
+		target.loseStamina((int) (this.Damage * variance * target.defenseMultiplier));
 	}
 
     public void Rest()
@@ -334,4 +339,31 @@ public class Character : MonoBehaviour
     public virtual bool Skill4(){
 		return true;
     }
+
+	public virtual void cleanUp()
+	{
+		removeDoneStatusEffects ();
+		for (int i = 0; i < this.statusEffects.Length; i++) 
+		{
+			if (this.statusEffects [i].duration > 0) 
+			{
+				this.statusEffects [i].duration--;
+			}
+		}
+		this.action = "None";
+		this.actionType = "None";
+
+		for (int i = 0; i < 3; i++) 
+		{
+			this.Target [i] = this;
+		}
+
+		for (int i = 0; i < this.actionCooldowns.Length; i++) 
+		{
+			if (this.actionCooldowns [i] > 0) 
+			{
+				this.actionCooldowns [i]--;
+			}
+		}
+	}
 }

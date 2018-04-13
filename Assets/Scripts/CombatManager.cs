@@ -316,15 +316,8 @@ public class CombatManager : MonoBehaviour
 	// This function has the charcters perform their actions in the correct order
 	void Execute()
 	{
-		CUI.ShowPhase ();
-		for (int i = 0; i < 6; i++) 
-		{
-			print (combatQueue[i].Name + combatQueue[i].action);
-		}
-
 		for (currentCharacter = 0; currentCharacter < 6; currentCharacter++) 
 		{
-			print ("Execute Running: "+currentCharacter);
 			if(! combatQueue[currentCharacter].dead) 
 				//&& combatQueue[i].character.findStatus("stun") != -1)
 			{
@@ -366,11 +359,12 @@ public class CombatManager : MonoBehaviour
 			Resurrect (ballsCaught[0]);
 			ballsCaught.RemoveAt (0);
 		}
-
+			
 		foreach(Character C in combatQueue)
 		{
-			CleanUp(C);
+			C.cleanUp();
 		}
+		
 		//currentPhase = PHASE.START;
 		
 		this.enabled = false;
@@ -782,34 +776,6 @@ public class CombatManager : MonoBehaviour
 		for(int i = 0; i < 3; i++)
 		{
 			combatQueue [current].Target[i] = Player [choice];
-		}
-	}
-
-
-	void CleanUp(Character current)
-	{
-		current.removeDoneStatusEffects ();
-		for (int i = 0; i < current.statusEffects.Length; i++) 
-		{
-			if(current.statusEffects[i].duration > 0)
-			{
-				current.statusEffects [i].duration--;
-			}
-		}
-		current.action = "None";
-		current.actionType = "None";
-
-		for (int i = 0; i < 3; i++) 
-		{
-			current.Target[i] = current;
-		}
-
-		for (int i = 0; i < current.actionCooldowns.Length; i++) 
-		{
-			if(current.actionCooldowns[i] > 0)
-			{
-				current.actionCooldowns [i]--;
-			}
 		}
 	}
 

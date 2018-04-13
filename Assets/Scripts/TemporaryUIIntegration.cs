@@ -15,7 +15,7 @@ public class TemporaryUIIntegration : MonoBehaviour
 	{
 		HealthBar = gameObject.GetComponent<RectTransform> ();
 		StaminaBar = HealthBar.localScale.x;
-		HealthMax = Player.maxStamina;
+		//HealthMax = Player.maxStamina;
 	}
 
 	public void Init(Character copyCharacter)
