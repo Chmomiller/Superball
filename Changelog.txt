@@ -24,3 +24,15 @@ Tristian:
 	Changed Elizabeth pretransform() to Skill1()
 	Added defenseMultiplier and attackMultiplier for implementation of steady, unsteady, buff, and debuff
 	Added steady/unsteady check to Character.throwBall()
+4/12/18
+Tristian:
+	Changed in-use character prefabs initial maxStamina and Names to fix incorrect HealthBars on load level
+	Added code to Character Update so that characters turn sideways when KOd
+	loseStamina and gainStamina now check if the Character has gone above maxStamina or below 0 
+	Increased Players maxStamina and Damage
+	Increased Stamina gained by Rest
+	Fixed Resurrection
+	Characters now only catch once per round and don't continue to catch past the current round
+	Fixed issue where catching text would repeatedly display during the execution phase
+	Fixed bug where Trevor.Skill1() (Thrash) would cause the game to enter an infinite loop
+	

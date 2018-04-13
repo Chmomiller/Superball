@@ -12,8 +12,8 @@ public class Character : MonoBehaviour
     public int Catch = 100;
     public int Gather = 1;
     public int Capacity = 4;
-    public int Stamina = 10;
-	public int maxStamina;
+    public int Stamina = 100;
+	public int maxStamina = 100;
     public int heldBalls = 0;
     public int maxBalls = 2;
     public int Level = 1;
@@ -68,8 +68,22 @@ public class Character : MonoBehaviour
 	public bool catching = false;
 
 
-	public void loseStamina(int staminaLoss) { this.Stamina -= staminaLoss; }
-    public void gainStamina(int staminaLoss) { this.Stamina += staminaLoss; }
+	public void loseStamina(int staminaLoss) 
+	{ 
+		this.Stamina -= staminaLoss; 
+		if(this.Stamina < 0)
+		{
+			this.Stamina = 0;
+		}
+	}
+    public void gainStamina(int staminaGain) 
+	{ 
+		this.Stamina += staminaGain; 
+		if(this.Stamina > maxStamina)
+		{
+			this.Stamina = maxStamina;
+		}
+	}
 	public string GetAction(int index){return this.actions [index];}
 	public string GetActionName(int index){return this.actionNames [index];}
 	public string GetActionType(int index){return this.actionTypes [index];}
@@ -124,6 +138,25 @@ public class Character : MonoBehaviour
         } */
     }
 
+	protected void Update()
+	{
+		if(dead)
+		{
+			if(this.tag == "Player")
+			{
+				gameObject.transform.eulerAngles = new Vector3 (0f, 0f, 90f);
+			}
+			else
+			{
+				gameObject.transform.eulerAngles = new Vector3 (0f, 0f, -90f);
+			}
+		}
+		else
+		{
+			gameObject.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
+		}
+	}
+
 	public virtual void Init()
 	{
 		
@@ -135,7 +168,6 @@ public class Character : MonoBehaviour
     //NOTE: AS SHIRO, CLEMENCE,AND THEODORE ARE PLAYERS BY DEFAULT, THEIR DEFAULT TARGETTING IS AIMED TOWARDS
     //ENEMIES, WHEREAS EVERYONE ELSE'S DEFAULT TARGETTING TYPE IS SET TO THE PLAYERS AS THEY ARE USUALLY THE ENEMY TEAM
     //IE: Shiro, Clemence, and Theodore have it look reversed. That is on purpose
-	void Update() { }
 
 
 
@@ -280,13 +312,17 @@ public class Character : MonoBehaviour
 	// Currently the character is still catching if they weren't targeted in the last round
 	public virtual bool catchBall(Character attacker)
 	{
-		if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < this.Catch) 
-		{ // you can catch it
-			if (this.heldBalls < Capacity) 
-			{
-				this.heldBalls++;
+		if(catching)
+		{
+			catching = false;
+			if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < this.Catch) 
+			{ // you can catch it
+				if (this.heldBalls < Capacity) 
+				{
+					this.heldBalls++;
+				}
+				return true;
 			}
-			return true;
 		}
 		return false;
 	}
@@ -314,7 +350,7 @@ public class Character : MonoBehaviour
 
     public void Rest()
 	{
-		this.gainStamina (1);
+		this.gainStamina (Gather * 2);
     }
 
 
@@ -346,6 +382,7 @@ public class Character : MonoBehaviour
 
 	public virtual void cleanUp()
 	{
+		catching = false;
 		removeDoneStatusEffects ();
 		for (int i = 0; i < this.statusEffects.Length; i++) 
 		{

@@ -13,7 +13,7 @@ public class Victoria : Character {
         Catch = 100;
         Capacity = 4;
         Gather = 1;
-        Stamina = 10;
+        Stamina = 200;
         heldBalls = 0;
         Role = "Catcher";
 

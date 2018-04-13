@@ -10,7 +10,7 @@ public class Trevor : Character {
         Damage = 10;
         Catch = 25;
         Capacity = 8;
-        Stamina = 70;
+        maxStamina = 120;
         heldBalls = 0;
         Role = "Thrower";
 
@@ -45,23 +45,30 @@ public class Trevor : Character {
         float variance;
         for (int i = 0; i < 3; i++) {
             variance = UnityEngine.Random.Range(0.8f, 1.2f);
-            Target[i] = this.enemies[UnityEngine.Random.Range(0, 3)];				
+			int test = UnityEngine.Random.Range (0, 3);
+				Target[i] = this.enemies[test];	
+			Debug.Log (enemies[test].Name);
 	    }
+
 		for (int i = 0; i < 3; i++) 
 		{
-			for(int j = 0; j < 3; )
+			for(int j = 0; j < 3; j++)
 			{
 				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
 				{
-					Target [i] = enemies [j];
+					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
+					//Target [i] = enemies [j];
 				}
 			}
 		}
+
 		for(int i =0 ; i < 3; i++)
 		{
+			Target [0] = Target [i];
 			combat.DoAction (this, "Throw");
 		}
 	    actionCooldowns[4] = 1;
+
 		return false;
     }
 }

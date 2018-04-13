@@ -13,7 +13,7 @@ public class Frank : Character {
         Catch = 100;
         Capacity = 4;
         Gather = 1;
-        Stamina = 100;
+        maxStamina = 160;
         heldBalls = 0;
         Role = "Catcher";
 

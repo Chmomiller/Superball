@@ -11,7 +11,7 @@ public class Mei : Character {
         Catch = 100;
         Gather = 1;
         Stamina = 10;
-        maxStamina = 10;
+        maxStamina = 140;
         heldBalls = 0;
         Capacity = 4;
         Role = "Supporter";

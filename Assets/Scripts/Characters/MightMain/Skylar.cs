@@ -10,8 +10,7 @@ public class Skylar : Character {
         Damage = 1;
         Catch = 100;
         Gather = 1;
-        Stamina = 10;
-        maxStamina = 10;
+        maxStamina = 200;
         heldBalls = 0;
         Capacity = 4;
         Role = "Supporter";
@@ -23,9 +22,12 @@ public class Skylar : Character {
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 2, 3, 4, 3 };
+
+		base.Start ();
     }
 
     void Update() {
+		/*
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -39,6 +41,8 @@ public class Skylar : Character {
                 enemies = combat.Player;
             }
         }
+        */
+		base.Update ();
     }
 
     public override bool Skill1() {

@@ -387,7 +387,7 @@ public class CombatManager : MonoBehaviour
 					//character.heldBalls--;
 					if (character.Target[0].catchBall (character)) 
 					{
-						if (character.tag == "Player") 
+						if (character.Target[0].tag == "Player") 
 						{
 							ballsCaught.Add (true);
 						} 
@@ -454,12 +454,9 @@ public class CombatManager : MonoBehaviour
 						targetFound = true;
 					}
 				}
-
-				
-				StartCoroutine (PrintOut (character.Name + " is ready to catch!"));
-				Debug.Log (character.Name + " is ready to catch!");
-
 			}
+			StartCoroutine (PrintOut (character.Name + " is ready to catch!"));
+			Debug.Log (character.Name + " is ready to catch!");
 			break;
 		case("Gather"):
 			character.gatherBall();
@@ -477,7 +474,7 @@ public class CombatManager : MonoBehaviour
 				switch (character.Target[0].action) {
 				case("Catch"):
 					if (character.Target [0].catchBall (character)) {
-						if (character.tag == "Player") {
+						if (character.Target[0].tag == "Player") {
 							ballsCaught.Add (true);
 						} else {
 							ballsCaught.Add (false);
@@ -535,10 +532,10 @@ public class CombatManager : MonoBehaviour
 				switch (character.Target[0].action) {
 				case("Catch"):
 					if (character.Target [0].catchBall (character)) {
-						if (character.tag == "Player") {
-							ballsCaught.Add (true);
-						} else {
+						if (character.Target [0].tag == "Player") {
 							ballsCaught.Add (false);
+						} else {
+							ballsCaught.Add (true);
 						}
 					}
 					else
@@ -596,7 +593,7 @@ public class CombatManager : MonoBehaviour
 				case("Catch"):
 					if (character.Target[0].catchBall (character)) 
 					{
-						if (character.tag == "Player") 
+						if (character.Target [0].tag == "Player") 
 						{
 							ballsCaught.Add (true);
 						} 
@@ -659,7 +656,7 @@ public class CombatManager : MonoBehaviour
 				case("Catch"):
 					if (character.Target[0].catchBall (character)) 
 					{
-						if (character.tag == "Player") 
+						if (character.Target [0].tag == "Player") 
 						{
 							ballsCaught.Add (true);
 						} 
@@ -783,7 +780,8 @@ public class CombatManager : MonoBehaviour
 	// This function puts players back into the game
 	void Resurrect(bool player)
 	{
-		int highestStamina = 0;
+		int highestStamina = -100000;
+		int current = 0;
 		bool Res = false;
 		// If the character to be rezzed is an ally
 		if (player) 
@@ -793,10 +791,10 @@ public class CombatManager : MonoBehaviour
 			{
 				if(Player[i].dead)
 				{
-					if (Player [i].Stamina > Player [highestStamina].Stamina 
-						&& Player[i].Stamina >= Player[i].Stamina/2) 
+					if (Player [i].Stamina > highestStamina 
+						&& Player[i].Stamina >= Player[i].maxStamina/2) 
 					{
-						highestStamina = i;
+						current = i;
 						Res = true;
 					}
 				}
@@ -804,7 +802,7 @@ public class CombatManager : MonoBehaviour
 			// If there is a benched player
 			if (Res) 
 			{
-				Player [highestStamina].dead = false;
+				Player [current].dead = false;
 			}
 		} 
 		else 
@@ -812,12 +810,12 @@ public class CombatManager : MonoBehaviour
 			// Get the enemy with the hishest stamina that is benched
 			for (int i = 0; i < 3; i++) 
 			{
-				if(Player[i].dead)
+				if(Enemy[i].dead)
 				{
-					if (Enemy [i].Stamina > Enemy[highestStamina].Stamina 
-						&& Enemy[i].Stamina >= Enemy[i].Stamina/2) 
+					if (Enemy [i].Stamina > highestStamina 
+						&& Enemy[i].Stamina >= Enemy[i].maxStamina/2) 
 					{
-						highestStamina = i;
+						current = i;
 						Res = true;
 					}
 				}
@@ -825,15 +823,15 @@ public class CombatManager : MonoBehaviour
 			// If there is a benched enemy
 			if (Res) 
 			{
-				Enemy [highestStamina].dead = false;
+				Enemy [current].dead = false;
 			}
 		}
 	}
 
 	IEnumerator PrintOut(string whatToSay)
 	{
-		delay += 1f;
-		print (whatToSay + ", delay is: " + delay);
+		delay += 2f;
+		Debug.Log (whatToSay + ", delay is: " + delay);
 		yield return new WaitForSeconds (delay);
 		combatAction.text = whatToSay;
 	}

@@ -11,7 +11,8 @@ public class Theodore : Character {
         Catch = 25;
         Capacity = 8;
         Gather = 1;
-        Stamina = 70;
+        Stamina = 80;
+		maxStamina = 80;
         heldBalls = 0;
         Role = "Thrower";
 

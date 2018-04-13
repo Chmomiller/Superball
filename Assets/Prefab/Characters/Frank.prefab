@@ -53,18 +53,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
-  Name: default
+  Name: Frank
   Damage: 1
   Catch: 100
   Gather: 1
   Capacity: 4
-  Stamina: 10
-  maxStamina: 10
+  Stamina: 160
+  maxStamina: 160
   heldBalls: 0
   maxBalls: 2
   Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
   Role: Supporter
-  Target: {fileID: 0}
+  Target:
+  - {fileID: 0}
   action: 
   actionType: 
   targetingType: 0
@@ -79,6 +82,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionDescription:
   - Wait
   - Throw ball at target enemy

@@ -53,16 +53,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
-  Name: default
+  Name: Elizabeth
   Damage: 1
   Catch: 100
   Gather: 1
   Capacity: 4
   Stamina: 10
-  maxStamina: 10
+  maxStamina: 160
   heldBalls: 0
   maxBalls: 2
   Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
   Role: Supporter
   Target:
   - {fileID: 0}
@@ -104,6 +106,7 @@ MonoBehaviour:
   dead: 0
   catching: 0
   Transform: 0
+  lastStamina: 0
 --- !u!212 &212178651066916020
 SpriteRenderer:
   m_ObjectHideFlags: 1

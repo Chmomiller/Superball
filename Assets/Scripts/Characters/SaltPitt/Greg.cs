@@ -13,7 +13,7 @@ public class Greg: Character
         Catch = 50;
         Capacity = 8;
         Gather = 2;
-        Stamina = 140;
+        maxStamina = 120;
         heldBalls = 0;
         Role = "Support";
 
