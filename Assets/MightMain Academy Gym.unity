@@ -651,7 +651,7 @@ Prefab:
     - target: {fileID: 114114163317060210, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MightMain Gym
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
         type: 2}

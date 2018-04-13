@@ -113,6 +113,77 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &90755180 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1365132067671048, guid: 28fd4f95086615347a730a94c8302c05,
+    type: 2}
+  m_PrefabInternal: {fileID: 1937739124}
+--- !u!114 &90755181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 90755180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ce4e589b55b5649b8c6a862f4eb07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combat: {fileID: 0}
+  Name: default
+  Damage: 1
+  Catch: 100
+  Gather: 1
+  Capacity: 4
+  Stamina: 10
+  maxStamina: 0
+  heldBalls: 0
+  maxBalls: 2
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  Role: Supporter
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  action: 
+  actionType: 
+  targetingType: 0
+  allegiance: 1
+  allies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  attack: 0
+  dodge: 0
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionDescription:
+  - Wait
+  - Throw ball at target enemy
+  - Attempt to catch any incoming balls
+  - Gather balls from the ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  targetingTypes: 
+  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
+  dead: 0
+  catching: 0
 --- !u!1 &102266457
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88dde0ebbc5e51e44ab8d350c2f98e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatQueue: []
   currentPhase: 0
   Player: []
   Enemy: []
@@ -323,6 +395,7 @@ MonoBehaviour:
   battleText: {fileID: 0}
   combatAction: {fileID: 0}
   CUI: {fileID: 0}
+  tempUI: []
   conflictInQueue: -1
   win: 0
   lose: 0
@@ -649,7 +722,7 @@ Prefab:
     - target: {fileID: 114114163317060210, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MightMain Gym
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
@@ -784,7 +857,13 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1234588121
@@ -832,6 +911,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1306568044
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.4344654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.0664599
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 88.890625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061372905805528, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1483674183
 GameObject:
@@ -915,8 +1036,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1512845053}
-  - component: {fileID: 1512845050}
   - component: {fileID: 1512845051}
+  - component: {fileID: 1512845050}
   m_Layer: 0
   m_Name: Character3
   m_TagString: Enemy
@@ -932,22 +1053,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1512845049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f4bd0a4c5f32f94daf413be01720da0, type: 3}
+  m_Script: {fileID: 11500000, guid: 61d602bd526d5754e8553e82a5627afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
-  Name: Yamato
-  Damage: 15
-  Stamina: 986
-  maxStamina: 1250
-  Level: 1
+  Name: default
+  Damage: 1
   Catch: 100
   Gather: 1
   Capacity: 4
+  Stamina: 10
+  maxStamina: 0
   heldBalls: 0
   maxBalls: 2
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
   Role: Supporter
-  Target: {fileID: 0}
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   action: 
   actionType: 
   targetingType: 0
@@ -962,6 +1088,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionDescription:
   - Wait
   - Throw ball at target enemy
@@ -976,7 +1111,6 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
-  yamatoCharge: 0
 --- !u!212 &1512845051
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -992,7 +1126,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 92f161029a6d3c54a92d9d283352a135, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1031,7 +1165,7 @@ Transform:
   m_GameObject: {fileID: 1512845049}
   m_LocalRotation: {x: 0.0017109751, y: -0.0014644202, z: 0.08750565, w: 0.9961615}
   m_LocalPosition: {x: 1.83, y: 0.34, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5220394, y: 1.5220397, z: 1.5220397}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1076,6 +1210,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1921067517 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1952880669493186, guid: a0046e759a0a8574e812a4dcfcf7c029,
+    type: 2}
+  m_PrefabInternal: {fileID: 1182082610}
+--- !u!114 &1921067518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1921067517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0f4ebd9326c654abb070f6aa196afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combat: {fileID: 0}
+  Name: default
+  Damage: 1
+  Catch: 100
+  Gather: 1
+  Capacity: 4
+  Stamina: 10
+  maxStamina: 0
+  heldBalls: 0
+  maxBalls: 2
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  Role: Supporter
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  action: 
+  actionType: 
+  targetingType: 0
+  allegiance: 1
+  allies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  attack: 0
+  dodge: 0
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionDescription:
+  - Wait
+  - Throw ball at target enemy
+  - Attempt to catch any incoming balls
+  - Gather balls from the ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  targetingTypes: 
+  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
+  dead: 0
+  catching: 0
+--- !u!114 &1921067519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1921067517}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.9705882, g: 0.056896493, b: 0.29875585, a: 0.297}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1937739124
 Prefab:
   m_ObjectHideFlags: 0
@@ -1124,7 +1370,13 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1945420167

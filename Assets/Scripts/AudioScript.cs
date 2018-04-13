@@ -33,16 +33,18 @@ using UnityEngine;
 
 
 public class AudioScript : MonoBehaviour {
-   public AudioSource src0;  //audio manager source
-   public AudioClip file0;  //audio manager file
-   public AudioSource src1;  //track 1 audio object
-   public AudioClip file1;   //track 1 file
-   public AudioSource src2;
+   public AudioSource src0;  //background audio source (read: track)
+   public AudioClip file0;  //background audio file
+   public AudioSource src1;  //Announcer audio source (read: track);
+   public AudioClip file1;   //Announcer audio file
+   public AudioSource src2;  //Other track
    public AudioClip file2;
    
    //these two are used for actually changing audio in the methods. Most method calls in this class contains an integer that specifies the track it should affect. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This allows you to change between which track to change without having to make a new set of methods for each audio_track.  passing 0 as a track uses the audio_manager's internal amsrc and amfile.   
    public AudioSource src;   
    public AudioClip file;
+   public static AudioSource staticSrc;
+    public static AudioClip staticFile;
    public float stopTime;  //used to hold where you are at when you stopped
    public bool playingAudio = false;
 
@@ -51,29 +53,43 @@ public class AudioScript : MonoBehaviour {
    public void Awake(){
         if(instance == null) {
             instance = this;
+            DontDestroyOnLoad(this);
 
         } else {
             Destroy(this);
         }
-        DontDestroyOnLoad(this);
     }
    
 	// Use this for initialization
 	void Start () {
+        staticSrc = GetComponents<AudioSource>()[0];
+        staticFile = file0;
+        src = GetComponents<AudioSource>()[0];
         src0 = GetComponents<AudioSource>()[0];
         src1 = GetComponents<AudioSource>()[1];
         src2 = GetComponents<AudioSource>()[2];
+        src.clip = file0;
         src0.clip = file0;
         src1.clip = file1;
         src2.clip = file2;
     }
 
     public void playSFX(string name){// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
-      AudioClip sfx = Resources.Load<AudioClip> (name);
+      AudioClip sfx = Resources.Load<AudioClip> ("Audio/"+name);
+      src1.PlayOneShot(sfx);
+        if (sfx == null) print("sfx problem");
+        print("sfx");
    }
-   
-   
-   public void chooseTrack(int track){ //this method is called in most other functions in here and serves to take in the track integer input that is passed to the methods in this class that is then passed here. It takes this integer and sets src and file to point to the the class regarding the track integer variable. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This makes it so that we only affect the track sent to us.
+
+    public static void playStaticSFX(string name) {// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
+        AudioClip sfx = Resources.Load<AudioClip>("Audio/" + name);
+        staticSrc.PlayOneShot(sfx);
+        if (sfx == null) print("sfx problem");
+        print("static sfx");
+    }
+
+
+    public void chooseTrack(int track){ //this method is called in most other functions in here and serves to take in the track integer input that is passed to the methods in this class that is then passed here. It takes this integer and sets src and file to point to the the class regarding the track integer variable. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This makes it so that we only affect the track sent to us.
        if(track == 1){ //these are to set the pointer src and file to the audio_track you want to change
          src = src1;
          file = file1;
@@ -117,14 +133,15 @@ public class AudioScript : MonoBehaviour {
       src.Play();
    }
    
-   public void playAudio(string name, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
-      
+   public void playAudio(string nameOrPath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
+        string name = nameOrPath;
       chooseTrack(track);
       src.Stop();
       src.time = 0;
       playingAudio = true;
-      src.clip = Resources.Load <AudioClip> (name); //This is you don't
-      Debug.Log(name);
+      src.clip = Resources.Load <AudioClip> ("Audio/"+name); //This is you don't
+        if (src.clip == null) print("NULL Audio Src");
+        Debug.Log(name);
       src.Play();
       
    }
@@ -213,18 +230,11 @@ public class AudioScript : MonoBehaviour {
             stopAudio(0);
          }
       }else if(Input.GetKeyDown(KeyCode.Backspace)){  
-       // resetAllAudio();
-            print("backspace");
-            playAudio("UpToNoGood", 1);
+        resetAllAudio();
       }else if(  (Input.GetKeyDown(KeyCode.Equals)) || (Input.GetKeyDown(KeyCode.Plus)) ){
         src.volume+=0.1F;
-            src0.clip = Resources.Load<AudioClip>("Audio/MilitaryMight");
-            src1.clip = file1;
-            src2.clip = file2;
       }else if(Input.GetKeyDown(KeyCode.Minus)){
         src.volume-=0.1F;
-            resetAudio(2); //stops the music on this track
-            playAudio(2);
       }else if(Input.GetKeyDown(KeyCode.Alpha0)){
         if(src.mute){src.mute = false;}else{src.mute = true;} 
       }

@@ -188,6 +188,7 @@ public class Character : MonoBehaviour
 			if (findStatus ("buff") != -1) {
 				statusEffects [findStatus ("buff")].duration = 0;
 				removeDoneStatusEffects ();
+				removeStatusEffect ("buff");
 			}
 			this.attack = Math.Floor (0.75 * this.attack);
 			this.attackMultiplier = .75f;
@@ -196,6 +197,7 @@ public class Character : MonoBehaviour
 			if (findStatus ("debuff") != -1) {
 				statusEffects [findStatus ("debuff")].duration = 0;
 				removeDoneStatusEffects ();
+				removeStatusEffect ("debuff");
 			}
 			this.attack = Math.Floor (1.25 * this.attack);
 			this.attackMultiplier = 1.25f;
@@ -205,6 +207,7 @@ public class Character : MonoBehaviour
 			{
 				statusEffects [findStatus ("steady")].duration = 0;
 				removeDoneStatusEffects ();
+				removeStatusEffect ("steady");
 			}
 			this.defenseMultiplier = 1.25f;
 			break;
@@ -213,8 +216,9 @@ public class Character : MonoBehaviour
 			{
 				statusEffects [findStatus ("steady")].duration = 0;
 				removeDoneStatusEffects ();
+				removeStatusEffect ("steady");
 			}
-			this.defenseMultiplier = .75f;
+			this.defenseMultiplier = 0.75f;
 			break;
 		case "halfDmg":
 			break;
