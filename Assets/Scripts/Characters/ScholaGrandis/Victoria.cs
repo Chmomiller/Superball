@@ -14,6 +14,7 @@ public class Victoria : Character {
         Capacity = 4;
         Gather = 1;
         Stamina = 200;
+        maxStamina = 200;
         heldBalls = 0;
         Role = "Catcher";
 

@@ -6,9 +6,10 @@ public class Harold : Character {
     
     void Start() {
         Name = "Harold";
-        Damage = 1;
+        Damage = 20;
         Catch = 100;
         Gather = 1;
+        Stamina = 200;
         maxStamina = 200;
         heldBalls = 0;
         Capacity = 4;

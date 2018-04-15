@@ -17,7 +17,7 @@ public class Shiro : Character{
         maxBalls = 10;
         Role = "Support";
         
-	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Blue Bull", "Keep Fighting", "Skill4" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off all your balls to ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0 };

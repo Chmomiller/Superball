@@ -14,7 +14,7 @@ public class Elizabeth : Character {
         Catch = 100;
         Capacity = 4;
         Gather = 1;
-        Stamina = 10;
+        Stamina = 160;
 		maxStamina = 160;
         heldBalls = 0;
         Role = "Catcher";

@@ -11,6 +11,7 @@ public class Trevor : Character {
         Catch = 25;
         Capacity = 8;
         maxStamina = 120;
+        Stamina = maxStamina;
         heldBalls = 0;
         Role = "Thrower";
 
