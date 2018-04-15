@@ -7,7 +7,7 @@ public class Skylar : Character {
     // Use this for initialization
     void Start() {
         Name = "Skylar";
-        Damage = 12;
+        Damage = 1;
         Catch = 100;
         Gather = 1;
         maxStamina = 200;

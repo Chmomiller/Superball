@@ -10,7 +10,7 @@ public class Mei : Character {
         Damage = 1;
         Catch = 100;
         Gather = 1;
-        Stamina = 140;
+        Stamina = 10;
         maxStamina = 140;
         heldBalls = 0;
         Capacity = 4;

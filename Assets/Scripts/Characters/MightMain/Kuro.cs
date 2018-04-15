@@ -6,10 +6,9 @@ public class Kuro : Character {
 
     void Start() {
         Name = "Kuro";
-        Damage = 10;
+        Damage = 1;
         Catch = 100;
         Gather = 1;
-        Stamina = 240;
         maxStamina = 240;
         heldBalls = 0;
         Capacity = 4;

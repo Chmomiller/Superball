@@ -736,21 +736,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
-        type: 2}
-      propertyPath: src0
-      value: 
-      objectReference: {fileID: 1937245639}
-    - target: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
-        type: 2}
-      propertyPath: file0
-      value: 
-      objectReference: {fileID: 8300000, guid: 66a1b03a37baf9a419149bbff566c877, type: 3}
-    - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 66a1b03a37baf9a419149bbff566c877, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
   m_IsPrefabParent: 0
@@ -1020,7 +1005,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1862253760}
   - component: {fileID: 1862253761}
-  - component: {fileID: 1862253762}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1052,22 +1036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1862253762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1862253759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!82 &1937245639 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
-    type: 2}
-  m_PrefabInternal: {fileID: 914492524}
 --- !u!1001 &1937739124
 Prefab:
   m_ObjectHideFlags: 0

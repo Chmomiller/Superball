@@ -12,7 +12,7 @@ public class QuitGame : MonoBehaviour
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
         print("loaded");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        Audio.src0.loop = true;
+
 	}
 
 	public void Quit()

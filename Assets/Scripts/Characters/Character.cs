@@ -380,13 +380,6 @@ public class Character : MonoBehaviour
 		return true;
     }
 
-
-    public void LevelUp() {
-        this.Level++;
-        this.maxStamina = (int)Math.Ceiling(this.maxStamina * 1.1f);
-        this.Damage = (int)Math.Ceiling(this.Damage * 1.1f);
-    }
-
 	public virtual void cleanUp()
 	{
 		catching = false;
