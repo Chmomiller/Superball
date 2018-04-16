@@ -17,19 +17,20 @@ public class Shiro : Character{
         maxBalls = 10;
         Role = "Support";
         
-	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off all your balls to ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "" };
+	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Refreshments", "Keep Fighting", "Cheer On" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off all your balls to ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "Buffs team mates" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
-	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0 };
+	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 1, 0, 0 };
 		base.Start ();
     }
 		
     // Update is called once per frame
-	/*
-    bool Update()
+    void Update()
     {
+		base.Update ();
+		/*
         if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
             this.targetingTypes = defaultTargetingTypes;
             allies = combat.Player;
@@ -38,9 +39,8 @@ public class Shiro : Character{
             this.targetingTypes = alternateTargetingTypes;
             allies = combat.Enemy;
             enemies = combat.Player;
-        }
+        }*/
     }
-    */
 
 	public override bool Skill1() //Pass off
     {

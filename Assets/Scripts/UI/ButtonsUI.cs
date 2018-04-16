@@ -34,6 +34,7 @@ public class ButtonsUI : MonoBehaviour
 	// This function is called when an action button is selected. It sets the appropriate action for the current character
 	public void ActionSelect()
 	{
+		// If action phase
 		if(CM.currentPhase == CombatManager.PHASE.ACTION)
 		{
 			// Check if the action is valid
@@ -43,10 +44,12 @@ public class ButtonsUI : MonoBehaviour
 				return;
 			}
 				
+			// set the current character's action based on actionNumber
 			CM.combatQueue [CM.currentCharacter].action = CM.combatQueue [CM.currentCharacter].GetAction (actionNumber);
 			CM.combatQueue [CM.currentCharacter].actionType = CM.combatQueue [CM.currentCharacter].GetActionType(actionNumber);
 			CM.combatQueue [CM.currentCharacter].targetingType = CM.combatQueue [CM.currentCharacter].GetTargetingType(actionNumber);	
-			// This will need to change if there is a non-catching defensive move
+
+			// If the action is defensive the player is catching (This will need to change if there is a non-catching defensive move)
 			if (CM.combatQueue [CM.currentCharacter].actionType == "Defense") 
 			{
 				CM.combatQueue [CM.currentCharacter].catching = true;
@@ -64,20 +67,24 @@ public class ButtonsUI : MonoBehaviour
 					break;
 				case(1):
 					CM.currentPhase = CombatManager.PHASE.TARGET;
-					foreach(Button B in CM.enemySelect)
+					for(int i  = 0; i < 3; i++)
 					{
-						B.enabled = true;
+					if(!CM.Enemy[i].dead)
+						{	
+							CM.enemySelect[i].enabled = true;
+						}
 					}
 					break;
 				case(2):
 					CM.currentPhase = CombatManager.PHASE.TARGET;
-					foreach(Button B in CM.playerSelect)
-					{
-						B.enabled = true;
+					for (int i = 0; i < 3; i++) {
+						if (!CM.Player [i].dead) {	
+							CM.playerSelect [i].enabled = true;
+						}
 					}
 					break;
-				}
-			/*}
+				}/*
+			}
 			else
 			{
 				switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
@@ -91,21 +98,24 @@ public class ButtonsUI : MonoBehaviour
 					break;
 				case(1):
 					CM.currentPhase = CombatManager.PHASE.TARGET;
-					foreach(Button B in CM.enemySelect)
-					{
-						B.enabled = true;
+					for (int i = 0; i < 3; i++) {
+						if (!CM.Player [i].dead) {	
+							CM.playerSelect [i].enabled = true;
+						}
 					}
 					break;
 				case(2):
 					CM.currentPhase = CombatManager.PHASE.TARGET;
-					foreach(Button B in CM.playerSelect)
+					for(int i  = 0; i < 3; i++)
 					{
-						B.enabled = true;
+						if(!CM.Enemy[i].dead)
+						{	
+							CM.enemySelect[i].enabled = true;
+						}
 					}
 					break;
 				}
-			}
-			*/
+			}*/
 		}
 	}
 

@@ -35,4 +35,21 @@ Tristian:
 	Characters now only catch once per round and don't continue to catch past the current round
 	Fixed issue where catching text would repeatedly display during the execution phase
 	Fixed bug where Trevor.Skill1() (Thrash) would cause the game to enter an infinite loop
+4/13/18:
+	Today is 413
+	Changed ButtonsUI so that you can only select active characters after an action
+
+4/14/18:
+	Added base.Update() to the Schola Grandis girl's Updates
+	Mei's skill1()(Silver Platter) no longer uses PassOff()
+	Mei's skill3()(Cup of Tea) ball cost reduced to 0
+	Mei's skill3() no longer overheals and functions on non-Schola Grandis girls
+4/14/18:
+	Fixed Mei's skill2()(Clean Up) so that it checks the correct array and functions properly
+	Set the size of Theodore's cost array to 8(may need to do this for other character's arrays)
+	Added misc status for misc cases such as turn checking
+	Added Victoria.cleanUp() to work with Victoria.Skill1()
+	Added Victoria.catchBall() to work with Victoria.Skill2()
+	Winning or losing now ends combat
+	
 	

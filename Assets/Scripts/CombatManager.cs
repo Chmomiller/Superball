@@ -100,29 +100,31 @@ public class CombatManager : MonoBehaviour
 
 	void Update()
 	{
-		switch (currentPhase) 
+		if(!win && !lose)
 		{
-		case(PHASE.START):
-			StartQueue ();
-			break;
-		case(PHASE.CONFLICT):
-			Conflict();
-			break;
-		case(PHASE.SELECT):
-			Select ();
-			break;
-		case(PHASE.ACTION):
-			Action ();
-			break;
-		case(PHASE.TARGET):
-			Target ();
-			break;
-		case(PHASE.EXECUTE):
+			switch (currentPhase) {
+			case(PHASE.START):
+				StartQueue ();
+				break;
+			case(PHASE.CONFLICT):
+				Conflict ();
+				break;
+			case(PHASE.SELECT):
+				Select ();
+				break;
+			case(PHASE.ACTION):
+				Action ();
+				break;
+			case(PHASE.TARGET):
+				Target ();
+				break;
+			case(PHASE.EXECUTE):
 			//Execute ();
-			break;
-		case(PHASE.RESULTS):
-			Results ();
-			break;
+				break;
+			case(PHASE.RESULTS):
+				Results ();
+				break;
+			}
 		}
 	}
 
@@ -584,9 +586,7 @@ public class CombatManager : MonoBehaviour
 		case("Skill3"):
 			//character.heldBalls -= character.GetActionCost (6);
 			StartCoroutine (PrintOut (character.Name + " used Skill 3!"));
-			Debug.Log (character.Name + " used Skill 3!");
-			print (character.Name + " actionType: " + character.actionType + ", " 
-				+ character.Target[0].Name + " actionType: " + character.Target[0].actionType);
+			print (character.Name + " used Skill 3!");
 			if (character.actionType == "Offense"
 			    && character.Target[0].actionType == "Defense") {
 				switch (character.Target[0].action) {

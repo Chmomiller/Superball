@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
   Name: Frank
-  Damage: 1
+  Damage: 10
   Catch: 100
   Gather: 1
   Capacity: 4

@@ -42,10 +42,10 @@ public class Character : MonoBehaviour
 	//of the different arrays and set the corresponding variable to the array value
 
 	// I changed these from private to protected, this is important for Character derived classes
-	protected string[] actions = {"None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+	public string[] actions = {"None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 	public string[] actionNames = { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
     public string[] actionDescription = { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "", "" };
-    protected string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
+    protected string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 
     //These are to dictate who each ability can target: 0 for none or predetermined, 1 for Enemy[], 2 for Player[]
     //default is for what you would expect, alternate is if they switched teams. 
@@ -60,7 +60,7 @@ public class Character : MonoBehaviour
     public  int[] targetingTypes;
 
     //How many balls does each action cost?
-    protected int[]    actionCosts = { 0, 1, 0, 0, 0, 0, 0, 0 };
+	public int[]    actionCosts = { 0, 1, 0, 0, 0, 0, 0, 0 };
     //How many turns is the cooldown of each action?
     public int[] actionCooldowns = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -87,7 +87,7 @@ public class Character : MonoBehaviour
 	public string GetAction(int index){return this.actions [index];}
 	public string GetActionName(int index){return this.actionNames [index];}
 	public string GetActionType(int index){return this.actionTypes [index];}
-	public int GetTargetingType(int index){return /*This had to be changed for testing purposes*/this.defaultTargetingTypes [index];}
+	public int GetTargetingType(int index){return this.defaultTargetingTypes [index];}
 	public int GetActionCost(int index){return this.actionCosts [index];}
 
 	public struct status {
@@ -107,7 +107,7 @@ public class Character : MonoBehaviour
 	public status[] statusEffects;// = new status[6];
 
     protected void Start() {
-		maxStamina = Stamina;
+		Stamina = maxStamina;
 		Target = new Character[3];
 		for(int i = 0; i < 3; i++)
 		{
@@ -260,6 +260,9 @@ public class Character : MonoBehaviour
 				// check during plan and randomly choose target
 				// remember we can check a player's statusEffects anywhere
 				break;
+		case "misc":
+			// This is used to check for multiturn logic
+			break;
 		}
 	}
 
@@ -289,6 +292,8 @@ public class Character : MonoBehaviour
 				break;   
 		case "confused":
 				break;
+		case "misc":
+			break;
 		}
 	}
 

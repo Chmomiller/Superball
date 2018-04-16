@@ -18,7 +18,7 @@ public class Frank : Character {
         Role = "Catcher";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rumble", "Skill2", "Skill3", "Skill4" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at Target[0] enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Blocks any balls aimed at Trevor", "", "", "" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Blocks any balls aimed at Trevor", "", "", "" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility" };
 	    defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
 	    alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };        
@@ -27,9 +27,11 @@ public class Frank : Character {
 		base.Start ();
     }
 
-	/*
+
     // Update is called once per frame
     void Update() {
+		base.Update ();
+		/*
         if (allegiance == 1) {
             this.Target[0]ingTypes = alternateTarget[0]ingTypes;
             allies = combat.Player;
@@ -39,8 +41,9 @@ public class Frank : Character {
             allies = combat.Enemy;
             enemies = combat.Player;
         }
+        */
     }
-	*/
+
 
 
     // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball

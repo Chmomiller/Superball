@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426989562631526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.79999, y: 428.9, z: 90}
+  m_LocalPosition: {x: 10.008462, y: 0.15291405, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,11 +54,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
   Name: Mei
-  Damage: 1
+  Damage: 10
   Catch: 100
   Gather: 1
   Capacity: 4
-  Stamina: 10
+  Stamina: 140
   maxStamina: 140
   heldBalls: 0
   maxBalls: 2

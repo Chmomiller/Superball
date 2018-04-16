@@ -54,11 +54,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
   Name: Greg
-  Damage: 1
+  Damage: 10
   Catch: 100
   Gather: 1
   Capacity: 4
-  Stamina: 10
+  Stamina: 120
   maxStamina: 120
   heldBalls: 0
   maxBalls: 2

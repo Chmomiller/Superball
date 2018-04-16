@@ -59,7 +59,7 @@ MonoBehaviour:
   Gather: 1
   Capacity: 4
   Stamina: 200
-  maxStamina: 0
+  maxStamina: 200
   heldBalls: 0
   maxBalls: 2
   Level: 1

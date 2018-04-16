@@ -10,11 +10,10 @@ public class Elizabeth : Character {
     // Use this for initialization
     void Start() {
         Name = "Elizabeth";
-        Damage = 1;
+        Damage = 10;
         Catch = 100;
         Capacity = 4;
         Gather = 1;
-        Stamina = 10;
 		maxStamina = 160;
         heldBalls = 0;
         Role = "Catcher";
@@ -26,13 +25,14 @@ public class Elizabeth : Character {
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
 
-		lastStamina = Stamina;
-
 		base.Start ();
+
+		lastStamina = Stamina;
     }
 
     // Update is called once per frame
     void Update() {
+		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
             allies = combat.Player;
@@ -42,6 +42,8 @@ public class Elizabeth : Character {
             allies = combat.Enemy;
             enemies = combat.Player;
         }
+        */
+		base.Update ();
     }
 
     //Unfocused/Attack: Elizabeth is now unsteady, taking more dmg until she is attacked. At end of turn if she was attacked she switches to steady (less dmg);
@@ -49,7 +51,6 @@ public class Elizabeth : Character {
 	public override bool Skill1() {
 		// adds unsteady status for a period no player should be able to reach
 		addStatusEffect ("unsteady", 100);
-		print (statusEffects [findStatus ("unsteady")].name + ": " + statusEffects [findStatus ("unsteady")].duration);
 		return false;
     }
 
@@ -75,7 +76,6 @@ public class Elizabeth : Character {
 
 	public override void cleanUp()
 	{
-		print ("in Elizabeth.cleanUp()");
 		base.cleanUp ();
 
 		// This checks if Elizabeth was attacked this turn, isn't transformed, and is unsteady

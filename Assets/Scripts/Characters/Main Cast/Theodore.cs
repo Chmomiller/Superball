@@ -17,17 +17,19 @@ public class Theodore : Character {
         Role = "Thrower";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };
-	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense" };
+	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground","Weaker attack but enemy is stunned for 1 turn" , "Guaranteed attack on target. Cost 3, CD 2", "If a ball is to be thrown at you, redirect at a target ally instead", "Throw 8 balls at random enemies"};
-	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 2, 0 };
+	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 2, 1 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 1, 0 };
 	    actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 1, 8 };
 		base.Start ();
     }
 
-	/*
+
     // Update is called once per frame
-    bool Update() {
+	void Update() {
+		base.Update ();
+		/*
         if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
             this.targetingTypes = defaultTargetingTypes;
             allies = combat.Player;
@@ -36,19 +38,20 @@ public class Theodore : Character {
             this.targetingTypes = alternateTargetingTypes;
             allies = combat.Enemy;
             enemies = combat.Player;
-        }
+        }*/
     }
-	*/
+
 
     public override bool Skill1() {
         //Rook: slightly weaker attack and enemy is stunned for one turn. Cost: 2 balls
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);  // currently results in a 0 Dmg attack
 
-        if (!Target[0].dodgeBall(this)) {
-			print ("Rook Damage: "+(int)((this.attack) * variance));
-            Target[0].loseStamina( (int)( (this.attack) * variance) );
-            Target[0].addStatusEffect("stun", 1);
-        }
+		// check if the target dodges the ball
+		Target[0].dodgeBall(this);
+		//print ("Rook Damage: "+(int)((this.attack) * variance));
+		// deal damage and add statusEffect
+        Target[0].loseStamina( (int)( (this.attack) * variance * .75f) );
+        Target[0].addStatusEffect("stun", 1);
 		this.heldBalls -= actionCosts[4];
 		return false;
     }
@@ -70,23 +73,25 @@ public class Theodore : Character {
 		return false;
     }
 
+	// What skill is this
     public override bool Skill3() {
         //This uses your accuracy 
-        if (!Target[0].dodgeBall(this)) Target[0].loseStamina(this.Damage - 15);
+		Target[0].dodgeBall(this); 
+		Target[0].loseStamina(this.Damage - 15);
         actionCooldowns[6] = 2; //where N is assuming this is the N+1th ability.
 		this.heldBalls -= actionCosts[6];
 		return false;
     }
 
-
+	// Queen: Throws 8 balls at a single enemy
     public override bool Skill4() {
         float variance;
         for (int i = 0; i < 8; i++) {
             variance = Random.Range(0.7f, 1.1f);
-            Target[0] = combat.Enemy[Random.Range(0, 2)];
-            if (!Target[0].dodgeBall(this)) Target[0].loseStamina((int)(this.attack * variance));
-			this.heldBalls -= actionCosts[7];
+			Target[0].dodgeBall(this);
+			Target[0].loseStamina((int)(this.attack * variance));
         }
+		this.heldBalls -= actionCosts[7];
 		return false;
     }
 

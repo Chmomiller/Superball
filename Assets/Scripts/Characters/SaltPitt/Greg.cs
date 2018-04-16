@@ -42,8 +42,10 @@ public class Greg: Character
 		}*/
     }
 
-	/*
+
     void Update() {
+		base.Update ();
+		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
             allies = combat.Player;
@@ -53,8 +55,9 @@ public class Greg: Character
             allies = combat.Enemy;
             enemies = combat.Player;
         }
+        */
     }
-    */
+    
 
 	public override void Init()
 	{

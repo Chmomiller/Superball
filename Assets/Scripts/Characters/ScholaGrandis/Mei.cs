@@ -7,7 +7,7 @@ public class Mei : Character {
     // Use this for initialization
     void Start() {
         Name = "Mei";
-        Damage = 1;
+        Damage = 10;
         Catch = 100;
         Gather = 1;
         Stamina = 10;
@@ -17,18 +17,19 @@ public class Mei : Character {
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Silver Platter", "Clean Up", "Cup of Teas", "Skill4" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Silver Platter", "Clean Up", "Cup of Tea", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Gives all of your balls to allies", "Gather an ammount of balls equal to ammount of balls used last turn", "Heals an ally and returns them to their calm state", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
 		base.Start ();
     }
 
     // Update is called once per frame
     void Update () {
+		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
             allies = combat.Player;
@@ -38,8 +39,11 @@ public class Mei : Character {
             allies = combat.Enemy;
             enemies = combat.Player;
         }
+        */
+		base.Update ();
     }
 		
+	/*
 	//PassOff here isnt an ability that can be selected, but rather a helper function to SilverPlatter 
 	private void PassOff(Character target, int gift) {
 		int diff = target.Capacity - target.heldBalls;
@@ -48,23 +52,46 @@ public class Mei : Character {
 			diff = Target[0].Capacity - Target[0].heldBalls;
 		}
 	}
+	*/
 
 	// Silver Platter: Mei gives half her balls to each of her allies
     public override bool Skill1() {
-        int gift1 = this.heldBalls / 2;
-        int gift2 = this.heldBalls / 2;
+		int gift = heldBalls;
+		for(int i = 0; i < 3; i++)
+		{
+			if(allies[i] != this)
+			{
+				// if this is the first time balls are passed off give half of gift and recaluculate int gift
+				if(gift == heldBalls)
+				{
+					allies [i].heldBalls += (int)gift/2;
+					gift -= (int)gift / 2;
+				}	
+				// else just pass off the remaining balls
+				else
+				{
+					allies [i].heldBalls += (int)gift;
+				}
 
-        if (heldBalls % 2 == 1) {
-            PassOff(allies[0], gift1 + 1);
-            PassOff(allies[1], gift2);
-        } else {
-            PassOff(allies[0], gift1);
-            PassOff(allies[1], gift2);
-        }
+				// Check for overflow in target's ball cap and correct
+				if(allies[i].heldBalls > allies[i].Capacity)
+				{
+					allies [i].heldBalls = allies [i].Capacity;
+				}
+			}
+			heldBalls = 0;
+		}
 		return true;
     }
 		
+	//We currently have no way to check the past turn. This could be implemented easily though and would be very useful
+
+	//Method of doing so in involving setting copying the past turn into oldCombatQueue at the end of the current execute phase. Thus, when in the current planning and execute phase, you can reference last turn
+
+	//oldCombatQueue = combatQueue
 	// Clean-Up: Gather an amount of balls equal to half the balls spent on actions last turn(?)
+	// 
+	// Currently runs into a problem if there are multiple Mei using Skill2
     public override bool Skill2() {
 		if(combat.currentCharacter != 5)
 		{
@@ -86,9 +113,9 @@ public class Mei : Character {
 			int cleanUp = 0;
 			for(int i = 0; i < 5; i++)
 			{
-				for(int j = 0; j < combat.combatQueue[i].actionNames.Length; j++)
+				for(int j = 0; j < combat.combatQueue[i].actionCosts.Length; j++)
 				{
-					if(combat.combatQueue[i].actionNames[j] == combat.combatQueue[i].action)
+					if(combat.combatQueue[i].actions[j] == combat.combatQueue[i].action)
 					{
 						cleanUp += combat.combatQueue [i].GetActionCost (j);
 					}
@@ -100,11 +127,6 @@ public class Mei : Character {
 				heldBalls = Capacity;
 			}
 		}
-        //We currently have no way to check the past turn. This could be implemented easily though and would be very useful
-
-        //Method of doing so in involving setting copying the past turn into oldCombatQueue at the end of the current execute phase. Thus, when in the current planning and execute phase, you can reference last turn
-
-        //oldCombatQueue = combatQueue
 		return true;
     }
 
@@ -120,7 +142,7 @@ public class Mei : Character {
 				}
 				else
 				{
-					haruna.Stamina += 15;
+					haruna.gainStamina(15);
 				}
             }
 		} else if (Target[0].Name == "Victoria" ){
@@ -133,10 +155,15 @@ public class Mei : Character {
 				}
 				else
 				{
-					chikako.Stamina += 15;
+					chikako.gainStamina (15);
 				}
             }
         }
+		// This statement only runs if the target is neither Elizabeth or Victoria
+		else
+		{
+			Target [0].gainStamina (15);
+		}
 		return true;
     }
 

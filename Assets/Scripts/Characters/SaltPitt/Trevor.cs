@@ -20,23 +20,26 @@ public class Trevor : Character {
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 }; 
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 0 };
+
 		base.Start ();
     }
 
     // Update is called once per frame
-	/*
-    bool Update() {
+    void Update() {
+		base.Update ();
+		/*
         if (allegiance == 1) {
-            this.Target[0]ingTypes = alternateTarget[0]ingTypes;
+            this.Target[0]Types = alternateTarget[0]ingTypes;
             allies = combat.Player;
             enemies = combat.Enemy;
         } else{
-            this.Target[0]ingTypes = defaultTarget[0]ingTypes;
+            this.Target[0]Types = defaultTarget[0]ingTypes;
             allies = combat.Enemy;
             enemies = combat.Player;
         }
+        */
 	}
-	*/
+
 
 	// Thrash: Throws 3 balls at three random Target[0]s on your team. 1 turn cooldown. Cost: 3 balls
     // Currently doesn't allow players to res off of a catch from this skill

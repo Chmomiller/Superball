@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
-  Name: default
+  Name: Shiro
   Damage: 1
   Catch: 100
   Gather: 1
