@@ -18,11 +18,12 @@ public class Skylar : Character {
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Supply Drop", "Ultimate Support", "Eye in the Sky", "Running Interference" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Provides balls and stamina to ally", "Fully heals all allies and buffs them", "debuffs enemy team dodge", "Applies confusion to all enemies" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 2, 3, 4, 3 };
+		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 0, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 0, 0, 0 };
+        //actionCosts = new int[]{ 0, 1, 0, 0, 2, 3, 4, 3 };
+        actionCosts = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0 };
 
-		base.Start ();
+        base.Start ();
     }
 
     void Update() {

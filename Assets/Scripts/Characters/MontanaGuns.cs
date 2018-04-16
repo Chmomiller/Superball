@@ -18,7 +18,7 @@ public class MontanaGuns : Character {
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
-        actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Charges forward with a ram", "Drops explosives off the front", "", "" };
+        actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "They'll find out eventually you know", "Drops explosives off the front", "", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 0, 0, 0 };
         alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 0, 0, 0 };
@@ -49,7 +49,6 @@ public class MontanaGuns : Character {
             Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
             if (!Target[0].catchBall(this)) Target[0].loseStamina((int)(this.attack * variance));
         }
-        return true;
         this.actionCooldowns[5] = 2;
         return true;
     }

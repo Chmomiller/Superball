@@ -48,7 +48,7 @@ public class Trevor : Character {
         for (int i = 0; i < 3; i++) {
             variance = UnityEngine.Random.Range(0.8f, 1.2f);
 			int test = UnityEngine.Random.Range (0, 3);
-				Target[i] = this.enemies[test];	
+		    Target[i] = this.enemies[test];	
 			Debug.Log (enemies[test].Name);
 	    }
 

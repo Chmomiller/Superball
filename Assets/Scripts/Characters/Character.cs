@@ -338,6 +338,7 @@ public class Character : MonoBehaviour
 
     public bool dodgeBall(Character attacker) {
         if (this.maxStamina / 4 < this.Stamina || (UnityEngine.Random.Range(1f, 100f) + UnityEngine.Random.Range(1f, 100f) / 2) < (this.Stamina / this.maxStamina) * 100) {//dodge success
+            print("missed throw");
             return true;
         } else {
             if (this.Stamina <= 0) {
