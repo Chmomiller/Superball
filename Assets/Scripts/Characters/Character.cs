@@ -5,6 +5,7 @@ using System;
 
 public class Character : MonoBehaviour
 {
+    public AudioScript Audio;
     public CombatManager combat;
 
     public string Name = "default";
@@ -69,7 +70,8 @@ public class Character : MonoBehaviour
 
 
 	public void loseStamina(int staminaLoss) 
-	{ 
+	{
+        AudioScript.playStaticSFX("_SFX/Battle sfx/miss/miss_1");
 		this.Stamina -= staminaLoss; 
 		if(this.Stamina < 0)
 		{
@@ -127,6 +129,7 @@ public class Character : MonoBehaviour
         //will be the Player[1] if you have allegiance 2 (ie on team 2, aiming at team 1)
         //and will be Enemy [1] if you have allegiance 1 (ie on team 1, aiming at team 2)
         combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
 
         /*
         if (allegiance == 1) { 
@@ -138,7 +141,7 @@ public class Character : MonoBehaviour
         } */
     }
 
-	protected void Update()
+    protected void Update()
 	{
 		if(dead)
 		{
@@ -342,6 +345,7 @@ public class Character : MonoBehaviour
 
 	public void throwBall(Character target)
 	{
+        Audio.playSFX("_SFX/Battle sfx/swoosh/swoosh");
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
 		target.dodgeBall (this);

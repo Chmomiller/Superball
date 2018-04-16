@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class QuitGame : MonoBehaviour 
 {
-    AudioScript Audio;
+    public AudioScript Audio;
 	void OnEnable()
 	{
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
@@ -46,6 +46,10 @@ public class QuitGame : MonoBehaviour
             case "MapScreen":
                 SceneManager.LoadScene("MapScreen");
                 break;
+            case "DialogueTest":
+                SceneManager.LoadScene("DialogueTest");
+                break;
+
             case "Salt Pitt High Gym":
                 Audio.resetAllAudio();
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Jeff_SaltpittAnnouncer_1");

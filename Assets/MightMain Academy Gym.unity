@@ -917,12 +917,12 @@ Prefab:
     - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
         type: 2}
       propertyPath: Stamina
-      value: 130
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
         type: 2}
       propertyPath: maxStamina
-      value: 130
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
         type: 2}
@@ -1106,6 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
 --- !u!1001 &1937739124
 Prefab:
   m_ObjectHideFlags: 0
