@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DialogueTest.unity
     guid: 488f2dfa00bcb1b4ab895d3fc8cc3eed
+  - enabled: 1
+    path: Assets/OpenOcean.unity
+    guid: 48d4383445d93604b8e8dcf15f90baa0

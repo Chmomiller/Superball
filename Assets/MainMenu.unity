@@ -1718,12 +1718,12 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a2fb5a2113d63fd4a9eb9c7202981cd2, type: 3}
+      objectReference: {fileID: 8300000, guid: 19dc698b30693ed4a8791f85ad962d3e, type: 3}
     - target: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: file0
       value: 
-      objectReference: {fileID: 8300000, guid: a2fb5a2113d63fd4a9eb9c7202981cd2, type: 3}
+      objectReference: {fileID: 8300000, guid: 19dc698b30693ed4a8791f85ad962d3e, type: 3}
     - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: m_Volume
