@@ -43,6 +43,9 @@ public class QuitGame : MonoBehaviour
                 GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
                 */            
             break;
+            case "MapScreen":
+                SceneManager.LoadScene("MapScreen");
+                break;
             case "Salt Pitt High Gym":
                 Audio.resetAllAudio();
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Jeff_SaltpittAnnouncer_1");
