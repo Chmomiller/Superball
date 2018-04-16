@@ -6,11 +6,9 @@ public class Ash : Character {
 
     void Start() {
         Name = "Ash";
-        Damage = 1;
         Catch = 100;
         Gather = 1;
-        Stamina = 10;
-        maxStamina = 10;
+        Stamina = maxStamina;
         heldBalls = 0;
         Capacity = 4;
         Role = "Catcher";

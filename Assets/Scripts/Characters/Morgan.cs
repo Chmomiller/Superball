@@ -6,11 +6,9 @@ public class Morgan : Character {
 
     void Start() {
         Name = "Morgan";
-        Damage = 1;
         Catch = 100;
         Gather = 1;
-        Stamina = 10;
-        maxStamina = 10;
+        Stamina = maxStamina;
         heldBalls = 0;
         Capacity = 4;
         Role = "Thrower";

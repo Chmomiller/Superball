@@ -8,14 +8,24 @@ public class Elizabeth : Character {
 	// this is used to keep track of stamina for Skill1
 	public int lastStamina;
     // Use this for initialization
+    
     void Start() {
         Name = "Elizabeth";
+<<<<<<< HEAD
         Damage = 10;
         Catch = 100;
         Capacity = 4;
         Gather = 1;
 		maxStamina = 160;
         heldBalls = 0;
+=======
+        Catch = 100;
+        Capacity = 4;
+        Gather = 1;
+        Stamina = maxStamina;
+		heldBalls = 0;
+            
+>>>>>>> a5eac5b2088e1a2b65d64de2a08342e83936a8f7
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Preen", "Royal Touch", "Skill3", "Skill4" };

@@ -9,11 +9,10 @@ public class Greg: Character
     void Start()
     {
         Name = "Greg";
-		Damage = 10;
         Catch = 50;
         Capacity = 8;
         Gather = 2;
-        maxStamina = 120;
+        Stamina = maxStamina;
         heldBalls = 0;
         Role = "Support";
 

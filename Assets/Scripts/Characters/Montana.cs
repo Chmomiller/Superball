@@ -8,11 +8,9 @@ public class Montana : Character {
 
     void Start() {
         Name = "US Navy Montana Class Battleship";
-        Damage = 1;
         Catch = 100;
         Gather = 9;
-        Stamina = 300;
-        maxStamina = 300;
+        Stamina = maxStamina;
         heldBalls = 0;
         Capacity = 100;
         Role = "Supporter";

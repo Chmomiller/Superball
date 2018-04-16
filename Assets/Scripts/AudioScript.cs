@@ -44,7 +44,7 @@ public class AudioScript : MonoBehaviour {
    public AudioSource src;   
    public AudioClip file;
    public static AudioSource staticSrc;
-    public static AudioClip staticFile;
+   public static AudioClip staticFile;
    public float stopTime;  //used to hold where you are at when you stopped
    public bool playingAudio = false;
 
@@ -210,13 +210,10 @@ public class AudioScript : MonoBehaviour {
       src2.time = 0;
       src2.Stop();
    }
-   
-   
-   
-   
-   
-	// Update is called once per frame
-	public void Update () {
+
+
+    // Update is called once per frame
+    public void Update () {
       //Debug.Log("src1: "+ src.time);
       //Debug.Log("src2: "+src2.time);
       //these do things based upon keys pressed

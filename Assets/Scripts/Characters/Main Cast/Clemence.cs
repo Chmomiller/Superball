@@ -9,12 +9,12 @@ public class Clemence : Character
     void Start()
     {
         Name = "Clemence";
-		Damage = 10;
         Catch = 100;
         Capacity = 4;
         Gather = 1;
         Stamina = 120;
 		maxStamina = 120;
+        ;
         heldBalls = 0;
         Role = "Catcher";
 

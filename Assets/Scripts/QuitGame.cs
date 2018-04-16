@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class QuitGame : MonoBehaviour 
 {
-    AudioScript Audio;
+    public AudioScript Audio;
 	void OnEnable()
 	{
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
@@ -43,6 +43,15 @@ public class QuitGame : MonoBehaviour
                 GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
                 */            
             break;
+            case "MapScreen":
+                Audio.playAudio("Concept Sound/80's something", 0);
+                Audio.src0.loop = true;
+                SceneManager.LoadScene("MapScreen");
+                break;
+            case "DialogueTest":
+                SceneManager.LoadScene("DialogueTest");
+                break;
+
             case "Salt Pitt High Gym":
                 Audio.resetAllAudio();
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Jeff_SaltpittAnnouncer_1");
@@ -63,21 +72,40 @@ public class QuitGame : MonoBehaviour
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_3");
                 StartCoroutine(StartBattle("Yamato Battle", 0, sceneName));
                 break;
+            case "OpenOcean":
+                Audio.resetAllAudio();
+                Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_3");
+                StartCoroutine(StartBattle("Yamato Battle", 0, sceneName));
+                break;
             default:
                 Audio.resetAllAudio();
-                Audio.playAudio("Today'sTale",0);
+                Audio.playAudio("Concept Sound/80's something", 0);
+                Audio.src0.loop = true;
                 break;
         }
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		if (SceneManager.GetActiveScene ().name == "MainMenu") 
+        Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
+        if (SceneManager.GetActiveScene ().name == "MainMenu") 
 		{
 			GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(()=>Restart("Salt Pitt High Gym"));
 			GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(()=>Restart("Schola Grandis Gym"));
 			GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(()=>Restart("MightMain Academy Gym"));
-			print ("Buttons Found");
+            GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
+            if(GameObject.Find("MapButton") != null)GameObject.Find("MapButton").GetComponent<Button>().onClick.AddListener(() => Restart("MapScreen"));
+
+            print("Buttons Found");
 		}
-	}
+        if(SceneManager.GetActiveScene().name == "MapScreen") {
+            GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => Restart("Salt Pitt High Gym"));
+            GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => Restart("Schola Grandis Gym"));
+            GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
+            GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
+            GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+            GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
+
+        }
+    }
 }

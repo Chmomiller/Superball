@@ -7,12 +7,10 @@ public class Theodore : Character {
     // Use this for initialization
     void Start() {
         Name = "Theodore";
-        Damage = 10;
         Catch = 25;
         Capacity = 8;
         Gather = 1;
-        Stamina = 80;
-		maxStamina = 80;
+        Stamina = maxStamina;
         heldBalls = 0;
         Role = "Thrower";
 

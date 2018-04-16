@@ -131,15 +131,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
   Name: default
-  Damage: 1
+  Damage: 20
   Catch: 100
   Gather: 1
   Capacity: 4
-  Stamina: 10
-  maxStamina: 0
+  Stamina: 280
+  maxStamina: 280
   heldBalls: 0
   maxBalls: 2
-  Level: 1
+  Level: 10
   attackMultiplier: 1
   defenseMultiplier: 1
   Role: Supporter
@@ -806,6 +806,26 @@ Prefab:
       propertyPath: m_Name
       value: Character2
       objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Damage
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: maxStamina
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Stamina
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Level
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
   m_IsPrefabParent: 0
@@ -908,6 +928,26 @@ Prefab:
     - target: {fileID: 1583693413005084, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
       propertyPath: m_Name
       value: Character1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: Level
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: Stamina
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: maxStamina
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: Damage
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
@@ -1058,15 +1098,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
   Name: default
-  Damage: 1
+  Damage: 25
   Catch: 100
   Gather: 1
   Capacity: 4
-  Stamina: 10
-  maxStamina: 0
+  Stamina: 320
+  maxStamina: 320
   heldBalls: 0
   maxBalls: 2
-  Level: 1
+  Level: 10
   attackMultiplier: 1
   defenseMultiplier: 1
   Role: Supporter
@@ -1228,15 +1268,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combat: {fileID: 0}
   Name: default
-  Damage: 1
+  Damage: 18
   Catch: 100
   Gather: 1
   Capacity: 4
-  Stamina: 10
-  maxStamina: 0
+  Stamina: 350
+  maxStamina: 350
   heldBalls: 0
   maxBalls: 2
-  Level: 1
+  Level: 10
   attackMultiplier: 1
   defenseMultiplier: 1
   Role: Supporter
@@ -1421,6 +1461,21 @@ Prefab:
     - target: {fileID: 1374690070188226, guid: ad419056f3e8dad419048553232f0b37, type: 2}
       propertyPath: m_Name
       value: Character0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: Damage
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: Level
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: maxStamina
+      value: 212
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad419056f3e8dad419048553232f0b37, type: 2}

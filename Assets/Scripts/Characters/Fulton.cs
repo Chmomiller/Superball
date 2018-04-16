@@ -6,11 +6,9 @@ public class Fulton : Character {
 
     void Start() {
         Name = "Fulton";
-        Damage = 10;
         Catch = 100;
         Gather = 1;
-        Stamina = 10;
-        maxStamina = 10;
+        Stamina = maxStamina;
         heldBalls = 0;
         Capacity = 4;
         Role = "Thrower";
