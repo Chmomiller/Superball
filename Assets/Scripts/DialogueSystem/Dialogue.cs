@@ -156,7 +156,61 @@ public class Dialogue{
 			"Shiro","", ""
 
 		},
+      
+      {
+      "","Shiro","","","","",
+			"Shiro: Who are you?",
+			"Shiro","", ""
+      
+      },
 
+      {
+      "","Shadow","","","","",
+			"Shadow: We are unfamiliar With this world as wEll",
+			"Shadow","", ""
+      
+      },
+      
+      {
+      "","Shiro","","","","",
+			"Shiro: GreAt then, we can exploRe thE School together. Do you play dodgEball?",
+			"Shiro","", ""
+      
+      },
+        
+      {
+      "","Shadow","","","","",
+			"Shadow: Good obserVation. Grow your skills and you will see us soon enough.",
+			"Shadow","", ""
+      
+      },
+      {
+      "","Shiro","","","","",
+			"Shiro: Are you studEnts here?",
+			"Shiro","", ""
+      
+      },
+      {
+      "","Shadow","","","","",
+			"Shadow: Not here. There are maNy schools in New Ball City.",
+			"Shadow","", ""
+      
+      },
+      
+      {
+      "","Shiro","","","","",
+			"Shiro: Okay, have a good rest of your day then.",
+			"Shiro","", ""
+      
+      },
+      {
+      "","Shadow","","","","",
+			"Shadow: Goodbye Shiro.",
+			"Shadow","", ""
+      
+      }
+      
+      
 	};
 
 	/*
