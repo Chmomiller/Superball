@@ -7,11 +7,9 @@ public class Mei : Character {
     // Use this for initialization
     void Start() {
         Name = "Mei";
-        Damage = 1;
         Catch = 100;
         Gather = 1;
-        Stamina = 10;
-        maxStamina = 140;
+        Stamina = maxStamina;
         heldBalls = 0;
         Capacity = 4;
         Role = "Supporter";

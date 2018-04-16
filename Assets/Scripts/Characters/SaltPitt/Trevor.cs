@@ -7,10 +7,9 @@ public class Trevor : Character {
     // Use this for initialization
     void Start() {
         Name = "Trevor";
-        Damage = 10;
         Catch = 25;
         Capacity = 8;
-        maxStamina = 120;
+        Stamina = maxStamina;
         heldBalls = 0;
         Role = "Thrower";
 

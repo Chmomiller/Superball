@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     public CombatManager combat;
 
     public string Name = "default";
-	public int Damage = 1;
+	public int Damage = 10;
     public int Catch = 100;
     public int Gather = 1;
     public int Capacity = 4;

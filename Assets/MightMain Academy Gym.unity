@@ -782,6 +782,26 @@ Prefab:
       propertyPath: m_Name
       value: Character2
       objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Level
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Stamina
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: maxStamina
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
   m_IsPrefabParent: 0
@@ -828,6 +848,21 @@ Prefab:
       propertyPath: m_Name
       value: Character4
       objectReference: {fileID: 0}
+    - target: {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: Stamina
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: Damage
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: Level
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
   m_IsPrefabParent: 0
@@ -873,6 +908,26 @@ Prefab:
     - target: {fileID: 1583693413005084, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
       propertyPath: m_Name
       value: Character1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: Damage
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: Stamina
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: maxStamina
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: Level
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
@@ -993,6 +1048,21 @@ Prefab:
       propertyPath: m_Name
       value: Character3
       objectReference: {fileID: 0}
+    - target: {fileID: 114448536970474376, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: Stamina
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448536970474376, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: Level
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448536970474376, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: Damage
+      value: 19
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b53b565942d3283419c716f4801d92cf, type: 2}
   m_IsPrefabParent: 0
@@ -1079,6 +1149,21 @@ Prefab:
       propertyPath: m_Name
       value: Character5
       objectReference: {fileID: 0}
+    - target: {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: maxStamina
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: Damage
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: Level
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
   m_IsPrefabParent: 0
@@ -1124,6 +1209,26 @@ Prefab:
     - target: {fileID: 1374690070188226, guid: ad419056f3e8dad419048553232f0b37, type: 2}
       propertyPath: m_Name
       value: Character0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: maxStamina
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: Stamina
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: Level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: Damage
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad419056f3e8dad419048553232f0b37, type: 2}

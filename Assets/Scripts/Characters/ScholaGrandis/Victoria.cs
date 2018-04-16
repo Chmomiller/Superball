@@ -9,11 +9,10 @@ public class Victoria : Character {
     // Use this for initialization
     void Start() {
         Name = "Victoria";
-        Damage = 1;
         Catch = 100;
         Capacity = 4;
         Gather = 1;
-        Stamina = 200;
+        Stamina = maxStamina;
         heldBalls = 0;
         Role = "Catcher";
 

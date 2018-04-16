@@ -6,11 +6,9 @@ public class Cygnus : Character {
 
     void Start() {
         Name = "Cygnus";
-        Damage = 10;
         Catch = 100;
         Gather = 1;
-        Stamina = 10;
-        maxStamina = 10;
+        Stamina = maxStamina;
         heldBalls = 0;
         Capacity = 4;
         Role = "Support";

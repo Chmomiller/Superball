@@ -6,11 +6,10 @@ public class Ichirou : Character {
 
     void Start() {
         Name = "Ichirou";
-        Damage = 1;
         Catch = 100;
         Capacity = 4;
         Gather = 1;
-        Stamina = 10;
+        Stamina = maxStamina;
         heldBalls = 0;
         Role = "Catcher";
 
