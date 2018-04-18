@@ -629,11 +629,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519878006}
-    - target: {fileID: 114114163317060210, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MainMenu
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -828,6 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
 --- !u!114 &1862253762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,6 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
 --- !u!1001 &2054437916
 Prefab:
   m_ObjectHideFlags: 0

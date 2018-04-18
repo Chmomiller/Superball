@@ -14,7 +14,6 @@ public class Clemence : Character
         Gather = 1;
         Stamina = 120;
 		maxStamina = 120;
-        ;
         heldBalls = 0;
         Role = "Catcher";
 

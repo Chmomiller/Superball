@@ -7,6 +7,7 @@ public class CharacterUI : MonoBehaviour
 {
 	public Text characterInfo;
 	public Image characterPanel;
+	public Text ballCount;
 	public Character character;
 	float HealthMax;
 	Text characterName;
@@ -15,6 +16,7 @@ public class CharacterUI : MonoBehaviour
 	{
 		characterInfo = gameObject.GetComponentsInChildren<Text> ()[0];
 		characterName = gameObject.GetComponentsInChildren<Text> ()[1];
+		ballCount = gameObject.GetComponentsInChildren<Text> ()[2];
 		characterPanel = gameObject.GetComponentsInChildren<Image> ()[2];
 		characterInfo.enabled = false;
 		characterPanel.enabled = false;
@@ -24,6 +26,7 @@ public class CharacterUI : MonoBehaviour
 	{
 		characterInfo = gameObject.GetComponentsInChildren<Text> ()[0];
 		characterName = gameObject.GetComponentsInChildren<Text> ()[1];
+		ballCount = gameObject.GetComponentsInChildren<Text> ()[2];
 		characterPanel = gameObject.GetComponentsInChildren<Image> ()[2];
 		characterInfo.enabled = false;
 		characterPanel.enabled = false;
@@ -41,6 +44,7 @@ public class CharacterUI : MonoBehaviour
 			+ "\n\t" + character.GetActionName(5)
 			+ "\n\t" + character.GetActionName(6);
 
+		ballCount.text = ""+character.heldBalls+"/"+character.maxBalls;
 	}
 
 	void OnMouseEnter()

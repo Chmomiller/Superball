@@ -60,6 +60,13 @@ public class CombatUI : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		// This is used to reset the skill page for convenience
+		if(CM.currentPhase == CombatManager.PHASE.CONFLICT)
+		{
+			openMenu = 0;
+		}
+
+		// This activates or deactivates the cancel button when moving to or from the target phase
 		if(CM.currentPhase == CombatManager.PHASE.TARGET)
 		{
 			cancelButton.enabled = true;
@@ -76,6 +83,7 @@ public class CombatUI : MonoBehaviour
 		// This massive block of code makes the appropriate buttons from the action menu visible based on which phase its in and which page the player is looking at
 		if(CM.currentPhase == CombatManager.PHASE.ACTION)
 		{
+			// Check if the cursor is hovering over a skill and open the description panel or close it if not
 			bool actionOpen = false;
 			foreach (ButtonsUI BU in actionButtons) 
 			{

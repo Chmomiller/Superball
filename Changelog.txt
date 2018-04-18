@@ -54,5 +54,6 @@ Tristian:
 
 4/17/18:
 	Changed all instances of Capacity to maxBalls
+	Added Ball count to UI
 	
 	
