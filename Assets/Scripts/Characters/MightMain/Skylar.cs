@@ -11,7 +11,7 @@ public class Skylar : Character {
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;
-        Capacity = 4;
+        maxBalls = 4;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
@@ -48,7 +48,7 @@ public class Skylar : Character {
     public override bool Skill1() {
         this.heldBalls -= 2;
         Target[0].heldBalls += 3;
-        if (Target[0].heldBalls > Target[0].Capacity) Target[0].heldBalls = Target[0].Capacity;
+        if (Target[0].heldBalls > Target[0].maxBalls) Target[0].heldBalls = Target[0].maxBalls;
         Target[0].Stamina += 20;
         actionCooldowns[4] = 3;
 		return true;

@@ -7,7 +7,7 @@ public class Kazuto : Character {
     void Start() {
         Name = "Kazuto";
         Catch = 100;
-        Capacity = 4;
+        maxBalls = 4;
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;

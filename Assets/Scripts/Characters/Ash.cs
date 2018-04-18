@@ -10,7 +10,7 @@ public class Ash : Character {
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;
-        Capacity = 4;
+        maxBalls = 4;
         Role = "Catcher";
         
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

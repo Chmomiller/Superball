@@ -13,7 +13,7 @@ public class MontanaBow : Character {
         Stamina = 220;
         maxStamina = 220;
         heldBalls = 0;
-        Capacity = 100;
+        maxBalls = 100;
         Role = "Supporter";
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

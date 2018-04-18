@@ -7,10 +7,10 @@ public class Yoichi : Character {
     void Start() {
         Name = "Yoichi";
         Catch = 100;
-        Capacity = 4;
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;
+		maxBalls = 4;
         Role = "Supporter";
 
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Friendly Spirit", "Reload", "X or O", "Eight Stages of Shooting" };

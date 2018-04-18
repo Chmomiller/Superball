@@ -10,7 +10,7 @@ public class Greg: Character
     {
         Name = "Greg";
         Catch = 50;
-        Capacity = 8;
+        maxBalls = 8;
         Gather = 2;
         Stamina = maxStamina;
         heldBalls = 0;
@@ -83,7 +83,7 @@ public class Greg: Character
     {
 		if (trevor != null) {
 			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
-			if (trevor.heldBalls < trevor.Capacity)
+			if (trevor.heldBalls < trevor.maxBalls)
 				trevor.heldBalls++;
 			actionCooldowns [4] = 3;
 
@@ -97,10 +97,10 @@ public class Greg: Character
     }
 	/*
     public override bool Skill2() {
-       int diff = Target[0].Capacity - Target[0].heldBalls;
+       int diff = Target[0].maxBalls - Target[0].heldBalls;
         while (diff > 0 && this.heldBalls > 0) {
             Target[0].heldBalls++;
-            diff = Target[0].Capacity - Target[0].heldBalls;
+            diff = Target[0].maxBalls - Target[0].heldBalls;
         }
 		return true;
     }

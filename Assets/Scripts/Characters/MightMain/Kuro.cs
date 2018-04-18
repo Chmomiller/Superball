@@ -10,7 +10,7 @@ public class Kuro : Character {
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;
-        Capacity = 4;
+        maxBalls = 4;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
@@ -48,7 +48,7 @@ public class Kuro : Character {
     }
 
     public override bool Skill1() {
-        if (this.heldBalls < this.Capacity) { this.heldBalls++; }
+        if (this.heldBalls < this.maxBalls) { this.heldBalls++; }
         actionCooldowns[6] = 4;
 		return true;
     }

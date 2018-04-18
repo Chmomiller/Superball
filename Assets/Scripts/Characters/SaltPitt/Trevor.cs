@@ -8,7 +8,7 @@ public class Trevor : Character {
     void Start() {
         Name = "Trevor";
         Catch = 25;
-        Capacity = 8;
+        maxBalls = 8;
         Stamina = maxStamina;
         heldBalls = 0;
         Role = "Thrower";

@@ -8,10 +8,10 @@ public class Theodore : Character {
     void Start() {
         Name = "Theodore";
         Catch = 25;
-        Capacity = 8;
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;
+		maxBalls = 8;
         Role = "Thrower";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };
@@ -46,7 +46,6 @@ public class Theodore : Character {
 
 		// check if the target dodges the ball
 		Target[0].dodgeBall(this);
-		//print ("Rook Damage: "+(int)((this.attack) * variance));
 		// deal damage and add statusEffect
         Target[0].loseStamina( (int)( (this.attack) * variance * .75f) );
         Target[0].addStatusEffect("stun", 1);

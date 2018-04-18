@@ -51,5 +51,8 @@ Tristian:
 	Added Victoria.cleanUp() to work with Victoria.Skill1()
 	Added Victoria.catchBall() to work with Victoria.Skill2()
 	Winning or losing now ends combat
+
+4/17/18:
+	Changed all instances of Capacity to maxBalls
 	
 	

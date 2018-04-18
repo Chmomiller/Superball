@@ -14,7 +14,7 @@ public class Yamato : Character {
         Stamina = 300;
         maxStamina = 300;
         heldBalls = 0;
-        Capacity = 100;
+        maxBalls = 100;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

@@ -10,7 +10,7 @@ public class Frank : Character {
     void Start() {
         Name = "Frank";
         Catch = 100;
-        Capacity = 4;
+        maxBalls = 4;
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;

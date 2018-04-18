@@ -12,11 +12,10 @@ public class Character : MonoBehaviour
 	public int Damage = 10;
     public int Catch = 100;
     public int Gather = 1;
-    public int Capacity = 4;
     public int Stamina = 100;
 	public int maxStamina = 100;
     public int heldBalls = 0;
-    public int maxBalls = 2;
+    public int maxBalls = 4;
     public int Level = 1;
 	public float attackMultiplier = 1.0f;
 	public float defenseMultiplier = 1.0f;
@@ -325,7 +324,7 @@ public class Character : MonoBehaviour
 			catching = false;
 			if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < this.Catch) 
 			{ // you can catch it
-				if (this.heldBalls < Capacity) 
+				if (this.heldBalls < maxBalls) 
 				{
 					this.heldBalls++;
 				}
@@ -345,7 +344,6 @@ public class Character : MonoBehaviour
                 this.dead = true;
             }
             return false;
-
         }
     }
 
@@ -367,9 +365,9 @@ public class Character : MonoBehaviour
 	public void gatherBall()
 	{
 		heldBalls += Gather;
-		if(heldBalls > Capacity)
+		if(heldBalls > maxBalls)
 		{
-			heldBalls = Capacity;
+			heldBalls = maxBalls;
 		}
 	}
 

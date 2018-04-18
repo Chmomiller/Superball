@@ -8,7 +8,6 @@ public class Shiro : Character{
     {
         Name = "Shiro";
         Catch = 50;
-        Capacity = 8;
         Gather = 3;
         Stamina = maxStamina;
         heldBalls = 0;
@@ -16,7 +15,7 @@ public class Shiro : Character{
         Role = "Support";
         
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Refreshments", "Keep Fighting", "Cheer On" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off all your balls to ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "Buffs team mates" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off balls to an ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "Buffs team mates" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };
@@ -42,13 +41,11 @@ public class Shiro : Character{
 
 	public override bool Skill1() //Pass off
     {
-
         while (this.heldBalls > 0 && Target[0].heldBalls < Target[0].maxBalls) {
             this.heldBalls--;
             Target[0].heldBalls++;
         }
 		return false;
-
     }
 
     public override bool Skill2() {

@@ -12,7 +12,7 @@ public class Mei : Character {
         Gather = 1;
         Stamina = maxStamina;
         heldBalls = 0;
-        Capacity = 4;
+		maxBalls = 4;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
@@ -45,10 +45,10 @@ public class Mei : Character {
 	/*
 	//PassOff here isnt an ability that can be selected, but rather a helper function to SilverPlatter 
 	private void PassOff(Character target, int gift) {
-		int diff = target.Capacity - target.heldBalls;
+		int diff = target.maxBalls - target.heldBalls;
 		while (diff > 0 && this.heldBalls > 0) {
 			target.heldBalls++;
-			diff = Target[0].Capacity - Target[0].heldBalls;
+			diff = Target[0].maxBalls - Target[0].heldBalls;
 		}
 	}
 	*/
@@ -73,9 +73,9 @@ public class Mei : Character {
 				}
 
 				// Check for overflow in target's ball cap and correct
-				if(allies[i].heldBalls > allies[i].Capacity)
+				if(allies[i].heldBalls > allies[i].maxBalls)
 				{
-					allies [i].heldBalls = allies [i].Capacity;
+					allies [i].heldBalls = allies [i].maxBalls;
 				}
 			}
 			heldBalls = 0;
@@ -121,9 +121,9 @@ public class Mei : Character {
 				}
 			}
 			heldBalls += cleanUp / 2;
-			if(heldBalls > Capacity)
+			if(heldBalls > maxBalls)
 			{
-				heldBalls = Capacity;
+				heldBalls = maxBalls;
 			}
 		}
 		return true;
