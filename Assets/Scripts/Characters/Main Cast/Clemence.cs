@@ -9,19 +9,22 @@ public class Clemence : Character
     void Start()
     {
         Name = "Clemence";
-        Catch = 100;
+        
         maxBalls = 4;
         Gather = 1;
+        Stamina = maxStamina;
+        ;
+        
         Stamina = 120;
 		maxStamina = 120;
         heldBalls = 0;
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Catches for both allies but not yourself", "enemy is blocked from throwing balls and must do something else next", "Blocks the first attack on the next two turns", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Catches for both allies but not yourself", "If enemy is throwing, they are stunned", "Blocks the first attack on the next two turns", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" , "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 2, 0, 0, 1, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 1, 0, 0, 2, 0 };
 
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 1, 0 };
 		base.Start ();
@@ -69,8 +72,9 @@ public class Clemence : Character
     }
 
     public override bool Skill2() {
-        while (Target[0].actionType == "Offensive") {
+        if (Target[0].actionType == "Offensive") {
             // have them re choose or give them a random other ability. IDK
+            Target[0].action = "NONE";
         }
         actionCooldowns[4] = 4;
 		return true;
