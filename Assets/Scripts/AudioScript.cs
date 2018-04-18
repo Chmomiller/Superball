@@ -56,7 +56,7 @@ public class AudioScript : MonoBehaviour {
             DontDestroyOnLoad(this);
 
         } else {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
    
