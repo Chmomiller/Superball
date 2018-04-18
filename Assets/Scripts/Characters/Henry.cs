@@ -6,10 +6,10 @@ public class Henry : Character {
 
     void Start() {
         Name = "Henry";
-        Catch = 100;
+        
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
         maxBalls = 4;
         Role = "Catcher";
 

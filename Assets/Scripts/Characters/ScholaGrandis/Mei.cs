@@ -8,10 +8,10 @@ public class Mei : Character {
     void Start() {
         Name = "Mei";
         Damage = 10;
-        Catch = 100;
+        
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
 		maxBalls = 4;
         Role = "Supporter";
 

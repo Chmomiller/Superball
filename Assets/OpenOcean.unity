@@ -135,7 +135,6 @@ MonoBehaviour:
   Damage: 20
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 280
   maxStamina: 280
   heldBalls: 0
@@ -162,6 +161,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -182,6 +190,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -582,57 +591,222 @@ Prefab:
     - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224753366653276958, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -4.42
+      value: -3.1079388
       objectReference: {fileID: 0}
     - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.7560506
+      value: -1.0000005
       objectReference: {fileID: 0}
     - target: {fileID: 224671119402050884, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -1.56
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 224671119402050884, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.13
+      value: -0.78
       objectReference: {fileID: 0}
     - target: {fileID: 224753366653276958, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.31
+      value: 0.013
       objectReference: {fileID: 0}
     - target: {fileID: 224451460978490708, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.8
+      value: -1.7355995
       objectReference: {fileID: 0}
     - target: {fileID: 224520726912459328, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.68000007
+      value: -1.3270001
       objectReference: {fileID: 0}
     - target: {fileID: 224520726912459328, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.796257
+      value: 0.9254856
       objectReference: {fileID: 0}
     - target: {fileID: 224945179025760936, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.61
+      value: -0.92
       objectReference: {fileID: 0}
     - target: {fileID: 224945179025760936, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -1.95
+      value: -1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.34910658
+      objectReference: {fileID: 0}
+    - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.9705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.27778906
+      objectReference: {fileID: 0}
+    - target: {fileID: 114717478273198874, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.672
+      objectReference: {fileID: 0}
+    - target: {fileID: 114456976210459724, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.372
+      objectReference: {fileID: 0}
+    - target: {fileID: 114456976210459724, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.072
+      objectReference: {fileID: 0}
+    - target: {fileID: 114957110907403588, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.8088235
+      objectReference: {fileID: 0}
+    - target: {fileID: 114957110907403588, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.181288
+      objectReference: {fileID: 0}
+    - target: {fileID: 114957110907403588, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.29202968
+      objectReference: {fileID: 0}
+    - target: {fileID: 114957110907403588, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224451460978490708, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.1879997
+      objectReference: {fileID: 0}
+    - target: {fileID: 224451460978490708, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 216.619
+      objectReference: {fileID: 0}
+    - target: {fileID: 224451460978490708, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 208.272
+      objectReference: {fileID: 0}
+    - target: {fileID: 224520726912459328, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 149.488
+      objectReference: {fileID: 0}
+    - target: {fileID: 224520726912459328, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 159.248
+      objectReference: {fileID: 0}
+    - target: {fileID: 114018989001414574, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.791
+      objectReference: {fileID: 0}
+    - target: {fileID: 114688351895657764, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.16219722
+      objectReference: {fileID: 0}
+    - target: {fileID: 114688351895657764, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.75214994
+      objectReference: {fileID: 0}
+    - target: {fileID: 114688351895657764, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.9191176
+      objectReference: {fileID: 0}
+    - target: {fileID: 114688351895657764, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.634
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126262640234988, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.39079997
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126262640234988, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126262640234988, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.15570934
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126262640234988, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.628
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.2285714
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 224753366653276958, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 127.848
+      objectReference: {fileID: 0}
+    - target: {fileID: 224753366653276958, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 181.136
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 101.423
+      objectReference: {fileID: 0}
+    - target: {fileID: 224134839011370434, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
@@ -733,8 +907,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5006fd38ffda6684fb2bf224f34bb5ce,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_LocalScale.x
       value: 2.2373633
@@ -750,6 +923,11 @@ Prefab:
     - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.588
+      objectReference: {fileID: 0}
+    - target: {fileID: 212263503070211268, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
@@ -777,7 +955,6 @@ MonoBehaviour:
   Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 100
   maxStamina: 100
   heldBalls: 0
@@ -804,6 +981,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -824,6 +1010,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -880,6 +1067,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212700153442336818, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212700153442336818, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
@@ -893,11 +1090,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000921686153434, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.67
+      value: -20.96
       objectReference: {fileID: 0}
     - target: {fileID: 4000921686153434, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.35
+      value: 11.33
       objectReference: {fileID: 0}
     - target: {fileID: 4000921686153434, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -951,11 +1148,30 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 5006fd38ffda6684fb2bf224f34bb5ce,
+        type: 3}
     - target: {fileID: 212937523367373946, guid: 332d4250daaf0da48bdb022062141cdb,
         type: 2}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212937523367373946, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 10.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 212937523367373946, guid: 332d4250daaf0da48bdb022062141cdb,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 4.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000921686153434, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4.186686
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000921686153434, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.809976
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
@@ -983,7 +1199,6 @@ MonoBehaviour:
   Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 100
   maxStamina: 100
   heldBalls: 0
@@ -1010,6 +1225,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1030,6 +1254,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1183,7 +1408,6 @@ MonoBehaviour:
   Damage: 25
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 320
   maxStamina: 320
   heldBalls: 0
@@ -1210,6 +1434,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1230,6 +1463,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1286,7 +1520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1512845049}
   m_LocalRotation: {x: 0.0017109751, y: -0.0014644202, z: 0.08750565, w: 0.9961615}
-  m_LocalPosition: {x: 10.98, y: 0.01, z: 90}
+  m_LocalPosition: {x: 26.8, y: 8.3, z: 90}
   m_LocalScale: {x: 1.5220394, y: 1.5220397, z: 1.5220397}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1355,7 +1589,6 @@ MonoBehaviour:
   Damage: 18
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 350
   maxStamina: 350
   heldBalls: 0
@@ -1382,6 +1615,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1402,6 +1644,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1499,6 +1742,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212309271615673600, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 212309271615673600, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
@@ -1512,11 +1765,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4395387591448206, guid: ad419056f3e8dad419048553232f0b37, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.1608772
+      value: -16.731
       objectReference: {fileID: 0}
     - target: {fileID: 4395387591448206, guid: ad419056f3e8dad419048553232f0b37, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.0047817
+      value: 9.587
       objectReference: {fileID: 0}
     - target: {fileID: 4395387591448206, guid: ad419056f3e8dad419048553232f0b37, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1571,6 +1824,24 @@ Prefab:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212889822381982474, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 13.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 212889822381982474, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 7.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395387591448206, guid: ad419056f3e8dad419048553232f0b37, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.7754276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395387591448206, guid: ad419056f3e8dad419048553232f0b37, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 4.5749793
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ad419056f3e8dad419048553232f0b37, type: 2}
@@ -1597,7 +1868,6 @@ MonoBehaviour:
   Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 100
   maxStamina: 100
   heldBalls: 0
@@ -1624,6 +1894,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1644,6 +1923,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0

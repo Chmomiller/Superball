@@ -9,11 +9,11 @@ public class Yamato : Character {
     void Start() {
         Name = "The Imperial Japanese Battleship Yamato";
         Damage = 6;
-        Catch = 100;
+        
         Gather = 9;
         Stamina = 300;
         maxStamina = 300;
-        heldBalls = 0;
+        
         maxBalls = 100;
         Role = "Supporter";
 

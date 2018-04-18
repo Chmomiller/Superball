@@ -8,11 +8,11 @@ public class MontanaBridge : Character {
     void Start() {
         Name = "The Bridge of the US Navy Battleship Montana";
         Damage = 12;
-        Catch = 100;
+        
         Gather = 9;
         Stamina = 300;
         maxStamina = 300;
-        heldBalls = 0;
+        
         maxBalls = 100;
         Role = "Supporter";
 
@@ -20,8 +20,8 @@ public class MontanaBridge : Character {
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Observation Gathering", "Captain's Orders", "Hasty Repairs", "Skill4" };
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Stuns each ally, but buffs it in return", "Attacks an enemy with an attack 0.5 times stronger, but the bridge becomes steady as well", "Each of the bridge’s allies gets 40 armor, but each ally becomes staggered as well", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
-        defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 2, 0, 0 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 1, 0, 0 };
+        defaultTargetingTypes = new int[] { 0, 1, 0, 0, 0, 1, 0, 0 };
+        alternateTargetingTypes = new int[] { 0, 2, 0, 0, 0, 2, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
     }
 

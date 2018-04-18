@@ -8,11 +8,11 @@ public class YamatoBridge : Character {
     void Start() {
         Name = "The Bridge of the Imperial Japanese Battleship Yamato";
         Damage = 6;
-        Catch = 100;
+        
         Gather = 9;
         Stamina = 320;
         maxStamina = 320;
-        heldBalls = 0;
+        
         maxBalls = 100;
         Role = "Supporter";
 

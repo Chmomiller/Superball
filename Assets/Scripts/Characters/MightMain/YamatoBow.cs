@@ -8,11 +8,11 @@ public class YamatoBow : Character {
     void Start() {
         Name = "The Bow of the Imperial Japanese Battleship Yamato";
         Damage = 6;
-        Catch = 100;
+        
         Gather = 9;
         Stamina = 250;
         maxStamina = 250;
-        heldBalls = 0;
+        
         maxBalls = 100;
         Role = "Supporter";
 
