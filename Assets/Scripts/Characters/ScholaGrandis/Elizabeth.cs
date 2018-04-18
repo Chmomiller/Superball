@@ -12,12 +12,12 @@ public class Elizabeth : Character {
     void Start() {
         Name = "Elizabeth";
         Damage = 10;
-        Catch = 100;
+        
         maxBalls = 4;
         Gather = 1;
 		maxStamina = 160;
         Stamina = maxStamina;
-		heldBalls = 0;
+		
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Preen", "Royal Touch", "Skill3", "Skill4" };

@@ -7,15 +7,13 @@ public class Trevor : Character {
     // Use this for initialization
     void Start() {
         Name = "Trevor";
-        Catch = 25;
         maxBalls = 8;
         Stamina = maxStamina;
-        heldBalls = 0;
         Role = "Thrower";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Skill2", "Skill3", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Throws at 3 random Targets", "enemy is blocked from throwing balls and must do something else next", "Blocks the first attack on the next two turns", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 }; 
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 0 };

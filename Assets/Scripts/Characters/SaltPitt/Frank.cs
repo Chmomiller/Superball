@@ -9,11 +9,11 @@ public class Frank : Character {
     // Use this for initialization
     void Start() {
         Name = "Frank";
-        Catch = 100;
+        
         maxBalls = 4;
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
         Role = "Catcher";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rumble", "Skill2", "Skill3", "Skill4" };
@@ -59,10 +59,12 @@ public class Frank : Character {
 						enemies[0].heldBalls -= enemies[0].GetActionCost(j);
 					}
 				}
-				enemies[i].action = "None";
+				enemies[i].action = "NONE";
 	        }
 		}
-		return false;
+        actionCooldowns[4] = 3;
+        return false;
+
     }
 
 	public override bool Skill2() { return true; }

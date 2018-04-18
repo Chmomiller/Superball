@@ -10,7 +10,7 @@ public class Theodore : Character {
         Catch = 25;
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
 		maxBalls = 8;
         Role = "Thrower";
 

@@ -6,10 +6,10 @@ public class Yoichi : Character {
 
     void Start() {
         Name = "Yoichi";
-        Catch = 100;
+        
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
 		maxBalls = 4;
         Role = "Supporter";
 

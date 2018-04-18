@@ -6,11 +6,11 @@ public class Ichirou : Character {
 
     void Start() {
         Name = "Ichirou";
-        Catch = 100;
+        
         maxBalls = 4;
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
         Role = "Catcher";
 
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rising Elbow Strike", "Front Stance", "Rooted Stance", "Knife Hand Strike" };

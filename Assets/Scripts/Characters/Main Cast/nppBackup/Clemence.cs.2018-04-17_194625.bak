@@ -12,12 +12,15 @@ public class Clemence : Character
         
         maxBalls = 4;
         Gather = 1;
+<<<<<<< HEAD
         Stamina = maxStamina;
         ;
         
+=======
         Stamina = 120;
 		maxStamina = 120;
         heldBalls = 0;
+>>>>>>> origin/master
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };

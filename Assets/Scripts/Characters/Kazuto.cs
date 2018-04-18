@@ -6,11 +6,11 @@ public class Kazuto : Character {
 
     void Start() {
         Name = "Kazuto";
-        Catch = 100;
+        
         maxBalls = 4;
         Gather = 1;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
         Role = "Thrower";
 
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Flurry", "Slash", "Cleave", "One Stroke" };

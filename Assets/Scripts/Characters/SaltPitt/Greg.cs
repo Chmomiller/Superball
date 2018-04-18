@@ -13,7 +13,7 @@ public class Greg: Character
         maxBalls = 8;
         Gather = 2;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
         Role = "Support";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Pass Off", "Skill3", "Rest" };

@@ -8,11 +8,9 @@ public class MontanaGuns : Character {
     void Start() {
         Name = "The Main Armamment of the US Navy Battleship Montana";
         Damage = 12;
-        Catch = 100;
+        
         Gather = 9;
-        Stamina = 240;
-        maxStamina = 240;
-        heldBalls = 0;
+        Stamina = maxStamina;
         maxBalls = 100;
         Role = "Supporter";
 
@@ -20,8 +18,8 @@ public class MontanaGuns : Character {
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "They'll find out eventually you know", "Drops explosives off the front", "", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
-        defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 0, 0, 0 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 0, 0, 0 };
+        defaultTargetingTypes = new int[] { 0, 1, 0, 0, 1, 0, 0, 0 };
+        alternateTargetingTypes = new int[] { 0, 2, 0, 0, 2, 0, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
     }
 

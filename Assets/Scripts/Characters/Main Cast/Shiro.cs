@@ -10,7 +10,7 @@ public class Shiro : Character{
         Catch = 50;
         Gather = 3;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
         maxBalls = 10;
         Role = "Support";
         

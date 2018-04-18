@@ -11,11 +11,11 @@ public class Victoria : Character {
     void Start() {
         Name = "Victoria";
         Damage = 10;
-        Catch = 100;
+        
         Gather = 1;
         maxStamina = 200;
         Stamina = maxStamina;
-        heldBalls = 0;
+        
 		maxBalls = 4;
         Role = "Catcher";
 
