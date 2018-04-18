@@ -135,7 +135,6 @@ MonoBehaviour:
   Damage: 20
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 280
   maxStamina: 280
   heldBalls: 0
@@ -162,6 +161,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -182,6 +190,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -777,7 +786,6 @@ MonoBehaviour:
   Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 100
   maxStamina: 100
   heldBalls: 0
@@ -804,6 +812,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -824,6 +841,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -983,7 +1001,6 @@ MonoBehaviour:
   Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 100
   maxStamina: 100
   heldBalls: 0
@@ -1010,6 +1027,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1030,6 +1056,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1125,12 +1152,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: be8893cd7eebe8d48b2ec2852b762561, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37b8a93d50adfe44983c298e138026b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 10.24}
+  m_Size: {x: 4.8, y: 2.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1183,7 +1210,6 @@ MonoBehaviour:
   Damage: 25
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 320
   maxStamina: 320
   heldBalls: 0
@@ -1210,6 +1236,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1230,6 +1265,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1355,7 +1391,6 @@ MonoBehaviour:
   Damage: 18
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 350
   maxStamina: 350
   heldBalls: 0
@@ -1382,6 +1417,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1402,6 +1446,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1597,7 +1642,6 @@ MonoBehaviour:
   Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 100
   maxStamina: 100
   heldBalls: 0
@@ -1624,6 +1668,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1644,6 +1697,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
