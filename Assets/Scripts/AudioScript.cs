@@ -74,6 +74,18 @@ public class AudioScript : MonoBehaviour {
         src2.clip = file2;
     }
 
+    public void playDelayedSFX(string name, int time) {
+        StartCoroutine(playSFXDelayed(name, time));
+    }
+
+    IEnumerator playSFXDelayed(string name, int time) {
+        yield return new WaitForSeconds(time);
+        AudioClip sfx = Resources.Load<AudioClip>("Audio/" + name);
+        src1.PlayOneShot(sfx);
+        if (sfx == null) print("sfx problem");
+        print("sfx");
+    }
+
     public void playSFX(string name){// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
       AudioClip sfx = Resources.Load<AudioClip> ("Audio/"+name);
       src1.PlayOneShot(sfx);
@@ -103,7 +115,17 @@ public class AudioScript : MonoBehaviour {
    }
    
    
+    IEnumerator playDelayed(string nameOrPath,int track, int delay) {
+        yield return new WaitForSeconds(delay);
+        chooseTrack(track);
+        playAudio(nameOrPath, track);
+    }
+
    
+    public void playAudioDelayed(string nameOrPath, int track, int delay) {
+        StartCoroutine(playDelayed(nameOrPath, track, delay));
+    } 
+
    //NEW SONG FUNCTIONS: These change the song you are working with
    public void playAudio(string name, double percent, int track){//percent //overloaded method that serves to start to start the audio at X Percent of the way through. //plays audio through a string passed to it. This string is the file path to the audio file in Assets/Resources. Example: Assets/Resources/raiju.mp3  would be: raiju.mp3
       

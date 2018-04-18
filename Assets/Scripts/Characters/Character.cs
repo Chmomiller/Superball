@@ -336,20 +336,19 @@ public class Character : MonoBehaviour
 
 
     public bool dodgeBall(Character attacker) {
-        if (this.maxStamina / 4 < this.Stamina || (UnityEngine.Random.Range(1f, 100f) + UnityEngine.Random.Range(1f, 100f) / 2) < (this.Stamina / this.maxStamina) * 100) {//dodge success
-            print("missed throw");
-            return true;
-        } else {
-            if (this.Stamina <= 0) {
+        if (this.Stamina <= this.maxStamina/4) {
+            if (UnityEngine.Random.Range(1, this.maxStamina / 4) < 5) {
                 this.dead = true;
+                print("Dodgeball hit " + this.name +" taking them out of the game!!!");
             }
-            return false;
+            print("Dodgeball narrowly missed " + this.name + "!!!");
         }
+        return false;
     }
 
 	public void throwBall(Character target)
 	{
-        Audio.playSFX("_SFX/Battle sfx/swoosh/swoosh");
+        Audio.playDelayedSFX("_SFX/Battle sfx/swoosh/swoosh", 2);
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
 		target.dodgeBall (this);
