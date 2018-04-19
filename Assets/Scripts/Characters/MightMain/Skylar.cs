@@ -12,9 +12,13 @@ public class Skylar : Character {
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Bombing Run", "Supply Run", "Supply Drop", "Running Interference" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Make all enemies staggered", "Gather half of her remaining ball capacity", "Gives all balls to an ally and heals them for 20", "Applies confusion to all enemies" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+											"Make all enemies staggered", 
+											"Gather half of your remaining ball capacity", 
+											"Gives all balls to an ally and heals them for 20", 
+											"Applies confusion to all enemies" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 0, 0, 0 };
         //actionCosts = new int[]{ 0, 1, 0, 0, 2, 0, 4, 3 };
         actionCosts = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0 };

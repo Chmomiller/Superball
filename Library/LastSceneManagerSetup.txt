@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Yamato Gym.unity
+- path: Assets/MightMain Academy Gym.unity
   isLoaded: 1
   isActive: 1

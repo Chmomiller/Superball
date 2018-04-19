@@ -7,7 +7,7 @@ public class YamatoSceneScript : MonoBehaviour {
     // Use this for initialization
     void Start() {
         game = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if (game.hardMode) {
+        if (/*game.hardMode*/false) {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(18);
             GameObject.Find("Character5").GetComponent<Character>().LevelUp(19);
             GameObject.Find("Character3").GetComponent<Character>().LevelUp(19);

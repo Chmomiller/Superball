@@ -7,15 +7,18 @@ public class Harold : Character {
     void Start() {
         Name = "Harold";
 		Stamina = maxStamina;
-        Role = "Supporter";
-
+        Role = "Thrower";
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Reactive Armor", "Suppressing Fire", "Heavy Bombardment", "Five Rounds Rapid" };
-		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "If attacked this turn, catch the ball and gain steady", "Attack against all enemies, lower damage", "Reduced accuracy but target has reduced hit and dodge calculations", "Throws five balls at a single target inaccurately" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 2, 2 };
+		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+											"If attacked this turn, catch the ball and gain steady", 
+											"Counterattack when attacked on the next two turns", 
+											"Charges for a turn then attacks with a powerful strike against an enemy and becomes staggered", 
+											"Throws five balls at a single target inaccurately" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
+		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 2 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 1 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 2, 0, 6, 5 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 4, 6, 5 };
 
 		base.Start ();
     }
@@ -38,7 +41,16 @@ public class Harold : Character {
         */
     }
 
-	// Reactive Armor: If he is attacked on this turn, then he catches the ball and becomes steady
+	public new bool dodgeBall(Character attacker)
+	{
+		if(findStatus("misc") != -1)
+		{
+			this.throwBall (attacker);
+		}
+		return base.dodgeBall (attacker);
+	}
+
+	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
 		this.heldBalls++;
 		if(this.heldBalls > this.maxBalls)
@@ -52,16 +64,9 @@ public class Harold : Character {
 		return false;
     }
 
-	// Suppressing Fire: Becomes read to counterattack when he is hit on the next two turns
+	// Suppressing Fire: Counterattack when attacked on the next two turns
     public override bool Skill2() {
-        float variance = UnityEngine.Random.Range(.6f, 1.1f); //most likely to throw weaker variance
-        if (this.heldBalls == 0) print("Rikuto has no ammo!");
-        while (this.heldBalls > 0) {
-            Character target = combat.Player[UnityEngine.Random.Range(0, 2)];
-            if (target.actionType != "Defense") target.loseStamina( (int)(this.attack * variance) );
-            if (target.actionType == "Defense") target.catchBall(this);
-            this.heldBalls--;
-        }
+		addStatusEffect ("misc", 3);
 		return true;
     }
 
@@ -72,7 +77,7 @@ public class Harold : Character {
 			// This attack does stamina loss before checking for dodging
 			Target[2].loseStamina(Damage * 2);
 			Target[2].dodgeBall (this);
-			addStatusEffect ("steady", 1);
+			addStatusEffect ("unsteady", 1);
 		}
 		else
 		{
@@ -93,15 +98,24 @@ public class Harold : Character {
 
 	public override void cleanUp()
 	{
+		// Checks if Skill3 or Skill2 was used
+		bool whichAction = false;
+		if(action == "Skill3")
+		{
+			whichAction = true;
+		}
 		base.cleanUp ();
 
 		// If getting ready for skill 3 set action and target for next turn
 		if(findStatus("misc") != -1)
 		{
-			action = "Skill3";
-			actionType = "Offense";
-			Target [0] = Target [2];
-			Target [1] = Target [2];
+			if(whichAction)
+			{
+				action = "Skill3";
+				actionType = "Offense";
+				Target [0] = Target [2];
+				Target [1] = Target [2];
+			}
 		}
 	}
 }

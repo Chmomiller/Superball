@@ -7,12 +7,16 @@ public class Kuro : Character {
     void Start() {
         Name = "Kuro";
         Stamina = maxStamina;
-        Role = "Supporter";
+        Role = "Catcher";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Ultimate Catch", "Skill2", "Skill3", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Utility", "Utility" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Smoke Screen", "Safe Haven", "Lord of the Seven Seas", "Cannon Adjustments" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+											"Steady your team", 
+											"Catch for the whole team", 
+											"Charge up for a turn before unleashing an attack against all enemies", 
+											"Buff your team" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 0 };
@@ -35,17 +39,7 @@ public class Kuro : Character {
         */
     }
 
-
-    public void preUltimateCatch() {
-        for (int i = 0; i < 3; i++) {
-            if (combat.Player[i].actionType == "Offense") {
-                combat.Player[i].action = "Throw";
-                combat.Player[i].Target[0] = this;
-            }
-        }
-    }
-
-	// Smokescreen: Make yourself and allies steady
+	// Smokescreen: Steady your team
     public override bool Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
@@ -88,6 +82,7 @@ public class Kuro : Character {
 		return true;
 	}
 
+	// Cannon Adjustments: Buff your team
 	public override bool Skill4() { return true;}
 
 	public override void cleanUp()

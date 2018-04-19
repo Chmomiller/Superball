@@ -409,19 +409,19 @@ public class CombatManager : MonoBehaviour
 				case("Skill1"):
 					performAction = character.Target[0].Skill1 ();
 					
-					StartCoroutine (PrintOut (character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !"));
-					Debug.Log (character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !");
+					StartCoroutine (PrintOut (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !"));
+					Debug.Log (character.Target[0].Name + " used  Skill 1!");
 					break;
 				case("Skill2"):
 					performAction = character.Target[0].Skill2 ();
 					
-					StartCoroutine (PrintOut (character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (5) + " !"));
-					Debug.Log (character.Target[0].Name + " used Skill 2!");
+					StartCoroutine (PrintOut (character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !"));
+					Debug.Log (character.Target[0].Name + "used Skill 2 !");
 					break;
 				case("Skill3"):
 					performAction = character.Target[0].Skill3 ();
 					
-					StartCoroutine (PrintOut (character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (6) + " !"));
+					StartCoroutine (PrintOut (character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !"));
 					Debug.Log (character.Target[0].Name + " used Skill 3!");
 					break;
 				case("Skill4"):
@@ -494,7 +494,7 @@ public class CombatManager : MonoBehaviour
 					performAction = character.Target[0].Skill1 ();
 					
 					StartCoroutine (PrintOut (character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !"));
-					Debug.Log (character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !");
+					Debug.Log (character.Target[0].Name + " used Skill 1!");
 					break;
 				case("Skill2"):
 					performAction = character.Target[0].Skill2 ();
