@@ -11,11 +11,9 @@ public class Victoria : Character {
     void Start() {
         Name = "Victoria";
         Damage = 10;
-        
         Gather = 1;
         maxStamina = 200;
         Stamina = maxStamina;
-        
 		maxBalls = 4;
         Role = "Catcher";
 

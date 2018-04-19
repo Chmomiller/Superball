@@ -72,23 +72,23 @@ public class Clemence : Character
     }
 
     public override bool Skill2() {
-        if (Target[0].actionType == "Offensive") {
+        if (Target[0].actionType == "Offense") {
             // have them re choose or give them a random other ability. IDK
-            Target[0].action = "NONE";
+            Target[0].action = "None";
         }
         actionCooldowns[4] = 4;
 		return true;
     }
 
     public override bool Skill3() {
-        if (enemies[0].actionType == "Offensive") {
-            enemies[0].action = "NONE";
+        if (enemies[0].actionType == "Offense") {
+            enemies[0].action = "None";
             enemies[0].heldBalls--;
-        } else if (enemies[1].actionType == "Offensive") {
-            enemies[1].action = "NONE";
+        } else if (enemies[1].actionType == "Offense") {
+            enemies[1].action = "None";
             enemies[1].heldBalls--;
-        } else if (enemies[2].actionType == "Offensive") {
-            enemies[2].action = "NONE";
+        } else if (enemies[2].actionType == "Offense") {
+            enemies[2].action = "None";
             enemies[2].heldBalls--;
         }
         actionCooldowns[5] = 2;

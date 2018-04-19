@@ -158,7 +158,7 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < 6; i++) 
 		{
 			combatQueue [i] = tempChar [i];
-			combatQueue [i].action = "None";
+			//combatQueue [i].action = "None";
 			combatQueue [i].gatherBall ();
 		}
 		currentPhase = PHASE.CONFLICT;
@@ -449,7 +449,7 @@ public class CombatManager : MonoBehaviour
 				{
 					bool targetFound = false;
 					if(combatQueue[i].Target[j] == character.Target[0] 
-						&& combatQueue[i].actionType == "Offensive"
+						&& combatQueue[i].actionType == "Offense"
 						&& !targetFound)
 					{
 						combatQueue[i].Target[j] = character;

@@ -129,12 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ce4e589b55b5649b8c6a862f4eb07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
   combat: {fileID: 0}
   Name: default
   Damage: 20
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 280
   maxStamina: 280
   heldBalls: 0
@@ -161,6 +161,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -181,6 +190,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -262,7 +272,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b9723660e7955404d929adee8fb03400, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b46bfce9bcb096143a92ad09d26f1110, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -335,7 +345,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ccf4a7a43cae4214da307b626b8abd79, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82b1b005de12e24488d88cff23e361b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1044,7 +1054,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 03afad5648da5c445a3d392bdbf0bef9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57310ae82374cf24bbbb43366a901459, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1096,12 +1106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d602bd526d5754e8553e82a5627afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
   combat: {fileID: 0}
   Name: default
   Damage: 25
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 320
   maxStamina: 320
   heldBalls: 0
@@ -1128,6 +1138,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1148,6 +1167,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
@@ -1250,6 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
 --- !u!1 &1921067517 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1952880669493186, guid: a0046e759a0a8574e812a4dcfcf7c029,
@@ -1266,12 +1287,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0f4ebd9326c654abb070f6aa196afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
   combat: {fileID: 0}
   Name: default
   Damage: 18
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 350
   maxStamina: 350
   heldBalls: 0
@@ -1298,6 +1319,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -1318,6 +1348,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0

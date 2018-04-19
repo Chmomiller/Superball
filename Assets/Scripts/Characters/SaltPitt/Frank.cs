@@ -59,7 +59,7 @@ public class Frank : Character {
 						enemies[0].heldBalls -= enemies[0].GetActionCost(j);
 					}
 				}
-				enemies[i].action = "NONE";
+				enemies[i].action = "None";
 	        }
 		}
         actionCooldowns[4] = 3;

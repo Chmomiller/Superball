@@ -13,12 +13,12 @@ public class Skylar : Character {
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Supply Drop", "Ultimate Support", "Eye in the Sky", "Running Interference" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Provides balls and stamina to ally", "Fully heals all allies and buffs them", "debuffs enemy team dodge", "Applies confusion to all enemies" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Bombing Run", "Supply Run", "Supply Drop", "Running Interference" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Make all enemies staggered", "Gather half of her remaining ball capacity", "Gives all balls to an ally and heals them for 20", "Applies confusion to all enemies" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 0, 0, 0 };
-        //actionCosts = new int[]{ 0, 1, 0, 0, 2, 3, 4, 3 };
+        //actionCosts = new int[]{ 0, 1, 0, 0, 2, 0, 4, 3 };
         actionCosts = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0 };
 
         base.Start ();
@@ -42,36 +42,43 @@ public class Skylar : Character {
         */
 		base.Update ();
     }
-
-    public override bool Skill1() {
-        this.heldBalls -= 2;
-        Target[0].heldBalls += 3;
-        if (Target[0].heldBalls > Target[0].maxBalls) Target[0].heldBalls = Target[0].maxBalls;
-        Target[0].Stamina += 20;
-        actionCooldowns[4] = 3;
+		
+	// Bombing Run: Make all enemies staggered
+	public override bool Skill1() {
+		enemies[0].addStatusEffect("unsteady", 3);
+		enemies[1].addStatusEffect("unsteady", 3);
+		enemies[2].addStatusEffect("unsteady", 3);
+		this.heldBalls -= actionCosts[4];
+		actionCooldowns[4] = 6;
 		return true;
-    }
+	}
 
-    public override bool Skill2() {
-        this.heldBalls -= 5;
-        allies[0].Stamina = enemies[0].maxStamina;
-        allies[0].addStatusEffect("buff",3);
 
-        allies[1].Stamina = enemies[1].maxStamina;
-        allies[1].addStatusEffect("buff", 3);
-        actionCooldowns[5] = 20;
+	// Supply Run: Gather half of her remaining ball capacity
+	public override bool Skill2() {
+		if(heldBalls != maxBalls)
+		{
+			this.heldBalls += (maxBalls - heldBalls) / 2;
+		}
+		actionCooldowns[5] = 20;
 		return true;
-    }
+	}
 
-    public override bool Skill3() {
-        this.heldBalls -= 4;
-        enemies[0].addStatusEffect("unsteady", 3);
-        enemies[1].addStatusEffect("unsteady", 3);
-        enemies[2].addStatusEffect("unsteady", 3);
-        actionCooldowns[6] = 6;
+	// Supply Drop: Gives all balls to an ally and heals them for 20
+	public override bool Skill3() {
+		Target [0].heldBalls += this.heldBalls;
+		if (Target [0].heldBalls > Target [0].maxBalls)
+		{
+			Target [0].heldBalls = Target [0].maxBalls;
+		}
+		Target[0].gainStamina(20);
+		this.Stamina -= 20;
+		this.heldBalls = 0;
+		actionCooldowns[6] = 3;
 		return true;
-    }
+	}
 
+	//
     public override bool Skill4() {
         this.heldBalls -= 3;
         enemies[0].addStatusEffect("confuse", 3);

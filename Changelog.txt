@@ -55,5 +55,9 @@ Tristian:
 4/17/18:
 	Changed all instances of Capacity to maxBalls
 	Added Ball count to UI
+4/18/18:
+	Changed all instances of Offensive to Offense
+	Changed all instances of NONE to None
+	Added correct skills for MightMain Academy (not yet tested for bugs)
 	
 	
