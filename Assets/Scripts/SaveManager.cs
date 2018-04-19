@@ -10,7 +10,29 @@ public class SaveManager : MonoBehaviour {
     public Clemence clemence;
     public Theodore theodore;
 
-	void Awake () {
+    public bool SaltPittDialogue = false;
+    public bool SaltPittBattle = false;
+    public bool SaltPittBattleHard = false;
+
+    public bool ScholaGrandisDialog = false;
+    public bool ScholaGrandisBattle = false;
+    public bool scholaGrandisBattleHard = false;
+
+    public bool MightMainDialog = false;
+    public bool MightMainBattle = false;
+    public bool MightMainBattleHard = false;
+
+    public bool yamatoDialog = false;
+    public bool yamatoBattle = false;
+    public bool yamatoBattleHard = false;
+
+    public bool teamSevenDialog = false;
+    public bool teamSevenBattle = false;
+
+    public bool beatSuperballRush = false;
+    public bool unlockAll = false;
+
+    void Awake () {
 		if (toSave == null) {
 			DontDestroyOnLoad (this);
 			toSave = this;
