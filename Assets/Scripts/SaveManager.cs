@@ -6,6 +6,10 @@ using System.IO;
 public class SaveManager : MonoBehaviour {
 	public static SaveManager toSave;
 
+    public Shiro shiro;
+    public Clemence clemence;
+    public Theodore theodore;
+
 	void Awake () {
 		if (toSave == null) {
 			DontDestroyOnLoad (this);
@@ -13,6 +17,11 @@ public class SaveManager : MonoBehaviour {
 		} else if (toSave != this) {
 			Destroy (this);
 		}
+        if(shiro == null|| clemence == null|| theodore == null) {
+            shiro = new Shiro();
+            clemence = new Clemence();
+            theodore = new Theodore();
+        }
 	}
 
 	public void Save(int currLvl, int ShiroLvl, int ShiroExp, int TheoLvl, int TheoExp, int ClemLvl, int ClemExp){

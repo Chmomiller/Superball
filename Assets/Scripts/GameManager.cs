@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour 
 {
+    public bool hardMode = false;
 	public static GameManager instance = null;
     public AudioScript Audio;
 	void Awake()

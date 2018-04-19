@@ -750,6 +750,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 742314729}
+  - component: {fileID: 742314728}
   m_Layer: 0
   m_Name: BackGroundManager
   m_TagString: Untagged
@@ -757,6 +758,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &742314728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742314727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5fac853bf4f0545ab8124778dc16d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 0}
 --- !u!4 &742314729
 Transform:
   m_ObjectHideFlags: 0
@@ -1270,6 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hardMode: 1
   Audio: {fileID: 0}
 --- !u!1 &1921067517 stripped
 GameObject:

@@ -74,6 +74,7 @@ public class QuitGame : MonoBehaviour
                 break;
             case "OpenOcean":
                 Audio.resetAllAudio();
+                print("open");
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_3");
                 StartCoroutine(StartBattle("Yamato Battle", 0, sceneName));
                 break;
