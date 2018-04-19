@@ -9,9 +9,6 @@ public class Frank : Character {
     // Use this for initialization
     void Start() {
         Name = "Frank";
-        
-        maxBalls = 4;
-        Gather = 1;
         Stamina = maxStamina;
         
         Role = "Catcher";

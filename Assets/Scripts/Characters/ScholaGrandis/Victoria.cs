@@ -10,11 +10,7 @@ public class Victoria : Character {
     // Use this for initialization
     void Start() {
         Name = "Victoria";
-        Damage = 10;
-        Gather = 1;
-        maxStamina = 200;
         Stamina = maxStamina;
-		maxBalls = 4;
         Role = "Catcher";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

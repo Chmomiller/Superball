@@ -8,11 +8,6 @@ public class Montana : Character {
 
     void Start() {
         Name = "US Navy Montana Class Battleship";
-        
-        Gather = 9;
-        Stamina = maxStamina;
-        
-        maxBalls = 100;
         Role = "Supporter";
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

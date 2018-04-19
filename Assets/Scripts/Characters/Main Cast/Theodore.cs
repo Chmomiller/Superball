@@ -7,11 +7,7 @@ public class Theodore : Character {
     // Use this for initialization
     void Start() {
         Name = "Theodore";
-        Catch = 25;
-        Gather = 1;
         Stamina = maxStamina;
-        
-		maxBalls = 8;
         Role = "Thrower";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };

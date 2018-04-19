@@ -7,13 +7,7 @@ public class YamatoGuns : Character {
     
     void Start() {
         Name = "The Main Armamment of the Imperial Japanese Battleship Yamato";
-        Damage = 6;
-        
-        Gather = 9;
-        Stamina = 300;
-        maxStamina = 300;
-        
-        maxBalls = 100;
+        Stamina = maxStamina;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

@@ -8,8 +8,6 @@ public class Yamato : Character {
 
     void Start() {
         Name = "The Imperial Japanese Battleship Yamato";
-        Damage = 6;
-        
         Gather = 9;
         Stamina = 300;
         maxStamina = 300;

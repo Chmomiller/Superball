@@ -9,9 +9,6 @@ public class Greg: Character
     void Start()
     {
         Name = "Greg";
-        Catch = 50;
-        maxBalls = 8;
-        Gather = 2;
         Stamina = maxStamina;
         
         Role = "Support";

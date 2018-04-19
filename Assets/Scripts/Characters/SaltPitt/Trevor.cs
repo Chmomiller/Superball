@@ -7,8 +7,6 @@ public class Trevor : Character {
     // Use this for initialization
     void Start() {
         Name = "Trevor";
-        maxBalls = 8;
-        Stamina = maxStamina;
         Role = "Thrower";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Skill2", "Skill3", "Skill4" };

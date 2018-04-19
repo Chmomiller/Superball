@@ -7,13 +7,7 @@ public class MontanaBow : Character {
 
     void Start() {
         Name = "The Bow of the US Navy Battleship Montana";
-        Damage = 9;
-        
-        Gather = 9;
-        Stamina = 220;
-        maxStamina = 220;
-        
-        maxBalls = 100;
+        Stamina = maxStamina;
         Role = "Supporter";
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

@@ -6,9 +6,6 @@ public class Ichirou : Character {
 
     void Start() {
         Name = "Ichirou";
-        
-        maxBalls = 4;
-        Gather = 1;
         Stamina = maxStamina;
         
         Role = "Catcher";

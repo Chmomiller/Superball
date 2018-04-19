@@ -7,13 +7,7 @@ public class MontanaBridge : Character {
 
     void Start() {
         Name = "The Bridge of the US Navy Battleship Montana";
-        Damage = 12;
-        
-        Gather = 9;
-        Stamina = 300;
-        maxStamina = 300;
-        
-        maxBalls = 100;
+        Stamina = maxStamina;
         Role = "Supporter";
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

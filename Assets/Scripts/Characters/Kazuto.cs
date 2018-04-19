@@ -6,9 +6,6 @@ public class Kazuto : Character {
 
     void Start() {
         Name = "Kazuto";
-        
-        maxBalls = 4;
-        Gather = 1;
         Stamina = maxStamina;
         
         Role = "Thrower";

@@ -10,13 +10,9 @@ public class Clemence : Character
     {
         Name = "Clemence";
         
-        maxBalls = 4;
         Gather = 1;
         Stamina = maxStamina;
-        ;
         
-        Stamina = 120;
-		maxStamina = 120;
         heldBalls = 0;
         Role = "Catcher";
 

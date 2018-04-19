@@ -6,11 +6,7 @@ public class Yoichi : Character {
 
     void Start() {
         Name = "Yoichi";
-        
-        Gather = 1;
         Stamina = maxStamina;
-        
-		maxBalls = 4;
         Role = "Supporter";
 
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Friendly Spirit", "Reload", "X or O", "Eight Stages of Shooting" };

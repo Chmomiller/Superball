@@ -7,11 +7,7 @@ public class Shiro : Character{
     void Start()
     {
         Name = "Shiro";
-        Catch = 50;
-        Gather = 3;
         Stamina = maxStamina;
-        
-        maxBalls = 10;
         Role = "Support";
         
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Refreshments", "Keep Fighting", "Cheer On" };

@@ -7,11 +7,7 @@ public class MontanaGuns : Character {
 
     void Start() {
         Name = "The Main Armamment of the US Navy Battleship Montana";
-        Damage = 12;
-        
-        Gather = 9;
         Stamina = maxStamina;
-        maxBalls = 100;
         Role = "Supporter";
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

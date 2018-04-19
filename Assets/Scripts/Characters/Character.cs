@@ -414,4 +414,15 @@ public class Character : MonoBehaviour
 			}
 		}
 	}
+   
+       public void LevelUp(int number) {
+        float variance;
+        for (int i = 0; i < number; i++) {
+            this.Level++;
+            if (this.Level < 5) { variance = UnityEngine.Random.Range(0, 5);} else{variance = UnityEngine.Random.Range(4, 9);}
+            this.maxStamina = (int)((this.maxStamina * 1.1) + variance);
+            this.Damage = (int)((this.Damage * 1.1) + UnityEngine.Random.Range(0, 2));
+            if (this.Level % 2 == 0) this.maxBalls += 1;
+        }
+    }
 }

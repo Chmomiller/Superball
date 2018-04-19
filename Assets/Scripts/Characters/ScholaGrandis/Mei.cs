@@ -7,12 +7,7 @@ public class Mei : Character {
     // Use this for initialization
     void Start() {
         Name = "Mei";
-        Damage = 10;
-        
-        Gather = 1;
         Stamina = maxStamina;
-        
-		maxBalls = 4;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

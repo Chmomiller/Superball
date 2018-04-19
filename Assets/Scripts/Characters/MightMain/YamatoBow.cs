@@ -7,13 +7,7 @@ public class YamatoBow : Character {
     
     void Start() {
         Name = "The Bow of the Imperial Japanese Battleship Yamato";
-        Damage = 6;
-        
-        Gather = 9;
-        Stamina = 250;
-        maxStamina = 250;
-        
-        maxBalls = 100;
+        Stamina = maxStamina;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

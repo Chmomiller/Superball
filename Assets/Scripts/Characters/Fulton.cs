@@ -6,11 +6,7 @@ public class Fulton : Character {
 
     void Start() {
         Name = "Fulton";
-        
-        Gather = 1;
         Stamina = maxStamina;
-        
-        maxBalls = 4;
         Role = "Thrower";
 
         actions = new string[] { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
