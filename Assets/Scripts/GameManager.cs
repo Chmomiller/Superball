@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void loadAnyScene(string name) {
-        Audio.resetAllAudio();
         if (UnityEngine.Random.Range(0, 10) == 0) {
             UnityEngine.SceneManagement.SceneManager.LoadScene("A New Student 7");
         } else {

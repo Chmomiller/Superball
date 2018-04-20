@@ -94,21 +94,25 @@ public class MapButtonOptions : MonoBehaviour {
         GameObject.Find("GameManager").GetComponent<GameManager>().hardMode = true;
         GameObject.Find("GameManager").GetComponent<QuitGame>().Restart(battle);
     }
+    public void startBattle(string battle) {
+        GameObject.Find("GameManager").GetComponent<GameManager>().hardMode = false;
+        GameObject.Find("GameManager").GetComponent<QuitGame>().Restart(battle);
+    }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
         GameObject.Find("SaltPittBack").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
-        GameObject.Find("SaltPittBattle").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("Salt Pitt High Gym"));
+        GameObject.Find("SaltPittBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("Salt Pitt High Gym"));
         GameObject.Find("SaltPittBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("Salt Pitt High Gym"));
 
         GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => this.splitScholaGrandis());
         GameObject.Find("ScholaGrandisBack").GetComponent<Button>().onClick.AddListener(() => this.splitScholaGrandis());
-        GameObject.Find("ScholaGrandisBattle").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("Schola Grandis Gym"));
+        GameObject.Find("ScholaGrandisBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("Schola Grandis Gym"));
         GameObject.Find("ScholaGrandisBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("Schola Grandis Gym"));
 
         GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => this.splitMightMain());
         GameObject.Find("MightMainBack").GetComponent<Button>().onClick.AddListener(() => this.splitMightMain());
-        GameObject.Find("MightMainBattle").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("MightMain Academy Gym"));
+        GameObject.Find("MightMainBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("MightMain Academy Gym"));
         GameObject.Find("MightMainBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("MightMain Academy Gym"));
 
         GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("Yamato Gym Battle"));

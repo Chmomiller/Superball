@@ -7,9 +7,12 @@ using UnityEngine.UI;
 public class QuitGame : MonoBehaviour 
 {
     public AudioScript Audio;
+    public GameManager Game;
 	void OnEnable()
 	{
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
+        Game = gameObject.GetComponent<GameManager>(); 
+        //The lowercase gameObject is intentional. It refers to the object this script is attached to
         SceneManager.sceneLoaded += OnSceneLoaded;
 
 	}
@@ -60,8 +63,8 @@ public class QuitGame : MonoBehaviour
                 Audio.src0.loop = true;
                 SceneManager.LoadScene("MapScreen");
                 break;
-            case "DialogueTest":
-                SceneManager.LoadScene("DialogueTest");
+            case "DialogueMenu":
+                SceneManager.LoadScene("DialogueMenu");
                 break;
 
             case "Salt Pitt High Gym":
@@ -107,19 +110,24 @@ public class QuitGame : MonoBehaviour
 			GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(()=>Restart("Schola Grandis Gym"));
 			GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(()=>Restart("MightMain Academy Gym"));
             GameObject.Find("MapButton").GetComponent<Button>().onClick.AddListener(() => Restart("MapScreen"));
-            GameObject.Find("DialogMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogMenu"));
+            GameObject.Find("DialogueMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogueMenu"));
             GameObject.Find("Difficulty").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().swapDifficulties());
             print("Buttons Found");
-		}
-        if(SceneManager.GetActiveScene().name == "MapScreen") {
+		} else if(SceneManager.GetActiveScene().name == "MapScreen") {
             GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
 
-        } //this should be done by a script in the SCHOOLNAMEButton object
-        if(SceneManager.GetActiveScene().name == "DialogMenu") {
+        }else if(SceneManager.GetActiveScene().name == "DialogueMenu") {
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+            GameObject.Find("Prologue").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Prologue"));
+            GameObject.Find("A New Student").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("A New Student"));
+            GameObject.Find("What Punks").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("What Punks"));
+            GameObject.Find("Tutorial").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Tutorial"));
+            GameObject.Find("Punk Defeat").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Punk Defeat"));
 
+        } else {
+            print("Warning: QuitGame: No recognized scene found for OnSceneLoaded, make sure to specify correctly");
         }
     }
 }
