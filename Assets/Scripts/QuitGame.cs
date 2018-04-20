@@ -51,9 +51,10 @@ public class QuitGame : MonoBehaviour
             break;
             case "MapScreen":
                 Audio.resetAllAudio();
-                if (UnityEngine.Random.Range(0, 20) == 0) {
-                    if (UnityEngine.Random.Range(0, 5) == 0) {
-                        Audio.playAudio("Unknown Individuals", 0);
+                int random = UnityEngine.Random.Range(0, 10);
+                if (random <= 3) {
+                    if (random == 0) {
+                        Audio.playAudio("Unknown Individuals 2", 0);
                     } else {
                         Audio.playAudio("Who Am I", 0);
                     }
@@ -103,6 +104,9 @@ public class QuitGame : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
+
+        GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
         if (SceneManager.GetActiveScene ().name == "MainMenu") 
 		{
@@ -125,6 +129,14 @@ public class QuitGame : MonoBehaviour
             GameObject.Find("What Punks").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("What Punks"));
             GameObject.Find("Tutorial").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Tutorial"));
             GameObject.Find("Punk Defeat").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Punk Defeat"));
+            GameObject.Find("Three Outstanding Girls").GetComponent<Button>().onClick.AddListener(() => Restart("Three Outstanding Girls"));
+            GameObject.Find("Magical Preparation").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Magical Preparation"));
+            GameObject.Find("Magical Match").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Magical Match"));
+            GameObject.Find("Magical Defeat").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Magical Defeat"));
+            GameObject.Find("Punk Ambush").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Punk Ambush"));
+            GameObject.Find("Fight Against the Military").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Fight Against the Military"));
+            GameObject.Find("Kuro's Trump Card").GetComponent<Button>().onClick.AddListener(() => Restart("Kuro's Trump Card"));
+            GameObject.Find("Military Surrender").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Military Surrender"));
 
         } else {
             print("Warning: QuitGame: No recognized scene found for OnSceneLoaded, make sure to specify correctly");

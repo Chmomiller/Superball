@@ -102,7 +102,7 @@ public class MapButtonOptions : MonoBehaviour {
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
         GameObject.Find("SaltPittBack").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
-        GameObject.Find("SaltPittBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("Salt Pitt High Gym"));
+        GameObject.Find("SaltPittBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("SaltPittHighGym"));
         GameObject.Find("SaltPittBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("Salt Pitt High Gym"));
 
         GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => this.splitScholaGrandis());
