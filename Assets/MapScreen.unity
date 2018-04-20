@@ -383,6 +383,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &295706434 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114482799444812728, guid: c602042cc7c39b4439c8233397e162c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 295706433}
+  m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
 --- !u!1 &297914925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1928,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 731445767}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 295706434}
+        m_MethodName: loadAnyScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &731445767
@@ -4042,7 +4059,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2073540261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114482799444812728, guid: c602042cc7c39b4439c8233397e162c2,
+          type: 2}
+        m_MethodName: loadAnyScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: A New Student
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2073540261
@@ -4153,7 +4182,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2080737495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 295706434}
+        m_MethodName: loadAnyScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Prologue
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2080737495

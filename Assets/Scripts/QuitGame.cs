@@ -10,7 +10,6 @@ public class QuitGame : MonoBehaviour
 	void OnEnable()
 	{
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
-        print("loaded");
         SceneManager.sceneLoaded += OnSceneLoaded;
 
 	}
@@ -26,6 +25,7 @@ public class QuitGame : MonoBehaviour
         Audio.playAudio(audioPath, track);
         Audio.src0.loop = true;
         SceneManager.LoadScene(sceneName);
+        
 
     }
     public void Restart(string sceneName)
@@ -35,7 +35,10 @@ public class QuitGame : MonoBehaviour
         switch (sceneName) {
             case "MainMenu":
                 Audio.resetAllAudio();
+                Audio.playSFX("_SFX/Battle sfx/swoosh/swoosh");
+                Audio.playAudio("Concept Sound/80s something", 0);
                 SceneManager.LoadScene(sceneName);
+
                 /*  When you return to this scene, the buttons lose functionality since GameManager is now in Dont destroy and they cannot find it anymore.
                  *  Weirdly enough, the buttons still work fine so I am guessing witchcraft is afoot
                 GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("Salt Pitt High Gym"));
@@ -44,7 +47,16 @@ public class QuitGame : MonoBehaviour
                 */            
             break;
             case "MapScreen":
-                Audio.playAudio("Concept Sound/80's something", 0);
+                Audio.resetAllAudio();
+                if (UnityEngine.Random.Range(0, 20) == 0) {
+                    if (UnityEngine.Random.Range(0, 5) == 0) {
+                        Audio.playAudio("Unknown Individuals", 0);
+                    } else {
+                        Audio.playAudio("Who Am I", 0);
+                    }
+                } else {
+                   Audio.playAudio("Concept Sound/80s something", 1);
+                }
                 Audio.src0.loop = true;
                 SceneManager.LoadScene("MapScreen");
                 break;
@@ -95,17 +107,19 @@ public class QuitGame : MonoBehaviour
 			GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(()=>Restart("Schola Grandis Gym"));
 			GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(()=>Restart("MightMain Academy Gym"));
             GameObject.Find("MapButton").GetComponent<Button>().onClick.AddListener(() => Restart("MapScreen"));
-
+            GameObject.Find("DialogMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogMenu"));
+            GameObject.Find("Difficulty").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().swapDifficulties());
             print("Buttons Found");
 		}
-       /* if(SceneManager.GetActiveScene().name == "MapScreen") {
-        //    GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => Restart("Salt Pitt High Gym"));
-            GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => Restart("Schola Grandis Gym"));
-            GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
+        if(SceneManager.GetActiveScene().name == "MapScreen") {
             GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
 
-        }*/ //this should be done by a script in the SCHOOLNAMEButton object
+        } //this should be done by a script in the SCHOOLNAMEButton object
+        if(SceneManager.GetActiveScene().name == "DialogMenu") {
+            GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+
+        }
     }
 }

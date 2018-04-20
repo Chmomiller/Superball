@@ -7,7 +7,7 @@ public class SaltPittSceneScript : MonoBehaviour {
     // Use this for initialization
     void Start() {
         game = GameObject.Find("GameManager").GetComponent<GameManager>();
-		if (/*game.hardMode*/false) {
+		if (game.hardMode) {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(5);
             GameObject.Find("Character5").GetComponent<Character>().LevelUp(5);
             GameObject.Find("Character3").GetComponent<Character>().LevelUp(5);

@@ -102,7 +102,8 @@ public class AudioScript : MonoBehaviour {
 
 
     public void chooseTrack(int track){ //this method is called in most other functions in here and serves to take in the track integer input that is passed to the methods in this class that is then passed here. It takes this integer and sets src and file to point to the the class regarding the track integer variable. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This makes it so that we only affect the track sent to us.
-       if(track == 1){ //these are to set the pointer src and file to the audio_track you want to change
+        print("Track number: " + track);
+        if (track == 1){ //these are to set the pointer src and file to the audio_track you want to change
          src = src1;
          file = file1;
       }else if(track == 2){

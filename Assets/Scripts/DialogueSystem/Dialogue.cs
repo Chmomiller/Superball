@@ -176,6 +176,174 @@ public class Dialogue{
         },
 };
 
+
+    static string[,] aNewStudent7 = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "Street"
+        },
+        {
+            "","","","","","",
+            "A few days later....",
+            "Narrator", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Now, where’s Salt Pitt High? I’m still taking time to get used to this.",
+            "Shiro", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Hey, guys, hurry up! Class starts in ten minutes!",
+            "Student A", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Oh, relax, will yOu?",
+            "Student B", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "That must be the pLace. Looks nice enough, I guess.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Classroom"
+        },
+        {
+            "","Shiro","","","","",
+            "Well, class, we have a new student. Please introduce yourself, deAr.",
+            "Teacher", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Hello, everYone! I’m Shiro Smith, and I’m from Middleton, a town in the far weStern parts of Japan-America, so I’m sorry if I don’t fully fit in. I’m still getting used to Ball City.",
+            "Teacher", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Hi, Shiro!",
+            "Student A", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Nice to meet you!",
+            "Student B", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "(Wow, they’re all so nice! This may go better than I thought!)",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Classroom"
+        },
+        {
+            "","","","","","",
+            "Hooray, it's lunch time!",
+            "Student A","", ""
+        },
+        {
+            "","","","","","",
+            "I’m so glad to be out of math class!",
+            "Student B","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Finally! I can look around the school a bIt more.",
+            "Shiro", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Hmm… I can get used to this. It’s hardly any different from middle school. ",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Salt Pitt Gym Interior"
+        },
+        {
+            "","Shiro","","","","",
+            "Ah, I’ve cheCked out the library, the mUSic room, the field… ",
+            "Shiro", "", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Wait, what’s that place? It looks so big! Well, only one way to find out. ",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Salt Pitt Gym Interior"
+        },
+              {
+      "","Shiro","","","","",
+            "Shiro: Who are you?",
+            "Shiro","", ""
+
+      },
+
+      {
+      "","Shadow","","","","",
+            "Shadow: We are unfamiliar With this world as wEll",
+            "Shadow","", ""
+
+      },
+
+      {
+      "","Shiro","","","","",
+            "Shiro: GreAt then, we can exploRe thE School together. Do you play dodgEball?",
+            "Shiro","", ""
+
+      },
+
+      {
+      "","Shadow","","","","",
+            "Shadow: Good obserVation. In some ways yes. Our time is limited, but grow your skills and you will see us soon enough.",
+            "Shadow","", ""
+
+      },
+      {
+      "","Shiro","","","","",
+            "Shiro: Are you studEnts here?",
+            "Shiro","", ""
+
+      },
+      {
+      "","Shadow","","","","",
+            "Shadow: Not here. There are maNy schools in New Ball City.",
+            "Shadow","", ""
+
+      },
+
+      {
+      "","Shiro","","","","",
+            "Shiro: Okay, have a good rest of your day then.",
+            "Shiro","", ""
+
+      },
+      {
+      "","Shadow","","","","",
+            "Shadow: Goodbye Shiro.",
+            "Shadow","", ""
+
+      },
+      {
+      "","Shiro","","","","",
+            "Shiro: I don't ever recall seeing them before. Do I know them?",
+            "Shiro","", ""
+
+      },
+};
+
+
     static string[,] punkConfrontation = new string[,]{
         {
             "","Shiro","","","","",
@@ -951,6 +1119,7 @@ public class Dialogue{
         {"test scene", sceneName},
         {"Prologue", prolog },
         {"A New Student", aNewStudent},
+        {"A New Student 7", aNewStudent7},
         {"What Punks", punkConfrontation },
         {"Tutorial", tutorial},
         {"Punk Defeat", punkDefeat}

@@ -61,7 +61,8 @@ public class DialogueManager : MonoBehaviour {
 		sceneCharacters = new List<string>();
 		textLines = new Dialogue ();
 		insertText = textLines.allDialogue[sceneTitle];
-
+        
+        print("Scene is: " + sceneTitle);
 		startConvo (sceneTitle);
 
 
