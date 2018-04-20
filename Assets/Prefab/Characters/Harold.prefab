@@ -52,12 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00f031fba9e93249bd77c9e52bb6a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
   combat: {fileID: 0}
+  CUI: {fileID: 0}
   Name: Harold
   Damage: 1
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 10
   maxStamina: 200
   heldBalls: 0
@@ -70,7 +71,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  action: 
+  action: None
   actionType: 
   targetingType: 0
   allegiance: 1
@@ -84,6 +85,15 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionNames:
   - None
   - Throw
@@ -104,6 +114,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0

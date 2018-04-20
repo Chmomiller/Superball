@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonsUI : MonoBehaviour 
 {
+	public Color32 defaultColor;
 	public float AlphaThreshold = 0.5f;
 	public int actionNumber;
 	public CombatManager CM;
@@ -15,6 +16,7 @@ public class ButtonsUI : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		defaultColor =  gameObject.GetComponent<Image> ().color;
 		gameObject.GetComponent<Button> ().onClick.AddListener (ActionSelect);
 		this.GetComponent<Image>().alphaHitTestMinimumThreshold = AlphaThreshold;
 		actionDescription = GameObject.Find ("ActionPanel").GetComponentInChildren<Text>();
@@ -28,6 +30,15 @@ public class ButtonsUI : MonoBehaviour
 		if (CM.currentPhase == CombatManager.PHASE.ACTION) 
 		{
 			desc = CM.combatQueue [CM.currentCharacter].actionDescription [actionNumber];
+			if(CM.combatQueue[CM.currentCharacter].GetActionCost(actionNumber) > CM.combatQueue[CM.currentCharacter].heldBalls 
+				|| CM.combatQueue[CM.currentCharacter].actionCooldowns[actionNumber] > 0)
+			{
+				gameObject.GetComponent<Image> ().color = new Color32(100, 100, 100, 255);
+			}
+		}
+		else if(CM.currentPhase != CombatManager.PHASE.ACTION)
+		{
+			gameObject.GetComponent<Image> ().color = defaultColor;
 		}
 	}
 

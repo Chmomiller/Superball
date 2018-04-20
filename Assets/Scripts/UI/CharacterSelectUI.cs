@@ -6,14 +6,22 @@ using UnityEngine.UI;
 public class CharacterSelectUI : MonoBehaviour 
 {
 	public int character;
+	public Image[] status;
+	public Sprite[] statusImage;
 	public CombatManager CM;
 	// Use this for initialization
 	void Start () 
 	{
 		gameObject.GetComponent<Button> ().onClick.AddListener (CharacterSelect);
+		status = gameObject.GetComponentsInChildren<Image> ();
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();	
 	}
-	
+
+	public void Init(CombatManager combatManager)
+	{
+		CM = combatManager;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -57,6 +65,31 @@ public class CharacterSelectUI : MonoBehaviour
 				}
 			}
 			CM.currentPhase = CombatManager.PHASE.CONFLICT;
+		}
+	}
+
+	public void AddStatus(int newStatus)
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			if(!status[i+1].enabled)
+			{
+				status [i+1].sprite = statusImage[newStatus];	
+				status [i+1].enabled = true;
+				return;
+			}
+		}
+	}
+
+	public void RemoveStatus(int oldStatus)
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			if(status[i+1].sprite == statusImage[oldStatus])
+			{
+				status [i+1].enabled = false;
+				return;
+			}
 		}
 	}
 }

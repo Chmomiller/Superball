@@ -60,10 +60,10 @@ public class Trevor : Character {
 			}
 		}
 
+		// Throw at the three targets
 		for(int i =0 ; i < 3; i++)
 		{
-			Target [0] = Target [i];
-			combat.DoAction (this, "Throw");
+			this.throwBall (Target[i]);
 		}
 	    actionCooldowns[4] = 1;
 

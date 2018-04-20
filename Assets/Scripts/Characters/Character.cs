@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
 {
     public AudioScript Audio;
     public CombatManager combat;
+	public CharacterSelectUI CSUI;
 
     public string Name = "default";
 	public int Damage = 10;
@@ -22,8 +23,8 @@ public class Character : MonoBehaviour
 
     public string Role = "Supporter";
 	public Character[] Target = new Character[3]; //Create an empty Character in the combat manager that other charaters can select when not targetting
-	public string action = "";
-	public string actionType = ""; //Offense, Defense, Utility
+	public string action = "None";
+	public string actionType = "None"; //Offense, Defense, Utility
 	public int targetingType = 0; //0 for self/predetermined, 1 for enemies, 2 for allies
 
     //allegiance 1 is for the players, 2 is for enemies. It is there so we can have players switch teams. 
@@ -114,8 +115,8 @@ public class Character : MonoBehaviour
 		{
 			Target [i] = this;
 		}
-		statusEffects = new status[6];
-		for(int i = 0; i < 6; i++)
+		statusEffects = new status[3];
+		for(int i = 0; i < 3; i++)
 		{
 			statusEffects [i].duration = 0;
 			statusEffects [i].name = "none";
@@ -158,10 +159,10 @@ public class Character : MonoBehaviour
 			gameObject.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
 		}
 	}
-
-	public virtual void Init()
+	public virtual void Init(CombatManager CM, CharacterSelectUI combatUI)
 	{
-		
+		this.combat = CM;
+		this.CSUI = combatUI;	
 	}
 
 
@@ -194,7 +195,7 @@ public class Character : MonoBehaviour
 				statusEffects[i].name = name;
 				statusEffects[i].duration = duration;
 				applyStatusEffect(name);
-				break;
+				return;
 			}
 		}
 	}
@@ -217,6 +218,7 @@ public class Character : MonoBehaviour
 		case "stun":
 			// check during plan and skip if stunned
 			// remember we can check a player's statusEffects anywhere
+			CSUI.AddStatus(0);
 			break;
 		case "debuff":
 			if (findStatus ("buff") != -1) {
@@ -226,6 +228,7 @@ public class Character : MonoBehaviour
 			}
 			this.attack = Math.Floor (0.75 * this.attack);
 			this.attackMultiplier = .75f;
+			CSUI.AddStatus(1);
 			break;
 		case "buff":
 			if (findStatus ("debuff") != -1) {
@@ -235,6 +238,7 @@ public class Character : MonoBehaviour
 			}
 			this.attack = Math.Floor (1.25 * this.attack);
 			this.attackMultiplier = 1.25f;
+			CSUI.AddStatus(2);
 			break;
 		case "unsteady":
 			if(findStatus("steady") != -1)
@@ -244,15 +248,17 @@ public class Character : MonoBehaviour
 				removeStatusEffect ("steady");
 			}
 			this.defenseMultiplier = 1.25f;
+			CSUI.AddStatus(3);
 			break;
 		case "steady":
-			if(findStatus("steady") != -1)
+			if(findStatus("unsteady") != -1)
 			{
-				statusEffects [findStatus ("steady")].duration = 0;
+				statusEffects [findStatus ("unsteady")].duration = 0;
 				removeDoneStatusEffects ();
-				removeStatusEffect ("steady");
+				removeStatusEffect ("unsteady");
 			}
 			this.defenseMultiplier = 0.75f;
+			CSUI.AddStatus(4);
 			break;
 		case "halfDmg":
 			break;
@@ -264,6 +270,7 @@ public class Character : MonoBehaviour
 				break;
 		case "misc":
 			// This is used to check for multiturn logic
+			CSUI.AddStatus(5);
 			break;
 		}
 	}
@@ -271,21 +278,26 @@ public class Character : MonoBehaviour
 	public void removeStatusEffect(string name){
 		switch(name){
 		case "stun":
+			CSUI.RemoveStatus (0);
 			// check during plan and skip if stunned
 			// remember we can check a player's statusEffects anywhere
 			break;
 		case "debuff":
+			CSUI.RemoveStatus (1);
 			this.attack = Math.Floor (1.35 * this.attack);
 			this.attackMultiplier = 1.0f;
 			break;
 		case "buff":
+			CSUI.RemoveStatus (2);
 			this.attack = Math.Floor (0.8 * this.attack);
 			this.attackMultiplier = 1.0f;
 			break;
 		case "unsteady":
+			CSUI.RemoveStatus (3);
 			this.defenseMultiplier = 1.0f;
 			break;
 		case "steady":
+			CSUI.RemoveStatus (4);
 			this.defenseMultiplier = 1.0f;
 			break;
 		case "halfDmg":
@@ -295,6 +307,7 @@ public class Character : MonoBehaviour
 		case "confused":
 				break;
 		case "misc":
+			CSUI.RemoveStatus (5);
 			break;
 		}
 	}

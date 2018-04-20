@@ -59,5 +59,10 @@ Tristian:
 	Changed all instances of Offensive to Offense
 	Changed all instances of NONE to None
 	Added correct skills for MightMain Academy (not yet tested for bugs)
+	Updated MightMain skill names, descriptions, and costs
+	Changed void DoAction() to Ienumerator DoAction()
+4/19/18:
+	Added UI support for status icons
+	Action buttons that are currently unusable are greyed out
 	
 	

@@ -55,8 +55,10 @@ public class Greg: Character
     }
     
 
-	public override void Init()
+	public new void Init(CombatManager CM, CharacterSelectUI combatUI)
 	{
+		base.Init (CM, combatUI);
+
 		foreach (Character C in enemies) 
 		{
 			if(C.Name == "Trevor")
