@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Salt Pitt High Gym.unity
+=======
+- path: Assets/Scenes/MainMenu.unity
+>>>>>>> f7d7a6598734d20d0130ebaabf3dc15db71bde64
   isLoaded: 1
   isActive: 1
