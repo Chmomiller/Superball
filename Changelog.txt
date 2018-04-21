@@ -1,0 +1,68 @@
+4/8/18
+Tristian:
+	Changed Character.Start from public to protected
+	Added base.Start() to all derived characters in SaltPitt High Scene
+	Set statusEffects[] in Character.Start()
+	Changed Character.dodgeBall() and Character.throwBall() so that damage is dealt in throwBall not dodgeBall in order to keep consistency with other skills
+	Changed Character.Target to Character.Target[]
+	Updated all dependant scripts to work with Tartget as an array
+	Changed ball loss so that it is not done in CombatManager but in each Character's functions
+	Changed skill functions to bools so that defensive actions control whether players perform offensive actions or not
+
+4/10/18
+Tristian:
+	Incorporated new character's into current Character standards
+	Changed Frank and Greg's skills so that don't spawn errors if Trevor isn't there
+	Changed Trevor's skill to work with assigning targets after blocking, now it checks if anyone is trying to block for any of his targets, assigns the new targets and calls CombatManager.DoAction(this, "throw") three times
+	Renamed Chikako and Haruna to Elizabeth and Victoria(I should have done this on my version a long time ago) and added base.Start() to their start functions
+	Separated transformation and life-gain in Mei's Skill3(Cup of Tea) according to the skill doc
+	Added code to Skill2(Clean-Up) so that she moves herself to the end of the queue and collects half of all balls used this turn(this may be buggy because of how it alters the queue; needs testing)
+4/11/18
+Tristian:
+	Incorporated ALL new character's into current Character standards
+	Reorganized Character Script files
+	Changed Elizabeth pretransform() to Skill1()
+	Added defenseMultiplier and attackMultiplier for implementation of steady, unsteady, buff, and debuff
+	Added steady/unsteady check to Character.throwBall()
+4/12/18
+Tristian:
+	Changed in-use character prefabs initial maxStamina and Names to fix incorrect HealthBars on load level
+	Added code to Character Update so that characters turn sideways when KOd
+	loseStamina and gainStamina now check if the Character has gone above maxStamina or below 0 
+	Increased Players maxStamina and Damage
+	Increased Stamina gained by Rest
+	Fixed Resurrection
+	Characters now only catch once per round and don't continue to catch past the current round
+	Fixed issue where catching text would repeatedly display during the execution phase
+	Fixed bug where Trevor.Skill1() (Thrash) would cause the game to enter an infinite loop
+4/13/18:
+	Today is 413
+	Changed ButtonsUI so that you can only select active characters after an action
+
+4/14/18:
+	Added base.Update() to the Schola Grandis girl's Updates
+	Mei's skill1()(Silver Platter) no longer uses PassOff()
+	Mei's skill3()(Cup of Tea) ball cost reduced to 0
+	Mei's skill3() no longer overheals and functions on non-Schola Grandis girls
+4/14/18:
+	Fixed Mei's skill2()(Clean Up) so that it checks the correct array and functions properly
+	Set the size of Theodore's cost array to 8(may need to do this for other character's arrays)
+	Added misc status for misc cases such as turn checking
+	Added Victoria.cleanUp() to work with Victoria.Skill1()
+	Added Victoria.catchBall() to work with Victoria.Skill2()
+	Winning or losing now ends combat
+
+4/17/18:
+	Changed all instances of Capacity to maxBalls
+	Added Ball count to UI
+4/18/18:
+	Changed all instances of Offensive to Offense
+	Changed all instances of NONE to None
+	Added correct skills for MightMain Academy (not yet tested for bugs)
+	Updated MightMain skill names, descriptions, and costs
+	Changed void DoAction() to Ienumerator DoAction()
+4/19/18:
+	Added UI support for status icons
+	Action buttons that are currently unusable are greyed out
+	
+	

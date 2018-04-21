@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonsUI : MonoBehaviour 
 {
+	public Color32 defaultColor;
 	public float AlphaThreshold = 0.5f;
 	public int actionNumber;
 	public CombatManager CM;
@@ -15,11 +16,12 @@ public class ButtonsUI : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		defaultColor =  gameObject.GetComponent<Image> ().color;
 		gameObject.GetComponent<Button> ().onClick.AddListener (ActionSelect);
 		this.GetComponent<Image>().alphaHitTestMinimumThreshold = AlphaThreshold;
-		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();	
 		actionDescription = GameObject.Find ("ActionPanel").GetComponentInChildren<Text>();
 		menuOpen = false;
+		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 	}
 	
 	// Update is called once per frame
@@ -27,52 +29,104 @@ public class ButtonsUI : MonoBehaviour
 	{
 		if (CM.currentPhase == CombatManager.PHASE.ACTION) 
 		{
-			desc = CM.combatQueue [CM.currentCharacter].character.actionDescription [actionNumber];
+			desc = CM.combatQueue [CM.currentCharacter].actionDescription [actionNumber];
+			if(CM.combatQueue[CM.currentCharacter].GetActionCost(actionNumber) > CM.combatQueue[CM.currentCharacter].heldBalls 
+				|| CM.combatQueue[CM.currentCharacter].actionCooldowns[actionNumber] > 0)
+			{
+				gameObject.GetComponent<Image> ().color = new Color32(100, 100, 100, 255);
+			}
+		}
+		else if(CM.currentPhase != CombatManager.PHASE.ACTION)
+		{
+			gameObject.GetComponent<Image> ().color = defaultColor;
 		}
 	}
 
 	// This function is called when an action button is selected. It sets the appropriate action for the current character
 	public void ActionSelect()
 	{
+		// If action phase
 		if(CM.currentPhase == CombatManager.PHASE.ACTION)
 		{
 			// Check if the action is valid
-			if(CM.combatQueue[CM.currentCharacter].character.GetActionCost(actionNumber) > CM.combatQueue[CM.currentCharacter].character.heldBalls 
-				|| CM.combatQueue[CM.currentCharacter].character.actionCooldowns[actionNumber] > 0)
+			if(CM.combatQueue[CM.currentCharacter].GetActionCost(actionNumber) > CM.combatQueue[CM.currentCharacter].heldBalls 
+				|| CM.combatQueue[CM.currentCharacter].actionCooldowns[actionNumber] > 0)
 			{
 				return;
 			}
+				
+			// set the current character's action based on actionNumber
+			CM.combatQueue [CM.currentCharacter].action = CM.combatQueue [CM.currentCharacter].GetAction (actionNumber);
+			CM.combatQueue [CM.currentCharacter].actionType = CM.combatQueue [CM.currentCharacter].GetActionType(actionNumber);
+			CM.combatQueue [CM.currentCharacter].targetingType = CM.combatQueue [CM.currentCharacter].GetTargetingType(actionNumber);	
 
-			CM.combatQueue [CM.currentCharacter].action = (CombatManager.ACTION)(actionNumber);
-			CM.combatQueue [CM.currentCharacter].character.action = CM.combatQueue [CM.currentCharacter].character.GetAction (actionNumber);
-			CM.combatQueue [CM.currentCharacter].character.actionType = CM.combatQueue [CM.currentCharacter].character.GetActionType(actionNumber);
-			CM.combatQueue [CM.currentCharacter].character.targetingType = CM.combatQueue [CM.currentCharacter].character.GetTargetingType(actionNumber);	
-			// This will need to change if there is a non-catching defensive move
-			if (CM.combatQueue [CM.currentCharacter].character.actionType == "Defense") 
+			// If the action is defensive the player is catching (This will need to change if there is a non-catching defensive move)
+			if (CM.combatQueue [CM.currentCharacter].actionType == "Defense") 
 			{
-				CM.combatQueue [CM.currentCharacter].character.catching = true;
+				CM.combatQueue [CM.currentCharacter].catching = true;
 			}
-			switch (CM.combatQueue [CM.currentCharacter].character.GetTargetingType (actionNumber)) 
+			//if(CM.combatQueue[CM.currentCharacter].tag == "Player")
+			//{
+				switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
+				{
+				case(0):
+					CM.currentPhase = CombatManager.PHASE.CONFLICT;
+					for(int i = 0; i < 3; i ++)
+					{
+						CM.combatQueue [CM.currentCharacter].Target[i] = CM.combatQueue [CM.currentCharacter];
+					}
+					break;
+				case(1):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					for(int i  = 0; i < 3; i++)
+					{
+					if(!CM.Enemy[i].dead)
+						{	
+							CM.enemySelect[i].enabled = true;
+						}
+					}
+					break;
+				case(2):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					for (int i = 0; i < 3; i++) {
+						if (!CM.Player [i].dead) {	
+							CM.playerSelect [i].enabled = true;
+						}
+					}
+					break;
+				}/*
+			}
+			else
 			{
-			case(0):
-				CM.currentPhase = CombatManager.PHASE.CONFLICT;
-				CM.combatQueue [CM.currentCharacter].character.Target = CM.combatQueue [CM.currentCharacter].character;
-				break;
-			case(1):
-				CM.currentPhase = CombatManager.PHASE.TARGET;
-				foreach(Button B in CM.enemySelect)
+				switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
 				{
-					B.enabled = true;
+				case(0):
+					CM.currentPhase = CombatManager.PHASE.CONFLICT;
+					for(int i = 0; i < 3; i ++)
+					{
+						CM.combatQueue [CM.currentCharacter].Target[i] = CM.combatQueue [CM.currentCharacter];
+					}
+					break;
+				case(1):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					for (int i = 0; i < 3; i++) {
+						if (!CM.Player [i].dead) {	
+							CM.playerSelect [i].enabled = true;
+						}
+					}
+					break;
+				case(2):
+					CM.currentPhase = CombatManager.PHASE.TARGET;
+					for(int i  = 0; i < 3; i++)
+					{
+						if(!CM.Enemy[i].dead)
+						{	
+							CM.enemySelect[i].enabled = true;
+						}
+					}
+					break;
 				}
-				break;
-			case(2):
-				CM.currentPhase = CombatManager.PHASE.TARGET;
-				foreach(Button B in CM.playerSelect)
-				{
-					B.enabled = true;
-				}
-				break;
-			}
+			}*/
 		}
 	}
 

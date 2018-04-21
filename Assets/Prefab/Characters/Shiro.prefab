@@ -52,20 +52,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0ab69ddba1c0c45a7dcd3491cc6b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
   combat: {fileID: 0}
-  Name: default
+  CUI: {fileID: 0}
+  Name: Shiro
   Damage: 1
   Catch: 100
   Gather: 1
-  Capacity: 4
   Stamina: 10
-  maxStamina: 10
+  maxStamina: 100
   heldBalls: 0
   maxBalls: 2
   Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
   Role: Supporter
-  Target: {fileID: 0}
-  action: 
+  Target:
+  - {fileID: 0}
+  action: None
   actionType: 
   targetingType: 0
   allegiance: 1
@@ -79,6 +83,24 @@ MonoBehaviour:
   - {fileID: 0}
   attack: 0
   dodge: 0
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
   actionDescription:
   - Wait
   - Throw ball at target enemy
@@ -90,6 +112,7 @@ MonoBehaviour:
   - 
   - 
   targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0

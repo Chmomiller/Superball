@@ -101,8 +101,8 @@ public class DialogueManager : MonoBehaviour {
 
 
 			if (transition) {
-				bg.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
-				bg.GetComponent<FullScreenBG> ().ResetScale ();
+				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
+				//bg.GetComponent<FullScreenBG> ().ResetScale ();
 
 				//set next characters
 				for(int c=0; c < 6; ++c) {
@@ -260,7 +260,7 @@ public class DialogueManager : MonoBehaviour {
 		//special cases
 		if (bColor < blackFade && isSpeaking && !fading) {
 			bColor += 1.0f / blackFade;
-			bg.GetComponent<SpriteRenderer> ().color = new Color (bColor,bColor,bColor,1.0f);
+			bg.GetComponent<Image> ().color = new Color (bColor,bColor,bColor,1.0f);
 		}
 
 
@@ -322,7 +322,7 @@ public class DialogueManager : MonoBehaviour {
 		if (insertText [0, 8] == "black") {
 			//blackStart = true;
 			blackFade = int.Parse (insertText [0, 9]);
-			bg.GetComponent<SpriteRenderer> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
+			bg.GetComponent<Image> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
 				
 		}
 

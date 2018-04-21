@@ -19,12 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4085373247716240}
-  - component: {fileID: 114815823080911190}
   - component: {fileID: 114548376085889740}
   - component: {fileID: 212603412656562712}
   m_Layer: 0
   m_Name: Mei
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426989562631526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.79999, y: 428.9, z: 0}
+  m_LocalPosition: {x: 10.008462, y: 0.15291405, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,19 +52,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd6b36311f9f4547896789ee4ed78a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
   combat: {fileID: 0}
-  Name: default
-  Damage: 1
+  CUI: {fileID: 0}
+  Name: Mei
+  Damage: 10
   Catch: 100
   Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
+  Stamina: 140
+  maxStamina: 140
   heldBalls: 0
   maxBalls: 2
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
   Role: Supporter
-  Target: {fileID: 0}
-  action: 
+  Target:
+  - {fileID: 0}
+  action: None
   actionType: 
   targetingType: 0
   allegiance: 1
@@ -107,57 +111,8 @@ MonoBehaviour:
   - 
   - 
   - 
-  actionTypes:
-  - None
-  - Offense
-  - Defense
-  - Utility
-  - Utility
-  - Utility
-  - Utility
   targetingTypes: 
-  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
-  dead: 0
-  catching: 0
---- !u!114 &114815823080911190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426989562631526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28fbc03c8b70f044e958d6ed490fec59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 0}
-  Name: default
-  Damage: 1
-  Catch: 100
-  Gather: 1
-  Capacity: 4
-  Stamina: 10
-  maxStamina: 10
-  heldBalls: 0
-  maxBalls: 2
-  Level: 1
-  Role: Supporter
-  Target: {fileID: 0}
-  action: 
-  actionType: 
-  targetingType: 0
-  allegiance: 1
-  allies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attack: 0
-  dodge: 0
-  targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0

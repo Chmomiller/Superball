@@ -7,18 +7,21 @@ public class TemporaryUIIntegration : MonoBehaviour
 {
 	//public Text Name;
 	public Character Player;
-	public Slider HealthBar;
-	float HealthMax;
+	public RectTransform HealthBar;
+	public float StaminaBar;
+	public float HealthMax;
 	// Use this for initialization
 	void Start () 
 	{
-		//Name = gameObject.GetComponent<Text> ();
-		Player = gameObject.GetComponent<Character> ();
-		//Name.text = Player.Name;
-		HealthBar = gameObject.GetComponentInChildren<Slider> ();
-		HealthMax = Player.Stamina;
-		HealthBar.maxValue = (float) Player.Stamina;
-		HealthBar.value = (float) Player.Stamina;
+		HealthBar = gameObject.GetComponent<RectTransform> ();
+		StaminaBar = HealthBar.localScale.x;
+		//HealthMax = Player.maxStamina;
+	}
+
+	public void Init(Character copyCharacter)
+	{
+		Player = copyCharacter;
+		HealthMax = Player.maxStamina;
 	}
 	
 	// Update is called once per frame
@@ -26,10 +29,12 @@ public class TemporaryUIIntegration : MonoBehaviour
 	//and then having update check needsUpdate rather than calculating
 	void Update () 
 	{
-		HealthBar.value = (float) Player.Stamina;
-		if (HealthBar.value / HealthMax <= .5) {
+		HealthBar.localScale = new Vector3(StaminaBar * (Player.Stamina/HealthMax),
+											HealthBar.localScale.y,
+											HealthBar.localScale.z);
+		if (Player.Stamina/HealthMax <= .5) {
 			//HealthBar.colors = new ColorBlock (1f, 0f, 0f); //Set to Red
-		} else if (HealthBar.value / HealthMax > .5) {
+		} else if (Player.Stamina/HealthMax > .5) {
 			//HealthBar.colors = new ColorBlock (0f, 1f, 0f); //Set to Green
 		}
 	}

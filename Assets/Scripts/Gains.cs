@@ -13,7 +13,7 @@ public static class Gains {
         /*Damage*/        { 0, 4, 2, 1, 2, 5, 2, 3, 4, 4},
         /*Catch*/         { 0, 1, 0, 1, 0, 1, 1, 1, 2, 3},
         /*Gather*/        { 0, 0, 1, 0, 2, 0, 0, 1, 0, 2},
-        /*Capacity*/      { 0, 1, 0, 0, 2, 0, 1, 0, 2, 0},
+        /*Max Balls*/     { 0, 1, 0, 0, 2, 0, 1, 0, 2, 0},
         /*Max Stamina*/   { 0, 8, 7, 5,15,10,10,15,10,20},
         /*Dodge*/         { 0, 2, 0, 0, 3, 1, 2, 3, 1, 5},
         };
@@ -24,7 +24,7 @@ public static class Gains {
         /*Damage*/        { 0, 2, 1, 0, 2, 2, 1, 2, 3, 4},
         /*Catch*/         { 0, 3, 2, 2, 6, 2, 1, 3, 4, 7},
         /*Gather*/        { 0, 1, 1, 0, 2, 0, 1, 1, 0, 2},
-        /*Capacity*/      { 0, 2, 1, 0, 2, 0, 2, 0, 2, 2},
+        /*Max Balls*/     { 0, 2, 1, 0, 2, 0, 2, 0, 2, 2},
         /*Max Stamina*/   { 0, 8, 7,10,15,20,10,15,10,25},
         /*Dodge*/         { 0, 2, 0, 0, 3, 1, 2, 3, 1, 5},
         };
@@ -34,7 +34,7 @@ public static class Gains {
         /*Damage*/        { 0, 2, 2, 2, 3, 5, 2, 3, 4, 4},
         /*Catch*/         { 0, 1, 0, 1, 2, 2, 1, 1, 2, 3},
         /*Gather*/        { 0, 0, 1, 0, 3, 1, 0, 1, 1, 4},
-        /*Capacity*/      { 0, 2, 0, 1, 2, 0, 1, 0, 2, 0},
+        /*Max Balls*/     { 0, 2, 0, 1, 2, 0, 1, 0, 2, 0},
         /*Max Stamina*/   { 0, 8, 7, 6,12,10,7,15,10, 20},
         /*Dodge*/         { 0, 3, 0, 2, 3, 1, 2, 3, 2, 5},
         };
@@ -51,7 +51,7 @@ public static class Gains {
 			case "Gather":
 				//growth = growthTableSupport [2, C.Level - 1];
 				break;
-			case "Capacity":
+			case "MaxBalls":
 				//growth = growthTableSupport [3, C.Level - 1];
 				break;
 			case "Stamina":
@@ -74,7 +74,7 @@ public static class Gains {
 			case "Gather":
 				//growth = growthTableThrower [2, C.Level - 1];
 				break;
-			case "Capacity":
+			case "MaxBalls":
 				//growth = growthTableThrower [3, C.Level - 1];
 				break;
 			case "Stamina":
@@ -97,7 +97,7 @@ public static class Gains {
 			case "Gather":
 				//growth = growthTableCatcher [2, C.Level - 1];
 				break;
-			case "Capacity":
+			case "MaxBalls":
 				//growth = growthTableCatcher [3, C.Level - 1];
 				break;
 			case "Stamina":
@@ -127,8 +127,8 @@ public static class Gains {
 		case "Gather":
 			C.Gather = amount;
 			break;
-		case "Capacity":
-			C.Capacity = amount;
+		case "MaxBalls":
+			C.maxBalls = amount;
 			break;
 		case "Stamina":
 			C.Stamina = amount;
@@ -155,7 +155,7 @@ public static void gainLevel(Character C) {
 		C.Damage += Grow (C, "Damage");
 		C.Catch += Grow (C, "Catch");
 		C.Gather += Grow (C, "Gather");
-		C.Capacity += Grow (C, "Capacity");
+		C.maxBalls += Grow (C, "MaxBalls");
 		C.Stamina += Grow (C, "Stamina");
 		C.dodge += Grow (C, "Dodge");
     }

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Dialogue_Test.unity
+- path: Assets/Scenes/Dialogue/A New Student 7.unity
   isLoaded: 1
   isActive: 1

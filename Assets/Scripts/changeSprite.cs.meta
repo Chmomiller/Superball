@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f868cab05c214fe4fb55401990dccb87
+timeCreated: 1524107254
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - salt: {fileID: 21300000, guid: 6b98b1398d4c80c45b3e2e5102ecfcf4, type: 3}
+  - schola: {fileID: 21300000, guid: a7e5543d020ef4d4c954008261038ddc, type: 3}
+  - might: {fileID: 21300000, guid: 57310ae82374cf24bbbb43366a901459, type: 3}
+  - yam: {fileID: 21300000, guid: 26f3ab48212093a44b30aa05cb76a185, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
