@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Dialogue/A New Student 7.unity
+- path: Assets/MainMenu.unity
   isLoaded: 1
   isActive: 1

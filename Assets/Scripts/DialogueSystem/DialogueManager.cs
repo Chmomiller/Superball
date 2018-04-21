@@ -17,8 +17,9 @@ public class DialogueManager : MonoBehaviour {
 	bool initialFade;
 
 	//black beginning
+	bool blackStart = false;
 	int blackFade = 0;
-	float bColor = 0.0f;
+	float bColor =0.0f;
 
 	//transitions
 
@@ -26,17 +27,19 @@ public class DialogueManager : MonoBehaviour {
 	public Image screen;
 	bool transition= false;
 	bool changeBG = false;
-	bool fadeIn = false;
 
 	//Speaking characters
-
+	public string character1 = "";
+	public string character2 = "";
 	public string[] onScreenChars = {"", "", "", "", "", "" };
+	List<string> sceneCharacters;
 	string[] group1;
 	string[] group2;
 
 	public Image[] charSprites = new Image[6];
 
 	bool newLine = true;
+	string prevSpeaker = "";
 
 	//lines
 	public Dialogue textLines;
@@ -48,15 +51,6 @@ public class DialogueManager : MonoBehaviour {
 	public float textSpeed = 0.05f;
 	float textTime = 0.0f;
 
-	//unskippable stuff
-	bool unskip = false;
-	float unskipTime = 0f;
-	float unskipDuration = 0f;
-
-	//ending a scene
-	public bool combatDialogue = false;
-	public string nextScene;
-
 	// Use this for initialization
 	void Start () {
 		fadeTime = 0;
@@ -64,9 +58,11 @@ public class DialogueManager : MonoBehaviour {
 		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
 
 		isSpeaking = true;
+		sceneCharacters = new List<string>();
 		textLines = new Dialogue ();
 		insertText = textLines.allDialogue[sceneTitle];
-
+        
+        print("Scene is: " + sceneTitle);
 		startConvo (sceneTitle);
 
 
@@ -83,53 +79,15 @@ public class DialogueManager : MonoBehaviour {
 			} else if (transition) {
 				//bg.GetComponent<SpriteRenderer> ().color = new Color (bg.GetComponent<SpriteRenderer> ().color.r - (Time.deltaTime / fadeDuration)*4,bg.GetComponent<SpriteRenderer> ().color.g - (Time.deltaTime / fadeDuration)*4, bg.GetComponent<SpriteRenderer> ().color.b - (Time.deltaTime / fadeDuration)*4,1.0f);
 				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a + Time.deltaTime / fadeDuration);
-			} else if (fadeIn) {
-				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a - Time.deltaTime / fadeDuration);
-
 			}
 
 		} else {
-			fading = false;
-			if (fadeIn) {
-				fadeIn = false;
-				changeBG = true;
-				fading = false;
-				nextLine ();
-
-
-			}
-
-
 			if (transition) {
-				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
-				//bg.GetComponent<FullScreenBG> ().ResetScale ();
-
-				//set next characters
-				for(int c=0; c < 6; ++c) {
-					if (insertText [lineNum, c] != "") {
-						charSprites [c].sprite = Resources.Load<Sprite> ("Characters/" + insertText [lineNum, c]) as Sprite;
-						charSprites [c].preserveAspect = true;
-						if (c > 2) {
-
-							charSprites [c].GetComponent<RectTransform> ().localScale = new Vector3 (
-								charSprites [c].GetComponent<RectTransform> ().localScale.x * -1,
-								charSprites [c].GetComponent<RectTransform> ().localScale.y,
-								charSprites [c].GetComponent<RectTransform> ().localScale.z
-
-
-							);
-						}
-					} else {
-						charSprites [c].color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
-					}
-				}
-				//clear text
-				dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText("");
-
-				fadeIn = true;
-				fading = true;
-				fadeTime = 0;
+				bg.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
+				bg.GetComponent<FullScreenBG> ().ResetScale ();
+				changeBG = true;
 			}
+			fading = false;
 			initialFade = false;
 			transition = false;
 		}
@@ -154,17 +112,6 @@ public class DialogueManager : MonoBehaviour {
 					if (insertText [lineNum, ch] != "") {
 						charSprites [ch].sprite = Resources.Load<Sprite> ("Characters/" + insertText [lineNum, ch]) as Sprite;
 						charSprites [ch].preserveAspect = true;
-
-						if (ch > 2) {
-							charSprites [ch].GetComponent<RectTransform> ().localScale = new Vector3 (
-								charSprites [ch].GetComponent<RectTransform> ().localScale.x * -1,
-								charSprites [ch].GetComponent<RectTransform> ().localScale.y,
-								charSprites [ch].GetComponent<RectTransform> ().localScale.z
-
-
-							);
-
-						}
 
 						if (speakerSet.Contains (insertText [lineNum, ch])) {
 							charSprites [ch].color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
@@ -200,10 +147,6 @@ public class DialogueManager : MonoBehaviour {
 					textTime = 0.0f;
 				} else if (lineI >= insertText [lineNum, 6].Length) {
 					isSpeaking = false;
-					if (insertText [lineNum, 8] == "unskippable"){
-						unskip = true;
-						unskipDuration = float.Parse (insertText [lineNum, 9] );
-					}
 
 				}
 
@@ -211,13 +154,7 @@ public class DialogueManager : MonoBehaviour {
 				currentLine = "";
 				lineI = 0;
 				dialogueBox.GetComponentInChildren<TextMeshProUGUI> ().SetText (insertText [lineNum, 7] + "\n" + insertText [lineNum, 6]);
-				if (unskip){
-					if(unskipTime > unskipDuration){
-						unskip = false;
-						nextLine ();
-					}
-					unskipTime += Time.deltaTime;
-				}
+
 			
 			} else {
 				endConvo ();
@@ -231,18 +168,12 @@ public class DialogueManager : MonoBehaviour {
 
 
 		if (isSpeaking && !fading && !transition) {
-			if (insertText [lineNum, 8] == "unskippable") {
-				return;
-			}
-
 			isSpeaking = false;
 		} else if (lineNum < insertText.GetLength(0) && !fading && !transition){
-			if (unskip) {
-				return;
-			}
+			
 			currentLine = "";
 			lineI = 0;
-			//prevSpeaker = insertText [lineNum, 7];
+			prevSpeaker = insertText [lineNum, 7];
 			lineNum++;
 			newLine = true;
 			isSpeaking = true;
@@ -260,7 +191,7 @@ public class DialogueManager : MonoBehaviour {
 		//special cases
 		if (bColor < blackFade && isSpeaking && !fading) {
 			bColor += 1.0f / blackFade;
-			bg.GetComponent<Image> ().color = new Color (bColor,bColor,bColor,1.0f);
+			bg.GetComponent<SpriteRenderer> ().color = new Color (bColor,bColor,bColor,1.0f);
 		}
 
 
@@ -269,7 +200,6 @@ public class DialogueManager : MonoBehaviour {
 			//bg.GetComponent<SpriteRenderer> ().color = new Color (1.0f,1.0f,1.0f,1.0f);
 			screen.color = new Color (0.0f,0.0f,0.0f,0.0f);
 			changeBG = false;
-
 
 
 		}
@@ -287,17 +217,7 @@ public class DialogueManager : MonoBehaviour {
 
 
 	public void endConvo(){
-		if (combatDialogue) {
-			dialogueBox.color = new Color (0.8f, 0.8f, 0.8f, 0.0f);
-			dialogueBox.gameObject.SetActive (false);
-			foreach (Image cha in charSprites) {
-				cha.color = new Color (1f, 1f, 1f, 0f);
-				cha.gameObject.SetActive (false);
-			}
-		} else {
-			//insert scene change here
-			UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
-		}
+		
 
 	}
 
@@ -306,13 +226,8 @@ public class DialogueManager : MonoBehaviour {
 		fadeTime = 0;
 		fading = true;
 		initialFade = true;
-		dialogueBox.gameObject.SetActive (true);
-
 		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
 
-		foreach (Image cha in charSprites) {
-			cha.gameObject.SetActive (true);
-		}
 
 
 		isSpeaking = true;
@@ -320,31 +235,19 @@ public class DialogueManager : MonoBehaviour {
 		insertText = textLines.allDialogue[sceneTitle];
 
 		if (insertText [0, 8] == "black") {
-			//blackStart = true;
+			blackStart = true;
 			blackFade = int.Parse (insertText [0, 9]);
-			bg.GetComponent<Image> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
+			bg.GetComponent<SpriteRenderer> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
 				
 		}
-
-
 	
-		//string[] speakerSet = insertText [0, 7].Split (' ');
+		string[] speakerSet = insertText [0, 7].Split (' ');
 
 		//set the character sprites
 		for(int c=0; c < 6; ++c) {
 			if (insertText [0, c] != "") {
 				charSprites [c].sprite = Resources.Load<Sprite> ("Characters/" + insertText [0, c]) as Sprite;
 				charSprites [c].preserveAspect = true;
-				if (c > 2) {
-					
-					charSprites [c].GetComponent<RectTransform> ().localScale = new Vector3 (
-						charSprites [c].GetComponent<RectTransform> ().localScale.x * -1,
-						charSprites [c].GetComponent<RectTransform> ().localScale.y,
-						charSprites [c].GetComponent<RectTransform> ().localScale.z
-
-
-					);
-				}
 			} else {
 				charSprites [c].color = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 			}
