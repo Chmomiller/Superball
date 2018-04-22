@@ -649,6 +649,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519878006}
+    - target: {fileID: 114423588766967868, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Schola Grandis Gym
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -870,6 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
+  Game: {fileID: 0}
 --- !u!1001 &2054437916
 Prefab:
   m_ObjectHideFlags: 0

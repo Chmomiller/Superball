@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void loadAnyScene(string name) {
-        if (UnityEngine.Random.Range(0, 10) == 0) {
+        if (UnityEngine.Random.Range(0, 20) == 0) {
             UnityEngine.SceneManagement.SceneManager.LoadScene("A New Student 7");
         } else {
             UnityEngine.SceneManagement.SceneManager.LoadScene(name);

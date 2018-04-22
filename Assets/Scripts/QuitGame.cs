@@ -8,10 +8,11 @@ public class QuitGame : MonoBehaviour
 {
     public AudioScript Audio;
     public GameManager Game;
+    public bool loadingScene = false;
 	void OnEnable()
 	{
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
-        Game = gameObject.GetComponent<GameManager>(); 
+        Game = gameObject.GetComponent<GameManager>();
         //The lowercase gameObject is intentional. It refers to the object this script is attached to
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -27,12 +28,17 @@ public class QuitGame : MonoBehaviour
         yield return new WaitForSeconds(1);
         Audio.playAudio(audioPath, track);
         Audio.src0.loop = true;
+        loadingScene = false;
         SceneManager.LoadScene(sceneName);
         
 
     }
     public void Restart(string sceneName)
 	{
+        print(loadingScene);
+        if (loadingScene) return;
+
+        loadingScene = true;
         Audio.resetAllAudio();
         print("restart");
         switch (sceneName) {
@@ -40,6 +46,7 @@ public class QuitGame : MonoBehaviour
                 Audio.resetAllAudio();
                 Audio.playSFX("_SFX/Battle sfx/swoosh/swoosh");
                 Audio.playAudio("Concept Sound/80s something", 0);
+                loadingScene = false;
                 SceneManager.LoadScene(sceneName);
 
                 /*  When you return to this scene, the buttons lose functionality since GameManager is now in Dont destroy and they cannot find it anymore.
@@ -51,9 +58,9 @@ public class QuitGame : MonoBehaviour
             break;
             case "MapScreen":
                 Audio.resetAllAudio();
-                int random = UnityEngine.Random.Range(0, 10);
-                if (random <= 3) {
-                    if (random == 0) {
+                int random = UnityEngine.Random.Range(0, 100);
+                if (random <= 10) {
+                    if (random <= 5) {
                         Audio.playAudio("Unknown Individuals 2", 0);
                     } else {
                         Audio.playAudio("Who Am I", 0);
@@ -62,9 +69,11 @@ public class QuitGame : MonoBehaviour
                    Audio.playAudio("Concept Sound/80s something", 1);
                 }
                 Audio.src0.loop = true;
+                loadingScene = false;
                 SceneManager.LoadScene("MapScreen");
                 break;
             case "DialogueMenu":
+                loadingScene = false;
                 SceneManager.LoadScene("DialogueMenu");
                 break;
 
@@ -98,6 +107,7 @@ public class QuitGame : MonoBehaviour
                 Audio.resetAllAudio();
                 Audio.playAudio("Concept Sound/80's something", 0);
                 Audio.src0.loop = true;
+                loadingScene = false;
                 break;
         }
 	}
@@ -105,7 +115,7 @@ public class QuitGame : MonoBehaviour
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 
-        GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+        if(GameObject.Find("MainMenu") != null) GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
 
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
         if (SceneManager.GetActiveScene ().name == "MainMenu") 
@@ -117,12 +127,14 @@ public class QuitGame : MonoBehaviour
             GameObject.Find("DialogueMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogueMenu"));
             GameObject.Find("Difficulty").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().swapDifficulties());
             print("Buttons Found");
+
 		} else if(SceneManager.GetActiveScene().name == "MapScreen") {
             GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
+            GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
 
-        }else if(SceneManager.GetActiveScene().name == "DialogueMenu") {
+        } else if(SceneManager.GetActiveScene().name == "DialogueMenu") {
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("Prologue").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Prologue"));
             GameObject.Find("A New Student").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("A New Student"));

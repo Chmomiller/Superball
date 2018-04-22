@@ -734,8 +734,6 @@ MonoBehaviour:
   dialogueBox: {fileID: 944049252}
   bg: {fileID: 579819593}
   screen: {fileID: 352823778}
-  character1: 
-  character2: 
   onScreenChars:
   - 
   - 
@@ -752,6 +750,8 @@ MonoBehaviour:
   - {fileID: 1731735875}
   sceneTitle: A New Student 7
   textSpeed: 0.05
+  combatDialogue: 0
+  nextScene: 
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0

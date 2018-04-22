@@ -686,8 +686,6 @@ MonoBehaviour:
   dialogueBox: {fileID: 944049252}
   bg: {fileID: 579819593}
   screen: {fileID: 352823778}
-  character1: 
-  character2: 
   onScreenChars:
   - 
   - 
@@ -704,6 +702,8 @@ MonoBehaviour:
   - {fileID: 1731735875}
   sceneTitle: Fight Against the Military
   textSpeed: 0.05
+  combatDialogue: 0
+  nextScene: 
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1068,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1437522120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 122.88}
+  m_LocalPosition: {x: 0, y: 0, z: -4.48}
   m_LocalScale: {x: 0.022760106, y: 0.022760106, z: 0.022760106}
   m_Children:
   - {fileID: 190790589}
@@ -1077,7 +1077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523.22943, y: -281.9652}
+  m_AnchoredPosition: {x: -521.69, y: -250.07}
   m_SizeDelta: {x: 79.7, y: 62.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1437522122

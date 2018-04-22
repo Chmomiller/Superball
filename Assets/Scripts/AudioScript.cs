@@ -157,14 +157,13 @@ public class AudioScript : MonoBehaviour {
    }
    
    public void playAudio(string nameOrPath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
-        string name = nameOrPath;
+      string name = nameOrPath;
       chooseTrack(track);
       src.Stop();
       src.time = 0;
       playingAudio = true;
       src.clip = Resources.Load <AudioClip> ("Audio/"+name); //This is you don't
-        if (src.clip == null) print("NULL Audio Src");
-        Debug.Log(name);
+      if (src.clip == null) print("NULL Audio Src");
       src.Play();
       
    }
@@ -241,15 +240,7 @@ public class AudioScript : MonoBehaviour {
       //Debug.Log("src2: "+src2.time);
       //these do things based upon keys pressed
       //https://docs.unity3d.com/ScriptReference/KeyCode.html
-      if(Input.GetKeyDown(KeyCode.Space)){
-            print("Space");
-         if(playingAudio == false){
-            src0.Play(); //play file specified in the AudioClip within the Audio Source object in the editor. This is an method already defined within the Audio Source library.
-            playingAudio = true;
-         }else{
-            stopAudio(0);
-         }
-      }else if(Input.GetKeyDown(KeyCode.Backspace)){  
+      if(Input.GetKeyDown(KeyCode.Backspace)){  
         resetAllAudio();
       }else if(  (Input.GetKeyDown(KeyCode.Equals)) || (Input.GetKeyDown(KeyCode.Plus)) ){
         src.volume+=0.1F;
