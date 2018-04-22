@@ -76,6 +76,7 @@ public class Character : MonoBehaviour
 		if(this.Stamina < 0)
 		{
 			this.Stamina = 0;
+            this.dead = true;
 		}
 	}
     public void gainStamina(int staminaGain) 
