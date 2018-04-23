@@ -227,7 +227,6 @@ public class Character : MonoBehaviour
 				removeDoneStatusEffects ();
 				removeStatusEffect ("buff");
 			}
-			this.attack = Math.Floor (0.75 * this.attack);
 			this.attackMultiplier = .75f;
 			CSUI.AddStatus(1);
 			break;
@@ -237,7 +236,6 @@ public class Character : MonoBehaviour
 				removeDoneStatusEffects ();
 				removeStatusEffect ("debuff");
 			}
-			this.attack = Math.Floor (1.25 * this.attack);
 			this.attackMultiplier = 1.25f;
 			CSUI.AddStatus(2);
 			break;
@@ -248,7 +246,7 @@ public class Character : MonoBehaviour
 				removeDoneStatusEffects ();
 				removeStatusEffect ("steady");
 			}
-			this.defenseMultiplier = 1.25f;
+			this.defenseMultiplier = 0.75f;
 			CSUI.AddStatus(3);
 			break;
 		case "steady":
@@ -258,7 +256,7 @@ public class Character : MonoBehaviour
 				removeDoneStatusEffects ();
 				removeStatusEffect ("unsteady");
 			}
-			this.defenseMultiplier = 0.75f;
+			this.defenseMultiplier = 1.25f;
 			CSUI.AddStatus(4);
 			break;
 		case "halfDmg":
@@ -366,7 +364,7 @@ public class Character : MonoBehaviour
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
 		target.dodgeBall (this);
-		target.loseStamina((int) (this.Damage * variance * target.defenseMultiplier));
+		target.loseStamina((int) (this.Damage * variance * attackMultiplier * target.defenseMultiplier));
 	}
 
     public void Rest()

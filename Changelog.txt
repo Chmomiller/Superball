@@ -64,5 +64,9 @@ Tristian:
 4/19/18:
 	Added UI support for status icons
 	Action buttons that are currently unusable are greyed out
+4/22/18:
+	Added more UI for combat
+	Corrected steady and unsteady effects
+	Changed buff and debuff to use a multiplier instead of directly changing the damage value
 	
 	

@@ -60,7 +60,7 @@ public class Elizabeth : Character {
     public override bool Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (!Target[0].dodgeBall(this)) {
-            Target[0].loseStamina(  (int)( (this.attack + 35)*variance ) );
+			Target[0].loseStamina(  (int)( (this.attack + 35) * variance * attackMultiplier * Target[0].defenseMultiplier) );
             if (UnityEngine.Random.Range(0, 5) > 4) {
                 Target[0].addStatusEffect("stun", 2);
             }

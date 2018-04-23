@@ -95,9 +95,9 @@ public class Victoria : Character {
     public override bool Skill3() {
         //      Idol Scream (Kowaii): reduce stamina of all enemy players
         int value = (int)((Damage * 1.5f) * (heldBalls / 3f) * 2f);
-		enemies[0].loseStamina(value);
-		enemies[1].loseStamina(value);
-		enemies[2].loseStamina(value);
+		enemies[0].loseStamina((int)(value * attackMultiplier * enemies[0].defenseMultiplier));
+		enemies[1].loseStamina((int)(value * attackMultiplier * enemies[1].defenseMultiplier));
+		enemies[2].loseStamina((int)(value * attackMultiplier * enemies[2].defenseMultiplier));
 		Debug.Log ("Idol Scream damage: "+value);
 		return true;
     }

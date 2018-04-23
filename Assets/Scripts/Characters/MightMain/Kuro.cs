@@ -69,7 +69,7 @@ public class Kuro : Character {
 			for(int i = 0; i < 3; i++)
 			{
 				// This attack does stamina loss before checking for dodging
-				enemies[i].loseStamina((int)(Damage * 1.5f));
+				enemies[i].loseStamina((int)(Damage * 1.5f * attackMultiplier * enemies[i].defenseMultiplier));
 				enemies [i].dodgeBall (this);
 			}
 		}
