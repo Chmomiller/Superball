@@ -5,7 +5,7 @@ using UnityEngine;
 public class YamatoSceneScript : MonoBehaviour {
     public GameManager game;
     // Use this for initialization
-    void Start() {
+    void Awake() {
         game = GameObject.Find("GameManager").GetComponent<GameManager>();
         if (game.hardMode) {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(18);

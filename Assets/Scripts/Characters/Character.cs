@@ -226,7 +226,6 @@ public class Character : MonoBehaviour
 				removeDoneStatusEffects ();
 				removeStatusEffect ("buff");
 			}
-			this.attack = Math.Floor (0.75 * this.attack);
 			this.attackMultiplier = .75f;
 			CSUI.AddStatus(1);
 			break;
@@ -236,19 +235,8 @@ public class Character : MonoBehaviour
 				removeDoneStatusEffects ();
 				removeStatusEffect ("debuff");
 			}
-			this.attack = Math.Floor (1.25 * this.attack);
 			this.attackMultiplier = 1.25f;
 			CSUI.AddStatus(2);
-			break;
-		case "unsteady":
-			if(findStatus("steady") != -1)
-			{
-				statusEffects [findStatus ("steady")].duration = 0;
-				removeDoneStatusEffects ();
-				removeStatusEffect ("steady");
-			}
-			this.defenseMultiplier = 1.25f;
-			CSUI.AddStatus(3);
 			break;
 		case "steady":
 			if(findStatus("unsteady") != -1)
@@ -256,6 +244,16 @@ public class Character : MonoBehaviour
 				statusEffects [findStatus ("unsteady")].duration = 0;
 				removeDoneStatusEffects ();
 				removeStatusEffect ("unsteady");
+			}
+			this.defenseMultiplier = 1.25f;
+			CSUI.AddStatus(3);
+			break;
+		case "unsteady":
+			if(findStatus("steady") != -1)
+			{
+				statusEffects [findStatus ("steady")].duration = 0;
+				removeDoneStatusEffects ();
+				removeStatusEffect ("steady");
 			}
 			this.defenseMultiplier = 0.75f;
 			CSUI.AddStatus(4);
@@ -365,7 +363,7 @@ public class Character : MonoBehaviour
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
 		target.dodgeBall (this);
-		target.loseStamina((int) (this.Damage * variance * target.defenseMultiplier));
+		target.loseStamina((int) (this.Damage * variance * attackMultiplier * target.defenseMultiplier));
 	}
 
     public void Rest()
@@ -400,6 +398,11 @@ public class Character : MonoBehaviour
 		return true;
     }
 
+	public void CallTell()
+	{
+		CSUI.ShowTell (this.actionType);
+	}
+
 	public virtual void cleanUp()
 	{
 		catching = false;
@@ -426,6 +429,8 @@ public class Character : MonoBehaviour
 				this.actionCooldowns [i]--;
 			}
 		}
+
+		CSUI.ShowTell ("None");
 	}
    
        public void LevelUp(int number) {

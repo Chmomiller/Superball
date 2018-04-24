@@ -13,7 +13,7 @@ public class Clemence : Character
         Gather = 1;
         Stamina = maxStamina;
         
-        heldBalls = 0;
+        //heldBalls = 0;
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };

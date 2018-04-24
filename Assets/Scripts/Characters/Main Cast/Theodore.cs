@@ -43,7 +43,7 @@ public class Theodore : Character {
 		// check if the target dodges the ball
 		Target[0].dodgeBall(this);
 		// deal damage and add statusEffect
-        Target[0].loseStamina( (int)( (this.attack) * variance * .75f) );
+		Target[0].loseStamina( (int)( (this.attack) * variance * .75f * attackMultiplier * Target[0].defenseMultiplier) );
         Target[0].addStatusEffect("stun", 1);
 		this.heldBalls -= actionCosts[4];
 		return false;
@@ -60,7 +60,7 @@ public class Theodore : Character {
 		// Theodore will aim for the wrong target.
 		Target[0] = Target[2];
 		float variance = Random.Range(0.8f, 1.2f);
-        Target[0].loseStamina((int)(this.attack * variance));
+		Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
         actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
 		this.heldBalls -= actionCosts[5];
 		return false;
@@ -82,7 +82,7 @@ public class Theodore : Character {
         for (int i = 0; i < 8; i++) {
             variance = Random.Range(0.7f, 1.1f);
 			Target[0].dodgeBall(this);
-			Target[0].loseStamina((int)(this.attack * variance));
+			Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
         }
 		this.heldBalls -= actionCosts[7];
 		return false;

@@ -16,9 +16,12 @@ public class Elizabeth : Character {
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Preen", "Royal Touch", "Skill3", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Elizabeth is staggered until attacked, then she becomes steady", "Stacking self buff to damage", "Strong attack that may stun against one enemy", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Become staggered until attacked, then become steady", 	
+										  "Become buffed", 
+										  "Strong attack that may stun against one enemy", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Offense", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
 
@@ -60,7 +63,7 @@ public class Elizabeth : Character {
     public override bool Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (!Target[0].dodgeBall(this)) {
-            Target[0].loseStamina(  (int)( (this.attack + 35)*variance ) );
+			Target[0].loseStamina(  (int)( (this.attack + 35) * variance * attackMultiplier * Target[0].defenseMultiplier) );
             if (UnityEngine.Random.Range(0, 5) > 4) {
                 Target[0].addStatusEffect("stun", 2);
             }

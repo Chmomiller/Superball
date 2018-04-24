@@ -65,8 +65,8 @@ public class ButtonsUI : MonoBehaviour
 			{
 				CM.combatQueue [CM.currentCharacter].catching = true;
 			}
-			//if(CM.combatQueue[CM.currentCharacter].tag == "Player")
-			//{
+			if(CM.combatQueue[CM.currentCharacter].tag == "Player")
+			{
 				switch (CM.combatQueue [CM.currentCharacter].GetTargetingType (actionNumber)) 
 				{
 				case(0):
@@ -94,7 +94,7 @@ public class ButtonsUI : MonoBehaviour
 						}
 					}
 					break;
-				}/*
+				}
 			}
 			else
 			{
@@ -126,7 +126,7 @@ public class ButtonsUI : MonoBehaviour
 					}
 					break;
 				}
-			}*/
+			}
 		}
 	}
 

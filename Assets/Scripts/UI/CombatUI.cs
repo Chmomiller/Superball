@@ -115,7 +115,8 @@ public class CombatUI : MonoBehaviour
 		{
 			phaseText.text = "Planning Phase";
 		}
-		if(CM.currentPhase == CombatManager.PHASE.EXECUTE)
+		if(CM.currentPhase == CombatManager.PHASE.RESULTS
+			|| CM.currentPhase == CombatManager.PHASE.EXECUTE)
 		{
 			phaseText.text = "Execution Phase";
 		}

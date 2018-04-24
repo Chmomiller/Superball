@@ -8,6 +8,7 @@ public class CharacterSelectUI : MonoBehaviour
 	public int character;
 	public Image[] status;
 	public Sprite[] statusImage;
+	public Sprite[] TellImage;
 	public CombatManager CM;
 	// Use this for initialization
 	void Start () 
@@ -70,14 +71,23 @@ public class CharacterSelectUI : MonoBehaviour
 
 	public void AddStatus(int newStatus)
 	{
-		for(int i = 0; i < 3; i++)
+		bool afflicted = false;
+		int stat = 0;
+		for(int i = 3; i > 0; i--)
 		{
-			if(!status[i+1].enabled)
+			if(!status[i].enabled)
 			{
-				status [i+1].sprite = statusImage[newStatus];	
-				status [i+1].enabled = true;
-				return;
+				stat = i;
 			}
+			if(status[i].sprite == statusImage[newStatus])
+			{
+				afflicted = true;
+			}
+		}
+		if(!afflicted)
+		{
+			status [stat].sprite = statusImage[newStatus];	
+			status [stat].enabled = true;
 		}
 	}
 
@@ -88,8 +98,29 @@ public class CharacterSelectUI : MonoBehaviour
 			if(status[i+1].sprite == statusImage[oldStatus])
 			{
 				status [i+1].enabled = false;
-				return;
 			}
+		}
+	}
+
+	public void ShowTell(string type)
+	{
+		switch(type)
+		{
+		case("Offense"):
+			status [4].enabled = true;
+			status[4].sprite = TellImage [0];
+			break;
+		case("Defense"):
+			status [4].enabled = true;
+			status[4].sprite = TellImage [1];
+			break;
+		case("Utility"):
+			status [4].enabled = true;
+			status[4].sprite = TellImage [2];
+			break;
+		default:
+			status [4].enabled = false;
+			break;
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class Harold : Character {
 											"Charges for a turn then attacks with a powerful strike against an enemy and becomes staggered", 
 											"Throws five balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 2 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 1 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 4, 6, 5 };
 
@@ -24,6 +24,7 @@ public class Harold : Character {
     }
 
     void Update() {
+		base.Update ();
 		/*
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
@@ -75,7 +76,7 @@ public class Harold : Character {
 		if(findStatus("misc") != -1)
 		{
 			// This attack does stamina loss before checking for dodging
-			Target[2].loseStamina(Damage * 2);
+			Target[2].loseStamina((int)(Damage * 2 * attackMultiplier * Target[2].defenseMultiplier));
 			Target[2].dodgeBall (this);
 			addStatusEffect ("unsteady", 1);
 		}
@@ -91,7 +92,7 @@ public class Harold : Character {
         //Five rounds rapid
         float variance = UnityEngine.Random.Range(.6f, 1.1f); //most likely to throw weaker variance
         for(int i = 0; i <= 5; i++) {
-            Target[0].loseStamina((int)(this.attack * variance));
+			Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
         }
 		return true;
     }
@@ -115,6 +116,7 @@ public class Harold : Character {
 				actionType = "Offense";
 				Target [0] = Target [2];
 				Target [1] = Target [2];
+				CSUI.ShowTell ("Offense");
 			}
 		}
 	}

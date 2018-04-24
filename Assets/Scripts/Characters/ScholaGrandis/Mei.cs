@@ -12,9 +12,12 @@ public class Mei : Character {
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Silver Platter", "Clean Up", "Cup of Tea", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Gives all of your balls to allies", "Gather an ammount of balls equal to ammount of balls used last turn", "Heals an ally and returns them to their calm state", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Gives all of your balls to allies", 
+										  "Gather half of the balls used this turn", 
+										  "Heal an ally and calm them", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
