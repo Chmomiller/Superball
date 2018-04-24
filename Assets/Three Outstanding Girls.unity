@@ -703,6 +703,7 @@ MonoBehaviour:
   sceneTitle: Three Outstanding Girls
   textSpeed: 0.05
   combatDialogue: 0
+  nextScene: MagicalPreparation
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0
