@@ -14,9 +14,11 @@ public class Greg: Character
         Role = "Support";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Pass Off", "Skill3", "Rest" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Immune to damage, any balls thrown at you will be given to Trevor", "Pass off all balls to target ally", "", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Catch any balls thrown at you and pass them off to Trevor", 
+										  "Pass off all balls to target ally", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 

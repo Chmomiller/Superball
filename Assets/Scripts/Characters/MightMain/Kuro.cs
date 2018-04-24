@@ -17,7 +17,7 @@ public class Kuro : Character {
 											"Charge up for a turn before unleashing an attack against all enemies", 
 											"Buff your team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 0 };
 
@@ -26,6 +26,7 @@ public class Kuro : Character {
 
     // Update is called once per frame
     void Update() {
+		base.Update ();
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -94,6 +95,7 @@ public class Kuro : Character {
 		{
 			action = "Skill3";
 			actionType = "Offense";
+			CSUI.ShowTell ("Offense");
 		}
 	}
 }

@@ -36,14 +36,14 @@ public class CharacterUI : MonoBehaviour
 
 	void Update()
 	{
-		ballCount.text = ""+character.heldBalls+"/"+character.maxBalls;
+		ballCount.text = ""+character.heldBalls;
 	}
 
 	void OnMouseEnter()
 	{
 		characterInfo.text = character.Name 
 			+ "\nStamina: "+ character.Stamina + " / " + character.maxStamina
-			+ "\nBalls: " + character.heldBalls
+			+ "\nBalls: " + character.heldBalls + " / " + character.maxBalls
 			+ "\n\nSkills:" 
 			+ "\n\t" + character.GetActionName(4)
 			+ "\n\t" + character.GetActionName(5)
@@ -57,6 +57,5 @@ public class CharacterUI : MonoBehaviour
 	{
 		characterInfo.enabled = false;
 		characterPanel.enabled = false;
-	}
-		
+	}		
 }

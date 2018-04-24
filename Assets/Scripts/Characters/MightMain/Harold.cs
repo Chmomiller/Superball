@@ -16,7 +16,7 @@ public class Harold : Character {
 											"Charges for a turn then attacks with a powerful strike against an enemy and becomes staggered", 
 											"Throws five balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 2 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 1 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 4, 6, 5 };
 
@@ -24,6 +24,7 @@ public class Harold : Character {
     }
 
     void Update() {
+		base.Update ();
 		/*
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
@@ -115,6 +116,7 @@ public class Harold : Character {
 				actionType = "Offense";
 				Target [0] = Target [2];
 				Target [1] = Target [2];
+				CSUI.ShowTell ("Offense");
 			}
 		}
 	}

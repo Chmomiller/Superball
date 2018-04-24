@@ -15,9 +15,12 @@ public class Victoria : Character {
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Kawii/Kowaii", "Parasol", "Idol Scream", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)", "Rebounds next shot thrown at her", "Reduce stamina of all enemies", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls ground", 
+										  "Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)", 
+										  "Rebounds next shot thrown at her", 
+										  "Reduce stamina of all enemies", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Offense", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 2, 3 };
 

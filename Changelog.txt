@@ -68,5 +68,13 @@ Tristian:
 	Added more UI for combat
 	Corrected steady and unsteady effects
 	Changed buff and debuff to use a multiplier instead of directly changing the damage value
-	
-	
+4/23/18:
+	Fixed healthbar UI bug
+	Fixed bug where steady showed as unsteady and vice-versa
+	Fixed UI bug where "Execution Phase" was never shown
+	Fixed bug where having a player dead near the front of the order causes everyone to sleep
+	Fixed bug where status icons stack
+	Partial fix for reactive action texts overwriting the offensive action text
+	Removed resurrection and rest
+	Changed targeting arrays in enemies to chose correct targets
+	Added UI support for tells

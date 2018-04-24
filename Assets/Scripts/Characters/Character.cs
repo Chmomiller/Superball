@@ -239,16 +239,6 @@ public class Character : MonoBehaviour
 			this.attackMultiplier = 1.25f;
 			CSUI.AddStatus(2);
 			break;
-		case "unsteady":
-			if(findStatus("steady") != -1)
-			{
-				statusEffects [findStatus ("steady")].duration = 0;
-				removeDoneStatusEffects ();
-				removeStatusEffect ("steady");
-			}
-			this.defenseMultiplier = 0.75f;
-			CSUI.AddStatus(3);
-			break;
 		case "steady":
 			if(findStatus("unsteady") != -1)
 			{
@@ -257,6 +247,16 @@ public class Character : MonoBehaviour
 				removeStatusEffect ("unsteady");
 			}
 			this.defenseMultiplier = 1.25f;
+			CSUI.AddStatus(3);
+			break;
+		case "unsteady":
+			if(findStatus("steady") != -1)
+			{
+				statusEffects [findStatus ("steady")].duration = 0;
+				removeDoneStatusEffects ();
+				removeStatusEffect ("steady");
+			}
+			this.defenseMultiplier = 0.75f;
 			CSUI.AddStatus(4);
 			break;
 		case "halfDmg":
@@ -399,6 +399,11 @@ public class Character : MonoBehaviour
 		return true;
     }
 
+	public void CallTell()
+	{
+		CSUI.ShowTell (this.actionType);
+	}
+
 	public virtual void cleanUp()
 	{
 		catching = false;
@@ -425,6 +430,8 @@ public class Character : MonoBehaviour
 				this.actionCooldowns [i]--;
 			}
 		}
+
+		CSUI.ShowTell ("None");
 	}
    
        public void LevelUp(int number) {

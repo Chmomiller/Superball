@@ -49,17 +49,17 @@ public class CombatManager : MonoBehaviour
 			Enemy [i] = GameObject.Find ("Character" + (i + 3)).GetComponent<Character> ();
 			// Player [i].combat = this;
 			// Enemy [i].combat = this;
-			CharacterSelectUI tempPlayerUI = GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ();
-			CharacterSelectUI tempEnemyUI = GameObject.Find ("Enemy" + i).GetComponent<CharacterSelectUI> ();
-			tempPlayerUI.Init (this);
-			tempEnemyUI.Init (this);
+			CharacterSelectUI PlayerSUI = GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ();
+			CharacterSelectUI EnemySUI = GameObject.Find ("Enemy" + i).GetComponent<CharacterSelectUI> ();
+			PlayerSUI.Init (this);
+			EnemySUI.Init (this);
 			//GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().character = i;
 			//GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().CM = this;
 			//GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().character = i+3;
 			//GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().CM = this;
 
-			Player [i].Init (this, tempPlayerUI);
-			Enemy [i].Init (this, tempEnemyUI);
+			Player [i].Init (this, PlayerSUI);
+			Enemy [i].Init (this, EnemySUI);
 
 			playerSelect [i] = GameObject.Find ("Player" + i).GetComponent<Button> ();
 			enemySelect [i] = GameObject.Find ("Enemy" + i).GetComponent<Button> ();
@@ -198,7 +198,8 @@ public class CombatManager : MonoBehaviour
 		int firstAction = -1;
 		for (int i = 5; i > -1; i--)
 		{
-			if (combatQueue [i].action == "None") 
+			if (combatQueue [i].action == "None" 
+				&& !combatQueue[i].dead) 
 			{
 				firstAction = i;
 			}
@@ -254,7 +255,7 @@ public class CombatManager : MonoBehaviour
 					}
 				}
 			}
-		}		
+		}
 		// If there are no characters without actions
 		if (firstAction == -1) 
 		{
@@ -275,12 +276,17 @@ public class CombatManager : MonoBehaviour
 					j++;
 				}
 			}
+			combatQueue[5].CallTell();
 			currentPhase = PHASE.EXECUTE;
 			Execute ();
 		}
 		if (firstAction != -1) 
 		{
 			currentCharacter = firstAction;
+			if (firstAction > 0) 
+			{
+				combatQueue [firstAction - 1].CallTell ();
+			}
 		}
 	}
 
@@ -325,19 +331,20 @@ public class CombatManager : MonoBehaviour
 	// This function has the charcters perform their actions in the correct order
 	void Execute()
 	{
+		// Show the execute phase
+		CUI.ShowPhase ();
 		for (currentCharacter = 0; currentCharacter < 6; currentCharacter++) 
 		{
 			if(! combatQueue[currentCharacter].dead) 
 				//&& combatQueue[i].character.findStatus("stun") != -1)
 			{
-				delay += 1;
+				delay += 2;
 				StartCoroutine( DoAction (combatQueue [currentCharacter], combatQueue [currentCharacter].action, delay));
 			}
 			if(combatQueue[currentCharacter].dead)
 			{
-				combatQueue[currentCharacter].action = "Rest";
+				//combatQueue[currentCharacter].action = "Rest";
 			}
-			Debug.Log ("Executing: "+currentCharacter);
 		}
 		currentPhase = PHASE.RESULTS;
 
@@ -361,7 +368,7 @@ public class CombatManager : MonoBehaviour
 		{
 			if (combatQueue [i].dead) 
 			{
-				combatQueue [i].Rest ();
+				//combatQueue [i].Rest ();
 			}
 		}
 		// rez players as needed
@@ -385,6 +392,7 @@ public class CombatManager : MonoBehaviour
 
 	IEnumerator DoAction(Character character, string action, float finish)
 	{
+		Debug.Log ("finish1: "+finish+", delay: "+delay);
 		enabled = false;
 		yield return new WaitForSeconds (finish);
 		// This bool determines if character does their action after checking what the target's action is.
@@ -403,14 +411,14 @@ public class CombatManager : MonoBehaviour
 					{
 						if (character.Target[0].tag == "Player") 
 						{
-							ballsCaught.Add (true);
+							//ballsCaught.Add (true);
 						} 
 						else 
 						{
-							ballsCaught.Add (false);
+							//ballsCaught.Add (false);
 						}
 						
-						combatAction.text = character.Target[0].Name + " caught the ball!";
+						combatAction.text += " but "+character.Target[0].Name + " caught the ball!";
 						Debug.Log (character.Target[0].Name + " caught the ball!");
 					}
 					else
@@ -421,25 +429,25 @@ public class CombatManager : MonoBehaviour
 				case("Skill1"):
 					performAction = character.Target[0].Skill1 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
+					combatAction.text += " but "+character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
 					Debug.Log (character.Target[0].Name + " used  Skill 1!");
 					break;
 				case("Skill2"):
 					performAction = character.Target[0].Skill2 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
+					combatAction.text += " but "+ character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
 					Debug.Log (character.Target[0].Name + "used Skill 2 !");
 					break;
 				case("Skill3"):
 					performAction = character.Target[0].Skill3 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
+					combatAction.text += " but "+ character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 3!");
 					break;
 				case("Skill4"):
 					performAction = character.Target[0].Skill4 ();
 					
-					combatAction.text = character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
+					combatAction.text += " but "+ character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 4!");
 					break;
 				}
@@ -489,9 +497,9 @@ public class CombatManager : MonoBehaviour
 				case("Catch"):
 					if (character.Target [0].catchBall (character)) {
 						if (character.Target[0].tag == "Player") {
-							ballsCaught.Add (true);
+							//ballsCaught.Add (true);
 						} else {
-							ballsCaught.Add (false);
+							//ballsCaught.Add (false);
 						}
 					}
 					else
@@ -499,31 +507,31 @@ public class CombatManager : MonoBehaviour
 						performAction = true;
 					}
 					
-					combatAction.text = character.Target[0].Name + " caught the ball!";
+					combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
 					Debug.Log (character.Target[0].Name + " caught the ball!");
 					break;
 				case("Skill1"):
 					performAction = character.Target[0].Skill1 ();
 					
-					combatAction.text = character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 1!");
 					break;
 				case("Skill2"):
 					performAction = character.Target[0].Skill2 ();
 					
-					combatAction.text = character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (5) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (5) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					performAction = character.Target[0].Skill3 ();
 					
-					combatAction.text = character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (6) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (6) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 3!");
 					break;
 				case("Skill4"):
 					performAction = character.Target[0].Skill4 ();
 					
-					combatAction.text = character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 4!");
 					break;
 				}
@@ -547,9 +555,9 @@ public class CombatManager : MonoBehaviour
 				case("Catch"):
 					if (character.Target [0].catchBall (character)) {
 						if (character.Target [0].tag == "Player") {
-							ballsCaught.Add (false);
+							//ballsCaught.Add (false);
 						} else {
-							ballsCaught.Add (true);
+							//ballsCaught.Add (true);
 						}
 					}
 					else
@@ -557,31 +565,31 @@ public class CombatManager : MonoBehaviour
 						performAction = false;
 					}
 					
-					combatAction.text = character.Target[0].Name + " caught the ball!";
+					combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
 					Debug.Log (character.Target[0].Name + " caught the ball!");
 					break;
 				case("Skill1"):
 					performAction = character.Target[0].Skill1 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
 					Debug.Log (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					performAction = character.Target[0].Skill2 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					performAction = character.Target[0].Skill3 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 3!");
 					break;
 				case("Skill4"):
 					performAction = character.Target[0].Skill4 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 4!");
 					break;
 				}
@@ -607,11 +615,11 @@ public class CombatManager : MonoBehaviour
 					{
 						if (character.Target [0].tag == "Player") 
 						{
-							ballsCaught.Add (true);
+							//ballsCaught.Add (true);
 						} 
 						else 
 						{
-							ballsCaught.Add (false);
+							//ballsCaught.Add (false);
 						}
 					}
 					else
@@ -620,31 +628,31 @@ public class CombatManager : MonoBehaviour
 					}
 						
 					
-					combatAction.text = character.Target[0].Name + " caught the ball!";
+					combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
 					Debug.Log (character.Target[0].Name + " caught the ball!");
 					break;
 				case("Skill1"):
 					performAction = character.Target[0].Skill1 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
 					Debug.Log (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					performAction = character.Target[0].Skill2 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					performAction = character.Target[0].Skill3 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 3!");
 					break;
 				case("Skill4"):
 					performAction = character.Target[0].Skill4 ();
 					
-					combatAction.text = character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
+					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
 					Debug.Log (character.Target[0].Name + " used Skill 4!");
 					break;
 				}
@@ -668,9 +676,9 @@ public class CombatManager : MonoBehaviour
 				case("Catch"):
 					if (character.Target [0].catchBall (character)) {
 						if (character.Target [0].tag == "Player") {
-							ballsCaught.Add (true);
+							//ballsCaught.Add (true);
 						} else {
-							ballsCaught.Add (false);
+							//ballsCaught.Add (false);
 						}
 					} else {
 						performAction = true;
@@ -682,25 +690,25 @@ public class CombatManager : MonoBehaviour
 				case("Skill1"):
 					performAction = character.Target [0].Skill1 ();
 					
-					combatAction.text = character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !";
+					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !";
 					Debug.Log (character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !");
 					break;
 				case("Skill2"):
 					performAction = character.Target [0].Skill2 ();
 					
-					combatAction.text = character.Target [0].Name + " used " + character.Target [0].GetActionName (5) + " !";
+					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (5) + " !";
 					Debug.Log (character.Target [0].Name + " used Skill 2!");
 					break;
 				case("Skill3"):
 					performAction = character.Target [0].Skill3 ();
 					
-					combatAction.text = character.Target [0].Name + " used " + character.Target [0].GetActionName (6) + " !";
+					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (6) + " !";
 					Debug.Log (character.Target [0].Name + " used Skill 3!");
 					break;
 				case("Skill4"):
 					performAction = character.Target [0].Skill4 ();
 					
-					combatAction.text = character.Target [0].Name + " used " + character.Target [0].GetActionName (7) + " !";
+					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (7) + " !";
 					Debug.Log (character.Target [0].Name + " used Skill 4!");
 					break;
 				}
@@ -716,6 +724,7 @@ public class CombatManager : MonoBehaviour
 		{
 			enabled = true;
 		}
+		Debug.Log ("finish2: "+finish+", delay: "+delay);
 	}
 
 	// This function randomly assigns actions and targets for enemies.
@@ -845,8 +854,8 @@ public class CombatManager : MonoBehaviour
 	IEnumerator PhaseChange()
 	{
 		this.enabled = false;
-		delay += 2f;
-		yield return new WaitForSeconds (delay);
+		//delay += 2f;
+		yield return new WaitForSeconds (2);
 		combatAction.text = "";
 		delay = 0f;
 		this.enabled = true;
