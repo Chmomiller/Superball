@@ -686,8 +686,6 @@ MonoBehaviour:
   dialogueBox: {fileID: 944049252}
   bg: {fileID: 579819593}
   screen: {fileID: 352823778}
-  character1: 
-  character2: 
   onScreenChars:
   - 
   - 
@@ -704,6 +702,7 @@ MonoBehaviour:
   - {fileID: 1731735875}
   sceneTitle: Three Outstanding Girls
   textSpeed: 0.05
+  combatDialogue: 0
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0
@@ -1447,7 +1446,7 @@ Prefab:
         type: 2}
       propertyPath: file0
       value: 
-      objectReference: {fileID: 8300000, guid: 67fa0729a01e3f748b45b4e34ceaef6a, type: 3}
+      objectReference: {fileID: 8300000, guid: 0f94d8b9129325940887ad2e1b1c8843, type: 3}
     - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: m_audioClip

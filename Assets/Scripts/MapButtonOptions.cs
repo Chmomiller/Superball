@@ -104,16 +104,20 @@ public class MapButtonOptions : MonoBehaviour {
         GameObject.Find("SaltPittBack").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
         GameObject.Find("SaltPittBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("SaltPittHighGym"));
         GameObject.Find("SaltPittBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("Salt Pitt High Gym"));
+        GameObject.Find("SaltPittDialog").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().loadAnyScene("Prologue"));
+
 
         GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => this.splitScholaGrandis());
         GameObject.Find("ScholaGrandisBack").GetComponent<Button>().onClick.AddListener(() => this.splitScholaGrandis());
         GameObject.Find("ScholaGrandisBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("Schola Grandis Gym"));
         GameObject.Find("ScholaGrandisBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("Schola Grandis Gym"));
+        GameObject.Find("ScholaGrandisDialog").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().loadAnyScene("Three Outstanding Girls"));
 
         GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => this.splitMightMain());
         GameObject.Find("MightMainBack").GetComponent<Button>().onClick.AddListener(() => this.splitMightMain());
         GameObject.Find("MightMainBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("MightMain Academy Gym"));
         GameObject.Find("MightMainBattleHard").GetComponent<Button>().onClick.AddListener(() => this.startHardModeBattle("MightMain Academy Gym"));
+        GameObject.Find("MightMainDialog").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().loadAnyScene("Punk Ambush"));
 
         GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("Yamato Gym Battle"));
         GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("MainMenu"));

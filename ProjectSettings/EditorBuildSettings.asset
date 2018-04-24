@@ -50,3 +50,33 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DialogueMenu.unity
     guid: 3cef7f7badfa19249bda93fb02193432
+  - enabled: 1
+    path: Assets/Three Outstanding Girls.unity
+    guid: e42b20a32e0b0aa4484ea24af7ab4486
+  - enabled: 1
+    path: Assets/Battle_Screen.unity
+    guid: 5bf1de0677d7c8f4b92b1a979f627300
+  - enabled: 1
+    path: Assets/Fight Against the Military.unity
+    guid: 7bbce803e2e16ab4ab5375d59810932f
+  - enabled: 1
+    path: Assets/Kuro's Trump Card.unity
+    guid: c39232d8b788a744d92e29d0d9f47b22
+  - enabled: 1
+    path: Assets/Magical Defeat.unity
+    guid: d8e48d22762b4fc4f8abe0a837ddc605
+  - enabled: 1
+    path: Assets/Magical Match.unity
+    guid: 65aa1b55b0fb81041b128fa75ea6426d
+  - enabled: 1
+    path: Assets/Magical Preparation.unity
+    guid: 20c26a8833f29b74aacb0cf75b03146e
+  - enabled: 1
+    path: Assets/Military Surrender.unity
+    guid: 9b2ec76c26ff1c14283c5f7290e84853
+  - enabled: 1
+    path: Assets/Options Menu.unity
+    guid: bf02988cfe9af1f4f97db8bf85567c56
+  - enabled: 1
+    path: Assets/Punk Ambush.unity
+    guid: 2dfc911e1b143bb42bf08bc178397120

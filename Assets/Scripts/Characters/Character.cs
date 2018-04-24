@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
 	public string[] actions = {"None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 	public string[] actionNames = { "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
     public string[] actionDescription = { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "", "" };
-    protected string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
+    public string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 
     //These are to dictate who each ability can target: 0 for none or predetermined, 1 for Enemy[], 2 for Player[]
     //default is for what you would expect, alternate is if they switched teams. 
@@ -92,7 +92,6 @@ public class Character : MonoBehaviour
 	public string GetActionType(int index){return this.actionTypes [index];}
 	public int GetTargetingType(int index){return this.defaultTargetingTypes [index];}
 	public int GetActionCost(int index){return this.actionCosts [index];}
-
 	public struct status {
 		public string name;
 		public int duration;

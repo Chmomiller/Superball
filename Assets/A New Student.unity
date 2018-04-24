@@ -765,7 +765,7 @@ MonoBehaviour:
   sceneTitle: A New Student
   textSpeed: 0.05
   combatDialogue: 0
-  nextScene: 
+  nextScene: What Punks
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0

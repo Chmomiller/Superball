@@ -250,12 +250,12 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 67fa0729a01e3f748b45b4e34ceaef6a, type: 3}
+      objectReference: {fileID: 8300000, guid: bf51ae057846bd84aa10cc2464a35c88, type: 3}
     - target: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: file0
       value: 
-      objectReference: {fileID: 8300000, guid: 67fa0729a01e3f748b45b4e34ceaef6a, type: 3}
+      objectReference: {fileID: 8300000, guid: bf51ae057846bd84aa10cc2464a35c88, type: 3}
     - target: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: src0
@@ -876,6 +876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   Game: {fileID: 0}
+  loadingScene: 0
 --- !u!1001 &2054437916
 Prefab:
   m_ObjectHideFlags: 0

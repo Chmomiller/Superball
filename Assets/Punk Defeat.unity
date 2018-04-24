@@ -703,7 +703,7 @@ MonoBehaviour:
   sceneTitle: Punk Defeat
   textSpeed: 0.05
   combatDialogue: 0
-  nextScene: 
+  nextScene: MapScreen
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0
@@ -1516,12 +1516,17 @@ Prefab:
         type: 2}
       propertyPath: file0
       value: 
-      objectReference: {fileID: 8300000, guid: 9d3f1b38fb786cf4abac956bf0d58d00, type: 3}
+      objectReference: {fileID: 8300000, guid: 20f61cbe0c8fe4b48b1a9df6bd9b31f1, type: 3}
     - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 9d3f1b38fb786cf4abac956bf0d58d00, type: 3}
+      objectReference: {fileID: 8300000, guid: 20f61cbe0c8fe4b48b1a9df6bd9b31f1, type: 3}
+    - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
+        type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
   m_IsPrefabParent: 0

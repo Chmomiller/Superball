@@ -61,9 +61,9 @@ public class QuitGame : MonoBehaviour
                 int random = UnityEngine.Random.Range(0, 100);
                 if (random <= 10) {
                     if (random <= 5) {
-                        Audio.playAudio("Unknown Individuals 2", 0);
+                        Audio.playAudio("Concept Sound/Unknown Individuals 2", 0);
                     } else {
-                        Audio.playAudio("Who Am I", 0);
+                        Audio.playAudio("Concept Sound/Who Am I", 0);
                     }
                 } else {
                    Audio.playAudio("Concept Sound/80s something", 1);
@@ -85,7 +85,7 @@ public class QuitGame : MonoBehaviour
             case "Schola Grandis Gym":
                 Audio.resetAllAudio();
                 Audio.playSFX("Voice Acting/Announcer Lines/ScholaGrandis/Brandon_ScholaAnnouncer_8");
-                StartCoroutine(StartBattle("TheOneOnTop", 0, sceneName));
+                StartCoroutine(StartBattle("Schola Grandis Battle", 0, sceneName));
                 break;
             case "MightMain Academy Gym":
                 Audio.resetAllAudio();
@@ -133,6 +133,7 @@ public class QuitGame : MonoBehaviour
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+            //MOST OTHER BUTTONS ARE IN THEIR OWN SCRIPT CALLED MapButtonOptions.cs
 
         } else if(SceneManager.GetActiveScene().name == "DialogueMenu") {
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));

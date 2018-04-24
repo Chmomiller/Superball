@@ -611,8 +611,6 @@ MonoBehaviour:
   dialogueBox: {fileID: 944049252}
   bg: {fileID: 579819593}
   screen: {fileID: 352823778}
-  character1: 
-  character2: 
   onScreenChars:
   - 
   - 
@@ -629,6 +627,8 @@ MonoBehaviour:
   - {fileID: 1731735875}
   sceneTitle: What Punks
   textSpeed: 0.05
+  combatDialogue: 0
+  nextScene: Tutorial
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0

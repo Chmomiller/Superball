@@ -99,6 +99,7 @@ public class DialogueManager : MonoBehaviour {
 
 			}
 
+            
 
 			if (transition) {
 				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
@@ -254,11 +255,20 @@ public class DialogueManager : MonoBehaviour {
 					fadeTime = 0;
 				}
 			}
+            //special case Scene Loading /////////////////////////////////////////////////////////////////////////////////////////////
+            if (lineNum < insertText.GetLength(0)) {
+                if (insertText[lineNum, 8] == "load scene") {
+                    transition = true;
+                    fading = true;
+                    fadeTime = 0;
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(insertText[lineNum, 9]);
+                }
+            }
 
 
-		}
-		//special cases
-		if (bColor < blackFade && isSpeaking && !fading) {
+        }
+        //special cases
+        if (bColor < blackFade && isSpeaking && !fading) {
 			bColor += 1.0f / blackFade;
 			bg.GetComponent<Image> ().color = new Color (bColor,bColor,bColor,1.0f);
 		}
