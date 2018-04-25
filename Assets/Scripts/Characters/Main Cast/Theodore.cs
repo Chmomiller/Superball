@@ -5,7 +5,7 @@ using UnityEngine;
 public class Theodore : Character {
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Theodore";
         Stamina = maxStamina;
         Role = "Thrower";
@@ -21,7 +21,7 @@ public class Theodore : Character {
 
 
     // Update is called once per frame
-	void Update() {
+	new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control

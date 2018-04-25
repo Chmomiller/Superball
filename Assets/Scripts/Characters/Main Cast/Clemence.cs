@@ -6,7 +6,7 @@ public class Clemence : Character
 {
 
     // Use this for initialization
-    void Start()
+    new void Start()
     {
         Name = "Clemence";
         
@@ -26,7 +26,7 @@ public class Clemence : Character
 		base.Start ();
     }
 
-    void Update(){
+    new void Update(){
 		base.Update ();
 		/*
         combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();

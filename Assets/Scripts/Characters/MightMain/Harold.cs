@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Harold : Character {
     
-    void Start() {
+    new void Start() {
         Name = "Harold";
 		Stamina = maxStamina;
         Role = "Thrower";
@@ -23,7 +23,7 @@ public class Harold : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (combat == null) {

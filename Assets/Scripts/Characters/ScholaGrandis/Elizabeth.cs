@@ -9,7 +9,7 @@ public class Elizabeth : Character {
 	public int lastStamina;
     // Use this for initialization
     
-    void Start() {
+    new void Start() {
         Name = "Elizabeth";
         Stamina = maxStamina;
 		
@@ -31,7 +31,7 @@ public class Elizabeth : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;

@@ -8,7 +8,7 @@ public class Victoria : Character {
 	private int lastStamina;
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Victoria";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -30,7 +30,7 @@ public class Victoria : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -45,7 +45,7 @@ public class Victoria : Character {
 		base.Update ();
     }
 
-	public virtual bool catchBall(Character attacker)
+	public new bool catchBall(Character attacker)
 	{
 		if(findStatus("misc") != -1)
 		{
@@ -56,7 +56,7 @@ public class Victoria : Character {
 		}
 		else if(catching)
 		{
-			base.catchBall (attacker);
+			return base.catchBall (attacker);
 		}
 		return false;
 	}

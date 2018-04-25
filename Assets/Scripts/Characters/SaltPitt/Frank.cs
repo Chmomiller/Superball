@@ -7,7 +7,7 @@ public class Frank : Character {
 	private Trevor trevor;
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Frank";
         Stamina = maxStamina;
         
@@ -26,7 +26,7 @@ public class Frank : Character {
 
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {

@@ -289,6 +289,16 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519878006}
+    - target: {fileID: 114423588766967868, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Salt Pitt High Gym
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723072329786952, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Salt Pitt High Gym
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -326,11 +336,10 @@ MonoBehaviour:
   Enemy: []
   playerSelect: []
   enemySelect: []
-  action: []
+  endButton: []
+  CUI: {fileID: 0}
   battleText: {fileID: 0}
   combatAction: {fileID: 0}
-  CUI: {fileID: 0}
-  tempUI: []
   conflictInQueue: -1
   win: 0
   lose: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Skylar : Character {
     
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Skylar";
         Stamina = maxStamina;
         Role = "Supporter";
@@ -26,7 +26,7 @@ public class Skylar : Character {
         base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		/*
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();

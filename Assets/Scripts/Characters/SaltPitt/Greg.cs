@@ -6,7 +6,7 @@ public class Greg: Character
 {
 	public Character trevor;
 
-    void Start()
+    new void Start()
     {
         Name = "Greg";
         Stamina = maxStamina;
@@ -41,7 +41,7 @@ public class Greg: Character
     }
 
 
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {

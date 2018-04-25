@@ -82,3 +82,4 @@ Tristian:
 	Removed unnecessary variables from CombatManager
 	Added a check in CombatManager.DoAction() that prevents KO'd players from performing their actions
 	Added support for stun in CombatManager
+	Added code in the event of a win or loss and UI to each scene

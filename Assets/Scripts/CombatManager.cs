@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour
 	public Character[] Enemy;
 	public Button[] playerSelect;
 	public Button[] enemySelect;
+	public Button[] endButton;
 	public CombatUI CUI;
 	// This is for debug purposes
 	public Text battleText;	
@@ -35,6 +36,7 @@ public class CombatManager : MonoBehaviour
 		Enemy = new Character[3];
 		playerSelect = new Button [3];
 		enemySelect = new Button [3];
+		endButton = new Button[2];
 		for (int i = 0; i < 3; i++) 
 		{
 			Player[i] = GameObject.Find("Character"+i).GetComponent<Character>();
@@ -70,6 +72,8 @@ public class CombatManager : MonoBehaviour
 		action [7] = GameObject.Find ("Skill6Button").GetComponent<Button> ();
 		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
+		endButton [0] = GameObject.Find ("RetryButton").GetComponent<Button> ();
+		endButton [1] = GameObject.Find ("ContinueButton").GetComponent<Button> ();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		//ballsCaught = new System.Collections.Generic.List<bool>();
 		combatQueue = new Character[6];
@@ -129,6 +133,12 @@ public class CombatManager : MonoBehaviour
 			else
 			{
 				combatAction.text = "You Lose.";
+			}
+			for(int i = 0; i < 2; i++)
+			{
+				endButton [i].enabled = true;
+				endButton [i].GetComponent<Image> ().enabled = true;
+				endButton [i].GetComponentInChildren<Text> ().enabled = true;
 			}
 		}
 	}
@@ -393,14 +403,12 @@ public class CombatManager : MonoBehaviour
 
 		enabled = false;
 		yield return new WaitForSeconds (finish);
-		Debug.Log (character.Name+" stun: "+character.findStatus("stun"));
 		// If the characcter is KO'd or stunned, don't perform their action
 		if(! (character.dead || character.findStatus("stun") != -1))
 		{
 			// This bool determines if character does their action after checking what the target's action is.
 			// performAction is intended to be set by Character functions which should return bools
 			bool performAction = false;
-			Debug.Log (character.Name+" action: "+action);
 			switch (action) 
 			{
 			case("Throw"):

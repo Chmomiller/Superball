@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Kuro : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Kuro";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -25,7 +25,7 @@ public class Kuro : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {

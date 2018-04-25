@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shiro : Character{
 
-    void Start()
+    new void Start()
     {
         Name = "Shiro";
         Stamina = maxStamina;
@@ -20,7 +20,7 @@ public class Shiro : Character{
     }
 		
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
 		base.Update ();
 		/*

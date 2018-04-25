@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trevor : Character {
 	
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Trevor";
         Role = "Thrower";
 
@@ -23,7 +23,7 @@ public class Trevor : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mei : Character {
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Mei";
         Stamina = maxStamina;
         Role = "Supporter";
@@ -25,7 +25,7 @@ public class Mei : Character {
     }
 
     // Update is called once per frame
-    void Update () {
+    new void Update () {
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
