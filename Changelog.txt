@@ -78,3 +78,7 @@ Tristian:
 	Removed resurrection and rest
 	Changed targeting arrays in enemies to chose correct targets
 	Added UI support for tells
+4/25/18:
+	Removed unnecessary variables from CombatManager
+	Added a check in CombatManager.DoAction() that prevents KO'd players from performing their actions
+	Added support for stun in CombatManager

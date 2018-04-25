@@ -4,12 +4,7 @@ using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
-	public enum ACTION{NONE, THROW, CATCH, GATHER, SKILL1, SKILL2, SKILL3, SKILL4, REST, WAIT}
 	public enum PHASE{START, CONFLICT, SELECT, ACTION, TARGET, EXECUTE, RESULTS}
-
-	public struct Combat{public Character character; 
-		public ACTION action; 
-		public Character target;}
 
 	// Used for storing turn order and actions
 	public Character[] combatQueue;								
@@ -18,16 +13,13 @@ public class CombatManager : MonoBehaviour
 	public Character[] Enemy;
 	public Button[] playerSelect;
 	public Button[] enemySelect;
-	public Button[] action;
+	public CombatUI CUI;
 	// This is for debug purposes
 	public Text battleText;	
 	public Text combatAction;
-	public CombatUI CUI;
-
-	public TemporaryUIIntegration[] tempUI;
 
 	// Used to see if balls were caught and by who
-	private System.Collections.Generic.List<bool> ballsCaught;
+	//private System.Collections.Generic.List<bool> ballsCaught;
 	public int conflictInQueue = -1;
 	public bool win = false;
 	public bool lose = false;
@@ -47,16 +39,11 @@ public class CombatManager : MonoBehaviour
 		{
 			Player[i] = GameObject.Find("Character"+i).GetComponent<Character>();
 			Enemy [i] = GameObject.Find ("Character" + (i + 3)).GetComponent<Character> ();
-			// Player [i].combat = this;
-			// Enemy [i].combat = this;
+
 			CharacterSelectUI PlayerSUI = GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ();
 			CharacterSelectUI EnemySUI = GameObject.Find ("Enemy" + i).GetComponent<CharacterSelectUI> ();
 			PlayerSUI.Init (this);
 			EnemySUI.Init (this);
-			//GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().character = i;
-			//GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ().CM = this;
-			//GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().character = i+3;
-			//GameObject.Find("Enemy"+i).GetComponent<CharacterSelectUI> ().CM = this;
 
 			Player [i].Init (this, PlayerSUI);
 			Enemy [i].Init (this, EnemySUI);
@@ -72,7 +59,7 @@ public class CombatManager : MonoBehaviour
 			Player[i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, 90);
 			Enemy [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, 90);
 		}
-		action = new Button[8];
+		Button[] action = new Button[8];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
 		action [2] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
@@ -84,7 +71,7 @@ public class CombatManager : MonoBehaviour
 		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
-		ballsCaught = new System.Collections.Generic.List<bool>();
+		//ballsCaught = new System.Collections.Generic.List<bool>();
 		combatQueue = new Character[6];
 		for (int i = 0; i < action.Length; i++) 
 		{
@@ -131,6 +118,17 @@ public class CombatManager : MonoBehaviour
 			case(PHASE.RESULTS):
 				Results ();
 				break;
+			}
+		}
+		else
+		{
+			if(win)
+			{
+				combatAction.text = "You Win!";
+			}
+			else
+			{
+				combatAction.text = "You Lose.";
 			}
 		}
 	}
@@ -206,17 +204,15 @@ public class CombatManager : MonoBehaviour
 		}
 
 		// This block will run when findstatus can work properly
-		/*
 		if(firstAction != -1
-			&& combatQueue[firstAction].character.findStatus("stun") != -1)
+			&& combatQueue[firstAction].findStatus("stun") != -1)
 		{
-			combatQueue[firstAction].character.action = "None";
-			combatQueue [firstAction].character.actionType = "None";
-			combatQueue [firstAction].action = ACTION.WAIT;
-			combatQueue [firstAction].character.Target = combatQueue [firstAction].character;
+			combatQueue[firstAction].action = "Wait";
+			combatQueue [firstAction].actionType = "None";
+			combatQueue [firstAction - 1].CallTell ();
 			return;
 		}
-		*/
+
 
 		// If there is a conflict in the queue but someone else has priority
 		if (conflictInQueue != -1 && firstAction >= conflictInQueue) 
@@ -276,7 +272,11 @@ public class CombatManager : MonoBehaviour
 					j++;
 				}
 			}
-			combatQueue[5].CallTell();
+			// This is a brute force way to make sure the last character's tell is shown, even if they aren't last in the queue
+			foreach(Character C in combatQueue)
+			{
+				C.CallTell ();
+			}
 			currentPhase = PHASE.EXECUTE;
 			Execute ();
 		}
@@ -334,13 +334,9 @@ public class CombatManager : MonoBehaviour
 		// Show the execute phase
 		CUI.ShowPhase ();
 		for (currentCharacter = 0; currentCharacter < 6; currentCharacter++) 
-		{
-			if(! combatQueue[currentCharacter].dead) 
-				//&& combatQueue[i].character.findStatus("stun") != -1)
-			{
-				delay += 2;
-				StartCoroutine( DoAction (combatQueue [currentCharacter], combatQueue [currentCharacter].action, delay));
-			}
+		{ 
+			delay += 2;
+			StartCoroutine( DoAction (combatQueue [currentCharacter], combatQueue [currentCharacter].action, delay));
 			if(combatQueue[currentCharacter].dead)
 			{
 				//combatQueue[currentCharacter].action = "Rest";
@@ -371,12 +367,14 @@ public class CombatManager : MonoBehaviour
 				//combatQueue [i].Rest ();
 			}
 		}
+		/*
 		// rez players as needed
 		while (ballsCaught.Count > 0) 
 		{
 			Resurrect (ballsCaught[0]);
 			ballsCaught.RemoveAt (0);
 		}
+		*/
 			
 		foreach(Character C in combatQueue)
 		{
@@ -392,339 +390,354 @@ public class CombatManager : MonoBehaviour
 
 	IEnumerator DoAction(Character character, string action, float finish)
 	{
-		Debug.Log ("finish1: "+finish+", delay: "+delay);
+
 		enabled = false;
 		yield return new WaitForSeconds (finish);
-		// This bool determines if character does their action after checking what the target's action is.
-		// performAction is intended to be set by Character functions which should return bools
-		bool performAction = false;
-		Debug.Log (character.Name+" action: "+action);
-		switch (action) 
+		Debug.Log (character.Name+" stun: "+character.findStatus("stun"));
+		// If the characcter is KO'd or stunned, don't perform their action
+		if(! (character.dead || character.findStatus("stun") != -1))
 		{
-		case("Throw"):
-			combatAction.text = character.Name + " attacks " + character.Target[0].Name + "!";
-			if (character.Target[0].actionType == "Defense") {
-				switch (character.Target[0].action) {
-				case("Catch"):
-					//character.heldBalls--;
-					if (character.Target[0].catchBall (character)) 
-					{
-						if (character.Target[0].tag == "Player") 
+			// This bool determines if character does their action after checking what the target's action is.
+			// performAction is intended to be set by Character functions which should return bools
+			bool performAction = false;
+			Debug.Log (character.Name+" action: "+action);
+			switch (action) 
+			{
+			case("Throw"):
+				combatAction.text = character.Name + " attacks " + character.Target[0].Name + "!";
+				if (character.Target[0].actionType == "Defense") {
+					switch (character.Target[0].action) {
+					case("Catch"):
+						//character.heldBalls--;
+						if (character.Target[0].catchBall (character)) 
 						{
-							//ballsCaught.Add (true);
-						} 
-						else 
-						{
-							//ballsCaught.Add (false);
+							if (character.Target[0].tag == "Player") 
+							{
+								//ballsCaught.Add (true);
+							} 
+							else 
+							{
+								//ballsCaught.Add (false);
+							}
+							
+							combatAction.text += " but "+character.Target[0].Name + " caught the ball!";
+							Debug.Log (character.Target[0].Name + " caught the ball!");
 						}
+						else
+						{
+							performAction = true;
+						}
+						break;
+					case("Skill1"):
+						performAction = character.Target[0].Skill1 ();
 						
-						combatAction.text += " but "+character.Target[0].Name + " caught the ball!";
-						Debug.Log (character.Target[0].Name + " caught the ball!");
+						combatAction.text += " but "+character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
+						Debug.Log (character.Target[0].Name + " used  Skill 1!");
+						break;
+					case("Skill2"):
+						performAction = character.Target[0].Skill2 ();
+						
+						combatAction.text += " but "+ character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
+						Debug.Log (character.Target[0].Name + "used Skill 2 !");
+						break;
+					case("Skill3"):
+						performAction = character.Target[0].Skill3 ();
+						
+						combatAction.text += " but "+ character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 3!");
+						break;
+					case("Skill4"):
+						performAction = character.Target[0].Skill4 ();
+						
+						combatAction.text += " but "+ character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 4!");
+						break;
 					}
-					else
+					if (performAction) 
 					{
-						performAction = true;
+						character.throwBall (character.Target[0]);
 					}
-					break;
-				case("Skill1"):
-					performAction = character.Target[0].Skill1 ();
-					
-					combatAction.text += " but "+character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
-					Debug.Log (character.Target[0].Name + " used  Skill 1!");
-					break;
-				case("Skill2"):
-					performAction = character.Target[0].Skill2 ();
-					
-					combatAction.text += " but "+ character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
-					Debug.Log (character.Target[0].Name + "used Skill 2 !");
-					break;
-				case("Skill3"):
-					performAction = character.Target[0].Skill3 ();
-					
-					combatAction.text += " but "+ character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 3!");
-					break;
-				case("Skill4"):
-					performAction = character.Target[0].Skill4 ();
-					
-					combatAction.text += " but "+ character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 4!");
-					break;
-				}
-				if (performAction) 
+				} 
+				else 
 				{
 					character.throwBall (character.Target[0]);
 				}
-			} 
-			else 
-			{
-				character.throwBall (character.Target[0]);
-			}
-			break;
-		case("Catch"):
-			for(int i = 0; i < 6; i++)
-			{
+				break;
+			case("Catch"):
+				for(int i = 0; i < 6; i++)
+				{
+					
+					for(int j = 0; j < 3; j++)
+					{
+						bool targetFound = false;
+						if(combatQueue[i].Target[j] == character.Target[0] 
+							&& combatQueue[i].actionType == "Offense"
+							&& !targetFound)
+						{
+							combatQueue[i].Target[j] = character;
+							targetFound = true;
+						}
+					}
+				}
+				combatAction.text = character.Name + " is ready to catch!";
+				Debug.Log (character.Name + " is ready to catch!");
+				break;
+			case("Gather"):
+				character.gatherBall();
 				
-				for(int j = 0; j < 3; j++)
-				{
-					bool targetFound = false;
-					if(combatQueue[i].Target[j] == character.Target[0] 
-						&& combatQueue[i].actionType == "Offense"
-						&& !targetFound)
-					{
-						combatQueue[i].Target[j] = character;
-						targetFound = true;
-					}
-				}
-			}
-			combatAction.text = character.Name + " is ready to catch!";
-			Debug.Log (character.Name + " is ready to catch!");
-			break;
-		case("Gather"):
-			character.gatherBall();
-			
-			combatAction.text = character.Name + " picked up a ball!";
-			Debug.Log (character.Name + " picked up a ball!");
-			break;
-		case("Skill1"):
-			// check if the action is offensive and the Target[0] is using a defensive move.
-			//character.heldBalls -= character.GetActionCost(4);
-			combatAction.text = character.Name + " used " + character.GetActionName (4) + " !";
-			Debug.Log (character.Name + " used " + character.GetActionName (4) + " !");
-			if (character.actionType == "Offense"
-			    && character.Target[0].actionType == "Defense") {
-				switch (character.Target[0].action) {
-				case("Catch"):
-					if (character.Target [0].catchBall (character)) {
-						if (character.Target[0].tag == "Player") {
-							//ballsCaught.Add (true);
-						} else {
-							//ballsCaught.Add (false);
+				combatAction.text = character.Name + " picked up a ball!";
+				Debug.Log (character.Name + " picked up a ball!");
+				break;
+			case("Skill1"):
+				// check if the action is offensive and the Target[0] is using a defensive move.
+				//character.heldBalls -= character.GetActionCost(4);
+				combatAction.text = character.Name + " used " + character.GetActionName (4) + " !";
+				Debug.Log (character.Name + " used " + character.GetActionName (4) + " !");
+				if (character.actionType == "Offense"
+				    && character.Target[0].actionType == "Defense") {
+					switch (character.Target[0].action) {
+					case("Catch"):
+						if (character.Target [0].catchBall (character)) {
+							if (character.Target[0].tag == "Player") {
+								//ballsCaught.Add (true);
+							} else {
+								//ballsCaught.Add (false);
+							}
 						}
-					}
-					else
-					{
-						performAction = true;
-					}
-					
-					combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
-					Debug.Log (character.Target[0].Name + " caught the ball!");
-					break;
-				case("Skill1"):
-					performAction = character.Target[0].Skill1 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 1!");
-					break;
-				case("Skill2"):
-					performAction = character.Target[0].Skill2 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (5) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 2!");
-					break;
-				case("Skill3"):
-					performAction = character.Target[0].Skill3 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (6) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 3!");
-					break;
-				case("Skill4"):
-					performAction = character.Target[0].Skill4 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 4!");
-					break;
-				}
-				if(performAction)
-				{
-					character.Skill1 ();	
-				}
-			} 
-			else
-			{
-				character.Skill1 ();
-			}
-			break;
-		case("Skill2"):
-			//character.heldBalls -= character.GetActionCost(5);
-			combatAction.text = character.Name + " used Skill 2!";
-			Debug.Log (character.Name + " used Skill 2!");
-			if (character.actionType == "Offense"
-			    && character.Target[0].actionType == "Defense") {
-				switch (character.Target[0].action) {
-				case("Catch"):
-					if (character.Target [0].catchBall (character)) {
-						if (character.Target [0].tag == "Player") {
-							//ballsCaught.Add (false);
-						} else {
-							//ballsCaught.Add (true);
-						}
-					}
-					else
-					{
-						performAction = false;
-					}
-					
-					combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
-					Debug.Log (character.Target[0].Name + " caught the ball!");
-					break;
-				case("Skill1"):
-					performAction = character.Target[0].Skill1 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
-					Debug.Log (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !");
-					break;
-				case("Skill2"):
-					performAction = character.Target[0].Skill2 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 2!");
-					break;
-				case("Skill3"):
-					performAction = character.Target[0].Skill3 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 3!");
-					break;
-				case("Skill4"):
-					performAction = character.Target[0].Skill4 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 4!");
-					break;
-				}
-				if(performAction)
-				{
-					character.Skill2 ();
-				}
-			}
-			else
-			{
-				character.Skill2 ();	
-			}
-			break;
-		case("Skill3"):
-			//character.heldBalls -= character.GetActionCost (6);
-			combatAction.text = character.Name + " used Skill 3!";
-			print (character.Name + " used Skill 3!");
-			if (character.actionType == "Offense"
-			    && character.Target[0].actionType == "Defense") {
-				switch (character.Target[0].action) {
-				case("Catch"):
-					if (character.Target[0].catchBall (character)) 
-					{
-						if (character.Target [0].tag == "Player") 
+						else
 						{
-							//ballsCaught.Add (true);
-						} 
-						else 
-						{
-							//ballsCaught.Add (false);
+							performAction = true;
 						}
-					}
-					else
-					{
-						performAction = true;
-					}
 						
-					
-					combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
-					Debug.Log (character.Target[0].Name + " caught the ball!");
-					break;
-				case("Skill1"):
-					performAction = character.Target[0].Skill1 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
-					Debug.Log (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !");
-					break;
-				case("Skill2"):
-					performAction = character.Target[0].Skill2 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 2!");
-					break;
-				case("Skill3"):
-					performAction = character.Target[0].Skill3 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 3!");
-					break;
-				case("Skill4"):
-					performAction = character.Target[0].Skill4 ();
-					
-					combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
-					Debug.Log (character.Target[0].Name + " used Skill 4!");
-					break;
-				}
-				if(performAction)
+						combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
+						Debug.Log (character.Target[0].Name + " caught the ball!");
+						break;
+					case("Skill1"):
+						performAction = character.Target[0].Skill1 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (4) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 1!");
+						break;
+					case("Skill2"):
+						performAction = character.Target[0].Skill2 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (5) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 2!");
+						break;
+					case("Skill3"):
+						performAction = character.Target[0].Skill3 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (6) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 3!");
+						break;
+					case("Skill4"):
+						performAction = character.Target[0].Skill4 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used Skill " + character.Target[0].GetActionName (7) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 4!");
+						break;
+					}
+					if(performAction)
+					{
+						character.Skill1 ();	
+					}
+				} 
+				else
 				{
-					character.Skill3 ();
+					character.Skill1 ();
 				}
+				break;
+			case("Skill2"):
+				//character.heldBalls -= character.GetActionCost(5);
+				combatAction.text = character.Name + " used Skill 2!";
+				Debug.Log (character.Name + " used Skill 2!");
+				if (character.actionType == "Offense"
+				    && character.Target[0].actionType == "Defense") {
+					switch (character.Target[0].action) {
+					case("Catch"):
+						if (character.Target [0].catchBall (character)) {
+							if (character.Target [0].tag == "Player") {
+								//ballsCaught.Add (false);
+							} else {
+								//ballsCaught.Add (true);
+							}
+						}
+						else
+						{
+							performAction = false;
+						}
+						
+						combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
+						Debug.Log (character.Target[0].Name + " caught the ball!");
+						break;
+					case("Skill1"):
+						performAction = character.Target[0].Skill1 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
+						Debug.Log (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !");
+						break;
+					case("Skill2"):
+						performAction = character.Target[0].Skill2 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 2!");
+						break;
+					case("Skill3"):
+						performAction = character.Target[0].Skill3 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 3!");
+						break;
+					case("Skill4"):
+						performAction = character.Target[0].Skill4 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 4!");
+						break;
+					}
+					if(performAction)
+					{
+						character.Skill2 ();
+					}
+				}
+				else
+				{
+					character.Skill2 ();	
+				}
+				break;
+			case("Skill3"):
+				//character.heldBalls -= character.GetActionCost (6);
+				combatAction.text = character.Name + " used Skill 3!";
+				print (character.Name + " used Skill 3!");
+				if (character.actionType == "Offense"
+				    && character.Target[0].actionType == "Defense") {
+					switch (character.Target[0].action) {
+					case("Catch"):
+						if (character.Target[0].catchBall (character)) 
+						{
+							if (character.Target [0].tag == "Player") 
+							{
+								//ballsCaught.Add (true);
+							} 
+							else 
+							{
+								//ballsCaught.Add (false);
+							}
+						}
+						else
+						{
+							performAction = true;
+						}
+							
+						
+						combatAction.text += " but " + character.Target[0].Name + " caught the ball!";
+						Debug.Log (character.Target[0].Name + " caught the ball!");
+						break;
+					case("Skill1"):
+						performAction = character.Target[0].Skill1 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !";
+						Debug.Log (character.Target[0].Name + " used " + character.Target[0].GetActionName (4) + " !");
+						break;
+					case("Skill2"):
+						performAction = character.Target[0].Skill2 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (5) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 2!");
+						break;
+					case("Skill3"):
+						performAction = character.Target[0].Skill3 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (6) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 3!");
+						break;
+					case("Skill4"):
+						performAction = character.Target[0].Skill4 ();
+						
+						combatAction.text += " but " + character.Target[0].Name + " used " + character.Target[0].GetActionName (7) + " !";
+						Debug.Log (character.Target[0].Name + " used Skill 4!");
+						break;
+					}
+					if(performAction)
+					{
+						character.Skill3 ();
+					}
+				}
+				else
+				{
+					character.Skill3 ();	
+				}
+				break;
+			case("Skill4"):
+				//character.heldBalls -= character.GetActionCost (7);
+				combatAction.text = character.Name + " used Skill 4!";
+				Debug.Log (character.Name + " used Skill 4!");
+				if (character.actionType == "Offense"
+				    && character.Target [0].actionType == "Defense") {
+					switch (character.Target [0].action) {
+					case("Catch"):
+						if (character.Target [0].catchBall (character)) {
+							if (character.Target [0].tag == "Player") {
+								//ballsCaught.Add (true);
+							} else {
+								//ballsCaught.Add (false);
+							}
+						} else {
+							performAction = true;
+						}
+						
+						combatAction.text = character.Target [0].Name + " caught the ball!";
+						Debug.Log (character.Target [0].Name + " caught the ball!");
+						break;
+					case("Skill1"):
+						performAction = character.Target [0].Skill1 ();
+						
+						combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !";
+						Debug.Log (character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !");
+						break;
+					case("Skill2"):
+						performAction = character.Target [0].Skill2 ();
+						
+						combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (5) + " !";
+						Debug.Log (character.Target [0].Name + " used Skill 2!");
+						break;
+					case("Skill3"):
+						performAction = character.Target [0].Skill3 ();
+						
+						combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (6) + " !";
+						Debug.Log (character.Target [0].Name + " used Skill 3!");
+						break;
+					case("Skill4"):
+						performAction = character.Target [0].Skill4 ();
+						
+						combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (7) + " !";
+						Debug.Log (character.Target [0].Name + " used Skill 4!");
+						break;
+					}
+					if (performAction) {
+						character.Skill4 ();
+					}
+				} else {
+					character.Skill4 ();	
+				}
+				break;
+			}
+		}
+		else
+		{
+			if(character.dead)
+			{
+				combatAction.text = character.Name+" was hit and couldn't act!";
 			}
 			else
 			{
-				character.Skill3 ();	
+				combatAction.text = character.Name+" is stunned!";
 			}
-			break;
-		case("Skill4"):
-			//character.heldBalls -= character.GetActionCost (7);
-			combatAction.text = character.Name + " used Skill 4!";
-			Debug.Log (character.Name + " used Skill 4!");
-			if (character.actionType == "Offense"
-			    && character.Target [0].actionType == "Defense") {
-				switch (character.Target [0].action) {
-				case("Catch"):
-					if (character.Target [0].catchBall (character)) {
-						if (character.Target [0].tag == "Player") {
-							//ballsCaught.Add (true);
-						} else {
-							//ballsCaught.Add (false);
-						}
-					} else {
-						performAction = true;
-					}
-					
-					combatAction.text = character.Target [0].Name + " caught the ball!";
-					Debug.Log (character.Target [0].Name + " caught the ball!");
-					break;
-				case("Skill1"):
-					performAction = character.Target [0].Skill1 ();
-					
-					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !";
-					Debug.Log (character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !");
-					break;
-				case("Skill2"):
-					performAction = character.Target [0].Skill2 ();
-					
-					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (5) + " !";
-					Debug.Log (character.Target [0].Name + " used Skill 2!");
-					break;
-				case("Skill3"):
-					performAction = character.Target [0].Skill3 ();
-					
-					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (6) + " !";
-					Debug.Log (character.Target [0].Name + " used Skill 3!");
-					break;
-				case("Skill4"):
-					performAction = character.Target [0].Skill4 ();
-					
-					combatAction.text += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (7) + " !";
-					Debug.Log (character.Target [0].Name + " used Skill 4!");
-					break;
-				}
-				if (performAction) {
-					character.Skill4 ();
-				}
-			} else {
-				character.Skill4 ();	
-			}
-			break;
 		}
 		if(finish == delay)
 		{
 			enabled = true;
 		}
-		Debug.Log ("finish2: "+finish+", delay: "+delay);
 	}
 
 	// This function randomly assigns actions and targets for enemies.

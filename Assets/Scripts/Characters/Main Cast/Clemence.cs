@@ -48,14 +48,10 @@ public class Clemence : Character
     public override bool Skill1() {
         int catchAttempts = 0;
         for (int i = 3; i < combat.Enemy.Length; i++) {
-            if (enemies[i].Target[0] == allies[0]) {
+			// This doesn't necessarily check if allies 0 & 1 are not this character
+			if ((enemies[i].Target[0] == allies[0] || enemies[i].Target[0] == allies[1])
+				&& enemies[i].actionType == "Offense") {
                 enemies[i].Target[0] = this;
-                enemies[i].action = "THROW";
-                catchAttempts++;
-            }
-            if (enemies[i].Target[0] == allies[1]) {
-                enemies[i].Target[0] = this;
-                enemies[i].action= "THROW";
                 catchAttempts++;
             }
         }
