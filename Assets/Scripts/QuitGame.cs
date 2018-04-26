@@ -118,24 +118,23 @@ public class QuitGame : MonoBehaviour
         if(GameObject.Find("MainMenu") != null) GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
 
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
-        if (SceneManager.GetActiveScene ().name == "MainMenu") 
-		{
-			GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(()=>Restart("Salt Pitt High Gym"));
-			GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(()=>Restart("Schola Grandis Gym"));
-			GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(()=>Restart("MightMain Academy Gym"));
+        if (SceneManager.GetActiveScene().name == "MainMenu") {
+            GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => Restart("Salt Pitt High Gym"));
+            GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => Restart("Schola Grandis Gym"));
+            GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
             GameObject.Find("MapButton").GetComponent<Button>().onClick.AddListener(() => Restart("MapScreen"));
             GameObject.Find("DialogueMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogueMenu"));
             GameObject.Find("Difficulty").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().swapDifficulties());
             print("Buttons Found");
 
-		} else if(SceneManager.GetActiveScene().name == "MapScreen") {
+        } else if (SceneManager.GetActiveScene().name == "MapScreen") {
             GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             //MOST OTHER BUTTONS ARE IN THEIR OWN SCRIPT CALLED MapButtonOptions.cs
 
-        } else if(SceneManager.GetActiveScene().name == "DialogueMenu") {
+        } else if (SceneManager.GetActiveScene().name == "DialogueMenu") {
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("Prologue").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Prologue"));
             GameObject.Find("A New Student").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("A New Student"));
@@ -151,7 +150,14 @@ public class QuitGame : MonoBehaviour
             GameObject.Find("Kuro's Trump Card").GetComponent<Button>().onClick.AddListener(() => Restart("Kuro's Trump Card"));
             GameObject.Find("Military Surrender").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Military Surrender"));
 
+        } else if(SceneManager.GetActiveScene().name == "OptionsMenu") {
+            GameObject.Find("BackgroundVolume-").GetComponent<Button>().onClick.AddListener(() => Audio.DecreaseVolume(0));
+            GameObject.Find("BackgroundVolume+").GetComponent<Button>().onClick.AddListener(() => Audio.IncreaseVolume(0));
+            GameObject.Find("SFXVolume-").GetComponent<Button>().onClick.AddListener(() => Audio.DecreaseVolume(2));
+            GameObject.Find("SFXVolume+").GetComponent<Button>().onClick.AddListener(() => Audio.IncreaseVolume(2));
         } else {
+
+
             print("Warning: QuitGame: No recognized scene found for OnSceneLoaded, make sure to specify correctly");
         }
     }

@@ -15,8 +15,8 @@ public class Trevor : Character {
 										  "Target is blocked from throwing balls and must do something else next", 
 										  "Blocks the first attack on the next two turns", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 }; 
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 }; 
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 0 };
 
 		base.Start ();

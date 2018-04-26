@@ -88,7 +88,7 @@ public class AudioScript : MonoBehaviour {
 
     public void playSFX(string name){// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
       AudioClip sfx = Resources.Load<AudioClip> ("Audio/"+name);
-      src1.PlayOneShot(sfx);
+      src2.PlayOneShot(sfx);
         if (sfx == null) print("sfx problem");
         print("sfx");
    }
@@ -213,13 +213,21 @@ public class AudioScript : MonoBehaviour {
       src.time = 0;
       src.Stop();
    }
+
+
+    public void IncreaseVolume(int track) {
+        chooseTrack(track);
+        src.volume += 0.1f;
+    }
    
-   
-   
-   
+    public void DecreaseVolume(int track) {
+        chooseTrack(track);
+        src.volume -= 0.1f;
+    }
+
    
    public void stopAllAudio(){
-      
+        resetAllAudio();
    }
    
    public void resetAllAudio(){
@@ -235,12 +243,24 @@ public class AudioScript : MonoBehaviour {
 
 
     // Update is called once per frame
-    public void Update () {
-      //Debug.Log("src1: "+ src.time);
-      //Debug.Log("src2: "+src2.time);
-      //these do things based upon keys pressed
-      //https://docs.unity3d.com/ScriptReference/KeyCode.html
-      if(Input.GetKeyDown(KeyCode.Backspace)){  
+    public void Update() {
+        if(src == null || src0 == null || src1 == null || src2 == null) {
+        staticSrc = GetComponents<AudioSource>()[0];
+        staticFile = file0;
+        src = GetComponents<AudioSource>()[0];
+        src0 = GetComponents<AudioSource>()[0];
+        src1 = GetComponents<AudioSource>()[1];
+        src2 = GetComponents<AudioSource>()[2];
+        src.clip = file0;
+        src0.clip = file0;
+        src1.clip = file1;
+        src2.clip = file2;
+    }
+        //Debug.Log("src1: "+ src.time);
+        //Debug.Log("src2: "+src2.time);
+        //these do things based upon keys pressed
+        //https://docs.unity3d.com/ScriptReference/KeyCode.html
+        if (Input.GetKeyDown(KeyCode.Backspace)){  
         resetAllAudio();
       }else if(  (Input.GetKeyDown(KeyCode.Equals)) || (Input.GetKeyDown(KeyCode.Plus)) ){
         src.volume+=0.1F;

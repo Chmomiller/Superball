@@ -19,7 +19,7 @@ public class Skylar : Character {
 											"Applies confusion to all enemies" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 0, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
         //actionCosts = new int[]{ 0, 1, 0, 0, 2, 0, 4, 3 };
         actionCosts = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0 };
 

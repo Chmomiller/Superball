@@ -18,7 +18,7 @@ public class Kuro : Character {
 											"Buff your team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 0 };
 
 		base.Start ();

@@ -18,7 +18,7 @@ public class Frank : Character {
 										  "Blocks any balls aimed at Trevor", "", "", "" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility" };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
-	    alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };        
+	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };        
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 
 		base.Start ();

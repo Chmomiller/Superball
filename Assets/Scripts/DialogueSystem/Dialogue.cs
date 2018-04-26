@@ -80,7 +80,7 @@ public class Dialogue {
             "Narrator", "", ""
         },
         {
-            "","Shiro","","","","",
+            "shiro full invert","shiro full invert","shiro full invert","shiro full","shiro full","shiro full",
             "Now, where’s Salt Pitt High? I’m still taking time to get used to this.",
             "Shiro", "", ""
         },

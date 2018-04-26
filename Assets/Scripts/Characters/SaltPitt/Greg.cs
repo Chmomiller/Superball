@@ -19,7 +19,7 @@ public class Greg: Character
 										  "Pass off all balls to target ally", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
 		base.Start ();
