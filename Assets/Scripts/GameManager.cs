@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool hardMode = false;
 	public static GameManager instance = null;
     public AudioScript Audio;
+    public bool consistency = true;
 
     public static string globalString = "NA";
     public static int globalInt = 0;
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void loadAnyScene(string name) {
         GameObject.Find("AudioManager").GetComponent<AudioScript>().resetAllAudio();
-        if (UnityEngine.Random.Range(0, 20) == 0) {
+        if (UnityEngine.Random.Range(0, 20) == 0 && consistency == false) {
             UnityEngine.SceneManagement.SceneManager.LoadScene("A New Student 7");
         } else {
             UnityEngine.SceneManagement.SceneManager.LoadScene(name);

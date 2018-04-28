@@ -765,7 +765,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.598463
+      value: -0.72
       objectReference: {fileID: 0}
     - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_LocalPosition.z
@@ -814,6 +814,24 @@ Prefab:
         type: 2}
       propertyPath: maxStamina
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 212263503070211268, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 99d8ecdecb872fd498763f3626324ddd,
+        type: 3}
+    - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.13181043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.13181043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.13181043
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
