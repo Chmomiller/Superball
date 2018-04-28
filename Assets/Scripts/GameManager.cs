@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public bool hardMode = false;
 	public static GameManager instance = null;
     public AudioScript Audio;
-    public bool consistency = true;
+
+    public bool consistency = true; //Disables any random/easter egg content when true
 
     public static string globalString = "NA";
     public static int globalInt = 0;
