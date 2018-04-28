@@ -59,8 +59,8 @@ public class QuitGame : MonoBehaviour
             case "MapScreen":
                 Audio.resetAllAudio();
                 int random = UnityEngine.Random.Range(0, 100);
-                if (random <= 10) {
-                    if (random <= 5) {
+                if (random <= 5) {
+                    if (random <= 1) {
                         Audio.playAudio("Concept Sound/Unknown Individuals 2", 0);
                     } else {
                         Audio.playAudio("Concept Sound/Who Am I", 0);

@@ -610,6 +610,47 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: MightMain Academy Gym
       objectReference: {fileID: 0}
+    - target: {fileID: 114168039844647238, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d7e34b5d890087d438bc687266c03620,
+        type: 3}
+    - target: {fileID: 114863204032293242, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f9720468f89c60d478cdfd3cf48195e0,
+        type: 3}
+    - target: {fileID: 114633032962356996, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d0bf66ad45269f4799ae44bc4cb192b,
+        type: 3}
+    - target: {fileID: 114391651039153144, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9adf69202702aa54e86630674f534dda,
+        type: 3}
+    - target: {fileID: 114573463706034228, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: df0a48ed9abf4ad46bada8f0071a1a3f,
+        type: 3}
+    - target: {fileID: 114202388307398744, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: acd8ebd814e26fa4e876e2551c18c74c,
+        type: 3}
+    - target: {fileID: 114593868304324848, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.566
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -828,7 +869,7 @@ Prefab:
     - target: {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029,
         type: 2}
       propertyPath: Damage
-      value: 21
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114392054666806166, guid: a0046e759a0a8574e812a4dcfcf7c029,
         type: 2}
@@ -1171,7 +1212,7 @@ Prefab:
     - target: {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05,
         type: 2}
       propertyPath: maxStamina
-      value: 200
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 114212806973013238, guid: 28fd4f95086615347a730a94c8302c05,
         type: 2}

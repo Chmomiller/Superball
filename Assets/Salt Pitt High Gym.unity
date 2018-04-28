@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.4834496
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_LocalPosition.z
@@ -155,6 +155,29 @@ Prefab:
     - target: {fileID: 1737576621627970, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
       propertyPath: m_Name
       value: Character2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212263503070211268, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 99d8ecdecb872fd498763f3626324ddd,
+        type: 3}
+    - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.14679128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.14679118
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178667087017956, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.14679118
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
+        type: 2}
+      propertyPath: Damage
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcc80db259b44fd4da3cace86ae21475, type: 2}
@@ -299,6 +322,47 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Salt Pitt High Gym
       objectReference: {fileID: 0}
+    - target: {fileID: 114168039844647238, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d7e34b5d890087d438bc687266c03620,
+        type: 3}
+    - target: {fileID: 114863204032293242, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f9720468f89c60d478cdfd3cf48195e0,
+        type: 3}
+    - target: {fileID: 114633032962356996, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d0bf66ad45269f4799ae44bc4cb192b,
+        type: 3}
+    - target: {fileID: 114391651039153144, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8649f6ead4afaed45ab9066a3fff18ab,
+        type: 3}
+    - target: {fileID: 114573463706034228, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4184c7db7d5a73c41bea242861ea9c72,
+        type: 3}
+    - target: {fileID: 114202388307398744, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60c1a610cfdf35c439f654c9197bccf5,
+        type: 3}
+    - target: {fileID: 114593868304324848, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.541
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -421,7 +485,7 @@ Prefab:
     - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
         type: 2}
       propertyPath: Damage
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad419056f3e8dad419048553232f0b37, type: 2}
@@ -660,7 +724,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4955906357475200, guid: 01a2cfe2add8cf5469762c8dc4d5e527, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.8015693
+      value: 1.635646
       objectReference: {fileID: 0}
     - target: {fileID: 4955906357475200, guid: 01a2cfe2add8cf5469762c8dc4d5e527, type: 2}
       propertyPath: m_LocalPosition.z
@@ -711,7 +775,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.39097595
+      value: 0.44310075
       objectReference: {fileID: 0}
     - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
       propertyPath: m_LocalPosition.z
@@ -744,7 +808,7 @@ Prefab:
     - target: {fileID: 114176408450604788, guid: 9e978ddd4eb3bf84c843f5042a0e5d93,
         type: 2}
       propertyPath: Stamina
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 114176408450604788, guid: 9e978ddd4eb3bf84c843f5042a0e5d93,
         type: 2}
@@ -755,6 +819,24 @@ Prefab:
         type: 2}
       propertyPath: Level
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212085766506959846, guid: 9e978ddd4eb3bf84c843f5042a0e5d93,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9d1fd0fc5bdd5584e97ba23116d51728,
+        type: 3}
+    - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.15868634
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.15868631
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.15868631
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
@@ -924,7 +1006,7 @@ Prefab:
     - target: {fileID: 114497658224163336, guid: 332d4250daaf0da48bdb022062141cdb,
         type: 2}
       propertyPath: Damage
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
@@ -942,7 +1024,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4019975854269442, guid: 68d73248284fd3045a55027a01b49943, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.124076724
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 4019975854269442, guid: 68d73248284fd3045a55027a01b49943, type: 2}
       propertyPath: m_LocalPosition.z
