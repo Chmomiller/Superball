@@ -6,13 +6,15 @@ public class CombatManager : MonoBehaviour
 {
 	public enum PHASE{START, CONFLICT, SELECT, ACTION, TARGET, EXECUTE, RESULTS}
 
-	// Used for storing turn order and actions
+	// CombatQueue stores turn order
 	public Character[] combatQueue;								
 	public PHASE currentPhase;
 	public Character[] Player;
 	public Character[] Enemy;
+	// The buttons for selecting the players and enemies
 	public Button[] playerSelect;
 	public Button[] enemySelect;
+	// The buttons that show up at the ned of combat
 	public Button[] endButton;
 	public CombatUI CUI;
 	// This is for debug purposes
@@ -21,15 +23,19 @@ public class CombatManager : MonoBehaviour
 
 	// Used to see if balls were caught and by who
 	//private System.Collections.Generic.List<bool> ballsCaught;
+	// Used when two players are at the same stamina at the start of the round
 	public int conflictInQueue = -1;
+	// Used so the UI can get the current character
+	public int currentCharacter = 0;
 	public bool win = false;
 	public bool lose = false;
 
-	public int currentCharacter = 0;
+	// Used to stagger the order of actions taken during the execute phase
 	public float delay = 0f;
 
 	void Start()
 	{
+		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		GameObject[] CharUI = new GameObject[3];
 		GameObject[] EnemyUI = new GameObject[3];
 		Player = new Character[3];
@@ -37,30 +43,37 @@ public class CombatManager : MonoBehaviour
 		playerSelect = new Button [3];
 		enemySelect = new Button [3];
 		endButton = new Button[2];
+
+		// his block sets up the the characters and character select buttons 
 		for (int i = 0; i < 3; i++) 
 		{
-			Player[i] = GameObject.Find("Character"+i).GetComponent<Character>();
-			Enemy [i] = GameObject.Find ("Character" + (i + 3)).GetComponent<Character> ();
-
+			// set up the Character select buttons
 			CharacterSelectUI PlayerSUI = GameObject.Find("Player"+i).GetComponent<CharacterSelectUI> ();
 			CharacterSelectUI EnemySUI = GameObject.Find ("Enemy" + i).GetComponent<CharacterSelectUI> ();
 			PlayerSUI.Init (this);
 			EnemySUI.Init (this);
 
+			// Set up the players
+			Player[i] = GameObject.Find("Character"+i).GetComponent<Character>();
+			Enemy [i] = GameObject.Find ("Character" + (i + 3)).GetComponent<Character> ();
 			Player [i].Init (this, PlayerSUI);
 			Enemy [i].Init (this, EnemySUI);
 
 			playerSelect [i] = GameObject.Find ("Player" + i).GetComponent<Button> ();
 			enemySelect [i] = GameObject.Find ("Enemy" + i).GetComponent<Button> ();
 
+			// Set up each character's UI
 			CharUI [i] = GameObject.Find ("CharacterUI" + i);
 			CharUI [i].GetComponent<CharacterUI> ().Init(Player [i]);
 			EnemyUI [i] = GameObject.Find ("CharacterUI" + (i + 3));
 			EnemyUI [i].GetComponent<CharacterUI> ().Init(Enemy [i]);
 
+			// Set the character's positions to the buttons
 			Player[i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, 90);
 			Enemy [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, 90);
-		}
+		}  
+
+		// Get the action buttons and set them up
 		Button[] action = new Button[8];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
@@ -70,18 +83,20 @@ public class CombatManager : MonoBehaviour
 		action [5] = GameObject.Find ("Skill4Button").GetComponent<Button> ();
 		action [6] = GameObject.Find ("Skill5Button").GetComponent<Button> ();
 		action [7] = GameObject.Find ("Skill6Button").GetComponent<Button> ();
-		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
-		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
-		endButton [0] = GameObject.Find ("RetryButton").GetComponent<Button> ();
-		endButton [1] = GameObject.Find ("ContinueButton").GetComponent<Button> ();
-		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
-		//ballsCaught = new System.Collections.Generic.List<bool>();
-		combatQueue = new Character[6];
 		for (int i = 0; i < action.Length; i++) 
 		{
 			action [i].GetComponent<ButtonsUI> ().CM = this;
 		}
+
+		// Get text components and the end buttons
+		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
+		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
+		endButton [0] = GameObject.Find ("RetryButton").GetComponent<Button> ();
+		endButton [1] = GameObject.Find ("ContinueButton").GetComponent<Button> ();
 			
+		//ballsCaught = new System.Collections.Generic.List<bool>();
+			
+		// This sets up the character's healthbars and sets their allies and enemies internally
 		for(int i = 0; i < 3; i++)
 		{
 			CharUI [i].GetComponentInChildren<TemporaryUIIntegration> ().Init(Player [i]);
@@ -94,6 +109,8 @@ public class CombatManager : MonoBehaviour
 				Enemy [i].enemies [j] = Player [j];
 			}
 		}
+
+		combatQueue = new Character[6];
 	}
 
 	void Update()
@@ -314,11 +331,9 @@ public class CombatManager : MonoBehaviour
 				playerSelect [i].enabled = true;
 			}
 		}
-		//combatQueue [conflictInQueue].character.gameObject.GetComponent<Button> ().enabled = true;
-		//combatQueue [conflictInQueue+1].character.gameObject.GetComponent<Button> ().enabled = true;
-		// If the player has selected a character to go first
 	}
 
+ 
 
 	// This function deactivates player select buttons
 	void Action()
@@ -385,22 +400,20 @@ public class CombatManager : MonoBehaviour
 			ballsCaught.RemoveAt (0);
 		}
 		*/
-			
+
+		// Clean up each character
 		foreach(Character C in combatQueue)
 		{
 			C.cleanUp();
 		}
 		
-		//currentPhase = PHASE.START;
-		
 		this.enabled = false;
 		StartCoroutine(PhaseChange());
 	}
 
-
+	// This coroutine executes the character's actions and any reaction actions as a result and displays it
 	IEnumerator DoAction(Character character, string action, float finish)
 	{
-
 		enabled = false;
 		yield return new WaitForSeconds (finish);
 		// If the characcter is KO'd or stunned, don't perform their action
