@@ -11,7 +11,11 @@ public class Shiro : Character{
         Role = "Support";
         
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Refreshments", "Keep Fighting", "Cheer On" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off balls to an ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "Buffs team mates" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Gives all balls to a single teammate up to their max.\nCost: Varies    Target: Single Ally", 
+										  "Hands Blue Bison™ refreshments to one teammate, to recover 1/4 of their maximum stamina. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Ally", 
+										  "All teammates are <color=#00ff00ff>steadied</color> for 2 turns. <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team", 
+										  "All teammates are <color=blue>buffed</color> for two turns.  <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };

@@ -12,7 +12,11 @@ public class Theodore : Character {
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground","Weaker attack but enemy is stunned for 1 turn" , "Guaranteed attack on target. Cost 3, CD 2", "If a ball is to be thrown at you, redirect at a target ally instead", "Throw 8 balls at random enemies"};
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
+			"Throws a weaker attack that <color=yellow>stuns</color> for 1 turn" , 
+			"Guaranteed attack on target. Cost 3, CD 2", 
+			"If a ball is to be thrown at you, redirect at a target ally instead", 
+			"Throw 8 balls at random enemies"};
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 2, 1 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 1, 2 };
 	    actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 1, 8 };
