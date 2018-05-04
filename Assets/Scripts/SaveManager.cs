@@ -83,7 +83,7 @@ public class SaveManager : MonoBehaviour {
 	public bool Read(){
 		int[] characterLevels = this.ReadLevels ();
 		bool[] conditionsMet = this.ReadBooleans ();
-		if (characterLevels [0] == null || conditionsMet [0] == null) {
+		if (characterLevels [0] == 0 || conditionsMet [0] == false) {
 			return false;
 		} else {
 			int shiroTempLvl = characterLevels [0];

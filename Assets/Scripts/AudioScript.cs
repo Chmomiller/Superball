@@ -41,8 +41,12 @@ public class AudioScript : MonoBehaviour {
    public AudioClip file2;
    
    //these two are used for actually changing audio in the methods. Most method calls in this class contains an integer that specifies the track it should affect. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This allows you to change between which track to change without having to make a new set of methods for each audio_track.  passing 0 as a track uses the audio_manager's internal amsrc and amfile.   
-   public AudioSource src;   
-   public AudioClip file;
+   public AudioSource src;
+    public AudioClip head;
+    public AudioClip body;
+    public bool wait = false;
+    public bool dualAudio = false;
+    public AudioClip file;
    public static AudioSource staticSrc;
    public static AudioClip staticFile;
    public float stopTime;  //used to hold where you are at when you stopped
@@ -156,21 +160,35 @@ public class AudioScript : MonoBehaviour {
       src.Play();
    }
    
-   public void playAudio(string nameOrPath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
-      string name = nameOrPath;
+   public void playAudio(string filePath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
+      string name = filePath;
       chooseTrack(track);
       src.Stop();
       src.time = 0;
       playingAudio = true;
       src.clip = Resources.Load <AudioClip> ("Audio/"+name); //This is you don't
-      if (src.clip == null) print("NULL Audio Src");
+      if (src.clip == null) print("Play Audio: null Audio Source");
       src.Play();
       
    }
    
-   
-   
-   
+    public void playDualAudio(string head, string body) {
+        chooseTrack(0);
+        src.Stop();
+        src.time = 0;
+        wait = true;
+        dualAudio = true;
+        this.head = Resources.Load<AudioClip>("Audio/" + head);
+        this.body = Resources.Load<AudioClip>("Audio/" + body);
+        if (this.head == null) print("Dual Audio: null Audio Source - head");
+        if (this.body == null) print("Dual Audio: null Audio Source - body");
+        print("Playing dual audio");
+        src.clip = this.head;
+        src.Play();
+        
+    }
+
+
    
    //SAME SONG FUNCTIONS: These work with the song currently being played
    
@@ -244,6 +262,8 @@ public class AudioScript : MonoBehaviour {
 
     // Update is called once per frame
     public void Update() {
+        if (instance == null) Destroy(gameObject); //QUESTIONABLE CODE
+       
         if(src == null || src0 == null || src1 == null || src2 == null) {
         staticSrc = GetComponents<AudioSource>()[0];
         staticFile = file0;
@@ -255,7 +275,12 @@ public class AudioScript : MonoBehaviour {
         src0.clip = file0;
         src1.clip = file1;
         src2.clip = file2;
-    }
+        }
+        if(dualAudio && Mathf.Abs(src.clip.length-src.time) < .5) {
+            src.clip = body;
+            src.Play();
+        }
+
         //Debug.Log("src1: "+ src.time);
         //Debug.Log("src2: "+src2.time);
         //these do things based upon keys pressed

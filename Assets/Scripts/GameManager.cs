@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
     public AudioScript Audio;
 
-    public bool consistency = true; //Disables any random/easter egg content when true
+    public bool consistency = false; //Disables any random/easter egg content when true
 
     public static string globalString = "NA";
     public static int globalInt = 0;

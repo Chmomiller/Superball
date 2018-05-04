@@ -326,9 +326,9 @@ MonoBehaviour:
   battleText: {fileID: 0}
   combatAction: {fileID: 0}
   conflictInQueue: -1
+  currentCharacter: 0
   win: 0
   lose: 0
-  currentCharacter: 0
   delay: 0
 --- !u!4 &393305960
 Transform:
@@ -898,19 +898,19 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0983f60ac015caa4f927637a363c4860,
+      objectReference: {fileID: 21300000, guid: 75fb640f5eb43404c85cb11e60b62c8c,
         type: 3}
     - target: {fileID: 4742385474833212, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.12899047
+      value: 0.982644
       objectReference: {fileID: 0}
     - target: {fileID: 4742385474833212, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
       propertyPath: m_LocalScale.x
-      value: -0.1289905
+      value: -0.9826437
       objectReference: {fileID: 0}
     - target: {fileID: 4742385474833212, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.12899047
+      value: 0.982644
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
@@ -1124,6 +1124,12 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.13842532
       objectReference: {fileID: 0}
+    - target: {fileID: 212770678142005348, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ca4823e8917f73479a3bd690e15afa2,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b53b565942d3283419c716f4801d92cf, type: 2}
   m_IsPrefabParent: 0
@@ -1170,6 +1176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hardMode: 0
   Audio: {fileID: 0}
+  consistency: 1
 --- !u!114 &1862253762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,6 +1261,12 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.13793795
       objectReference: {fileID: 0}
+    - target: {fileID: 212309271615673600, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a1d39e0c9eef6b41bd93bee02396d96,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
   m_IsPrefabParent: 0

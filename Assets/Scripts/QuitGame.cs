@@ -121,9 +121,9 @@ public class QuitGame : MonoBehaviour
 
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
         if (SceneManager.GetActiveScene().name == "MainMenu") {
-            GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => Restart("Salt Pitt High Gym"));
-            GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => Restart("Schola Grandis Gym"));
-            GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
+            //GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => Restart("Salt Pitt High Gym"));
+            //GameObject.Find("ScholaGrandisButton").GetComponent<Button>().onClick.AddListener(() => Restart("Schola Grandis Gym"));
+            //GameObject.Find("MightMainButton").GetComponent<Button>().onClick.AddListener(() => Restart("MightMain Academy Gym"));
             GameObject.Find("MapButton").GetComponent<Button>().onClick.AddListener(() => Restart("MapScreen"));
             GameObject.Find("DialogueMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogueMenu"));
             GameObject.Find("Difficulty").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().swapDifficulties());
@@ -159,8 +159,7 @@ public class QuitGame : MonoBehaviour
             GameObject.Find("SFXVolume+").GetComponent<Button>().onClick.AddListener(() => Audio.IncreaseVolume(2));
         } else {
 
-
-            print("Warning: QuitGame: No recognized scene found for OnSceneLoaded, make sure to specify correctly");
+            print("QuitGame.cs Warning: QuitGame: No recognized scene found for OnSceneLoaded, this means buttons won't work when you return to this scene from elsewhere");
         }
     }
 }

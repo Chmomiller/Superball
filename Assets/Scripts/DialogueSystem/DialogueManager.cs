@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		fadeTime = 0;
+        fadeTime = 0;
 		fading = true;
 		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
 
@@ -99,7 +99,6 @@ public class DialogueManager : MonoBehaviour {
 
 			}
 
-            
 
 			if (transition) {
 				Debug.Log (insertText [lineNum, 9]);
@@ -266,6 +265,15 @@ public class DialogueManager : MonoBehaviour {
                 }
             }
 
+            //special case Sound effect /////////////////////////////////////////////////////////////////////////////////////////////
+            if (lineNum < insertText.GetLength(0)) {
+                if (insertText[lineNum, 8] == "sound") {
+                    transition = true;
+                    fading = true;
+                    fadeTime = 0;
+                    GameObject.Find("AudioManager").GetComponent<AudioScript>().playAudio(insertText[lineNum, 8], 2);
+                }
+            }
 
         }
         //special cases
@@ -286,7 +294,6 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 	}
-
 	void AnimateText(string strComplete){
 		int i = 0;
 		string str = "";
