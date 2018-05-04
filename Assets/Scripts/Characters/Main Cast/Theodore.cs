@@ -13,10 +13,10 @@ public class Theodore : Character {
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
-			"Throws a weaker attack that <color=yellow>stuns</color> for 1 turn" , 
-			"Guaranteed attack on target. Cost 3, CD 2", 
+			"Throw a weaker attack that <color=yellow>stuns</color> for 1 turn\nCost: 2 balls    Target: Single Enemy", 
+			"Throw a ball that ignores catching. <color=red>2</color> turn cooldown.\nCost: 3 balls    Target: Single Enemy", 
 			"If a ball is to be thrown at you, redirect at a target ally instead", 
-			"Throw 8 balls at random enemies"};
+			"Throw 8 balls at an enemy. <color=red>2</color> turn cooldown.\nCost: 8 balls    Target: Single Enemy"};
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 2, 1 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 1, 2 };
 	    actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 1, 8 };
@@ -88,6 +88,7 @@ public class Theodore : Character {
 			Target[0].dodgeBall(this);
 			Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
         }
+		actionCooldowns[7] = 3;
 		this.heldBalls -= actionCosts[7];
 		return false;
     }

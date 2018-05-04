@@ -35,8 +35,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365132067671048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.79999, y: 428.9, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.448522, y: -0.649036, z: 90}
+  m_LocalScale: {x: -0.13, y: 0.13, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   combat: {fileID: 0}
-  CUI: {fileID: 0}
+  CSUI: {fileID: 0}
   Name: Skylar
   Damage: 1
   Catch: 100
@@ -113,6 +113,15 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000

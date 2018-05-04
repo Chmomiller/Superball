@@ -13,8 +13,8 @@ public class Harold : Character {
 		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
 											"If attacked this turn, catch the ball and gain steady", 
 											"Counterattack when attacked on the next two turns", 
-											"Charges for a turn then attacks with a powerful strike against an enemy and becomes staggered", 
-											"Throws five balls at a single target inaccurately" };
+											"Charge for a turn then attack with a powerful strike against an enemy and becomes staggered", 
+											"Throw five balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 1 };

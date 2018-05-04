@@ -312,56 +312,30 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519878006}
-    - target: {fileID: 114423588766967868, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Salt Pitt High Gym
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114723072329786952, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Salt Pitt High Gym
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114168039844647238, guid: 8816f530933511049b637d01a9973e77,
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d7e34b5d890087d438bc687266c03620,
-        type: 3}
-    - target: {fileID: 114863204032293242, guid: 8816f530933511049b637d01a9973e77,
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f9720468f89c60d478cdfd3cf48195e0,
-        type: 3}
-    - target: {fileID: 114633032962356996, guid: 8816f530933511049b637d01a9973e77,
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5d0bf66ad45269f4799ae44bc4cb192b,
-        type: 3}
-    - target: {fileID: 114391651039153144, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8649f6ead4afaed45ab9066a3fff18ab,
-        type: 3}
-    - target: {fileID: 114573463706034228, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4184c7db7d5a73c41bea242861ea9c72,
-        type: 3}
-    - target: {fileID: 114202388307398744, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 60c1a610cfdf35c439f654c9197bccf5,
-        type: 3}
-    - target: {fileID: 114593868304324848, guid: 8816f530933511049b637d01a9973e77,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.541
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000091552734
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
@@ -404,10 +378,13 @@ MonoBehaviour:
   CUI: {fileID: 0}
   battleText: {fileID: 0}
   combatAction: {fileID: 0}
+  tCursor: {fileID: 0}
+  combatLog: {fileID: 0}
   conflictInQueue: -1
+  currentCharacter: 0
+  turn: 0
   win: 0
   lose: 0
-  currentCharacter: 0
   delay: 0
 --- !u!4 &393305960
 Transform:
@@ -946,6 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hardMode: 1
   Audio: {fileID: 0}
+  consistency: 1
 --- !u!114 &1862253762
 MonoBehaviour:
   m_ObjectHideFlags: 0

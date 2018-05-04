@@ -43,13 +43,13 @@ public class Trevor : Character {
     // Currently doesn't allow players to res off of a catch from this skill
 	public override bool Skill1()
     {
-        float variance;
-        for (int i = 0; i < 3; i++) {
-            variance = UnityEngine.Random.Range(0.8f, 1.2f);
-			int test = UnityEngine.Random.Range (0, 3);
-		    Target[i] = this.enemies[test];	
-			Debug.Log (enemies[test].Name);
-	    }
+		for (int i = 0; i < 3; i++) 
+		{
+			do{
+				int aim = UnityEngine.Random.Range (0, 3);
+				Target[i] = enemies[aim];
+			}while(!Target[i].dead);
+		}
 
 		for (int i = 0; i < 3; i++) 
 		{
@@ -58,7 +58,7 @@ public class Trevor : Character {
 				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
 				{
 					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
-					//Target [i] = enemies [j];
+					Target [i] = enemies [j];
 				}
 			}
 		}

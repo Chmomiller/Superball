@@ -22,14 +22,35 @@ public class Yamato : Character {
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 2, 3, 3, 6, 0 };
+
+		base.Start();
     }
 
+	new public void loseStamina(int staminaLoss)
+	{
+		AudioScript.playStaticSFX("_SFX/Battle sfx/miss/miss_1");
+		if (staminaLoss > 20) 
+		{
+			this.Stamina -= (staminaLoss - 20); 
+		} 
+		else 
+		{
+			
+		}
+		if(this.Stamina < 0)
+		{
+			this.Stamina = 0;
+			this.dead = true;
+		}
+	}
+
     void Update() {
+		/*
         if (yamatoCharge == 100) {
             enemies[0].dead = true;
             enemies[1].dead = true;
             enemies[2].dead = true;
-        }
+        }*/
     }
 
     public override bool catchBall(Character attacker) {

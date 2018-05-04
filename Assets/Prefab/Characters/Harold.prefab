@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   combat: {fileID: 0}
-  CUI: {fileID: 0}
+  CSUI: {fileID: 0}
   Name: Harold
   Damage: 1
   Catch: 100
@@ -113,6 +113,15 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
