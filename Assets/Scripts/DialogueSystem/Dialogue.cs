@@ -3227,6 +3227,3472 @@ static string[,] mightmainDefeat = new string[,]{
 };
 
 
+//The chef’s invitation
+static string[,] blueRibbonIntro = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "Street"
+        },
+        {
+            "","","","","","",
+            "A few days later, on Saturday morning…",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "(Salt Pitt High isn’t too bad a school. It’s plain and could be much better, but I can make do with it.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "(And come to think of it, I haven’t seen those punks at the old gym. Hopefully, they won’t cause any trouble if I see them later.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "(Ah… I’d better walk around Ball City and see what I can do for fun here. I can’t stay in my apartment all day.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "Hey, Shiro! Nice meeting you here this lovely weekend!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "Want me to buy you a treat?",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "Hmm… I don’t want to burden you like that. It’s not right to make others spend their money on you, you know?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "Burden? Oh, no sweat! It’ll be cheap!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "A friend of mine is selling all sorts of pastries in a food truck at a nearby street! A lot of other students are there, too!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "What?! How often does this happen?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Clemence","",
+            "Every Saturday. Now, come on, let’s check it out!",
+            "Clemence","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Street"
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Wow, a lot of students from the school are here! And a lot of young kids as well!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Now, now, everyone, my crew and I are still preparing.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Could you please wait for a few more minutes? We’ve set up those tables for you!",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Of course, Miss Lily!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "We’ll gladly wait as long as you want!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "That baker is Lily Yaku. She’s a student of a cooking school called the Blue Ribbon.",
+            "Clemence","", ""
+        },
+            {
+            "Clemence","Shiro","","","Lily","",
+            "The Blue Ribbon? That name sounds a bit familiar.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "The Blue Ribbon’s nothing big in the dodgeball scene, but it’s often at the upper half of the cooking rankings.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Believe you me, they have really skilled cooks!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Lily herself sets up a mobile shop supported by her school. What’s more, she’s one of the members of the Blue Ribbon’s dodgeball club!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Wow, really?!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Okay, everyone! We’re all done now!",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Please group yourselves into twos, and choose which you’d like to get, but be gentle!",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Now what would you like?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "I’d like the pretzel, please!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "And I’d like that chocolate cake!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Here you go!",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Thank you very much, Miss Lily!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Oh, you’re too kind! Enjoy!",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Now, who’s next?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "The rice bread, please!",
+            "Elementary Student A","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Yeah! What he said!",
+            "Elementary Student B","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Of course, dearies! And since you’re not in middle school yet, you get to have them for half-price!",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Awesome!",
+            "Elementary Student A","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Thanks very much!",
+            "Elementary Student B","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Now, who’s next?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Hi, Lily! Nice day, isn’t it?",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "(Hmm? They sound like they’ve known each other already.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "You know her, Clemence?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Yeah! I’ve been buying goods from her family for years! Her family’s shop is close to my home.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Clemence is a dear boy. He once gave us flowers to make the shop look better.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Wow, that was rather kind of you, Clemence!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Oh, who would think otherwise?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Now, Clemence, may I ask you something before I take your order?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "What is it, Lily?",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Do you know a girl named Shiro Smith? I’ve been asked to look for her, and heard that she lives around here.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Why, that’s me!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "My goodness! Are you truly the one who beat your school’s dodgeball club and became its new leader?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "She sure is, Miss Lily!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "I saw the match, and man, it was wild!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Shiro gave those goons the beating they needed!",
+            "Student C","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Oh, everyone, you don’t have to put it that way! It wasn’t a big deal!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Anyway, Lily, why are you looking for me?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Nothing scary, dearie. I have a letter for you.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Let me see…",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Dear Shiro Smith, I am the president of the Blue Ribbon’s dodgeball club.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "I have been informed by my school that it has arranged a dodgeball fight with your school, Salt Pitt High.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "I hear that you have done a most impressive act of ousting questionable figures from the club. Perhaps that is why you have caught the Blue Ribbon’s eye.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Tonight, we shall have our dodgeball match. I do apologize for its being so sudden, but that is how things go in the hectic world of dodgeball.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "But before our match, I invite you and your team to have dinner at the Five, a restaurant on the Blue Ribbon’s school grounds.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Everything shall be on the house, so you may get what your heart likes. The dinner will start at 7:00 PM.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "From, Morgan Kaimoto.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Dinner? At one of your guys’ restaurants! Th-That’s unbelievable!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "And we’ve been challenged to a fight! My first fight as dodgeball club president! I can’t believe it!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Oh, I don’t like how sudden it is, but if you don’t show up, you’ll automatically lose.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "If I’d been in charge of arranging the game, I would’ve given you more time.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Oh, I don’t like this one bit! Fighting the dodgeball club of a great cooking school will definitely not end well!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Hmm… If we have to go, then we might as well have a good dinner to go with it.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Great! Now, shall I make you a nice Italian sandwich? It’ll be on the house.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "An Italian sandwich? I’ve never had one before. Go right ahead.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Lily","",
+            "Great! Wait at a table, and I’ll take it to you.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Oh, Theodore! What are you doing here?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "I’m passing by to see a friend of mine. Are you here for that baking lady?",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "We sure are! But, Theodore, you have to hear this!",
+            "Clemence","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Street"
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Our match is tonight, huh? A very shocking move, indeed.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Oh, I know for sure its team will be hard to beat! They’re good not only at cooking but also at dodgeball!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Dodgeball is big in today’s world, so even schools meant for only certain fields train themselves in dodgeball!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Is it good that we’ll be fighting who I guess are cooks?",
+
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Certainly! This is our, Salt Pitt High’s, chance to rise in the ranks of Ball City’s dodgeball scene.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "It being a big city, there are many schools that fight each other, that the winning school may become Ball City’s representative in the national competition.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Wow! What’s the school representing Ball City?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Ah, the name’s gone from my head for the moment. I’ll tell you later.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Oh, thank goodness I’m free tonight! If I weren’t, I’d be worrying about how my plans could work out!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Still… I don’t feel great about this. I sense something foul.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Shiro","","","Theodore","",
+            "Oh, Clemence, there’s nothing to worry about! I’m sure things will be fine.",
+            "Shiro","", ""
+        },
+};
+
+    //Dinner time
+static string[,] dinnerTime = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","","","","","",
+            "A few hours later, around 6:40 PM...",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow, the Five looks gorgeous! The flowers, the steps, the fountain… it’s great!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Is it, really? It’s actually rather mundane in comparison to the truly fancy restaurants in Ball City.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Now those I would go to often, before my parents found themselves in a little financial problem. Since then, we’ve been a bit more frugal.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "(Now that I think about it, Theodore looks the most well-off of us three. I should’ve figured he’s more on the rich side of the scale.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Even then, I’d give much to dine at a nice restaurant, were it ever so short!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "... Oh, those two guys are coming to us!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "Bonsoir, messieurs et mademoiselle. I see you’ve finally come at last.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "I am Morgan Kaimoto, the chef who invited you to come feast here tonight.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "Hello! I’m Ash Nikumaru, one of the cooks happy to cook for you tonight!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "Pardon my companion. He’s not a bad cook, but he tends to be excited over nothing worth his attention.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "Moreover, he would listen to me, if only he had put as much energy in using his wits as he does in using his voice.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "(Wow, this guy’s rather harsh! Wouldn’t want to work with him!)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "The match will be awesome, I tell you! And this is the perfect place for us to duke it out!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "And now that we’re talking about places, Ash...",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "Go back to your station already! If you wish to make your service better than mine, then tell your plan to your teammates! Immédiatement!",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","Ash",
+            "Eep! Of course, Morgan!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","",
+            "Ugh… Only I was supposed to welcome you.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","",
+            "But, no, that hot-headed cook insisted on coming with me. His potential is hindered by his utter lack of good wits.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","",
+            "Uh, could we go inside already? It’s a bit cold tonight.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","",
+            "Yeah, and I’m really hungry! My stomach can’t wait to see what the Blue Ribbon can cook up!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Morgan","",
+            "You shall be astounded tonight. Veuillez me suivre, s’il vous plaît.",
+            "Morgan","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Here are your seats, gentlemen and lady.",
+            "Waiter","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Ooh, I feel so important here! Sure, it may not be all that fancy, but I haven’t been in this kind of place before!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Hmm… How curious. The other patrons are our fellow students, as well as students from the Blue Ribbon.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Are they following us to see the match?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Ah, tonight, for the other customers, the prices have been halved. The Blue Ribbon would like many people to watch the match.",
+            "Waiter","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Now, what’ll you have?",
+            "Waiter","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Awful! Terrible! Épouvantable! Can’t you tell this is undercooked?! Do it again!",
+            "Morgan","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "O-Of course!",
+            "Cook A","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Let me tell you, if you feed that thing to someone, it will, look at me, kill him!",
+            "Morgan","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Start all over again!",
+            "Morgan","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Eek! Yes, sir!",
+            "Cook B","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow, Morgan’s as loud as that Ash guy when he’s harsh!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "The other students are laughing at it, but I don’t see what’s so funny about that voice! It really makes me shiver!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Aah! Come on, men, keep it up! We’re almost done with it!",
+            "Ash","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "But, Ash, you’ve forgotten to add the seasoning!",
+            "Cook A","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "No! Give it to me, then! Quickly, quickly!",
+            "Ash","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "But I’m using it right now!",
+            "Cook B","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "No one shall stop me from making my masterpiece! I’ll show you!",
+            "Ash","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Oh no!",
+            "Cook C","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "It doesn’t seem any better on that side, either.",
+            "Shiro","", ""
+        },
+};
+
+ //   The cooked up match
+static string[,] cookedUpMatch = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Well, tell me, did you enjoy the dinner?",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Yes, it was wonderful!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Ooh… I’m glad to have eaten those dishes, but I do feel a little full.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Yes, I can’t say that it was by any means bad, but...",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Hah! It gladdens me to see that you enjoyed that masterpiece of mine.",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Morgan, everything’s ready now. Let’s go.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Uh, where are we going now?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Hmph. If you haven’t realized it already, then you will soon see.",
+            "Morgan","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Blue Ribbon Gym"
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Welcome to the Ballers’ Kitchen! This is the gym where our matches are held!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Wh-What the! A gym, you say?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Is the match going on now?",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Pretty nice to have some food before the fight!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Ooh… Oh no! I feel a little funny!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Hmm, I feel something unpleasant as well.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Wait, was that their plan all along? Stuff us with food before the fight?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Oh, now you’ve realized it! How long was the smoke blocking your eyes?",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "I can’t believe it! They cooked up this little trick of theirs! This isn’t fair!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "La vie n’est pas juste, mademoiselle.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Personally, I would have gone with something quicker and less tricky! But Morgan decided that this should be the plan.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "I am a little unsteady, but worry not, for they haven’t put us at checkmate.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "No, no, no… I should’ve known this was too good to be true!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Oh, what’ve I done? I could’ve avoided this, but here I am, feeling staggered!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Clemence! Don’t think about what we could have done.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "But...",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "You won’t feel better by thinking like that. Instead, focus on what can be done!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Focus… on what can be done…",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "I… I think I can try.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Do! We still can win, even though we don’t have the upper hand!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Hmph! You are naive little fools if you think you can beat us.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Nothing about you impresses me. Just save yourselves the embarrassment and leave!",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Now, now, let’s all have a friendly match! I’ll be sure to help both of you, okay?",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "And I’ll show all of you how hot and wonderful my masterpieces are! I have put all my heart into them!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Hmph. If you’re truly hungry for some more, then here! Bon appetit!",
+            "Morgan","", ""
+        },
+};
+
+ //   Cook defeat
+static string[,] blueRibbonDefeat = new string[,]{
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "What’s this, now? I… I can’t have lost!",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "What have I done wrong? I can’t have been made the fool! I can hardly believe it!",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "No! My masterpieces! They’ve been beaten! I don’t believe it!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "A-All right! Theodore, Clemence, we’ve won!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Salt Pitt High’s won this match!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "No! How could we lose on our home turf?!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Heh, I’d like to say that that was one flavorful match. For a moment, I thought we were in great trouble.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "I… I can’t believe it. Have we truly won? It must’ve been luck!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Luck? Think of it as faith, Clemence.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "A weak mind makes weak work. That’s why you need to have more faith in yourself.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Faith? I can feel it now, but it’ll be hard to keep it up, Lily.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Well, let me tell you, life is not easy. It takes work to get the things you want.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "You’re a hard-working boy, Clemence. I’ve seen your works. I’m sure you can do it, if you have even a slight bit of Ash’s spirit.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "I do have a lot of blood rushing through me! It’s not too hard to keep up your spirit once you have a lot of it, I tell you!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Well… If you really say so, then I’ll try!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "… Well done. That’s the only thing I’ll say.",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Morgan","Lily","Ash",
+            "Now then... Au revoir!",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Lily","Ash",
+            "Now then... Au revoir!",
+            "Morgan","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Lily","Ash",
+            "Oh, he’s not taking his loss well.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Lily","Ash",
+            "But don’t worry about him. I’ll talk to him later.",
+            "Lily","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Lily","Ash",
+            "I myself am pretty shocked about our loss! But it just means that I must get better!",
+            "Ash","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Lily","Ash",
+            "(What a way to end tonight! I feel rather tired now...)",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","black", ""
+        },
+        {
+            "","","","","","",
+            "Dear Kuro, How are you doing now?",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "I got my first official match since I had become the dodgeball club president, and it really surprised me a lot!",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "We were up against the Blue Ribbon, a cooking school, and the cooks gave us dinner before our match.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "That made us feel a little unsteady at first, but we won in the end, and we got a free dinner as well!",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "Because we’ve won against the Blue Ribbon, we’ve risen in the ranks, and according to Theodore, a teammate of mine, we’ll hear of our new actual ranking later.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "I wonder what my next match will be like.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "Best wishes, Shiro.",
+            "Shiro", "", ""
+        },
+};
+
+
+
+
+
+//    The Witship Institute
+//    Old friends reunite
+static string[,] witshipInstituteIntro = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "Classroom"
+        },
+        {
+            "","","","","","",
+            "A few days later, on Wednesday noon…",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "All right, it’s now lunchtime.",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "I should probably study for my math class. Algebra isn’t the easiest thing in the world!",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "Excuse me.",
+            "???","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "(Hmm? Who’s this boy? He looks rather young and handsome.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "Do you know where Theodore Yukimura is, by any chance?",
+            "Cygnus","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "Theodore? Ah, the Chess Club president, you mean?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "Chess Club president?",
+            "Cygnus","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "… Heh. So that’s what he’s become.",
+            "Cygnus","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "Uh, shall I take that as a yes?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "Oh, yes, I’m very sorry for my lackluster answer!",
+            "Cygnus","", ""
+        },
+        {
+            "","Shiro","","","Cygnus","",
+            "Anyway, I’ll gladly show you to him. He’s at the library.",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Classroom"
+        },
+        {
+            "","","","","Theodore","",
+            "Now, I’m afraid you’ve fallen into my trap. I can now use my knight—",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Uh, Theodore? Someone’s here to see you.",
+            "Shiro","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Oh, Theodore, it truly is you! Long time no see!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Wh-What? Cygnus, is it really you?",
+            "Shiro","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Oh, yes! I’ve come here to see how my dear friend is doing, and I see you’re alive and well!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Whoa, who’s this guy?",
+            "Student A","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "He looks much younger and handsomer than Theodore!",
+            "Student B","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Ah, I’m very sorry for not having introduced myself!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "I’m Cygnus Hoshi, an old friend of Theodore’s. We were in the same private school when we were kids.",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Heh… I remember those days now. Cygnus was the one who taught me how to play chess, actually.",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Whoa, those two are friends!",
+            "Student C","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "That’s right! My grandfather himself taught me, and I loved to play games with other kids.",
+            "Student D","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "You haven’t grown much since then, I see. You look barely any older.",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "But I can’t say the same for you! That’s the way things go in life, I think.",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Anyway, how have you been? I hope you’ve been fine.",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Well… Uh… Yeah! I’ve been fine!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Let me start here. You’re probably curious as to what I’m doing now.",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Well, I’m an astronomy student at the famous science academy known as the Witship Institute.",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "The Witship Institute? What an odd name.",
+            "Shiro","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Ah, the founder liked the word ‘witship’ for ‘science’ a lot. He said that it was a true English word that matched the German word for ‘science’.",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Uh… I’m very sorry, but what’s your name?",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "I’m Shiro Smith, and i’m president of this school’s dodgeball club.",
+            "Shiro","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "President! So you’re the one who led your team to victory against the Blue Ribbon!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Word about that has been going around town since your win! I could hardly believe the news when I first heard the details!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Oh, I envy you, Smith! I wish my win record were as good as yours!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Well, I’ve only had one match since I became president. It’s nothing to be proud of, if you ask me.",
+            "Shiro","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "… Wait. Your win record? You’re also the leader of a dodgeball club?",
+            "Shiro","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Oh! I’m very, very sorry for not having said it earlier! But indeed, I am the leader of the Witship Institute’s dodgeball club!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Cygnus, that’s amazing! I would’ve never imagined you to get into such a lofty position!",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "… Your school’s just challenged ours to a dodgeball match, hasn’t it?",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Nothing ever gets past you, I swear!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "On Sunday, I myself put in the request for a dodgeball match, and it so happens our match will take place this Friday at 5:30 PM.",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Our school ends around 3:00 PM. We can head there and check out what the school’s like.",
+            "Theodore","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "That’s a great idea! I guess I’ll see you then, huh? See you later!",
+            "Cygnus","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Goodbye, Cygnus!",
+            "Student A","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Don’t get hurt now!",
+            "Student B","", ""
+        },
+        {
+            "Cygnus","Shiro","","","Theodore","",
+            "Come back soon!",
+            "Student C","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "(Wow, the chess club already loves Cygnus.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "Hmm...",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "Theodore, what’s wrong? You’re surprisingly gloomy for someone who’s just seen his old friend again.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "Oh, don’t get me wrong, as I am very glad about that. But something’s been troubling me.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "Cygnus was rather hesitant on his response when I asked him whether he had been fine.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "He was also rather unclear on why he had put in a request for a fight, when he had only heard about our win against the Blue Ribbon the day before. It just seemed too sudden to me.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "What, you don’t think he’s hiding something, now, is he? I really don’t want a repeat of what happened before the Blue Ribbon match.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "… Much as I hate to say it, I think that my old friend’s not telling us the whole story.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "When we look around the Witship Institute with him on Friday, I plan to confront him about it and see whether I can do anything to relieve him of his troubles. You don’t plan to stop me during then, do you?",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "(This is the first time I’ve seen Theodore look that serious.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "(There’s no doubting the concern he has for Cygnus. Hmm...)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","",
+            "Nope. You have a point. We’ll have to get to the bottom of this.",
+            "Shiro","", ""
+        },
+};
+
+ //   Scientific visit
+static string[,] scientificVisit = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","","","","","",
+            "Two days later, on Friday, at 3:20 PM.",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow, this is the Witship Institute? It’s so big!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "I can’t imagine how many rooms there are in this building!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Indeed, I am impressed. This is my first time visiting it, and already, I know that I will like it here.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Ah, that’s likely because a lot of guys like you come here! I’d say the same thing if this were a school dedicated to studying blossoms!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Oh, you’ll love it here, Theodore!",
+            "???","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "I’m so happy that all of you can make it!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Hmph. I’m not. Some students from their school have already come, anticipating our match and frolicking through our sacred halls.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Now, now, let’s not talk badly about our visitors. It would simply be foolish not to acknowledge the reality that laymen see something different in the school halls from how we see them.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "The name’s Fulton Yanadori. I’m a zoology student specialized in ornithology.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Ornithology?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Ornithology is the scientific study of birds.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Had the founder had more of his way, he would have renamed it to something that would have made science much more understandable to the average man.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "My teammate there is Henry Sakai. He’s a physics student studying electricity and magnetism.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "That’s a bit simplistic, I’d say. I’m very interested in them, but I do study other subjects such as thermodynamics.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Hey, can we go inside already? I already want to be in a place where I’ll see fewer of those school uniforms.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Fulton! Be nice to Theodore and his friends!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Oh? What have you just said?",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(Whoa, he’s just given Cygnus the evil eye! And that smirk… Ugh...)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "… Nothing! I’m very sorry for having said nothing! Let’s go inside now!",
+            "Cygnus","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "That door leads to the room where birds are kept.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Birds?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Hmph. Not surprised you laymen are surprised.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Well, we keep birds in that room for various experiments, and they’re taken care of by well-trained veterinarians.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "The birds are my friends and will do as I say. If I say “Jump!\", the parrot asks, “How high\"?",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Wouldn’t you ask the birds to fly instead of jump?",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Whatever. They’ll do as I say, and the Institute lets me use them in matches. It’s lawful, I assure you.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "It’s not extended to birds such as falcons and hawks, however. Hence, I have to use their mechanical models.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(Dodgeball is such a weird sport.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "This is the Biology and Engineering Building. My other two teammates’ workplaces are in the Physics and Astronomy Building. Follow me!",
+            "Fulton","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "And now, it’s my turn to show off my facility.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "He means the laboratory where he and his classmates do their experiments.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "It looks very clean, obviously because we’ve just cleaned it up. Last time, we were working on testing Kirchhoff’s laws.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Then the chemistry crew came and did some messy things, I hear.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "What’s all that equipment on that table?",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Just some electrical equipment of mine. A loudspeaker, a fence, a toy mouse… It’s fascinating to see how much electricity plays in our modern lives, isn’t it?",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(I wonder what the next shiny tool these guys will show off is.)",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Sorry for the tiring walk upstairs! The topmost floor of the main building is where the astronomy rooms are.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Does one of the rooms have a telescope?",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Yes! But there’s one room I want to show you.",
+            "Cygnus","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Let me turn off this switch and then turn on this one…",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Whoa! It’s suddenly nighttime! And look at all those stars!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Oh, it’s just a projector that some of us like to use for our star maps. This kind of projection can be done by my special telescope as well.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Wow, that’s a pretty handy telescope! It would be nice to have something like that for other things.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "I have the star maps with all 88 constellations! And with my telescope, I can look at the star maps whenever I want! Isn’t that awesome?",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "And it’s kind of funny my name’s the name of a constellation as well.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Ah, yes, ‘Cygnus’, the swan. It is said that the swan sing its song before its death, whence the phrase swan song Heh, isn’t that fun to know?",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "With all this fancy technology, shouldn’t it be rather costly?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Indeed. Our institution is very large, but we do get much funding from several donors and alumni.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "One rather famous donor and a former student is Nicolas Akasaka, the founder and CEO of Golden Heart.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Wow! Golden Heart, that big multinational corporation? And the man himself was a student here? You must be kidding me!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Hah! There is no kidding about the Witship Institute! We get much of our funding from him, who lives in another city entirely.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Yes, the Akasakas are quite an influential family in our lives. Everyone adores them.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(Hmm? He sounded a bit colder on the last sentence.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Now, what’s up next? I’m interested in looking more at the biology rooms.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Hmm, but I want to look around the Physics and Astronomy Building more.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "There is an obvious solution, however. We shall simply split up into two groups.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Fulton and Henry can take Clemence back to the Biology and Engineering Building, while Smith and I look around this building with Cygnus.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "That’s a great idea, Theodore! There’s still so much of the Institute to show you, and it’ll take less time if we split off.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Hmph. I thought of that before your friend said it.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Sure you did.",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "I did! Let’s just go already!",
+            "Fulton","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Now, then, let me show you the telescope—",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Hold it! Shiro, close the door.",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "(Ah, it’s time to talk to him about that.)",
+            "Shiro","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Wh-What is it?",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "There’s something that’s been troubling you, isn’t there?",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "What?! Theodore, what are you talking about?",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "You’ve been acting rather funnily around Fulton. He’s been antagonistic toward you, yet you accept it, though you are the leader of the dodgeball club.",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "What I’ve been thinking is that he’s the reason why we are even here today. He pressured you to file a request for a fight with us, didn’t he?",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "…… Oh, Theodore, nothing ever gets past you, does it?",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Yes, everything you say is right. Fulton’s the mastermind behind this.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "W-Wow! Theodore, I can’t believe you figured it out!",
+            "Shiro","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "It was nothing. Simple observation led me to the truth.",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Uh, Cygnus, I’m sorry for Theodore’s harsh tone, but we simply want to know the truth, so that we may help you. Could you tell us everything?",
+            "Shiro","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Oh, I can’t say no now, can I? All right.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "For starters, why do you let Fulton push you around?",
+            "Shiro","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "The thing is, I’ve been a rather… lousy club leader. We haven’t been winning a lot of dodgeball matches lately, and Fulton’s been saying that I’m to blame.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "I don’t think he’s off the mark. I was made leader only two months ago, when the last president left the club.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "I’m still learning how to act like a good leader, but...",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Time and time again, I fail, and even though my teammates insist that they’re happy, I just can’t help but feel that I haven’t done enough for my team.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "And you’re letting Fulton order you around?",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Y-Yes. He truly cares about the club and our school, I tell you, even though he may be a piece of work.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "On Sunday, he heard about your win against the Blue Ribbon. He thought that your win was just a fluke, and that it would be easy to beat you.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "He seemed more eager than usual to have a match, so he had me submit the request.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Well, that explains it all!",
+            "Shiro","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Do you have any guesses as to why he was that eager?",
+            "Theodore","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Hmm… Sorry, but nothing comes to mind.",
+            "Cygnus","", ""
+        },
+        {
+            "Theodore","Shiro","","","Cygnus","",
+            "Is that so? It seems we are still missing something important here.",
+            "Theodore","", ""
+        },
+};
+
+ //   Scientific match
+static string[,] scientificMatch = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","","","","","",
+            "About an hour later...",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow, really? That’s why we’ll be fighting those guys?",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Yes, really. Who would have guessed that it was the zoology student?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "… If truth be told, I do feel rather… uneasy.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "The match itself presents no problem. But it’s the outcome that worries me.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "What do you mean?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "When Cygnus told us about how he felt that he had disappointed his club, I couldn’t help but feel unsure on whether I even wanted to win our match.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Winning against him… would sadden him a lot. He would have yet another loss on his hands.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow… This is the first time I’ve seen you unsure of yourself, Theodore.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "How can I not be? Cygnus is my friend, and I know that many friends have parted ways when they fight each other.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Only one becomes the winner. I… I don’t want that to happen.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "I don’t, either. But what can we do?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "…… I don’t like to do this, but we must play the game.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "I feel little excited for the match, but I am concerned about another thing as well.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Fulton, right?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Yes. To be clear, I am concerned about the truth.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Fulton is the final piece to be captured in this game, and if I beat him, I shall learn of the truth behind this.",
+            "Theodore","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Witship Institute Gym"
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "It’s about time you came here!",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "There’s no need to rush. Haste makes waste, doesn’t it?",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(Cygnus himself looks troubled. No wonder, when that Fulton guy’s pressuring him to win.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(I feel sorry for having to do this to him, but we have to fight.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "What kind of match do you think we’ll see?",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Those guys are science students, aren’t they? They’re probably really smart!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Look the part, Cygnus! Show your friend and his buddies that you mean business! No one will believe you with that face of yours.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "R-Right! Theodore, let me warn you that I won’t hold back!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Cygnus...",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Oh, seeing this tears me apart! I want to see the end of the match already!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Well, for that to happen, we have to fight. No getting around that.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "All right, then... Let’s begin!",
+            "Cygnus","", ""
+        },
+};
+
+ //   Science student defeat
+static string[,] witshipInstituteDefeat = new string[,]{
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "No… This can’t be happening… I’ve lost!",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "… I-I… I’ve failed my team once more.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Are you sure about that?",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Great game, Cygnus!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Don’t feel bad, Cygnus!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "We’re proud of you, Cygnus!",
+            "Student C","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "What? Why aren’t our club members sad that we’ve lost?",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Why should we be sad? We’re happy you’ve been working hard as our president!",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "But we’ve been losing a lot lately, and it’s all my fault!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Your fault? What silly thinking! Though it stings a little that we have another loss in our record, that doesn’t mean you’ve been poor to us!",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "There are some places where you can become better, but when you focus on your weaknesses, don’t forget about your strengths!",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "……… Th-Thanks, guys! I-I really appreciate this! I… I see what I should do.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Shiro Smith, isn’t it? This has been a well-fought match!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "We tried our hardest, but in the end, you won! Well done!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "And I’m very sorry if I’ve hurt you really badly!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Oh, no, no, I’m perfectly fine! I’m tired, but I can handle that!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "If truth be told, I wasn’t expecting this much praise from you!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Well, acknowledging that you’re not perfect is a sign of a good leader, isn’t it? Or so I’ve heard.",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Cygnus… Are you all right?",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Yes, of course! There’s no need to worry about me, Theodore! Even after a rough match, we’re still friends, after all!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Cygnus… I could go on and on about how happy those words make me!",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Aw, would you look at that! The two stay friends! I could weep!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "It is rather sweet, isn’t it?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "(Still, there’s one thing we need to attend to.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "………………",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Fulton? Are you all right?",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "…… My plan… It’s all in tatters now… I’ve failed…",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "Fulton?",
+            "Henry","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "No… There is still something I can do.",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Cygnus","Fulton","Henry",
+            "I must make him change his mind...",
+            "Fulton","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Cygnus","Henry",
+            "Hey, where do you think you’re going? I want to ask you something!",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Cygnus","Henry",
+            "… I was hoping to ask him a few questions. It seems that those will have to wait for another day.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Cygnus","Henry",
+            "In the meantime, we ought to celebrate our victory with the rival team!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Cygnus","Henry",
+            "That would be very nice, but you don’t have to do so!",
+            "Cygnus","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Cygnus","Henry",
+            "Don’t worry! I’ll just call my friend Lily about it. She’ll cook us something nice!",
+            "Clemence","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","black", ""
+        },
+        {
+            "","","","","","",
+            "Dear Kuro, How are you doing now?",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "Today was pretty odd. We went up against the Witship Institute in a match, and even though we won, I feel rather unsatisfied about a few things.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "It turned out that Cygnus, the rival club president and a new friend of mine, was forced by one of his teammates to fight us, and in the end, we didn’t get to ask him why he made Cygnus do such a thing.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "But other than that, it was pretty great! The Witship Institute itself was interesting and awesome, and I’ve been getting to know more and more about my friends, and I’ve been getting new ones as well!",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "There’s still so much of Ball City that I haven’t seen yet, but I’m excited to see what awaits me!",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "Best wishes, Shiro.",
+            "Shiro", "", ""
+        },
+};
+
+
+
+
+
+
+
+
+//    Barrow Temple
+//Trip to the woodland
+static string[,] barrowTempleIntro = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","","","","","",
+            "A week later, when it is Saturday noon…",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "It sure is nice of you to drive us to the other parts of the city, Mrs. Kadou.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Oh, how could I refuse, when Clemence told me that he wanted to show you more of the city!",
+            "Mrs. Kadou","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "He was very earnest in asking that I help you, since you’re from Middleton, which I hear is rather plain and much smaller.",
+            "Mrs. Kadou","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "We’re going to see a school called Barrow Temple, and it’s at a forest near the northern exit of the bridge we’re about to go onto.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Though the match against the school is in a few days, it’s still good to know our enemies, isn’t it?",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "It sure takes a rather long time to even get there, though, don’t you think?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Well, it’s such a big city that it can take even an hour just to get from north to south, so you’d best be ready to wait a long while, Shiro.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "How many people live in Ball City?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "At least nine million. I can’t remember the exact number right now. Either one, Ball City’s one of Japan-America’s megacities.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "I can’t even begin to imagine how much, no, little of the city I see everyday in my apartment’s vicinity!",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "See this, Shiro? We’re on the great Linkers’ Bridge!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Whoa! What a pretty view of the sea!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Yes, people on the beach by the bridge’s southern exit like to take pictures with the bridge in it. It makes for a pretty tourist site, at the very least.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Does it really take that longer to get to the northern parts of the city?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Ah, even at the other side of the bridge, we’re still at the southern parts! The city’s ever so big, and it’ll take much more time to get to even the center.",
+            "Mrs. Kadou","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Amazing… It’s amazing what a megacity in today’s world is like!",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Well, I’ll drop you here. I’ll go back home now and tend to some work of mine, so you need only call me if you want me to pick you up.",
+            "Mrs. Kadou","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "All right, Mom. Take care!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Okay, now, Wainwright Wood, I believe, is to the west. I think it’s this way…",
+            "Clemence","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow, there sure are a lot of trees. Not exactly what you might find in a typical city.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "It is a little odd, I admit, to see a great woodland encircled by so many man-made structures. The city’s history is indeed strange.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wainwright Wood wasn’t always here, I hear. The trees were grown here on some plain land a few centuries ago.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Though they take only a few decades or so to fully grow, they can live for a few hundred years.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "There are also other kinds of trees and blossoms here, because of a variety of ecosystems.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Wow, I didn’t know that! You really do know a lot about botany.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "... Hmm? Who’s that over there?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "……...",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "(What’s that boy doing here? And is that a wooden sword he’s holding?)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "……...",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Whoa, what was that all about?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Seems to me he was playing around with that sword of his. The bark of some of those trees looks a bit scarred, for want of a better word.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Oh, those poor trees, being used as part of sword practice! I’m lucky that they haven’t been felled, at the very least!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "(That boy didn’t seem to notice us. I wonder what his deal is.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Guys, let’s follow him. He may be heading somewhere interesting.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "You really think so? Fine by me. It’s not as if there were anything else to make this walk exciting.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Aw, I was planning on showing you the Blossom Garden. It’d be nice if we could check out a place full of pretty blossoms.",
+            "Clemence","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "(It’s been a while since we started following him. Where is that boy going?)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "Hey, he’s gone into that building over there.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "It looks like… a temple.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "Ah, I think I know what it is. I’ve heard about there being a school in the middle of this woodland.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Kazuto","",
+            "Oh! Visitors!",
+            "???","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Welcome to Barrow Temple, our dear school!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Barrow Temple is known for teaching the traditional Japanese martial arts, such as kendo and karate.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "I’m Yoichi Azusayumi, and I’m a student of kyudo, the martial art of archery.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "And I’m Ichirou Yamaguchi. I’m a student of karate, a martial art of unarmed combat. May I ask who you are?",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Oh, I’m Shiro Smith. My two friends here are Theodore Yukimura and Clemence Kadou. We three are students of Salt Pitt High, and in fact, we’re part of the school’s dodgeball club. I’m the president.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Ah, Salt Pitt High. You’re the ones we’ll fight in a few days, aren’t you? I believe you guys have a problem about some punks or something like that.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Oh, no, that’s been taken care of, thanks to us.",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Ichirou and I are part of a dodgeball club as well. Our dodgeball style incorporates martial arts, so we’re not just any team.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Wow. That’s pretty cool.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "(I get the feeling this is how all of Ball City’s dodgeball teams work. If this is allowed by the dodgeball rules, then it’s pretty amazing what a team can do.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Could you show us what it’s like inside?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Oh, of course! I-It’s only right that we show you around!",
+            "Yoichi","", ""
+        },
+};
+
+
+    //Calm before the storm
+    static string[,] calmBeforeTheStorm = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "This here is the dining hall. It’s really modest, but I don’t mind. You’d get used to it if you stayed here.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "This school’s a bit different from others, in that it offers housing for its students, since for many of us, it’s far from their homes.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "And that’s why you’re at this temple on a Saturday instead of being at home with your family, yes?",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Right on the mark!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Ah, speaking of that, I can’t forget to send my family my monthly earnings.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Whenever I’m not studying or helping out at the temple, I work as a cashier at a diner a bit far from here.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "T-To do all of that must be a great burden on you!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "No, not at all! What kind of man would I be if I could not handle it?",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Now that I take a closer look at this dining hall, I do like how small it is. It brings all the occupants together, I think.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "It does, but I-I kind of wish there were a bit less arguing. Some of our other classmates can get really hot-headed and competitive.",
+            "Yoichi","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "This is the practice field for us kyudo students.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "It’s pretty wide!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "I assume that those straw drums over there are archery targets.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Yes, that’s right. They’re called makiwara. I think I’m a bit good at kyudo, but, oh… I don’t think I’m good at incorporating it with dodgeball.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Yoichi, remember the old saw: practice makes perfect!",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Oh, I know, and I do practice a lot. Still, you and the others make me feel sometimes that I’m pretty far behind.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Nonsense! You’re doing well. Don’t feel bad about yourself. You need to show pluck in your words.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "I… I’ll try. Ahem…",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "With my bow and arrows, I’ll help to protect the team, come what may!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "… Y-You want something like that?",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "A bit cheesy and awkward, but you’re on the right path. It’s the vocals that need a bit more work. They need more energy!",
+            "Ichirou","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "This room’s one of the classrooms that we use. We karate students usually use it as one of our dojos.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "It’s much bigger than our classrooms.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Uh, I’ve been wondering, but are there different ways to do karate?",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Why, yes, there are different schools of karate. I’m learning the shotokan style, one of the major karate styles.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Wow, I bet there’s a lot of punching and kicking and then some.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "That’s how karate’s commonly depicted in media, but it’s not exactly accurate.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Shotokan focuses more on evasion and long range. It’s quite helpful when I want not to be the target but rather to get it instead.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "And that’s how you incorporate your techniques with dodgeball.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "It takes much dedication and work, and training is never fully done, I warn you.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "And such a thing as victory means nothing to me. All that matters is not losing.",
+            "Ichirou","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Barrow Temple Gym"
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "This is the room that kendo students ordinarily use.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Kendo?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "The way of the sword.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Hey, I see someone standing outside!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Hey, I see someone standing outside!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "……...",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Ah, it’s him! I’ve been wondering about who that guy is.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "He was standing by a bunch of trees with that wooden sword of his, and he walked back here, so we followed him.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Who is that guy?",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Th-That’s Kazuto Kaneto. He’s a very good kendo student, which is why he was chosen to be our dodgeball club president.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "What?! Your president? Not very talkative, is he?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "It is a bit odd. Though he’s always been a bit aloof, he once spoke regularly when he became president, but for the last few weeks, he’s been much quieter.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "We’ve tried talking to him, but we’ve had no luck.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "… Oh, you guys are here. What do you want?",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "(Man, this guy sounds a bit cold. Kind of rude, too.)",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "O-Oh, we’ve been showing these students from Salt Pitt High around. Competitors or not, we have to treat them dearly, right?",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "So, uh, I hear you’re this school’s dodgeball club president.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Just so you know, I’m the president of our school’s club, so we have some link, don’t we?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "… Are you good at dodgeball?",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Well, I haven’t had too many games, since I’ve only started recently, but I’m getting there.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Oh, I see…",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Wow, it’s raining! It’s pretty light rain, but still!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "I guess we’d better hurry back home before the rain gets any worse.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "In that case, we’ll see you again next Monday.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "......",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Hey, where’s he going?",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "I don’t know, and he won’t tell me what he’s been up to, whatever I do.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Well, hopefully, he’ll have made a full turnabout by our match!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","","Yoichi","Ichirou",
+            "Hopefully… You really think Kazuto’s going to change? Even we can’t get to him.",
+            "Yoichi","", ""
+        },
+};
+
+
+
+//    Kazuto’s secret
+static string[,] kazutoSecret = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","","","","","",
+            "Several hours later…",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Your mother sure is taking her sweet time coming her, isn’t she, Clemence?",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Traffic, maybe?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "It’ll be rather unlucky for us if it’s traffic. The rain’s gotten a little worse, and I don’t want to get a cold from staying out here too long.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "C-Could we please talk about something else? I don’t think this kind of talk gets us anywhere.",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "… Well, I’m bored. Might as well take a walk around the park.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "My feet are killing me right now, so I’ll stay here.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Clemence, you’ll be here with me.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Huh? Why?",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "If there were no one to complain to, I’d look like some weird whiner talking to himself, wouldn’t I?",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Sh-Shiro?",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Nothing I can do to help you out there. Sorry about that!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Now, I’ll just be taking a short walk. Nothing big.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "If you’re going for a walk, be careful not to get lost!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Yeah, yeah, I know!",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","","",
+            "(Brr! It’s pretty cold outside! I’m starting to regret this already!)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "(At least I’m not in a haunted wood. Now that’d be scary.)",
+            "Shiro","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","Shiro","","","","",
+            "(It’s been a few minutes, and I’m pretty sure I’m lost. Great, just great. Who wouldn’t have seen it coming?)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","","",
+            "(… Wait a minute, is that…?)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… Ah.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "(It’s him! What’s he doing here? I’d better hide behind this tree!)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "...",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "(He’s sitting under that pavilion, staring at this place.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "(Wait… This place…)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "(It’s… full of blossoms of several colors. They look, for some reason, all the more beautiful in this rain. I think Clemence spoke of a Blossom Garden on the way here.)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "(Stumbling upon this place along with that guy! What were the chances?)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… Oh… I miss you so much...",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "(Okay, I’m not going to learn a lot if I stay behind this tree. Time to make him talk!)",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Hey, Kazuto!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Ah! Wh-What are you doing here? Have you been following me?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Well, no, but I might as well have, since I wonder what you’ve been up to. You’ve been acting a bit oddly, your friends say.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Well, that’s none of their business now, is it?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Sorry, but you’re wrong. Your secret’s been keeping you stay distant from your teammates, and that’s not okay. You’re their leader, after all.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Y-You…! Stop badgering me about it!",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "After making my way through this weather, I won’t leave without an answer!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Gah… You won’t leave, you say?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… I… I guess it won’t hurt to tell you.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Great! For starters, could you tell me whether this place is important to you?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Yes. Ayane and I used to come here.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Ayane?",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "My sister. She’s seven years younger than I am. She would ask me to bring her to see the Blossom Garden, and I being her brother, there was no way I’d refuse her.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "We were happy, the two of us. Those were our halcyon days. But…",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "About a month ago, she fell sick of a severe illness, and she can’t go through her everyday life without much difficulty.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Mother had her live with our uncle for a few months, so that she could get better in a different environment, but… I wanted her to stay. I was sure she could get better here.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "It was no use, however. She was made to leave in the end, and I seldom see her now.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Those blossoms… let me remember her most easily.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "W-Wow… I-I thought you were just a weird, quiet boy, but if I’d known, then I would’ve thought differently.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… I didn’t tell this to any of my teammates. They would have stopped what they were doing and spent their time on helping me instead of focusing on themselves.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Well, of course they would have! You’re part of the team! And in a good team, we would care about each other!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "If we didn’t, then the ones in trouble would fall behind, and all of us would suffer for it!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "…… I feel… much better, now that I’ve told it to you.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "So tell it to everyone else!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "I… I don’t want to be selfish and have them focus only on me.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Selfishness? Then maybe you should tell them sorry for keeping it from them and making them concerned over, well, something not as bad as they thought it was.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Tell them sorry, huh? I… I can do that.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Now that’s the spirit!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "...... This weather… Ayane likes it a lot.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "She says it gives the earth some of its life back, as water is the dearest thing for all of us.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "I must say… It’s rather calming to watch the blossoms and the rest of this woodland like this.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Yeah... I can understand it now. It’s truly surreal...",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… Tell me, Shiro, do you have any siblings?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Yep. I have an older brother. His name’s Kuro, and he’s a student of this school called Mightmain Academy.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Mightmain Academy? That’s a pretty high-ranking school, I hear. Impressive.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… He was always there for me when I was a child.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "He used to take me to many different places such as the theater and the beach, just so I could see all those different things and have so many different kinds of experiences.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "He really loved it whenever we went to the beach. He loved swimming in the sea much more than I did.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "I take it that you don’t live with your brother in the same house.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "That’s right. He lives elsewhere, but I write to him every now and then. He writes back as well, so we keep in touch.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Letter writing, huh? You don’t talk to each other online?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "No, he insists that we write to each other. He says it feels more meaningful and thoughtful if we do it this way.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "And after doing it, I feel he’s right.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "When’s the last time you saw each other in person?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "The last time I saw him was when he left or hometown, Middleton, for Mightmain Academy.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "He calls me and Mom every now and then, but I don’t think a phone conversation gives me the same feeling as talking to him in the flesh does.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Do you miss him?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "I… I do.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Then we can understand each other more than I thought.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Heh, I guess that’s true.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… I’d better head back to my friends. I’ve spent quite a lot of time talking with you, and our ride must’ve come by now.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Do you know your way out this park?",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "… Uh oh. Now that I remember, I came here while wandering around. Could you, uh, you know…",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Sure, I will. Though it’s dark, I’ve come here at night so many times that I know the path back.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "And by the way, I’d appreciate it if you kept this meeting of ours secret.",
+            "Kazuto","", ""
+        },
+        {
+            "","Shiro","","","Kazuto","",
+            "Sure thing!",
+            "Shiro","", ""
+        }
+};
+
+//    Martial artist match
+static string[,] martialArtistMatch = new string[,]{
+        {
+            "","","","","","",
+            "",
+            "","transition", "World Map"
+        },
+        {
+            "","","","","","",
+            "Two days later, when it is Monday morning…",
+            "Narrator","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "I’m still pretty shocked that that Kazuto guy’s made a complete turnabout! He’s now pretty open and friendly!",
+            "Clemence","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Shiro, I wonder… ",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "What? Why do you suspect me? Maybe he had a change of heart because of, I don’t know, a nightmare or something!",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "That’s rather unconvincing, Shiro.",
+            "Theodore","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "Well, I don’t know what to tell you.",
+            "Shiro","", ""
+        },
+        {
+            "","Shiro","","","Theodore","Clemence",
+            "… Anyway, since we’re all ready, let’s head to the kendo room for our match.",
+            "Theodore","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","transition", "Barrow Temple Gym"
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Finally! The other team’s come at last!",
+            "Student A","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Let’s get the match started already!",
+            "Student B","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Yoichi, Ichirou, are you ready?",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Oh, I am, and I do hope everything will go well for us!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Yoichi, nothing ever goes the way we want it to go.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "That’s true, but I can still hope our practice will pay off, can’t I?",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Oh, and Kazuto!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "What is it? We’re about to start!",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Oh, uh, just before the match started, I found a student who was willing to record the match for us.",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "I was thinking… maybe you could send a recording of the match to Ayane. I’m sure she’ll love seeing you fight!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Yoichi! That’s… That’s a great idea! I’m glad you’ve thought of it!",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "In that case, you don’t want to let your sister down by fighting weakly, now.",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Of course not! Now, let’s begin!",
+            "Kazuto","", ""
+        },
+};
+
+ //   Martial artist defeat
+static string[,] barrowTempleDefeat = new string[,]{
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Yay! We’ve won, we’ve won, we’ve won!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Oh, we’ve lost! If only everything had gone right for us!",
+            "Yoichi","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Well, what did I say? Nothing goes the way we want, now, does it? Ha ha ha!",
+            "Ichirou","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Shiro! That was a good match, wasn’t it?",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Indeed, Kazuto!",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "It feels nice to see the other team have good sportsmanship!",
+            "Clemence","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Yes, if only all the other teams had that same feeling, then our relationships would be better. The loser must gracefully accept his defeat.",
+            "Theodore","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Now, Yoichi, have the cameraman send me that recording. I’ll send it to Ayane.",
+            "Kazuto","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "Wait! Could you send me that recording as well? I want to show it to someone.",
+            "Shiro","", ""
+        },
+        {
+            "Clemence","Theodore","Shiro","Kazuto","Yoichi","Ichirou",
+            "It shouldn’t be a problem! Hang on...",
+            "Yoichi","", ""
+        },
+        {
+            "","","","","","",
+            "",
+            "","black", ""
+        },
+        {
+            "","","","","","",
+            "Dear Kuro, How are you doing now?",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "You may find this hard to believe, but because of the strong storm, my two teammates and I were trapped at this school called Barrow Temple!",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "And not only that, but we also had a scheduled match against its dodgeball team! I’ve just sent you an email with a recording of that match, so you can check out for yourself how I fight.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "The school itself was pretty good. The students are friendly, and I really liked the traditional style of the school.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "And Kazuto, their captain, is not a bad guy at all! I really liked being around with him and enjoyed sleeping in the same room as he was in.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "I hope to see you in the flesh soon.",
+            "Shiro", "", ""
+        },
+        {
+            "","","","","","",
+            "Best wishes, Shiro.",
+            "Shiro", "", ""
+        },
+};
+
+
+
 
 
 
@@ -3328,6 +6794,11 @@ static string[,] mightmainDefeat = new string[,]{
         { "Fight Against the Military", militaryFight},
         { "Kuro's Trump Card", yamatoBattle},
         { "Military Surrender", mightmainDefeat},
+        { "Trip to the woodland", barrowTempleIntro},
+        { "Calm before the storm", calmBeforeTheStorm },
+        { "Kazuto's secret", kazutoSecret },
+        { "Martial artist match", martialArtistMatch },
+        { "Martial artist defeat", barrowTempleDefeat }
 		//{"steamed hams",steamedHam}
 
 	};
