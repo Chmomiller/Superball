@@ -17,10 +17,12 @@ public class Clemence : Character
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Catches for both allies but not yourself", "If enemy is throwing, they are stunned", "Blocks the first attack on the next two turns", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", 
+										  "Catches for both allies but not yourself", 
+										  "If enemy is throwing, they are stunned", 
+										  "Blocks the first attack on the next two turns", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" , "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 2, 0, 0, 1, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 1, 0, 0, 2, 0 };
 
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 1, 0 };
 		base.Start ();
@@ -28,20 +30,6 @@ public class Clemence : Character
 
     new void Update(){
 		base.Update ();
-		/*
-        combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        if (combat != null) {
-            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
-                this.Target[0]ingTypes = defaultTarget[0]ingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.Target[0]ingTypes = alternateTarget[0]ingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
-   //     this should be set in battle simulator*/
     }
     
 	
