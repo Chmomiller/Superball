@@ -90,3 +90,6 @@ Tristian:
 5/3/18:
 	Added target cursors
 	"Fixed" Yamato part skills(No longer causes game breaking behavior on start, but skills not tested)
+5/5/18:
+	Added CombatDialogueManager, a modified version of TutorialScript that can control CombatManager(still needs some work)
+	Changed all Character skills to return int damage for CombatManager to display it during combat

@@ -48,31 +48,31 @@ public class Elizabeth : Character {
 
     //Unfocused/Attack: Elizabeth is now unsteady, taking more dmg until she is attacked. At end of turn if she was attacked she switches to steady (less dmg);
     //this one is kinda weird since its more of a passive to be checked at the beginning of the execute phase, like the other abilities that occur post planning (change target to me, all attack me, etc.) 
-	public override bool Skill1() {
+	public override int Skill1() {
 		// adds unsteady status for a period no player should be able to reach
 		addStatusEffect ("unsteady", 100);
-		return false;
+		return 0;
     }
 
 	//   Preen (Unfocused): stacking self damage buff to stamina dmg.
 	// cant do stacking buffs yet    //
-	public override bool Skill2(){
-		return false;
+	public override int Skill2(){
+		return 0;
 	}
 	// Royal Touch: Hard Hitting Attack that may stun an enemy
-    public override bool Skill3() {
+	public override int Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-        if (!Target[0].dodgeBall(this)) {
-			Target[0].loseStamina(  (int)( (this.attack + 35) * variance * attackMultiplier * Target[0].defenseMultiplier) );
-            if (UnityEngine.Random.Range(0, 5) > 4) {
-                Target[0].addStatusEffect("stun", 2);
-            }
+		int damage = (int)((this.attack + 35) * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target[0].loseStamina(damage);
+        if (UnityEngine.Random.Range(0, 5) > 4) 
+		{
+           	Target[0].addStatusEffect("stun", 2);
         }
         actionCooldowns[5] = 3;
-		return true;
+		return damage;
     }
 		
-	public override bool Skill4() { return true;}
+	public override int Skill4() { return 0;}
 
 	public override void cleanUp()
 	{

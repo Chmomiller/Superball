@@ -44,7 +44,8 @@ public class Fulton : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values 
+	/*
 	public override bool Skill1() {
         float variance = Random.Range(0.8f, 1.2f);
         if (!Target[0].dodgeBall(this)) {
@@ -91,5 +92,5 @@ public class Fulton : Character {
         this.addStatusEffect("steady", 2);
 		return false;
     }
-
+	*/
 }

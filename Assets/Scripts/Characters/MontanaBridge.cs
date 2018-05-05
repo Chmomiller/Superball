@@ -27,7 +27,8 @@ public class MontanaBridge : Character {
         this.loseStamina(attacker.Damage - 20);
         return false;
     }
-
+	// I haven't bothered to update the skill return values
+	/*
     public override bool Skill1() {
         if (this.allies[0] != null) {
             if (allies[0].Stamina > 0) {
@@ -70,4 +71,5 @@ public class MontanaBridge : Character {
     public override bool Skill4() {
         return false;
     }
+    */
 }

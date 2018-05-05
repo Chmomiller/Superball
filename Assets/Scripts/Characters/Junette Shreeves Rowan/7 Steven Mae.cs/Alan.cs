@@ -26,7 +26,8 @@ public class Alan : Character {
     void Update() {
 		
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
         enemies[0].addStatusEffect("debuff", 2);
@@ -53,4 +54,5 @@ public class Alan : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }

@@ -210,6 +210,7 @@ public class CombatManager : MonoBehaviour
 	// This function is used to check if there are still conflicts in the queue and set current phase to the correct phase
 	void Conflict()
 	{
+		Debug.Log ("In Conflict");
 		tCursor.ClearTargets ();
 		// Check if there is a conflict in the queue
 		conflictInQueue = -1;
@@ -239,7 +240,6 @@ public class CombatManager : MonoBehaviour
 				firstAction = i;
 			}
 		}
-
 		// This block will run when findstatus can work properly
 		if(firstAction != -1
 			&& combatQueue[firstAction].findStatus("stun") != -1)
@@ -425,6 +425,7 @@ public class CombatManager : MonoBehaviour
 	IEnumerator DoAction(Character character, string action, float finish)
 	{
 		string readOut = "";
+		int damage = 0;
 		enabled = false;
 		yield return new WaitForSeconds (finish);
 		// If the characcter is KO'd or stunned, don't perform their action
@@ -504,52 +505,93 @@ public class CombatManager : MonoBehaviour
 						}
 						break;
 					case("Skill1"):
-						performAction = character.Target [0].Skill1 ();
-
-						readOut += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (4) + " !";
+						damage = character.Target [0].Skill1 ();
+						if (damage == 0) 
+						{
+							performAction = true;
+							readOut += " but " + character.Target [0].Name + 
+									   " used " + character.Target [0].GetActionName (4) + " !";
+						}
+						else
+						{
+							readOut += " but " + character.Target [0].Name + 
+									   " used " + character.Target [0].GetActionName (4) + 
+									   " dealing " + damage + " damage !";
+						}
 						combatAction.text = readOut;
 						Debug.Log (character.Target[0].Name + " used  Skill 1!");
 						break;
 					case("Skill2"):
-						performAction = character.Target[0].Skill2 ();
-
-						readOut += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (5) + " !";
+						damage = character.Target [0].Skill2 ();
+						if (damage == 0) 
+						{
+							performAction = true;
+							readOut += " but " + character.Target [0].Name + 
+								       " used " + character.Target [0].GetActionName (5) + " !";
+						}
+						else
+						{
+							readOut += " but " + character.Target [0].Name + 
+								       " used " + character.Target [0].GetActionName (5) + 
+								       " dealing " + damage + " damage !";
+						}
 						combatAction.text = readOut;
 						Debug.Log (character.Target[0].Name + "used Skill 2 !");
 						break;
 					case("Skill3"):
-						performAction = character.Target[0].Skill3 ();
-
-						readOut += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (6) + " !";
+						damage = character.Target [0].Skill3 ();
+						if (damage == 0) 
+						{
+							performAction = true;
+							readOut += " but " + character.Target [0].Name + 
+								       " used " + character.Target [0].GetActionName (6) + " !";
+						}
+						else
+						{
+							readOut += " but " + character.Target [0].Name + 
+								       " used " + character.Target [0].GetActionName (6) + 
+								       " dealing " + damage + " damage !";
+						}
 						combatAction.text = readOut;
 						Debug.Log (character.Target[0].Name + " used Skill 3!");
 						break;
 					case("Skill4"):
-						performAction = character.Target[0].Skill4 ();
-
-						readOut += " but " + character.Target [0].Name + " used " + character.Target [0].GetActionName (7) + " !";
+						damage = character.Target [0].Skill4 ();
+						if (damage == 0) 
+						{
+							performAction = true;
+							readOut += " but " + character.Target [0].Name + 
+									   " used " + character.Target [0].GetActionName (7) + " !";
+						}
+						else
+						{
+							readOut += " but " + character.Target [0].Name + 
+									   " used " + character.Target [0].GetActionName (7) + 
+									   " dealing " + damage + " damage !";
+						}
 						combatAction.text = readOut;
 						Debug.Log (character.Target[0].Name + " used Skill 4!");
 						break;
 					}
 					if (performAction) 
 					{
+						// These perform skills after a defensive action
 						switch(action)
 						{
 						case("Throw"):
-							character.throwBall (character.Target[0]);
+							readOut += character.Name + " deals " + character.throwBall (character.Target[0]) + " damage!";
 							break;
 						case("Skill1"):
-							character.Skill1 ();
+							readOut += character.Name + " deals " + character.Skill1 () + " damage!";
 							break;
 						case("Skill2"):
-							character.Skill2 ();
+							readOut += character.Name + " deals " + character.Skill2 () + " damage!";
 							break;
 						case("Skill3"):
-							character.Skill3 ();
+							readOut += character.Name + " deals " + character.Skill3 () + " damage!";
 							break;
 						case("Skill4"):
-							character.Skill4 ();
+							readOut += character.Name + " deals " + character.Skill4 () + " damage!";
 							break;
 						default:
 							break;
@@ -558,22 +600,23 @@ public class CombatManager : MonoBehaviour
 				} 
 				else 
 				{
+					// These perform skills if the target doesn't have a defensive action
 					switch(action)
 					{
 					case("Throw"):
-						character.throwBall (character.Target[0]);
+						readOut += " dealing " + character.throwBall (character.Target[0]) + " damage!";
 						break;
 					case("Skill1"):
-						character.Skill1 ();
+						readOut += " dealing " + character.Skill1 () + " damage!";
 						break;
 					case("Skill2"):
-						character.Skill2 ();
+						readOut += " dealing " + character.Skill2 () + " damage!";
 						break;
 					case("Skill3"):
-						character.Skill3 ();
+						readOut += " dealing " + character.Skill3 () + " damage!";
 						break;
 					case("Skill4"):
-						character.Skill4 ();
+						readOut += " dealing " + character.Skill4 () + " damage!";
 						break;
 					default:
 						break;

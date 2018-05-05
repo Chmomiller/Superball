@@ -26,7 +26,7 @@ public class YamatoBridge : Yamato {
      
     }
 
-    public override bool Skill1() {
+	public override int Skill1() {
 		for (int i = 0; i < 3; i++)
 		{
 			if (this.allies [i] != this && !allies [i].dead) 
@@ -37,19 +37,19 @@ public class YamatoBridge : Yamato {
         }
 
         this.actionCooldowns[4] = 4;
-        return true;
+        return 0;
     }
 
-    public override bool Skill2() {
-        float variance;
-            variance = UnityEngine.Random.Range(0.9f, 1.8f);
-		Target [0].loseStamina ((int)(Damage * .5 * variance * attackMultiplier * Target[0].defenseMultiplier));
+    public override int Skill2() {
+        float variance = UnityEngine.Random.Range(0.9f, 1.8f);
+		int damage = (int)(Damage * .5 * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target [0].loseStamina (damage);
         this.addStatusEffect("steady", 2);
         this.actionCooldowns[5] = 2;
-    return true;
+		return damage;
     }
 
-    public override bool Skill3() {
+    public override int Skill3() {
         for(int i = 0; i< 3; i++) {
 			if(allies[i] != this)
 			{
@@ -58,10 +58,10 @@ public class YamatoBridge : Yamato {
 			}
         }
         this.actionCooldowns[6] = 3;
-		return true;
+		return 0;
 }
 
-    public override bool Skill4() {
-		return false;
+    public override int Skill4() {
+		return 0;
     }
 }

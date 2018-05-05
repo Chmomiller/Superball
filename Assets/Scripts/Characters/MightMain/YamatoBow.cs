@@ -24,29 +24,35 @@ public class YamatoBow : Yamato {
     void Update() {
     }
 
-    public override bool Skill1() {
+	// Charges forward with a ram
+    public override int Skill1() {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
-		Target[0].loseStamina((int)(1.5f * this.Damage * variance * attackMultiplier * Target[0].defenseMultiplier));
+		int damage = (int)(1.5f * this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target[0].loseStamina(damage);
         this.actionCooldowns[4] = 3;
-        return true;
+		return damage;
     }
 
-    public override bool Skill2() {
+	// Drops explosives off the front
+    public override int Skill2() {
         float variance;
+		int damage = 0;
 		variance = UnityEngine.Random.Range(0.7f, 1.0f);
         for (int i = 0; i < 3; i++) 
 		{
-			enemies[i].loseStamina((int)(this.attack * variance * attackMultiplier * enemies[i].defenseMultiplier));
+			int partialDamage = (int)(this.attack * variance * attackMultiplier * enemies [i].defenseMultiplier);
+			damage += partialDamage;
+			enemies[i].loseStamina(partialDamage);
         }
         this.actionCooldowns[5] = 2;
-   		return true;
+		return damage;
     }
 
-    public override bool Skill3() {
-		return true;
+	public override int Skill3() {
+		return 0;
 }
 
-    public override bool Skill4() {
-		return false;
+	public override int Skill4() {
+		return 0;
     }
 }

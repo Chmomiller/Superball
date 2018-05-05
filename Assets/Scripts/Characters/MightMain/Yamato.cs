@@ -35,7 +35,7 @@ public class Yamato : Character {
 		} 
 		else 
 		{
-			
+			// I don't know if anything *needs* to go here
 		}
 		if(this.Stamina < 0)
 		{
@@ -58,33 +58,34 @@ public class Yamato : Character {
         return false;
     }
 
-    public override bool Skill1() {
+	// 
+    public override int Skill1() {
         yamatoCharge += 10;
         heldBalls -= 3;
-		return false;
+		return 0;
     }
 
-    public override bool Skill2() {
+    public override int Skill2() {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
         if (!Target[0].dodgeBall(this)) Target[0].loseStamina(  (int)(this.Damage * variance) );
         if (!Target[0].dodgeBall(this)) Target[0].loseStamina( (int)(this.Damage * variance) );
         if (!Target[0].dodgeBall(this)) Target[0].loseStamina( (int)(this.Damage * variance) );
         this.heldBalls -= 3;
         actionCooldowns[5] = 2;
-		return false;
+		return 0;
     }
 
-    public override bool Skill3() {
+    public override int Skill3() {
         float variance;
         for (int i = 0; i < 6; i++) {
             variance = UnityEngine.Random.Range(0.7f, 1.0f);
             Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
         if (!Target[0].catchBall(this)) Target[0].loseStamina( (int)(this.attack * variance) );
     }
-		return true;
+		return 0;
 }
 
-    public override bool Skill4() {
-		return false;
+	public override int Skill4() {
+		return 0;
     }
 }

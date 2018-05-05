@@ -52,7 +52,7 @@ public class Mei : Character {
 	*/
 
 	// Silver Platter: Mei gives half her balls to each of her allies
-    public override bool Skill1() {
+	public override int Skill1() {
 		int gift = heldBalls;
 		for(int i = 0; i < 3; i++)
 		{
@@ -78,7 +78,7 @@ public class Mei : Character {
 			}
 			heldBalls = 0;
 		}
-		return true;
+		return 0;
     }
 		
 	//We currently have no way to check the past turn. This could be implemented easily though and would be very useful
@@ -89,7 +89,7 @@ public class Mei : Character {
 	// Clean-Up: Gather an amount of balls equal to half the balls spent on actions last turn(?)
 	// 
 	// Currently runs into a problem if there are multiple Mei using Skill2
-    public override bool Skill2() {
+	public override int Skill2() {
 		if(combat.currentCharacter != 5)
 		{
 			// The intent here is to move Mei to the end of queue DURING the execute phase, this may be buggy so look for other avenues
@@ -124,11 +124,11 @@ public class Mei : Character {
 				heldBalls = maxBalls;
 			}
 		}
-		return true;
+		return 0;
     }
 
 	// Cup of Tea: Switches Elizabeth or Victoria to her calm state. If already calm instead + 15 Stamina
-    public override bool Skill3() {
+    public override int Skill3() {
 		if ( Target[0].Name == "Elizabeth" ){
             if (Target[0].allegiance == this.allegiance) { //is Elizabeth on our team?
 				Elizabeth haruna = (Elizabeth)Target[0];
@@ -161,11 +161,11 @@ public class Mei : Character {
 		{
 			Target [0].gainStamina (15);
 		}
-		return true;
+		return 0;
     }
 
-    public override bool Skill4() {
-		return true;
+	public override int Skill4() {
+		return 0;
     }
 
 }

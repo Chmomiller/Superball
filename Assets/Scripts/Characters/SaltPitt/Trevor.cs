@@ -41,8 +41,9 @@ public class Trevor : Character {
 
 	// Thrash: Throws 3 balls at three random Target[0]s on your team. 1 turn cooldown. Cost: 3 balls
     // Currently doesn't allow players to res off of a catch from this skill
-	public override bool Skill1()
-    {
+	public override int Skill1()
+	{
+		int damage = 0;
 		for (int i = 0; i < 3; i++) 
 		{
 			do{
@@ -66,10 +67,10 @@ public class Trevor : Character {
 		// Throw at the three targets
 		for(int i =0 ; i < 3; i++)
 		{
-			this.throwBall (Target[i]);
+			damage += this.throwBall (Target[i]);
 		}
 	    actionCooldowns[4] = 1;
 
-		return false;
+		return damage;
     }
 }

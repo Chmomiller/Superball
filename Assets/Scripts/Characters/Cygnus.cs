@@ -35,7 +35,8 @@ public class Cygnus : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skills' return values
+	/*
 	public override bool Skill1() {
         if(allies[0] != this) {
             allies[0].addStatusEffect("buff", 2);
@@ -90,4 +91,5 @@ public class Cygnus : Character {
         actionCooldowns[7] = 2;
 		return false;
     }
+	*/
 }

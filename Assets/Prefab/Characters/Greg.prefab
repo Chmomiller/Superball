@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1978174293078186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.2025404, y: -0.39097595, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.119, y: 0.119, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   combat: {fileID: 0}
-  CUI: {fileID: 0}
+  CSUI: {fileID: 0}
   Name: Greg
   Damage: 10
   Catch: 100
@@ -111,6 +111,15 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
@@ -151,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c815023bf4c89fe4a82f1d450878473b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae91f11739963a74cb6abd65b5d38c2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

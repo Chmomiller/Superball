@@ -39,37 +39,38 @@ public class Shiro : Character{
         }*/
     }
 
-	public override bool Skill1() //Pass off
+	public override int Skill1() // Pass Off: Gives all balls to a single teammate up to their max
     {
         while (this.heldBalls > 0 && Target[0].heldBalls < Target[0].maxBalls) {
             this.heldBalls--;
             Target[0].heldBalls++;
         }
-		return false;
+		return 0;
     }
 
-    public override bool Skill2() {
+	// Refreshments: 
+    public override int Skill2() {
         Target[0].Stamina += Target[0].maxStamina / 4;
         if (Target[0].Stamina > Target[0].maxStamina) {
             Target[0].Stamina = Target[0].maxStamina;
         }
         actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
-		return false;
+		return 0;
     }
 
-
-    public override bool Skill3() { //keep fighting
+	// Keep Fighting:
+    public override int Skill3() { //keep fighting
         if (allies[0] != this) {
-            allies[0].addStatusEffect("halfDmg", 2);
+            allies[0].addStatusEffect("steady", 2);
         }
         if (allies[1] != this) {
-            allies[1].addStatusEffect("halfDmg", 2);
+            allies[1].addStatusEffect("steady", 2);
         }
         if (allies[2] != this) {
-            allies[2].addStatusEffect("halfDmg", 2);
+            allies[2].addStatusEffect("steady", 2);
         }
         actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
-		return false;
+		return 0;
     }
 
 

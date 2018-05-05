@@ -40,22 +40,23 @@ public class Theodore : Character {
     }
 
 
-    public override bool Skill1() {
+	public override int Skill1() {
         //Rook: slightly weaker attack and enemy is stunned for one turn. Cost: 2 balls
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);  // currently results in a 0 Dmg attack
 
 		// check if the target dodges the ball
 		Target[0].dodgeBall(this);
 		// deal damage and add statusEffect
-		Target[0].loseStamina( (int)( (this.attack) * variance * .75f * attackMultiplier * Target[0].defenseMultiplier) );
-        Target[0].addStatusEffect("stun", 1);
+		int damage = (int)( (this.attack) * variance * .75f * attackMultiplier * Target[0].defenseMultiplier);
+		Target[0].loseStamina( damage );
+        Target[0].addStatusEffect("stun", 2);
 		this.heldBalls -= actionCosts[4];
-		return false;
+		return damage;
     }
 
 
 
-    public override bool Skill2() {
+    public override int Skill2() {
         //Bishop: deals a guaranteed attack on any enemy, they can still catch after. Cost: 3 balls. Cooldown: 2
         //this contradicts our way of checking for defensive moves, IE dont call your own skill if the enemy uses a defensive move. Either way, I will try'
 
@@ -64,33 +65,38 @@ public class Theodore : Character {
 		// Theodore will aim for the wrong target.
 		Target[0] = Target[2];
 		float variance = Random.Range(0.8f, 1.2f);
-		Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
+		int damage = (int)(this.attack * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target[0].loseStamina(damage);
         actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
 		this.heldBalls -= actionCosts[5];
-		return false;
+		return damage;
     }
 
 	// What skill is this
-    public override bool Skill3() {
+	// If a ball is to be thrown at you, redirect at a target ally instead
+	public override int Skill3() {
         //This uses your accuracy 
 		Target[0].dodgeBall(this); 
 		Target[0].loseStamina(this.Damage - 15);
         actionCooldowns[6] = 2; //where N is assuming this is the N+1th ability.
 		this.heldBalls -= actionCosts[6];
-		return false;
+		return 0;
     }
 
 	// Queen: Throws 8 balls at a single enemy
-    public override bool Skill4() {
+	public override int Skill4() {
         float variance;
+		int damage = 0;
         for (int i = 0; i < 8; i++) {
             variance = Random.Range(0.7f, 1.1f);
 			Target[0].dodgeBall(this);
-			Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
+			int partialDamage = (int)(this.attack * variance * attackMultiplier * Target [0].defenseMultiplier);
+			Target[0].loseStamina(partialDamage);
+			damage += partialDamage;
         }
 		actionCooldowns[7] = 3;
 		this.heldBalls -= actionCosts[7];
-		return false;
+		return damage;
     }
 
 

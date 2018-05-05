@@ -35,7 +35,8 @@ public class Lily : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         if (Target[0].Stamina + 30 < Target[0].maxStamina) {
             Target[0].gainStamina(30);
@@ -67,4 +68,5 @@ public class Lily : Character {
     public override bool Skill4() {
 		return false;
     }
+    */
 }

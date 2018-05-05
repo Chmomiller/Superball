@@ -51,13 +51,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88dde0ebbc5e51e44ab8d350c2f98e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatQueue: []
   currentPhase: 0
   Player: []
   Enemy: []
   playerSelect: []
   enemySelect: []
-  action: []
+  endButton: []
+  CUI: {fileID: 0}
   battleText: {fileID: 0}
-  Cursor: {fileID: 0}
+  combatAction: {fileID: 0}
+  tCursor: {fileID: 0}
+  combatLog: {fileID: 0}
+  conflictInQueue: -1
+  currentCharacter: 0
+  turn: 0
   win: 0
   lose: 0
+  delay: 0

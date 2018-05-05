@@ -32,8 +32,8 @@ public class Clemence : Character
 		base.Update ();
     }
     
-	
-    public override bool Skill1() {
+	// Picket Fence: Catches for both allies but not yourself
+	public override int Skill1() {
         int catchAttempts = 0;
         for (int i = 3; i < combat.Enemy.Length; i++) {
 			// This doesn't necessarily check if allies 0 & 1 are not this character
@@ -47,20 +47,21 @@ public class Clemence : Character
             this.catchBall(this);
         }
         actionCooldowns[4] = 1; //Where N is the ability number-1
-		return true;
+		return 0;
 
     }
 
-    public override bool Skill2() {
+	// Vines: If enemy is throwing, they are stunned
+    public override int Skill2() {
         if (Target[0].actionType == "Offense") {
-            // have them re choose or give them a random other ability. IDK
-            Target[0].action = "None";
+			Target [0].addStatusEffect ("stun", 1);
         }
         actionCooldowns[4] = 4;
-		return true;
+		return 0;
     }
 
-    public override bool Skill3() {
+	// Rain Shield: Blocks the first attack on the next two turns
+    public override int Skill3() {
         if (enemies[0].actionType == "Offense") {
             enemies[0].action = "None";
             enemies[0].heldBalls--;
@@ -72,11 +73,11 @@ public class Clemence : Character
             enemies[2].heldBalls--;
         }
         actionCooldowns[5] = 2;
-		return true;
+		return -1;
     }
 
-    public override bool Skill4() {
-		return true;
+    public override int Skill4() {
+		return 0;
     }
 
 }

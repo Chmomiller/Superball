@@ -35,7 +35,8 @@ public class Yoichi : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         int statusEffectIndex = Target[0].findStatus("unsteady");
         if (statusEffectIndex != -1) {
@@ -80,4 +81,5 @@ public class Yoichi : Character {
         actionCooldowns[7] = 4;
 		return false;
     }
+    */
 }

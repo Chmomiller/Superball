@@ -35,7 +35,8 @@ public class Fernando : Character {
 		}
 		return base.dodgeBall (attacker);
 	}
-
+	// I haven't bothered to update the skill return values
+	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
 		return false;
@@ -57,4 +58,5 @@ public class Fernando : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }

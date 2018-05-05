@@ -27,7 +27,8 @@ public class MontanaGuns : Character {
         this.loseStamina(attacker.Damage - 20);
         return false;
     }
-
+	// I haven't bothered to update the skill return values
+	/*
     public override bool Skill1() {
         float variance = UnityEngine.Random.Range(1.7f, 2.2f);
         if (!Target[0].dodgeBall(this)) Target[0].loseStamina((int)(this.Damage * variance));
@@ -54,4 +55,5 @@ public class MontanaGuns : Character {
     public override bool Skill4() {
         return false;
     }
+    */
 }

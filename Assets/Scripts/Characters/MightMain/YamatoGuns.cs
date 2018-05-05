@@ -27,15 +27,17 @@ public class YamatoGuns : Yamato {
      
     }
 
-    public override bool Skill1() {
+	public override int Skill1() {
         float variance = UnityEngine.Random.Range(1.7f, 2.2f);
-		Target [0].loseStamina ((int)(this.Damage * 1.25 * variance * attackMultiplier * Target[0].defenseMultiplier));
+		int damage = (int)(this.Damage * 1.25 * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target [0].loseStamina (damage);
         this.heldBalls -= 3;
         actionCooldowns[4] = 2;
-        return true;
+		return damage;
     }
 
-    public override bool Skill2() {
+    public override int Skill2() {
+		int damage = 0;
 		for (int i = 0; i < 3; i++) 
 		{
 			do{
@@ -59,17 +61,17 @@ public class YamatoGuns : Yamato {
 		// Throw at the three targets
 		for(int i =0 ; i < 3; i++)
 		{
-			this.throwBall (Target[i]);
+			damage += this.throwBall (Target[i]);
 		}
 		actionCooldowns[4] = 1;
 
-		return true;
+		return damage;
     }
-    public override bool Skill3() {
-		return true;
+    public override int Skill3() {
+		return 0;
 }
 
-    public override bool Skill4() {
-		return false;
+	public override int Skill4() {
+		return 0;
     }
 }

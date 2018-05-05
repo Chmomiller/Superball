@@ -33,8 +33,9 @@ public class Ash : Character {
             }
         }
     }
-
-    public override bool Skill1() {
+	// I haven't bothered to update the skill return values
+	/*
+    public override int Skill1() {
         this.addStatusEffect("halfDmg", 1);
         actionCooldowns[4] = 3;
 		return false;
@@ -62,4 +63,5 @@ public class Ash : Character {
 	public override bool Skill4() {
 		return false;
     }
+    */
 }

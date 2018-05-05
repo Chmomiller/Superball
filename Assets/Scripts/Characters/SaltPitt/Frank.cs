@@ -44,8 +44,7 @@ public class Frank : Character {
 
 
     // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
-    public override bool Skill1() {
-        //Rumble: Blocks all attacks aimed at Trevor for 1 turn;
+	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
 			if (enemies[i].Target[0].Name == "Trevor"){
@@ -61,14 +60,14 @@ public class Frank : Character {
 	        }
 		}
         actionCooldowns[4] = 3;
-        return false;
+        return -1;
 
     }
 
-	public override bool Skill2() { return true; }
+	public override int Skill2() { return 0; }
 
-	public override bool Skill3() { return true;}
+	public override int Skill3() { return 0;}
 
-	public override bool Skill4() { return true;}    
+	public override int Skill4() { return 0;}    
 
 }

@@ -324,8 +324,6 @@ public class Character : MonoBehaviour
 		return -1;
 	}
 
-    //swaps 
-
 
 	// Currently the character is still catching if they weren't targeted in the last round
 	public virtual bool catchBall(Character attacker)
@@ -357,13 +355,16 @@ public class Character : MonoBehaviour
         return false;
     }
 
-	public void throwBall(Character target)
+	public int throwBall(Character target)
 	{
+		int damage = 0;
         Audio.playDelayedSFX("_SFX/Battle sfx/swoosh/swoosh", 2);
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
 		target.dodgeBall (this);
-		target.loseStamina((int) (this.Damage * variance * attackMultiplier * target.defenseMultiplier));
+		damage = (int)(this.Damage * variance * attackMultiplier * target.defenseMultiplier);
+		target.loseStamina(damage);
+		return damage;
 	}
 
     public void Rest()
@@ -382,20 +383,20 @@ public class Character : MonoBehaviour
 	}
 
 
-	public virtual bool Skill1(){
-		return true;
+	public virtual int Skill1(){
+		return 0;
     }
 
-    public virtual bool Skill2(){
-		return true;
+    public virtual int Skill2(){
+		return 0;
     }
 
-    public virtual bool Skill3(){
-		return true;
+    public virtual int Skill3(){
+		return 0;
     }
 
-    public virtual bool Skill4(){
-		return true;
+    public virtual int Skill4(){
+		return 0;
     }
 
 	public void CallTell()

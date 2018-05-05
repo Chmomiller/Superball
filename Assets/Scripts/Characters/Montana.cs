@@ -47,7 +47,8 @@ public class Montana : Character {
         this.loseStamina(attacker.Damage - 15);
         return false;
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         yamatoCharge += 10;
         heldBalls -= 3;
@@ -78,4 +79,5 @@ public class Montana : Character {
 	public override bool Skill4() {
 		return false;
     }
+    */
 }
