@@ -639,7 +639,7 @@ public class CombatManager : MonoBehaviour
 		}
 
 		combatLog.UpdateLog (readOut);
-
+		combatAction.text = readOut;
 		if(finish == delay)
 		{
 			enabled = true;
