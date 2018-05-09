@@ -323,7 +323,6 @@ MonoBehaviour:
   enemySelect: []
   endButton: []
   CUI: {fileID: 0}
-  battleText: {fileID: 0}
   combatAction: {fileID: 0}
   tCursor: {fileID: 0}
   combatLog: {fileID: 0}
@@ -667,7 +666,7 @@ Prefab:
     - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030517578
+      value: -0.000015258789
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}

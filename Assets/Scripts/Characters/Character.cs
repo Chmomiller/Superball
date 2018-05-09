@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 using System;
 
 public class Character : MonoBehaviour
@@ -8,6 +10,8 @@ public class Character : MonoBehaviour
     public AudioScript Audio;
     public CombatManager combat;
 	public CharacterSelectUI CSUI;
+	public PlayableDirector characterDirector;
+	public TimelineAsset[] characterAnims;
 
     public string Name = "default";
 	public int Damage = 10;
@@ -37,8 +41,6 @@ public class Character : MonoBehaviour
     public Character [] enemies = new Character[3];
     //these arrays are set in Start()
 
-    public double attack;
-	public double dodge;
 	//Following 3 arrays are paired, so when an action is selected it can look at the same index
 	//of the different arrays and set the corresponding variable to the array value
 
@@ -68,6 +70,27 @@ public class Character : MonoBehaviour
 	public bool dead = false;
 	public bool catching = false;
 
+	public Transform dodgeball;
+
+	protected void Start() {
+		Stamina = maxStamina;
+		Target = new Character[3];
+		for(int i = 0; i < 3; i++)
+		{
+			Target [i] = this;
+		}
+		statusEffects = new status[3];
+		for(int i = 0; i < 3; i++)
+		{
+			statusEffects [i].duration = 0;
+			statusEffects [i].name = "none";
+		}
+			
+		dodgeball = GameObject.Find ("Dodgeball").transform;
+		characterDirector = gameObject.GetComponentInChildren<PlayableDirector> ();
+		combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+		Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
+	}
 
 	public void loseStamina(int staminaLoss) 
 	{
@@ -107,39 +130,6 @@ public class Character : MonoBehaviour
 	//Characters also have a statusEffects array of status structs 6 long. This serves to hold all status effects you can have. EX. status statusEffects[6];
 	// changed this to public because I need access to it's length
 	public status[] statusEffects;// = new status[6];
-
-    protected void Start() {
-		Stamina = maxStamina;
-		Target = new Character[3];
-		for(int i = 0; i < 3; i++)
-		{
-			Target [i] = this;
-		}
-		statusEffects = new status[3];
-		for(int i = 0; i < 3; i++)
-		{
-			statusEffects [i].duration = 0;
-			statusEffects [i].name = "none";
-		}
-
-        //allegiance of 1 is to the player controlled team. The allies and the enemies 
-        //array now refer to your teammates and the other teams respectively. This is 
-        //done beacuse the Player[] and Enemy[] are absolute, but allies and enemies
-        //can be relative. That is: Enemy[1] will always be the same, but enemies[1] 
-        //will be the Player[1] if you have allegiance 2 (ie on team 2, aiming at team 1)
-        //and will be Enemy [1] if you have allegiance 1 (ie on team 1, aiming at team 2)
-        combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
-
-        /*
-        if (allegiance == 1) { 
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else {
-            allies = combat.Enemy;
-            enemies = combat.Player;
-        } */
-    }
 
     protected void Update()
 	{
@@ -282,12 +272,10 @@ public class Character : MonoBehaviour
 			break;
 		case "debuff":
 			CSUI.RemoveStatus (1);
-			this.attack = Math.Floor (1.35 * this.attack);
 			this.attackMultiplier = 1.0f;
 			break;
 		case "buff":
 			CSUI.RemoveStatus (2);
-			this.attack = Math.Floor (0.8 * this.attack);
 			this.attackMultiplier = 1.0f;
 			break;
 		case "unsteady":
@@ -337,6 +325,8 @@ public class Character : MonoBehaviour
 				{
 					this.heldBalls++;
 				}
+				playThrow ();
+
 				return true;
 			}
 		}
@@ -352,13 +342,25 @@ public class Character : MonoBehaviour
             }
             print("Dodgeball narrowly missed " + this.name + "!!!");
         }
+		if(!dead)
+		{
+			playDodge ();
+		}
         return false;
     }
 
 	public int throwBall(Character target)
 	{
-		int damage = 0;
+		Transform DB = Instantiate (dodgeball, gameObject.transform.position, Quaternion.identity);
+		/*DB.transform.position = new Vector3 (DB.transform.position.x, 
+											 DB.transform.position.y, 
+											 0f);*/
+		DB.localScale = new Vector3(.125f, .125f, 1f);
+		DB.GetComponent<Dodgeball> ().target = target;
+		playThrow ();
         Audio.playDelayedSFX("_SFX/Battle sfx/swoosh/swoosh", 2);
+
+		int damage = 0;
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
 		target.dodgeBall (this);
@@ -434,7 +436,17 @@ public class Character : MonoBehaviour
 		CSUI.ShowTell ("None");
 	}
    
-       public void LevelUp(int number) {
+	public void playDodge()
+	{
+		characterDirector.Play (characterAnims[0]);
+	}
+
+	public void playThrow()
+	{
+		characterDirector.Play (characterAnims[1]);
+	}
+
+    public void LevelUp(int number) {
         float variance;
         for (int i = 0; i < number; i++) {
             this.Level++;

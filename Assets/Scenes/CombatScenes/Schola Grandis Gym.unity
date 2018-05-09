@@ -329,12 +329,14 @@ MonoBehaviour:
   enemySelect: []
   endButton: []
   CUI: {fileID: 0}
-  battleText: {fileID: 0}
   combatAction: {fileID: 0}
+  tCursor: {fileID: 0}
+  combatLog: {fileID: 0}
   conflictInQueue: -1
+  currentCharacter: 0
+  turn: 0
   win: 0
   lose: 0
-  currentCharacter: 0
   delay: 0
 --- !u!4 &393305960
 Transform:
@@ -720,6 +722,26 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 5287587e4de7e13468ec5462017fbaff,
         type: 3}
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -806,16 +828,6 @@ Prefab:
     - target: {fileID: 1426989562631526, guid: 56a0b74c22f5b61489f9c2b34aff6a83, type: 2}
       propertyPath: m_Name
       value: Character5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114548376085889740, guid: 56a0b74c22f5b61489f9c2b34aff6a83,
-        type: 2}
-      propertyPath: Damage
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114548376085889740, guid: 56a0b74c22f5b61489f9c2b34aff6a83,
-        type: 2}
-      propertyPath: Level
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56a0b74c22f5b61489f9c2b34aff6a83, type: 2}
@@ -929,6 +941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hardMode: 0
   Audio: {fileID: 0}
+  consistency: 0
 --- !u!114 &1862253762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,31 +999,6 @@ Prefab:
       propertyPath: m_Name
       value: Character4
       objectReference: {fileID: 0}
-    - target: {fileID: 114031006542337376, guid: b25c3aec6d4b8464e8d42e63e6dfe7e8,
-        type: 2}
-      propertyPath: Stamina
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031006542337376, guid: b25c3aec6d4b8464e8d42e63e6dfe7e8,
-        type: 2}
-      propertyPath: Damage
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031006542337376, guid: b25c3aec6d4b8464e8d42e63e6dfe7e8,
-        type: 2}
-      propertyPath: Level
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031006542337376, guid: b25c3aec6d4b8464e8d42e63e6dfe7e8,
-        type: 2}
-      propertyPath: maxStamina
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031006542337376, guid: b25c3aec6d4b8464e8d42e63e6dfe7e8,
-        type: 2}
-      propertyPath: maxBalls
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b25c3aec6d4b8464e8d42e63e6dfe7e8, type: 2}
   m_IsPrefabParent: 0
@@ -1056,16 +1044,6 @@ Prefab:
     - target: {fileID: 1724158506477910, guid: 06dd61255bdf2d8498658ebb1f698c02, type: 2}
       propertyPath: m_Name
       value: Character3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114030065851131354, guid: 06dd61255bdf2d8498658ebb1f698c02,
-        type: 2}
-      propertyPath: Damage
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114030065851131354, guid: 06dd61255bdf2d8498658ebb1f698c02,
-        type: 2}
-      propertyPath: Level
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06dd61255bdf2d8498658ebb1f698c02, type: 2}

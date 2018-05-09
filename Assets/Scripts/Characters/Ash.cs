@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ash : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Ash";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -18,7 +18,7 @@ public class Ash : Character {
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 5, 0 };
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {

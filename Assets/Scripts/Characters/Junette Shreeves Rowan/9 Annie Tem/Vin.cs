@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vin : Character {
     
-    void Start() {
+    new void Start() {
         Name = "Artist Vin";
 		Stamina = maxStamina;
         Role = "Thrower";
@@ -23,7 +23,7 @@ public class Vin : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 

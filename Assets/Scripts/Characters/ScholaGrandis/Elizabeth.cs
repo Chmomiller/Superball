@@ -62,7 +62,7 @@ public class Elizabeth : Character {
 	// Royal Touch: Hard Hitting Attack that may stun an enemy
 	public override int Skill3() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
-		int damage = (int)((this.attack + 35) * variance * attackMultiplier * Target [0].defenseMultiplier);
+		int damage = (int)((this.Damage + 35) * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target[0].loseStamina(damage);
         if (UnityEngine.Random.Range(0, 5) > 4) 
 		{

@@ -5,7 +5,7 @@ using UnityEngine;
 public class YamatoBow : Yamato {
 	
     
-    void Start() {
+    new void Start() {
         Name = "The Bow of the Imperial Japanese Battleship Yamato";
         Stamina = maxStamina;
         Role = "Thrower";
@@ -21,7 +21,7 @@ public class YamatoBow : Yamato {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
     }
 
 	// Charges forward with a ram
@@ -40,7 +40,7 @@ public class YamatoBow : Yamato {
 		variance = UnityEngine.Random.Range(0.7f, 1.0f);
         for (int i = 0; i < 3; i++) 
 		{
-			int partialDamage = (int)(this.attack * variance * attackMultiplier * enemies [i].defenseMultiplier);
+			int partialDamage = (int)(this.Damage * variance * attackMultiplier * enemies [i].defenseMultiplier);
 			damage += partialDamage;
 			enemies[i].loseStamina(partialDamage);
         }

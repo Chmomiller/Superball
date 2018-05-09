@@ -6,7 +6,7 @@ public class Montana : Character {
 
     public int yamatoCharge = 0;
 
-    void Start() {
+    new void Start() {
         Name = "US Navy Montana Class Battleship";
         Role = "Supporter";
 
@@ -21,7 +21,7 @@ public class Montana : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {

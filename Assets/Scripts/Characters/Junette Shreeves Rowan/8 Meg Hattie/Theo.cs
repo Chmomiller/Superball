@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Theo : Character {
     
-    void Start() { //attacks affecting character script and its components
+    new void Start() { //attacks affecting character script and its components
         Name = "Programmer Theo";
 		Stamina = maxStamina;
         Role = "Thrower";
@@ -23,7 +23,7 @@ public class Theo : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 	// I haven't bothered to update the skill return values

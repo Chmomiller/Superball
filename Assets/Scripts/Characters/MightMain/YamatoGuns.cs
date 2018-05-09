@@ -5,7 +5,7 @@ using UnityEngine;
 public class YamatoGuns : Yamato {
 	
     
-    void Start() {
+    new void Start() {
         Name = "The Main Armamment of the Imperial Japanese Battleship Yamato";
         Stamina = maxStamina;
         Role = "Thrower";
@@ -23,7 +23,7 @@ public class YamatoGuns : Yamato {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
      
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Muhammad : Character {
     
-    void Start() {
+    new void Start() {
         Name = "Artist Muhammad";
 		Stamina = maxStamina;
         Role = "Supporter";
@@ -23,7 +23,7 @@ public class Muhammad : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 

@@ -23,7 +23,6 @@ public class TargetCursor : MonoBehaviour {
 
 	public void ShowTargets(string team, int targets)
 	{
-		Debug.Log ("ShowTargets, team: "+team+", targets: "+targets);
 		if ((targets == 1 && team == "Player")
 		   || (targets == 2 && team != "Player")) 
 		{

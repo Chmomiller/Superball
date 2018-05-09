@@ -6,7 +6,7 @@ public class Yamato : Character {
 	
     public int yamatoCharge = 0;
 
-    void Start() {
+    new void Start() {
         Name = "The Imperial Japanese Battleship Yamato";
         Gather = 9;
         Stamina = 300;
@@ -44,7 +44,7 @@ public class Yamato : Character {
 		}
 	}
 
-    void Update() {
+    new void Update() {
 		/*
         if (yamatoCharge == 100) {
             enemies[0].dead = true;
@@ -80,7 +80,7 @@ public class Yamato : Character {
         for (int i = 0; i < 6; i++) {
             variance = UnityEngine.Random.Range(0.7f, 1.0f);
             Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
-        if (!Target[0].catchBall(this)) Target[0].loseStamina( (int)(this.attack * variance) );
+			if (!Target[0].catchBall(this)) Target[0].loseStamina( (int)(this.Damage * variance) );
     }
 		return 0;
 }

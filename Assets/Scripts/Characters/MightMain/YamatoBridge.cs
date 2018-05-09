@@ -5,7 +5,7 @@ using UnityEngine;
 public class YamatoBridge : Yamato {
 	
     
-    void Start() {
+    new void Start() {
         Name = "The Bridge of the Imperial Japanese Battleship Yamato";
         Stamina = maxStamina;
         Role = "Supporter";
@@ -22,7 +22,7 @@ public class YamatoBridge : Yamato {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
      
     }
 

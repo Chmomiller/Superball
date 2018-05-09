@@ -76,7 +76,6 @@ public class BattleSimulator : MonoBehaviour {
 	{
 		CombatUI CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI>();
 		ButtonsUI[] buttonsUIs = FindObjectsOfType<ButtonsUI> ();
-		TemporaryUIIntegration[] temporaryUIIntegrations = TemporaryUIIntegration.FindObjectsOfType<TemporaryUIIntegration> ();
 
 		CUI.CM = combatObj.GetComponent<CombatManager>();
 

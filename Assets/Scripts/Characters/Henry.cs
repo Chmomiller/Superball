@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Henry : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Henry";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -19,7 +19,7 @@ public class Henry : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {

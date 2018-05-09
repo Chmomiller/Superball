@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ivy : Character {
     
-    void Start() {  //affects art of other characters and their stats
+    new void Start() {  //affects art of other characters and their stats
         Name = "Artist Ivy";
 		Stamina = maxStamina;
         Role = "Thrower";
@@ -23,7 +23,7 @@ public class Ivy : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 	// I haven't bothered to update the skill return values

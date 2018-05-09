@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Charles : Character {
     
-    void Start() { //motivating your team
+    new void Start() { //motivating your team
         Name = "Game Lead Charles";
 		Stamina = maxStamina;
         Role = "Supporter";
@@ -23,7 +23,7 @@ public class Charles : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 	// I haven't bothered to update the skill return values

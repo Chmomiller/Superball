@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ichirou : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Ichirou";
         Stamina = maxStamina;
         
@@ -19,7 +19,7 @@ public class Ichirou : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {

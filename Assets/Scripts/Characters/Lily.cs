@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lily : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Lily";
         Stamina = maxStamina;
         Role = "Supporter";
@@ -20,7 +20,7 @@ public class Lily : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {

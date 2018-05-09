@@ -18,7 +18,6 @@ public class CombatManager : MonoBehaviour
 	public Button[] endButton;
 	public CombatUI CUI;
 	// This is for debug purposes
-	public Text battleText;	
 	public Text combatAction;
 	public TargetCursor tCursor;
 
@@ -39,6 +38,8 @@ public class CombatManager : MonoBehaviour
 
 	void Start()
 	{
+		combatQueue = new Character[6];
+
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
 		tCursor = GameObject.Find ("TargetCursors").GetComponent<TargetCursor> ();
 		GameObject[] CharUI = new GameObject[3];
@@ -94,19 +95,16 @@ public class CombatManager : MonoBehaviour
 		}
 
 		// Get text components and the end buttons
-		battleText = GameObject.Find ("BattleText").GetComponent<Text> ();
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
 		combatLog = GameObject.Find ("CombatLog").GetComponentInChildren<CombatLog> ();
 		endButton [0] = GameObject.Find ("RetryButton").GetComponent<Button> ();
 		endButton [1] = GameObject.Find ("ContinueButton").GetComponent<Button> ();
 			
 		//ballsCaught = new System.Collections.Generic.List<bool>();
-			
+
 		// This sets up the character's healthbars and sets their allies and enemies internally
 		for(int i = 0; i < 3; i++)
 		{
-			CharUI [i].GetComponentInChildren<TemporaryUIIntegration> ().Init(Player [i]);
-			EnemyUI [i].GetComponentInChildren<TemporaryUIIntegration> ().Init(Enemy [i]);
 			for (int j =0; j <3; j++)
 			{
 				Player [i].allies [j] = Player [j];
@@ -116,7 +114,6 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 
-		combatQueue = new Character[6];
 	}
 
 	void Update()
@@ -194,7 +191,6 @@ public class CombatManager : MonoBehaviour
 				}
 			}
 		}
-
 		// Assign each element of the temperary array to the approrpiate element in CombatQueue
 		for (int i = 0; i < 6; i++) 
 		{
@@ -210,7 +206,6 @@ public class CombatManager : MonoBehaviour
 	// This function is used to check if there are still conflicts in the queue and set current phase to the correct phase
 	void Conflict()
 	{
-		Debug.Log ("In Conflict");
 		tCursor.ClearTargets ();
 		// Check if there is a conflict in the queue
 		conflictInQueue = -1;
@@ -332,7 +327,7 @@ public class CombatManager : MonoBehaviour
 	void Select()
 	{
 		// delegates would help here
-		battleText.text = "Choose " + combatQueue[conflictInQueue].Name + " or " + combatQueue[conflictInQueue+1].Name;
+		combatAction.text = "Choose " + combatQueue[conflictInQueue].Name + " or " + combatQueue[conflictInQueue+1].Name;
 		for(int i = 0; i < 3; i++)
 		{
 			if(combatQueue[conflictInQueue] == Player[i] 
@@ -348,7 +343,7 @@ public class CombatManager : MonoBehaviour
 	// This function deactivates player select buttons
 	void Action()
 	{
-		battleText.text = "Choose your action";
+		combatAction.text = "Choose your action";
 		foreach(Button B in playerSelect)
 		{
 			B.enabled = false;
@@ -359,7 +354,7 @@ public class CombatManager : MonoBehaviour
 	// This function effectively does nothing since targets are made availible in actionSelect and the phase is changed in characterSelect
 	void Target ()
 	{
-		battleText.text = "Choose the target";
+		combatAction.text = "Choose the target";
 	}
 
 

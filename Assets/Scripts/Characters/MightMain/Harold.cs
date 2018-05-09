@@ -95,7 +95,7 @@ public class Harold : Character {
         float variance = UnityEngine.Random.Range(.6f, 1.1f); //most likely to throw weaker variance
 		int damage = 0;
         for(int i = 0; i <= 5; i++) {
-			int partialDamage = (int)(this.attack * variance * attackMultiplier * Target [0].defenseMultiplier);
+			int partialDamage = (int)(this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
 			damage += partialDamage;
 			Target[0].loseStamina(partialDamage);
         }

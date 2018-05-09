@@ -5,7 +5,7 @@ using UnityEngine;
 public class MontanaBridge : Character {
 
 
-    void Start() {
+    new void Start() {
         Name = "The Bridge of the US Navy Battleship Montana";
         Stamina = maxStamina;
         Role = "Supporter";
@@ -19,7 +19,7 @@ public class MontanaBridge : Character {
         actionCosts = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
     }
 
-    void Update() {
+    new void Update() {
 
     }
 

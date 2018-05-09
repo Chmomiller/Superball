@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cygnus : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Cygnus";
         Stamina = maxStamina;
         Role = "Support";
@@ -20,7 +20,7 @@ public class Cygnus : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {

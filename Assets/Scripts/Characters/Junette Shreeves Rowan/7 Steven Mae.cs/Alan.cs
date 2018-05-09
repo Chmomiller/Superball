@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Alan : Character {
     
-    void Start() {  //direct damage that cannot be blocked
+    new void Start() {  //direct damage that cannot be blocked
         Name = "Game Lead Alan";
 		Stamina = maxStamina;
         Role = "Catcher";
@@ -23,7 +23,7 @@ public class Alan : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 	// I haven't bothered to update the skill return values

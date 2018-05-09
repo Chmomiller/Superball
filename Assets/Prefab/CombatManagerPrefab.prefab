@@ -59,7 +59,6 @@ MonoBehaviour:
   enemySelect: []
   endButton: []
   CUI: {fileID: 0}
-  battleText: {fileID: 0}
   combatAction: {fileID: 0}
   tCursor: {fileID: 0}
   combatLog: {fileID: 0}

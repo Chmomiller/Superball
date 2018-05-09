@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tristian : Character {
     
-    void Start() { //Combat manager related skills
+    new void Start() { //Combat manager related skills
         Name = "Programmer Tristian";
 		Stamina = maxStamina;
         Role = "Catcher";
@@ -23,7 +23,7 @@ public class Tristian : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 	// I haven't bothered to update the skill return values

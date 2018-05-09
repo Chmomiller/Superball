@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Darius : Character {
     
-    void Start() {
+    new void Start() {
         Name = "Sound Designer Darius";
 		Stamina = maxStamina;
         Role = "Catcher";
@@ -23,7 +23,7 @@ public class Darius : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 

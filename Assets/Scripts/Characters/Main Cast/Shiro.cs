@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shiro : Character{
-
     new void Start()
     {
         Name = "Shiro";
@@ -72,6 +71,4 @@ public class Shiro : Character{
         actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
 		return 0;
     }
-
-
 }

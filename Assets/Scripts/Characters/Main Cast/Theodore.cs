@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Theodore : Character {
-
     // Use this for initialization
     new void Start() {
         Name = "Theodore";
@@ -47,7 +46,7 @@ public class Theodore : Character {
 		// check if the target dodges the ball
 		Target[0].dodgeBall(this);
 		// deal damage and add statusEffect
-		int damage = (int)( (this.attack) * variance * .75f * attackMultiplier * Target[0].defenseMultiplier);
+		int damage = (int)( this.Damage * variance * .75f * attackMultiplier * Target[0].defenseMultiplier);
 		Target[0].loseStamina( damage );
         Target[0].addStatusEffect("stun", 2);
 		this.heldBalls -= actionCosts[4];
@@ -65,7 +64,7 @@ public class Theodore : Character {
 		// Theodore will aim for the wrong target.
 		Target[0] = Target[2];
 		float variance = Random.Range(0.8f, 1.2f);
-		int damage = (int)(this.attack * variance * attackMultiplier * Target [0].defenseMultiplier);
+		int damage = (int)(this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target[0].loseStamina(damage);
         actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
 		this.heldBalls -= actionCosts[5];
@@ -90,7 +89,7 @@ public class Theodore : Character {
         for (int i = 0; i < 8; i++) {
             variance = Random.Range(0.7f, 1.1f);
 			Target[0].dodgeBall(this);
-			int partialDamage = (int)(this.attack * variance * attackMultiplier * Target [0].defenseMultiplier);
+			int partialDamage = (int)(this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
 			Target[0].loseStamina(partialDamage);
 			damage += partialDamage;
         }
@@ -98,6 +97,4 @@ public class Theodore : Character {
 		this.heldBalls -= actionCosts[7];
 		return damage;
     }
-
-
 }
