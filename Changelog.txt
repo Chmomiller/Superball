@@ -102,3 +102,5 @@ Tristian:
 5/9/18:
 	Modified current AI to work with CombatManager
 	Added dodgeball to all combat scenes
+5/10/18:
+	Added crowd to SlugCon scene

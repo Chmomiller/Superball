@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
@@ -41,8 +40,6 @@ public class CombatManager : MonoBehaviour
 
 	void Start()
 	{
-		Debug.Log (SceneManager.GetActiveScene().path);
-
 		combatQueue = new Character[6];
 
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
