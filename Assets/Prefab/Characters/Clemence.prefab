@@ -52,8 +52,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737576621627970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.005225, y: 0.43, z: 90}
-  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
+  m_LocalPosition: {x: -9.957633, y: 0.6, z: 90}
+  m_LocalScale: {x: 0.16193886, y: 0.16193883, z: 0.16193883}
   m_Children:
   - {fileID: 4877367932807548}
   m_Father: {fileID: 0}
@@ -108,11 +108,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
   - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Clemence
-  Damage: 8
+  Damage: 10
   Catch: 100
   Gather: 1
-  Stamina: 120
-  maxStamina: 120
+  Stamina: 130
+  maxStamina: 130
   heldBalls: 0
   maxBalls: 2
   Level: 1
@@ -133,8 +133,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -177,6 +175,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!212 &212133165072263462
 SpriteRenderer:
   m_ObjectHideFlags: 1

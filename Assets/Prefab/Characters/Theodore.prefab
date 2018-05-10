@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1583693413005084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.54, y: 1.06, z: 90}
+  m_LocalPosition: {x: -6.1827927, y: 0.83924854, z: 90}
   m_LocalScale: {x: 0.125, y: 0.125, z: 1}
   m_Children:
   - {fileID: 4244422809804896}
@@ -111,8 +111,8 @@ MonoBehaviour:
   Damage: 15
   Catch: 100
   Gather: 1
-  Stamina: 80
-  maxStamina: 80
+  Stamina: 120
+  maxStamina: 120
   heldBalls: 0
   maxBalls: 2
   Level: 1
@@ -133,8 +133,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -177,6 +175,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!212 &212501030833083048
 SpriteRenderer:
   m_ObjectHideFlags: 1

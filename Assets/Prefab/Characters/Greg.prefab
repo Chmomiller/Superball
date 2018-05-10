@@ -133,8 +133,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -177,6 +175,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
   trevor: {fileID: 0}
 --- !u!212 &212202726367449014
 SpriteRenderer:

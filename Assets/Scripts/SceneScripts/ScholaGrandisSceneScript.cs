@@ -17,11 +17,11 @@ public class ScholaGrandisSceneScript : MonoBehaviour {
             print("start hard mode");
         } else {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(4);
-            GameObject.Find("Character5").GetComponent<Character>().LevelUp(6);
-            GameObject.Find("Character3").GetComponent<Character>().LevelUp(5);
+            GameObject.Find("Character5").GetComponent<Character>().LevelUp(4);
+            GameObject.Find("Character3").GetComponent<Character>().LevelUp(4);
             GameObject.Find("Character0").GetComponent<Character>().LevelUp(4);
-            GameObject.Find("Character1").GetComponent<Character>().LevelUp(5);
-            GameObject.Find("Character2").GetComponent<Character>().LevelUp(5);
+            GameObject.Find("Character1").GetComponent<Character>().LevelUp(4);
+            GameObject.Find("Character2").GetComponent<Character>().LevelUp(4);
             print("start regular mode");
         }
 
@@ -29,6 +29,5 @@ public class ScholaGrandisSceneScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
     }
 }

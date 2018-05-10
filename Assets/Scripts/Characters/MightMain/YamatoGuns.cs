@@ -6,7 +6,7 @@ public class YamatoGuns : Yamato {
 	
     
     new void Start() {
-        Name = "The Main Armamment of the Imperial Japanese Battleship Yamato";
+        Name = "The Main Armamment";
         Stamina = maxStamina;
         Role = "Thrower";
 

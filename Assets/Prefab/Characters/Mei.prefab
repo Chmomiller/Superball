@@ -112,11 +112,11 @@ MonoBehaviour:
   Damage: 12
   Catch: 100
   Gather: 1
-  Stamina: 140
-  maxStamina: 140
+  Stamina: 120
+  maxStamina: 120
   heldBalls: 0
   maxBalls: 2
-  Level: 4
+  Level: 1
   attackMultiplier: 1
   defenseMultiplier: 1
   Role: Supporter
@@ -134,8 +134,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -178,6 +176,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!212 &212125038203145942
 SpriteRenderer:
   m_ObjectHideFlags: 1

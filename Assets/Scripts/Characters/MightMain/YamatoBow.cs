@@ -6,7 +6,7 @@ public class YamatoBow : Yamato {
 	
     
     new void Start() {
-        Name = "The Bow of the Imperial Japanese Battleship Yamato";
+        Name = "The Bow";
         Stamina = maxStamina;
         Role = "Thrower";
 

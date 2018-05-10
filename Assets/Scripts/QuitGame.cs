@@ -82,7 +82,7 @@ public class QuitGame : MonoBehaviour
             case "Salt Pitt High Gym":
                 Audio.resetAllAudio();
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Jeff_SaltpittAnnouncer_1");
-                StartCoroutine(StartBattle("Salt Pitt Battle", 0, sceneName));
+                StartCoroutine(StartBattle("/Scenes/CombatScenes/Salt Pitt Battle", 0, sceneName));
                 break;
             case "Schola Grandis Gym":
                 Audio.resetAllAudio();

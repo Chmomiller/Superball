@@ -174,15 +174,16 @@ MonoBehaviour:
   Enemy: []
   playerSelect: []
   enemySelect: []
-  action: []
-  battleText: {fileID: 0}
-  combatAction: {fileID: 0}
+  endButton: []
   CUI: {fileID: 0}
-  tempUI: []
+  combatAction: {fileID: 0}
+  tCursor: {fileID: 0}
+  combatLog: {fileID: 0}
   conflictInQueue: -1
+  currentCharacter: 0
+  turn: 0
   win: 0
   lose: 0
-  currentCharacter: 0
   delay: 0
 --- !u!4 &393305960
 Transform:
@@ -442,6 +443,26 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519878006}
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.9032791
+      objectReference: {fileID: 0}
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8816f530933511049b637d01a9973e77, type: 2}
   m_IsPrefabParent: 0
@@ -682,7 +703,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0983f60ac015caa4f927637a363c4860,
+      objectReference: {fileID: 21300000, guid: b55c164149ede774fbd73427f19a6347,
         type: 3}
     - target: {fileID: 4742385474833212, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
       propertyPath: m_LocalScale.y
@@ -719,6 +740,8 @@ MonoBehaviour:
   Audio: {fileID: 0}
   combat: {fileID: 0}
   CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
   Name: default
   Damage: 10
   Catch: 100
@@ -747,8 +770,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -777,11 +798,21 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!1001 &1234588121
 Prefab:
   m_ObjectHideFlags: 0
@@ -848,6 +879,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 332d4250daaf0da48bdb022062141cdb, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1360239443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1360239444}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1360239444
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1360239443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.51, y: -0.22, z: 90}
+  m_LocalScale: {x: -0.1289905, y: 0.12899047, z: 0.12899047}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483674183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1073,8 @@ MonoBehaviour:
   Audio: {fileID: 0}
   combat: {fileID: 0}
   CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
   Name: default
   Damage: 10
   Catch: 100
@@ -1042,8 +1103,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -1072,11 +1131,21 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!1 &1862253759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hardMode: 0
   Audio: {fileID: 0}
+  consistency: 0
 --- !u!114 &1862253762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,6 +1297,8 @@ MonoBehaviour:
   Audio: {fileID: 0}
   combat: {fileID: 0}
   CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
   Name: default
   Damage: 10
   Catch: 100
@@ -1255,8 +1327,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -1285,11 +1355,21 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!1001 &1945420167
 Prefab:
   m_ObjectHideFlags: 0

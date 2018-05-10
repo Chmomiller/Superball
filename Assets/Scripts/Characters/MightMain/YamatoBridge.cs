@@ -6,7 +6,7 @@ public class YamatoBridge : Yamato {
 	
     
     new void Start() {
-        Name = "The Bridge of the Imperial Japanese Battleship Yamato";
+        Name = "The Bridge";
         Stamina = maxStamina;
         Role = "Supporter";
 

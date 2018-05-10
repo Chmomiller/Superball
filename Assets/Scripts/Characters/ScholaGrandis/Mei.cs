@@ -131,28 +131,28 @@ public class Mei : Character {
     public override int Skill3() {
 		if ( Target[0].Name == "Elizabeth" ){
             if (Target[0].allegiance == this.allegiance) { //is Elizabeth on our team?
-				Elizabeth haruna = (Elizabeth)Target[0];
-				if(haruna.Transform)
+				Elizabeth elizabeth = (Elizabeth)Target[0];
+				if(elizabeth.Transform)
 				{
 					// transform is a unique boolean to the Schola Grandis girls
-					haruna.Transform = false;
+					elizabeth.Transform = false;
 				}
 				else
 				{
-					haruna.gainStamina(15);
+					elizabeth.gainStamina(15);
 				}
             }
 		} else if (Target[0].Name == "Victoria" ){
             if (Target[0].allegiance == this.allegiance) { //is Victoria on our team?
-				Victoria chikako = (Victoria)Target[0];
-				if(chikako.Transform)
+				Victoria victoria = (Victoria)Target[0];
+				if(victoria.Transform)
 				{
 					// transform is a unique boolean to the Schola Grandis girls
-					chikako.Transform = false;
+					victoria.Transform = false;
 				}
 				else
 				{
-					chikako.gainStamina (15);
+					victoria.gainStamina (15);
 				}
             }
         }
