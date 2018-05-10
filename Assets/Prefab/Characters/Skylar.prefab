@@ -11,6 +11,24 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1365132067671048}
   m_IsPrefabParent: 1
+--- !u!1 &1242314868074830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4743055983546802}
+  - component: {fileID: 212609501484326954}
+  - component: {fileID: 320874858039838948}
+  - component: {fileID: 95662940517351386}
+  m_Layer: 0
+  m_Name: CharacterSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1365132067671048
 GameObject:
   m_ObjectHideFlags: 0
@@ -20,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4968510826021772}
   - component: {fileID: 114212806973013238}
-  - component: {fileID: 212309271615673600}
   m_Layer: 0
   m_Name: Skylar
   m_TagString: Enemy
@@ -28,6 +45,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4743055983546802
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1242314868074830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4968510826021772}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4968510826021772
 Transform:
   m_ObjectHideFlags: 1
@@ -35,12 +65,30 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365132067671048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.79999, y: 428.9, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalPosition: {x: 4.448522, y: -0.649036, z: 90}
+  m_LocalScale: {x: -0.125, y: 0.125, z: 0.125}
+  m_Children:
+  - {fileID: 4743055983546802}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95662940517351386
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1242314868074830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114212806973013238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,7 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   combat: {fileID: 0}
-  CUI: {fileID: 0}
+  CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims:
+  - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+  - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Skylar
   Damage: 1
   Catch: 100
@@ -113,17 +165,26 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
---- !u!212 &212309271615673600
+--- !u!212 &212609501484326954
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1365132067671048}
+  m_GameObject: {fileID: 1242314868074830}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -152,13 +213,33 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dfa788c650f38bd44aafc41edb12cce4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c2f031857d69c64ea035e7a032d8d8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.83, y: 2.84}
+  m_Size: {x: 11.3, y: 19.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!320 &320874858039838948
+PlayableDirector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1242314868074830}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 114228523018858980, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+    value: {fileID: 1242314868074830}
+  - key: {fileID: 114600888612767740, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
+    value: {fileID: 1242314868074830}
+  m_ExposedReferences:
+    m_References: []

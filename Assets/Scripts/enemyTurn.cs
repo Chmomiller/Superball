@@ -26,11 +26,11 @@ public class enemyTurn : Character {
             this.priority = 0;
         }
     }
-    public Action[] actions;
+    new public Action[] actions;
 
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         //populates the actions array with i structs that each have a string and a 0 priority
         for (int n = 0; n < options.Length; n++) {
             actions[n] = new Action(options[n], volitions[n]);
@@ -38,7 +38,7 @@ public class enemyTurn : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
     FindPriorities();
     actions = SortByPriority(actions);
     string choice = ChooseOption(actions, difficulty);

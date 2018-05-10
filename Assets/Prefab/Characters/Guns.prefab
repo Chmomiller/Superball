@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4147007181289560}
-  - component: {fileID: 114448536970474376}
   - component: {fileID: 212770678142005348}
+  - component: {fileID: 114639965042759932}
   m_Layer: 0
-  m_Name: Kuro
+  m_Name: Guns
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,14 +34,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1673106231578428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.79999, y: 428.9, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.0017109751, y: -0.0014644202, z: 0.08750565, w: 0.9961615}
+  m_LocalPosition: {x: 1.83, y: 0.34, z: 90.24}
+  m_LocalScale: {x: 1.0268677, y: 1.0268674, z: 1.0268674}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114448536970474376
+  m_LocalEulerAnglesHint: {x: 0.21, y: -0.15, z: 10.04}
+--- !u!114 &114639965042759932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,25 +49,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673106231578428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9f924a6a60d8645aad8213d51ca6e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 61d602bd526d5754e8553e82a5627afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   combat: {fileID: 0}
-  CUI: {fileID: 0}
-  Name: Kuro
-  Damage: 1
+  CSUI: {fileID: 0}
+  Name: default
+  Damage: 25
   Catch: 100
   Gather: 1
-  Stamina: 10
-  maxStamina: 240
+  Stamina: 320
+  maxStamina: 320
   heldBalls: 0
   maxBalls: 2
-  Level: 1
+  Level: 10
   attackMultiplier: 1
   defenseMultiplier: 1
   Role: Supporter
   Target:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   action: None
   actionType: 
@@ -111,11 +113,21 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  yamatoCharge: 0
 --- !u!212 &212770678142005348
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -130,7 +142,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 92f161029a6d3c54a92d9d283352a135, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 101a68b05467b124fb06ee18c078fa75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26f3ab48212093a44b30aa05cb76a185, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

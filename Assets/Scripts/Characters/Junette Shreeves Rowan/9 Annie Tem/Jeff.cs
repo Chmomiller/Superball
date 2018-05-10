@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Jeff : Character {
     
-    void Start() {
+    new void Start() {
         Name = "Artist Jeff";
 		Stamina = maxStamina;
         Role = "Catcher";
@@ -23,7 +23,7 @@ public class Jeff : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
 
@@ -35,7 +35,8 @@ public class Jeff : Character {
 		}
 		return base.dodgeBall (attacker);
 	}
-
+	// I haven't bothered to update the skill return values
+	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
 		return false;
@@ -57,4 +58,5 @@ public class Jeff : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }

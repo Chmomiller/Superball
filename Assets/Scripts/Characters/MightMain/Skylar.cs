@@ -46,28 +46,28 @@ public class Skylar : Character {
     }
 		
 	// Bombing Run: Make all enemies staggered
-	public override bool Skill1() {
+	public override int Skill1() {
 		enemies[0].addStatusEffect("unsteady", 3);
 		enemies[1].addStatusEffect("unsteady", 3);
 		enemies[2].addStatusEffect("unsteady", 3);
 		this.heldBalls -= actionCosts[4];
 		actionCooldowns[4] = 6;
-		return true;
+		return 0;
 	}
 
 
 	// Supply Run: Gather half of her remaining ball capacity
-	public override bool Skill2() {
+	public override int Skill2() {
 		if(heldBalls != maxBalls)
 		{
 			this.heldBalls += (maxBalls - heldBalls) / 2;
 		}
 		actionCooldowns[5] = 20;
-		return true;
+		return 0;
 	}
 
 	// Supply Drop: Gives all balls to an ally and heals them for 20
-	public override bool Skill3() {
+	public override int Skill3() {
 		Target [0].heldBalls += this.heldBalls;
 		if (Target [0].heldBalls > Target [0].maxBalls)
 		{
@@ -77,17 +77,17 @@ public class Skylar : Character {
 		this.Stamina -= 20;
 		this.heldBalls = 0;
 		actionCooldowns[6] = 3;
-		return true;
+		return 0;
 	}
 
-	//
-    public override bool Skill4() {
+	// Currently does nothing because there is no support for confuse
+    public override int Skill4() {
         this.heldBalls -= 3;
         enemies[0].addStatusEffect("confuse", 3);
         enemies[1].addStatusEffect("confuse", 3);
         enemies[2].addStatusEffect("confuse", 3);
         actionCooldowns[6] = 4;
-		return true;
+		return 0;
     }
 
 }

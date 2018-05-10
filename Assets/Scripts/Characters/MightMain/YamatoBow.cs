@@ -2,55 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YamatoBow : Character {
+public class YamatoBow : Yamato {
 	
     
-    void Start() {
+    new void Start() {
         Name = "The Bow of the Imperial Japanese Battleship Yamato";
         Stamina = maxStamina;
-        Role = "Supporter";
+        Role = "Thrower";
 
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Charges forward with a ram", "Drops explosives off the front", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
+
+		base.Start ();
     }
 
-    void Update() {
-     
+    new void Update() {
     }
 
-    public override bool catchBall(Character attacker) {
-        this.loseStamina(attacker.Damage - 20);
-        return false;
-    }
-
-    public override bool Skill1() {
+	// Charges forward with a ram
+    public override int Skill1() {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
-        Target[0].loseStamina((int)(1.5f * this.Damage * variance));
+		int damage = (int)(1.5f * this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target[0].loseStamina(damage);
         this.actionCooldowns[4] = 3;
-        return true;
+		return damage;
     }
 
-    public override bool Skill2() {
+	// Drops explosives off the front
+    public override int Skill2() {
         float variance;
-        for (int i = 0; i < 6; i++) {
-            variance = UnityEngine.Random.Range(0.7f, 1.0f);
-            Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
-            if (!Target[0].catchBall(this)) Target[0].loseStamina((int)(this.attack * variance));
+		int damage = 0;
+		variance = UnityEngine.Random.Range(0.7f, 1.0f);
+        for (int i = 0; i < 3; i++) 
+		{
+			int partialDamage = (int)(this.Damage * variance * attackMultiplier * enemies [i].defenseMultiplier);
+			damage += partialDamage;
+			enemies[i].loseStamina(partialDamage);
         }
         this.actionCooldowns[5] = 2;
-    return true;
+		return damage;
     }
 
-    public override bool Skill3() {
-		return true;
+	public override int Skill3() {
+		return 0;
 }
 
-    public override bool Skill4() {
-		return false;
+	public override int Skill4() {
+		return 0;
     }
 }

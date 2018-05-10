@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ash : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Ash";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -18,7 +18,7 @@ public class Ash : Character {
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 5, 0 };
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -33,8 +33,9 @@ public class Ash : Character {
             }
         }
     }
-
-    public override bool Skill1() {
+	// I haven't bothered to update the skill return values
+	/*
+    public override int Skill1() {
         this.addStatusEffect("halfDmg", 1);
         actionCooldowns[4] = 3;
 		return false;
@@ -62,4 +63,5 @@ public class Ash : Character {
 	public override bool Skill4() {
 		return false;
     }
+    */
 }

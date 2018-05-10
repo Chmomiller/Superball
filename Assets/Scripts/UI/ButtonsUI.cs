@@ -9,6 +9,7 @@ public class ButtonsUI : MonoBehaviour
 	public float AlphaThreshold = 0.5f;
 	public int actionNumber;
 	public CombatManager CM;
+	public TargetCursor tCursor;
 	public Text actionDescription;
 	public string desc;
 	public bool menuOpen;
@@ -21,6 +22,7 @@ public class ButtonsUI : MonoBehaviour
 		this.GetComponent<Image>().alphaHitTestMinimumThreshold = AlphaThreshold;
 		actionDescription = GameObject.Find ("ActionPanel").GetComponentInChildren<Text>();
 		menuOpen = false;
+		tCursor = GameObject.Find ("TargetCursors").GetComponent<TargetCursor> ();
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 	}
 	
@@ -128,6 +130,7 @@ public class ButtonsUI : MonoBehaviour
 				}
 			}
 		}
+		tCursor.ShowTargets (CM.combatQueue[CM.currentCharacter].tag, CM.combatQueue[CM.currentCharacter].targetingType);
 	}
 
 	void OnMouseOver()

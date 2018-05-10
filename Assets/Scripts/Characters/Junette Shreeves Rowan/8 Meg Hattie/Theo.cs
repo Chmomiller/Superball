@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Theo : Character {
     
-    void Start() { //attacks affecting character script and its components
+    new void Start() { //attacks affecting character script and its components
         Name = "Programmer Theo";
 		Stamina = maxStamina;
         Role = "Thrower";
@@ -23,10 +23,11 @@ public class Theo : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
         if (Target[0].findStatus("buff") != 0) {
@@ -75,4 +76,5 @@ public class Theo : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }

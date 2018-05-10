@@ -13,8 +13,8 @@ public class Harold : Character {
 		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
 											"If attacked this turn, catch the ball and gain steady", 
 											"Counterattack when attacked on the next two turns", 
-											"Charges for a turn then attacks with a powerful strike against an enemy and becomes staggered", 
-											"Throws five balls at a single target inaccurately" };
+											"Charge for a turn then attack with a powerful strike against an enemy and becomes staggered", 
+											"Throw five balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 1 };
@@ -52,7 +52,7 @@ public class Harold : Character {
 	}
 
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
-    public override bool Skill1() {
+    public override int Skill1() {
 		this.heldBalls++;
 		if(this.heldBalls > this.maxBalls)
 		{
@@ -62,21 +62,23 @@ public class Harold : Character {
 		addStatusEffect ("steady", 2);
 
         actionCooldowns[4] = 3;
-		return false;
+		return -1;
     }
 
 	// Suppressing Fire: Counterattack when attacked on the next two turns
-    public override bool Skill2() {
+    public override int Skill2() {
 		addStatusEffect ("misc", 3);
-		return true;
+		return 0;
     }
 
 	// Heavy Bombardment: Charges for a turn then attacks with a powerful strike against all enemies and becomes staggered
-    public override bool Skill3() {
+	public override int Skill3() {
+		int damage = 0;
 		if(findStatus("misc") != -1)
 		{
 			// This attack does stamina loss before checking for dodging
-			Target[2].loseStamina((int)(Damage * 2 * attackMultiplier * Target[2].defenseMultiplier));
+			damage = (int)(Damage * 2 * attackMultiplier * Target[2].defenseMultiplier);
+			Target[2].loseStamina(damage);
 			Target[2].dodgeBall (this);
 			addStatusEffect ("unsteady", 1);
 		}
@@ -85,16 +87,19 @@ public class Harold : Character {
 			addStatusEffect("misc", 2);
 		}
 		this.heldBalls -= actionCosts [6];
-		return true;
+		return damage;
     }
-
-    public override bool Skill4() {
+		
+    public override int Skill4() {
         //Five rounds rapid
         float variance = UnityEngine.Random.Range(.6f, 1.1f); //most likely to throw weaker variance
+		int damage = 0;
         for(int i = 0; i <= 5; i++) {
-			Target[0].loseStamina((int)(this.attack * variance * attackMultiplier * Target[0].defenseMultiplier));
+			int partialDamage = (int)(this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
+			damage += partialDamage;
+			Target[0].loseStamina(partialDamage);
         }
-		return true;
+		return damage;
     }
 
 	public override void cleanUp()

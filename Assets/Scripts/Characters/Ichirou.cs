@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ichirou : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Ichirou";
         Stamina = maxStamina;
         
@@ -19,7 +19,7 @@ public class Ichirou : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -34,7 +34,8 @@ public class Ichirou : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         float variance = UnityEngine.Random.Range(.7f, 1.3f);
         if (Target[0].Stamina < Target[0].maxStamina/2) { Target[0].addStatusEffect("stun", 1); }
@@ -67,4 +68,5 @@ public class Ichirou : Character {
         actionCooldowns[7] = 2;
 		return false;
     }
+    */
 }

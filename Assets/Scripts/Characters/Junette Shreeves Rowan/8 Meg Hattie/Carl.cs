@@ -7,7 +7,7 @@ public class Carl : Character {
     public Character Save = new Character(); //used for Save and Rollback
     public string whoIsSaved = "NA";
 
-    void Start() { //supporting scripts like saving and loading, transition
+    new void Start() { //supporting scripts like saving and loading, transition
         Name = "Programmer Carl";
 		Stamina = maxStamina;
         Role = "Supporter";
@@ -30,10 +30,11 @@ public class Carl : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
-   
+	// I haven't bothered to update the skill return values
+	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
         Target[0].loseStamina(Target[0].Damage);
@@ -70,4 +71,5 @@ public class Carl : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }

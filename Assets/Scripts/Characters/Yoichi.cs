@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Yoichi : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Yoichi";
         Stamina = maxStamina;
         Role = "Supporter";
@@ -20,7 +20,7 @@ public class Yoichi : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -35,7 +35,8 @@ public class Yoichi : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         int statusEffectIndex = Target[0].findStatus("unsteady");
         if (statusEffectIndex != -1) {
@@ -80,4 +81,5 @@ public class Yoichi : Character {
         actionCooldowns[7] = 4;
 		return false;
     }
+    */
 }

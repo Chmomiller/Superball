@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Morgan : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Morgan";
         Stamina = maxStamina;
         Role = "Thrower";
@@ -20,7 +20,7 @@ public class Morgan : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -35,7 +35,8 @@ public class Morgan : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         float variance = UnityEngine.Random.Range(.8f, 1.25f);
         Target[0].loseStamina((int) ( (this.Damage * 1.15) * (variance) ) );
@@ -63,4 +64,5 @@ public class Morgan : Character {
 	public override bool Skill4() {
 		return false;
     }
+    */
 }

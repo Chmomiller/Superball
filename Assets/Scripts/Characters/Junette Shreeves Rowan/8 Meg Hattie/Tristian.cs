@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tristan : Character {
+public class Tristian : Character {
     
-    void Start() { //Combat manager related skills
-        Name = "Programmer Tristan";
+    new void Start() { //Combat manager related skills
+        Name = "Programmer Tristian";
 		Stamina = maxStamina;
         Role = "Catcher";
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
@@ -23,11 +23,11 @@ public class Tristan : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
-
-	
+	// I haven't bothered to update the skill return values
+	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override bool Skill1() {
         if (allies[0].action != "None") allies[0].action = "None";
@@ -93,4 +93,5 @@ public class Tristan : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }

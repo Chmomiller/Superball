@@ -83,3 +83,15 @@ Tristian:
 	Added a check in CombatManager.DoAction() that prevents KO'd players from performing their actions
 	Added support for stun in CombatManager
 	Added code in the event of a win or loss and UI to each scene
+5/1/18:
+	Simplified CombatManager.DoAction() to take up approx. 1/4 the lines in code(seriously like 300 lines removed!)
+5/2/18:
+	Added combat log UI and associated script and support in CombatManager
+5/3/18:
+	Added target cursors
+	"Fixed" Yamato part skills(No longer causes game breaking behavior on start, but skills not tested)
+5/5/18:
+	Added CombatDialogueManager, a modified version of TutorialScript that can control CombatManager(still needs some work)
+	Changed all Character skills to return int damage for CombatManager to display it during combat
+	Removed text from the lower right and added it to the central text
+	Changed Health bar so it's red when it goes bellow 25% stamina

@@ -6,7 +6,7 @@ public class Montana : Character {
 
     public int yamatoCharge = 0;
 
-    void Start() {
+    new void Start() {
         Name = "US Navy Montana Class Battleship";
         Role = "Supporter";
 
@@ -21,7 +21,7 @@ public class Montana : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -47,7 +47,8 @@ public class Montana : Character {
         this.loseStamina(attacker.Damage - 15);
         return false;
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         yamatoCharge += 10;
         heldBalls -= 3;
@@ -78,4 +79,5 @@ public class Montana : Character {
 	public override bool Skill4() {
 		return false;
     }
+    */
 }

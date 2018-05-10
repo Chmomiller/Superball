@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ivy : Character {
     
-    void Start() {  //affects art of other characters and their stats
+    new void Start() {  //affects art of other characters and their stats
         Name = "Artist Ivy";
 		Stamina = maxStamina;
         Role = "Thrower";
@@ -23,11 +23,11 @@ public class Ivy : Character {
 		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
 		
     }
-
-
+	// I haven't bothered to update the skill return values
+	/*
     public override bool Skill1() {
         if (allies[0] != this) { allies[0].addStatusEffect("buff", 2); allies[0].Stamina += allies[0].maxStamina / 10; }
         if (allies[1] != this) { allies[1].addStatusEffect("buff", 2); allies[1].Stamina += allies[1].maxStamina / 10; }
@@ -59,4 +59,5 @@ public class Ivy : Character {
 
 	public override void cleanUp(){
 	}
+	*/
 }
