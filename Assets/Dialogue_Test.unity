@@ -625,7 +625,7 @@ MonoBehaviour:
   sceneTitle: A New Student
   textSpeed: 0.05
   combatDialogue: 0
-  nextScene: 
+  nextScene: Assets/Scenes/MainMenu.unity
 --- !u!4 &871831902
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CombatManager : MonoBehaviour
 
 	public CombatLog combatLog;
 
+	public EnemyAI AI;
+
 	// Used to see if balls were caught and by who
 	//private System.Collections.Generic.List<bool> ballsCaught;
 	// Used when two players are at the same stamina at the start of the round
@@ -38,6 +41,8 @@ public class CombatManager : MonoBehaviour
 
 	void Start()
 	{
+		Debug.Log (SceneManager.GetActiveScene().path);
+
 		combatQueue = new Character[6];
 
 		CUI = GameObject.Find ("CombatUI").GetComponent<CombatUI> ();
@@ -113,7 +118,7 @@ public class CombatManager : MonoBehaviour
 				Enemy [i].enemies [j] = Player [j];
 			}
 		}
-
+		AI = gameObject.GetComponentInChildren<EnemyAI> ();
 	}
 
 	void Update()
@@ -262,11 +267,12 @@ public class CombatManager : MonoBehaviour
 					{
 						currentPhase = PHASE.ACTION;
 					} 
-					else 
+					else if(combatQueue[firstAction].tag == "Enemy")
 					{
 						// This allows the player to control enemy actions for now
-						currentPhase = PHASE.ACTION;
-						//EnemyTurn (firstAction);
+						//currentPhase = PHASE.ACTION;
+						AI.FullRandomAI (combatQueue [firstAction]);
+
 					}
 				}
 				else

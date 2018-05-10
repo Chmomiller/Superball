@@ -5,465 +5,281 @@ using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour 
 {
-
+	// This script has been modified to be used by CombatManager once per enemy action
 
 
 	public Character[] Player;
 	public Character[] Enemy;
-    CombatManager combat;
 
 	void Start () 
 	{
-        CombatManager combat = GameObject.Find("Combat Manager").GetComponent<CombatManager>();
-		Player = new Character[3];
+        Player = new Character[3];
 		Enemy = new Character[3];
 
 		for(int i = 0; i < 3; i++)
 		{
-			Player [i] = GameObject.Find ("Player" + (i + 1)).GetComponent<Character>();
-			Enemy [i] = GameObject.Find ("Enemy" + (i + 1)).GetComponent<Character>();
-
+			Player [i] = GameObject.Find ("Character" + (i)).GetComponent<Character>();
+			Enemy [i] = GameObject.Find ("Character" + (i + 3)).GetComponent<Character>();
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 
     Character chooseRandomAlly(Character character) { //takes in a Character, allowing some tweaks to be made in the invoking function to allow the AI to play both sides
-        Character choice = new Character();
-        choice.dead = true;
-        while (choice.dead == true) { //choose non dead ally
-            choice = character.allies[UnityEngine.Random.Range(0, 2)];
-        }
+		Character choice;
+		do { //choose non dead ally
+			choice = Player[UnityEngine.Random.Range (0, 3)];
+		} while (!choice.dead);
+		for(int i = 0; i < 3; i++)
+		{
+			character.Target [i] = choice;
+		}
         return choice;
     }
 
     Character chooseRandomEnemy(Character character) { //takes in a Character, allowing some tweaks to be made in the invoking function to allow the AI to play both sides
-        Character choice = new Character();
-        choice.dead = true;
-        while (choice.dead == true) { //choose non dead ally
-            choice = character.enemies[UnityEngine.Random.Range(0, 2)];
+		Character choice; 
+		Character[] choices = new Character[2];
+		int count = 0;
+		for(int i = 0; i < 3; i++)
+		{
+			if(Enemy[i] != character && !Enemy[i].dead)
+			{
+				choices [count] = Enemy [i];
+				count++;
+			}
+		}
+		if(count > 0)
+		{
+			choice = choices[UnityEngine.Random.Range(0, choices.Length)];
         }
+		else
+		{
+			choice = character;
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			character.Target [i] = choice;
+		}
         return choice;
     }
 
 
-    void FullRandomAI() {// Enemy will go full random
-        int choice = 0;
-        for(int i = 0; i< 3; i++) {
-            while (combat.Enemy[i].action == "None") {
-                choice = UnityEngine.Random.Range(1, 8); //choose random skill that isnt None
-                if (combat.Enemy[0].actionCooldowns[i] == 0 && combat.Enemy[0].heldBalls >= combat.Enemy[0].actionCosts[i]){//if it isnt on cooldown
-                    combat.Enemy[0].action = combat.Enemy[0].actions[i];
-                    combat.Enemy[0].actionType = combat.Enemy[0].actionTypes[i];
-                    break;
-                }
+	public void FullRandomAI(Character actor) {// Enemy will go full random
+		int choice = 0;
+		while (actor.action == "None") {
+			
+			choice = UnityEngine.Random.Range (1, 8); //choose random skill that isnt None
+			if (actor.actionCooldowns [choice] == 0 && actor.heldBalls >= actor.actionCosts [choice]) {//if it isnt on cooldown
+				actor.action = actor.actions [choice];
+				actor.actionType = actor.actionTypes [choice];
+				break;
+			}
+		}
+		Character target;
+		if (actor.GetTargetingType (choice) == 1) 
+		{
+			chooseRandomAlly (actor);
+		}
+		else if (actor.GetTargetingType (choice) == 2)
+		{
+			chooseRandomEnemy (actor);
+		}
+		else
+		{
+			for(int i = 0; i < 3; i++)
+			{
+				actor.Target [i] = actor;
+			}
+		}
 
-            }
-            if (combat.Enemy[0].GetTargetingType(i) == 1) combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]);
-            if (combat.Enemy[0].GetTargetingType(i) == 2) combat.Enemy[0].Target[0] = chooseRandomAlly(Enemy[0]);
-        }
     }
 
 
-    void SkillsAI() { //choose first action not on cooldown and do it. If all are on cooldown, just throw
-        for (int i = 3; i < 5; i++) { //combat.Enemy[0]
-            if (combat.Enemy[0].actions[i] != "") {
-                if (combat.Enemy[0].actionCooldowns[i] == 0 && combat.Enemy[0].heldBalls >= combat.Enemy[0].actionCosts[i]) {
-                    combat.Enemy[0].action = combat.Enemy[0].actions[i];
-                    combat.Enemy[0].actionType = combat.Enemy[0].actionTypes[i];
+	void SkillsAI(Character actor) { //choose first action not on cooldown and do it. If all are on cooldown, just throwS
+		Character target = actor;
+		for (int i = 4; i < actor.actionNames.Length; i++) { //actor
+			if (actor.actionNames[i] != "Skill"+(i-3)) {
+                if (actor.actionCooldowns[i] == 0 && actor.heldBalls >= actor.actionCosts[i]) {
+                    actor.action = actor.actions[i];
+                    actor.actionType = actor.actionTypes[i];
                     //find your target if the ability needs one
-                    if (combat.Enemy[0].GetTargetingType(i) == 1) combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]); 
-                    if (combat.Enemy[0].GetTargetingType(i) == 2) combat.Enemy[0].Target[0] = chooseRandomAlly(Enemy[0]);
+					if (actor.GetTargetingType(i) == 1) 
+					{
+						chooseRandomEnemy(actor);
+					} 
+					else if (actor.GetTargetingType(i) == 2) 
+					{
+						chooseRandomAlly(actor);
+					}
+					else 
+					{
+						for(int j = 0; j < 3; j++)
+						{
+							actor.Target [j] = target;
+						}
+					}
                     break;
                 }
             }
         }
-        if(combat.Enemy[0].action == "None") {
-            combat.Enemy[0].action = "Throw";
-
+		if(actor.action == "None" && actor.heldBalls > 0) {
+            actor.action = "Throw";
+			actor.actionType = "Offense";
+			chooseRandomAlly (actor);
         }
-
-        for (int i = 3; i < 5; i++) {//combat.Enemy[1]
-            if (combat.Enemy[1].actions[i] != "") {
-                if (combat.Enemy[1].actionCooldowns[i] == 0 && combat.Enemy[1].heldBalls >= combat.Enemy[1].actionCosts[i]) {
-                    combat.Enemy[1].action = combat.Enemy[1].actions[i];
-                    combat.Enemy[1].actionType = combat.Enemy[1].actionTypes[i];
-
-                    if (combat.Enemy[1].GetTargetingType(i) == 1) combat.Enemy[1].Target[0] = chooseRandomEnemy(Enemy[1]);
-                    if (combat.Enemy[1].GetTargetingType(i) == 2) combat.Enemy[1].Target[0] = chooseRandomAlly(Enemy[1]);
-                    break;
-                }
-            }
-        }
-        if (combat.Enemy[1].action == "None") {
-            combat.Enemy[1].action = "Throw";
-        }
-
-        for (int i = 3; i < 5; i++) {//combat.Enemy[2]
-            if (combat.Enemy[2].actions[i] != "") {
-                if (combat.Enemy[2].actionCooldowns[i] == 0 && combat.Enemy[2].heldBalls >= combat.Enemy[2].actionCosts[i]) {
-                    combat.Enemy[2].action = combat.Enemy[2].actions[i];
-                    combat.Enemy[2].actionType = combat.Enemy[2].actionTypes[i];
-
-                    if (combat.Enemy[2].GetTargetingType(i) == 1) combat.Enemy[2].Target[0] = chooseRandomEnemy(Enemy[2]);
-                    if (combat.Enemy[2].GetTargetingType(i) == 2) combat.Enemy[2].Target[0] = chooseRandomAlly(Enemy[2]);
-                    break;
-                }
-            }
-        }
-        if (combat.Enemy[2].action == "None") {
-            combat.Enemy[2].action = "Throw";
-        }
-
+		else
+		{
+			actor.action = "Catch";
+			actor.actionType = "Defense";
+			for(int i = 0; i < 3; i++)
+			{
+				actor.Target[i] = actor;
+			}
+		}
+	
     }
 
 
-    void RoleAI() { //Catches want to do defensive skills, Throwers offensive, supporters utility
-        for (int i = 0; i < 3; i++) { //for all enemies
-            if (combat.Enemy[i].Role == "Thrower") {
-                for (int k = 3; k < 5; k++) { //for all your skills
-                    if (combat.Enemy[i].actions[k] != "") {
-                        if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Offensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                            combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                            combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
+	void RoleAI(Character actor) { //Catches want to do defensive skills, Throwers offensive, supporters utility
 
-                            if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                            if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
+    	if (actor.Role == "Thrower") {
+			for (int k = 4; k < actor.actions.Length; k++) { //for all your skills
+                    if (actor.actions[k] != "") {
+					if (actor.actionCooldowns [k] == 0 && actor.actionTypes [k] == "Offense" && actor.heldBalls >= actor.actionCosts [k]) { //if skill has no cooldown and is offensive
+						actor.action = actor.actions [k];
+						actor.actionType = "Offense";
+
+						if (actor.GetTargetingType (k) == 1)
+							chooseRandomAlly (actor);
+						else if (actor.GetTargetingType (k) == 2)
+							chooseRandomEnemy (actor);
+						else
+						{
+							for (int i = 0; i < 3; i++) 
+							{
+								actor.Target [i] = actor;
+							}
+						}
                             break;
                         }
                     }
                 }
-                if (combat.Enemy[i].action == "None") {
-                    combat.Enemy[i].action = "Throw";
-                    combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]); //throw always needs an enemy target
+			if (actor.action == "None" && actor.heldBalls > 0) {
+                actor.action = "Throw";
+				actor.actionType = "Offense";
+				chooseRandomEnemy(actor); //throw always needs an enemy target
                 }
+			else if (actor.action == "None")
+			{
+				actor.action = "Catch";
+				actor.actionType = "Defense";
+				for(int i = 0; i < 3; i++)
+				{
+					actor.Target [i] = actor;
+				}
+			}
+
+            } else if (actor.Role == "Catcher") {
+			for (int k = 4; k < actor.actions.Length; k++) { //for all your skills
+				if (actor.actions[k] != "") {
+					if (actor.actionCooldowns[k] == 0 && actor.actionTypes[k] == "Defense" && actor.heldBalls >= actor.actionCosts[k]) { //if skill has no cooldown and is offensive
+						actor.action = actor.actions[k];
+						actor.actionType = "Defense";
+
+						if (actor.GetTargetingType(k) == 1) chooseRandomAlly(actor);
+						if (actor.GetTargetingType(k) == 2) chooseRandomEnemy(actor);
+						else
+						{
+							for (int i = 0; i < 3; i++) 
+							{
+								actor.Target [i] = actor;
+							}
+						}
+						break;
+					}
+				}
+			}
+			if (actor.action == "None" && actor.heldBalls > 0) {
+				if(Random.Range(0f,100f) < 50f)
+				{
+					actor.action = "Catch";
+					actor.actionType = "Defense";
+					for (int i = 0; i < 3; i++) 
+					{
+						actor.Target [i] = actor;
+					}
+				}
+				else
+				{
+					actor.action = "Throw";
+					actor.actionType = "Offense";
+					chooseRandomEnemy(actor); //throw always needs an enemy target
+				}
+
+			}
 
 
-            } else if (combat.Enemy[i].Role == "Catcher") {
-                for (int k = 3; k < 5; k++) { //for all your skills
-                    if (combat.Enemy[i].actions[k] != "") {
-                        if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Defensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                            combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                            combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
+            } else if (actor.Role == "Supporter") {
+			for (int k = 4; k < actor.actions.Length; k++) { //for all your skills
+				if (actor.actions[k] != "") {
+					if (actor.actionCooldowns [k] == 0 && actor.actionTypes [k] == "Utility" && actor.heldBalls >= actor.actionCosts [k]) { //if skill has no cooldown and is offensive
+						actor.action = actor.actions [k];
+						actor.actionType = "Utility";
 
-                            if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                            if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                            break;
-                        }
-                    }
-                }
-                if (combat.Enemy[i].action == "None") {
-                    combat.Enemy[i].action = "Catch";
-                    combat.Enemy[i].Target[0] = Enemy[i];
-                }
-
-
-            } else if (combat.Enemy[i].Role == "Supporter") {
-                for (int k = 3; k < 5; k++) { //for all your skills
-                    if (combat.Enemy[i].actions[k] != "") {
-                        if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Utility" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                            combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                            combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-                            if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                            if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                            break;
-                        }
-                    }
-
-                }
-                if (combat.Enemy[i].action == "None") {
-                    combat.Enemy[i].action = "Gather";
-                }
-                
-
+						if (actor.GetTargetingType (k) == 1)
+							chooseRandomAlly (actor);
+						else if (actor.GetTargetingType (k) == 2)
+							chooseRandomEnemy (actor);
+						else
+						{
+							for (int i = 0; i < 3; i++) 
+							{
+								actor.Target [i] = actor;
+							}
+						}
+						break;
+					}
+				}
+			}
+			if (actor.action == "None" && actor.heldBalls > 0) {
+				actor.action = "Throw";
+				actor.actionType = "Offense";
+				chooseRandomEnemy(actor); //throw always needs an enemy target
+			}
+			else if (actor.action == "None")
+			{
+				actor.action = "Catch";
+				actor.actionType = "Defense";
+				for(int i = 0; i < 3; i++)
+				{
+					actor.Target [i] = actor;
+				}
+			}
             } else { 
-                print("CRITICAL ERROR");
-                print("EnemyAI.cs: enemy has invalid Role");
-                print("CRITICAL ERROR");
+                print("CRITICAL ERROR\n" + 
+					  "EnemyAI.cs: enemy has invalid Role\n" + 
+					  "CRITICAL ERROR");
             }//end enemy role if's
-
-        }//end for all enemies loop
+				
     }//end Role AI
 
 
+	void SchoolAI(Character actor) {//different schools have different stratetegeis
 
-    void SchoolAI() {//different schools have different stratetegeis
-
+		// Salt Pitt Crew
         if (SceneManager.GetActiveScene().name == "Salt Pitt High Gym") {
-            for (int i = 0; i < 3; i++) { //for all enemies
-                if (combat.Enemy[i].Role == "Thrower") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Offensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Throw";
-                        combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]); //throw always needs an enemy target
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Catcher") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Defensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Catch";
-                        combat.Enemy[i].Target[0] = Enemy[i];
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Supporter") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Utility" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Gather";
-                    }
-
-
-                } else {
-                    print("CRITICAL ERROR");
-                    print("EnemyAI.cs: enemy has invalid Role");
-                    print("CRITICAL ERROR");
-                }//end enemy role if's
-
-            }//end for all enemies loop
+			RoleAI (actor);
+                //end Salt Pitt Crew role if's
 
         } else if (SceneManager.GetActiveScene().name == "Schola Grandis Gym") {
-
-
-            for (int i = 0; i < 3; i++) { //for all enemies
-                if (combat.Enemy[i].Role == "Thrower") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Offensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Throw";
-                        combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]); //throw always needs an enemy target
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Catcher") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Defensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Catch";
-                        combat.Enemy[i].Target[0] = Enemy[i];
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Supporter") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Utility" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Gather";
-                    }
-
-
-                } else {
-                    print("CRITICAL ERROR");
-                    print("EnemyAI.cs: enemy has invalid Role");
-                    print("CRITICAL ERROR");
-                }//end enemy role if's
-
-            }//end for all enemies loop
+			RoleAI (actor);
         } else if (SceneManager.GetActiveScene().name == "MightMain Academy Gym") {
-
-            for (int i = 0; i < 3; i++) { //for all enemies
-                if (combat.Enemy[i].Role == "Thrower") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Offensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Throw";
-                        combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]); //throw always needs an enemy target
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Catcher") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Defensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Catch";
-                        combat.Enemy[i].Target[0] = Enemy[i];
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Supporter") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Utility" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Gather";
-                    }
-
-
-                } else {
-                    print("CRITICAL ERROR");
-                    print("EnemyAI.cs: enemy has invalid Role");
-                    print("CRITICAL ERROR");
-                }//end enemy role if's
-
-            }//end for all enemies loop
-
+			RoleAI (actor);
         } else if (SceneManager.GetActiveScene().name == "Yamato Battle") {
-
-            for (int i = 0; i < 3; i++) { //for all enemies
-                if (combat.Enemy[i].Role == "Thrower") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Offensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Throw";
-                        combat.Enemy[0].Target[0] = chooseRandomEnemy(Enemy[0]); //throw always needs an enemy target
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Catcher") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Defensive" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Catch";
-                        combat.Enemy[i].Target[0] = Enemy[i];
-                    }
-
-
-                } else if (combat.Enemy[i].Role == "Supporter") {
-                    for (int k = 3; k < 5; k++) { //for all your skills
-                        if (combat.Enemy[i].actions[k] != "") {
-                            if (combat.Enemy[i].actionCooldowns[k] == 0 && combat.Enemy[i].actionTypes[k] == "Utility" && combat.Enemy[i].heldBalls >= combat.Enemy[i].actionCosts[k]) { //if skill has no cooldown and is offensive
-                                combat.Enemy[i].action = combat.Enemy[i].actions[k];
-                                combat.Enemy[i].actionType = combat.Enemy[i].actionTypes[k];
-                                if (combat.Enemy[i].GetTargetingType(k) == 1) combat.Enemy[i].Target[0] = chooseRandomEnemy(Enemy[i]);
-                                if (combat.Enemy[i].GetTargetingType(k) == 2) combat.Enemy[i].Target[0] = chooseRandomAlly(Enemy[i]);
-                                break;
-                            }
-                        }
-
-                    }
-                    if (combat.Enemy[i].action == "None") {
-                        combat.Enemy[i].action = "Gather";
-                    }
-
-
-                } else {
-                    print("CRITICAL ERROR");
-                    print("EnemyAI.cs: enemy has invalid Role");
-                    print("CRITICAL ERROR");
-                }//end enemy role if's
-
-            }//end for all enemies loop
+			RoleAI (actor);
         } else {
 
         }
 
     }//end SchoolAI()
-
 
 }// end class enemyAI.cs

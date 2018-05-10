@@ -95,3 +95,10 @@ Tristian:
 	Changed all Character skills to return int damage for CombatManager to display it during combat
 	Removed text from the lower right and added it to the central text
 	Changed Health bar so it's red when it goes bellow 25% stamina
+
+5/8/18:
+	Added latest sprites
+	Added animations and DODGEBALLS to our DODGEBALL game
+5/9/18:
+	Modified current AI to work with CombatManager
+	Added dodgeball to all combat scenes
