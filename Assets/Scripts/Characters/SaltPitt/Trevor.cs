@@ -5,22 +5,25 @@ using UnityEngine;
 public class Trevor : Character {
 	
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Trevor";
         Role = "Thrower";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Skill2", "Skill3", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Throws at 3 random Targets", "enemy is blocked from throwing balls and must do something else next", "Blocks the first attack on the next two turns", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Throw at 3 random Targets", 
+										  "Target is blocked from throwing balls and must do something else next", 
+										  "Blocks the first attack on the next two turns", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 }; 
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 }; 
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 0 };
 
 		base.Start ();
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {
@@ -38,15 +41,16 @@ public class Trevor : Character {
 
 	// Thrash: Throws 3 balls at three random Target[0]s on your team. 1 turn cooldown. Cost: 3 balls
     // Currently doesn't allow players to res off of a catch from this skill
-	public override bool Skill1()
-    {
-        float variance;
-        for (int i = 0; i < 3; i++) {
-            variance = UnityEngine.Random.Range(0.8f, 1.2f);
-			int test = UnityEngine.Random.Range (0, 3);
-		    Target[i] = this.enemies[test];	
-			Debug.Log (enemies[test].Name);
-	    }
+	public override int Skill1()
+	{
+		int damage = 0;
+		for (int i = 0; i < 3; i++) 
+		{
+			do{
+				int aim = UnityEngine.Random.Range (0, 3);
+				Target[i] = enemies[aim];
+			}while(!Target[i].dead);
+		}
 
 		for (int i = 0; i < 3; i++) 
 		{
@@ -55,7 +59,7 @@ public class Trevor : Character {
 				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
 				{
 					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
-					//Target [i] = enemies [j];
+					Target [i] = enemies [j];
 				}
 			}
 		}
@@ -63,10 +67,10 @@ public class Trevor : Character {
 		// Throw at the three targets
 		for(int i =0 ; i < 3; i++)
 		{
-			this.throwBall (Target[i]);
+			damage += this.throwBall (Target[i]);
 		}
 	    actionCooldowns[4] = 1;
 
-		return false;
+		return damage;
     }
 }

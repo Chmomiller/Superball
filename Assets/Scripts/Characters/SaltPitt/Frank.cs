@@ -7,17 +7,18 @@ public class Frank : Character {
 	private Trevor trevor;
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Frank";
         Stamina = maxStamina;
         
         Role = "Catcher";
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rumble", "Skill2", "Skill3", "Skill4" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Blocks any balls aimed at Trevor", "", "", "" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Blocks any balls aimed at Trevor", "", "", "" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility" };
-	    defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
-	    alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };        
+	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };        
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 
 		base.Start ();
@@ -25,7 +26,7 @@ public class Frank : Character {
 
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {
@@ -43,8 +44,7 @@ public class Frank : Character {
 
 
     // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
-    public override bool Skill1() {
-        //Rumble: Blocks all attacks aimed at Trevor for 1 turn;
+	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
 			if (enemies[i].Target[0].Name == "Trevor"){
@@ -60,14 +60,14 @@ public class Frank : Character {
 	        }
 		}
         actionCooldowns[4] = 3;
-        return false;
+        return -1;
 
     }
 
-	public override bool Skill2() { return true; }
+	public override int Skill2() { return 0; }
 
-	public override bool Skill3() { return true;}
+	public override int Skill3() { return 0;}
 
-	public override bool Skill4() { return true;}    
+	public override int Skill4() { return 0;}    
 
 }

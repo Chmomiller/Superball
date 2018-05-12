@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shiro : Character{
-
-    void Start()
+    new void Start()
     {
         Name = "Shiro";
         Stamina = maxStamina;
         Role = "Support";
         
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Refreshments", "Keep Fighting", "Cheer On" };
-	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Pass off balls to an ally", "Heal ally for a 1/4 of max Stamina", "Reduces damage allies take for two turns", "Buffs team mates" };
+	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Gives all balls to a single teammate up to their max.\nCost: Varies    Target: Single Ally", 
+										  "Hands Blue Bison™ refreshments to one teammate, to recover 1/4 of their maximum stamina. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Ally", 
+										  "All teammates are <color=#00ff00ff>steadied</color> for 2 turns. <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team", 
+										  "All teammates are <color=blue>buffed</color> for two turns.  <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };
@@ -20,7 +23,7 @@ public class Shiro : Character{
     }
 		
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
 		base.Update ();
 		/*
@@ -35,38 +38,37 @@ public class Shiro : Character{
         }*/
     }
 
-	public override bool Skill1() //Pass off
+	public override int Skill1() // Pass Off: Gives all balls to a single teammate up to their max
     {
         while (this.heldBalls > 0 && Target[0].heldBalls < Target[0].maxBalls) {
             this.heldBalls--;
             Target[0].heldBalls++;
         }
-		return false;
+		return 0;
     }
 
-    public override bool Skill2() {
+	// Refreshments: 
+    public override int Skill2() {
         Target[0].Stamina += Target[0].maxStamina / 4;
         if (Target[0].Stamina > Target[0].maxStamina) {
             Target[0].Stamina = Target[0].maxStamina;
         }
         actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
-		return false;
+		return 0;
     }
 
-
-    public override bool Skill3() { //keep fighting
+	// Keep Fighting:
+    public override int Skill3() { //keep fighting
         if (allies[0] != this) {
-            allies[0].addStatusEffect("halfDmg", 2);
+            allies[0].addStatusEffect("steady", 2);
         }
         if (allies[1] != this) {
-            allies[1].addStatusEffect("halfDmg", 2);
+            allies[1].addStatusEffect("steady", 2);
         }
         if (allies[2] != this) {
-            allies[2].addStatusEffect("halfDmg", 2);
+            allies[2].addStatusEffect("steady", 2);
         }
         actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
-		return false;
+		return 0;
     }
-
-
 }

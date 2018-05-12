@@ -2,57 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YamatoGuns : Character {
+public class YamatoGuns : Yamato {
 	
     
-    void Start() {
-        Name = "The Main Armamment of the Imperial Japanese Battleship Yamato";
+    new void Start() {
+        Name = "The Main Armamment";
         Stamina = maxStamina;
-        Role = "Supporter";
+        Role = "Thrower";
 
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
+		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Artillery Barrage", "Bombardment", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Charges forward with a ram", "Drops explosives off the front", "", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", 
+										  "Hit an enemy with an attack at 1.5 strength", 
+										  "Drops explosives off the front", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
+
+		base.Start ();
     }
 
-    void Update() {
+    new void Update() {
      
     }
 
-    public override bool catchBall(Character attacker) {
-        this.loseStamina(attacker.Damage - 20);
-        return false;
-    }
-
-    public override bool Skill1() {
+	public override int Skill1() {
         float variance = UnityEngine.Random.Range(1.7f, 2.2f);
-        if (!Target[0].dodgeBall(this)) Target[0].loseStamina((int)(this.Damage * variance));
+		int damage = (int)(this.Damage * 1.25 * variance * attackMultiplier * Target [0].defenseMultiplier);
+		Target [0].loseStamina (damage);
         this.heldBalls -= 3;
         actionCooldowns[4] = 2;
-        return true;
+		return damage;
     }
 
-    public override bool Skill2() {
-        float variance;
-        for (int i = 0; i < 3; i++) {
-            variance = UnityEngine.Random.Range(0.7f, 1.0f);
-            Target[0] = enemies[UnityEngine.Random.Range(0, 2)];
-            if (!Target[0].catchBall(this)) Target[0].loseStamina((int)(this.attack * variance));
-        }
-        return true;
-        this.actionCooldowns[5] = 2;
-    return true;
-    }
+    public override int Skill2() {
+		int damage = 0;
+		for (int i = 0; i < 3; i++) 
+		{
+			do{
+				int aim = UnityEngine.Random.Range (0, 3);
+				Target[i] = enemies[aim];
+			}while(!Target[i].dead);
+		}
 
-    public override bool Skill3() {
-		return true;
+		for (int i = 0; i < 3; i++) 
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
+				{
+					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
+					Target [i] = enemies [j];
+				}
+			}
+		}
+
+		// Throw at the three targets
+		for(int i =0 ; i < 3; i++)
+		{
+			damage += this.throwBall (Target[i]);
+		}
+		actionCooldowns[4] = 1;
+
+		return damage;
+    }
+    public override int Skill3() {
+		return 0;
 }
 
-    public override bool Skill4() {
-		return false;
+	public override int Skill4() {
+		return 0;
     }
 }

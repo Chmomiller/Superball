@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Kuro : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Kuro";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -17,15 +17,16 @@ public class Kuro : Character {
 											"Charge up for a turn before unleashing an attack against all enemies", 
 											"Buff your team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 0 };
 
 		base.Start ();
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
+		base.Update ();
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -40,17 +41,17 @@ public class Kuro : Character {
     }
 
 	// Smokescreen: Steady your team
-    public override bool Skill1() {
+	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
 			allies [i].addStatusEffect ("steady", 1);
 		}
         actionCooldowns[4] = 3;
-		return true;
+		return 0;
     }
 
 	// Safe Haven: Catch for the whole team
-	public override bool Skill2() { 
+	public override int Skill2() { 
 		for(int i = 0; i < 3; i++)
 		{
 			if(enemies[i].actionType == "Offense")
@@ -59,17 +60,20 @@ public class Kuro : Character {
 			}
 		}
 		actionCooldowns [5] = 2;
-		return true;
+		return 0;
 	}
 
 	// Lord of the Seven Seas: Charge up for a turn before unleashing an attack against all enemies
-	public override bool Skill3() { 
+	public override int Skill3() { 
+		int damage = 0;
 		if(findStatus("misc") != -1)
 		{
 			for(int i = 0; i < 3; i++)
 			{
 				// This attack does stamina loss before checking for dodging
-				enemies[i].loseStamina((int)(Damage * 1.5f));
+				int partialDamage = (int)(Damage * 1.5f * attackMultiplier * enemies[i].defenseMultiplier);
+				enemies[i].loseStamina(partialDamage);
+				damage += partialDamage;
 				enemies [i].dodgeBall (this);
 			}
 		}
@@ -79,11 +83,17 @@ public class Kuro : Character {
 		}
 		this.heldBalls -= actionCosts [6];
 		actionCooldowns [6] = 3;
-		return true;
+		return damage;
 	}
 
 	// Cannon Adjustments: Buff your team
-	public override bool Skill4() { return true;}
+	public override int Skill4() { 
+		for(int i = 0; i < 3; i++)
+		{
+			enemies [i].addStatusEffect ("buff",2);
+		}
+		return 0;
+	}
 
 	public override void cleanUp()
 	{
@@ -94,6 +104,7 @@ public class Kuro : Character {
 		{
 			action = "Skill3";
 			actionType = "Offense";
+			CSUI.ShowTell ("Offense");
 		}
 	}
 }

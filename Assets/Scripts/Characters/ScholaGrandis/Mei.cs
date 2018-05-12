@@ -5,16 +5,19 @@ using UnityEngine;
 public class Mei : Character {
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Mei";
         Stamina = maxStamina;
         Role = "Supporter";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Silver Platter", "Clean Up", "Cup of Tea", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Gives all of your balls to allies", "Gather an ammount of balls equal to ammount of balls used last turn", "Heals an ally and returns them to their calm state", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Gives all of your balls to allies", 
+										  "Gather half of the balls used this turn", 
+										  "Heal an ally and calm them", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
@@ -22,7 +25,7 @@ public class Mei : Character {
     }
 
     // Update is called once per frame
-    void Update () {
+    new void Update () {
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -49,7 +52,7 @@ public class Mei : Character {
 	*/
 
 	// Silver Platter: Mei gives half her balls to each of her allies
-    public override bool Skill1() {
+	public override int Skill1() {
 		int gift = heldBalls;
 		for(int i = 0; i < 3; i++)
 		{
@@ -75,7 +78,7 @@ public class Mei : Character {
 			}
 			heldBalls = 0;
 		}
-		return true;
+		return 0;
     }
 		
 	//We currently have no way to check the past turn. This could be implemented easily though and would be very useful
@@ -86,7 +89,7 @@ public class Mei : Character {
 	// Clean-Up: Gather an amount of balls equal to half the balls spent on actions last turn(?)
 	// 
 	// Currently runs into a problem if there are multiple Mei using Skill2
-    public override bool Skill2() {
+	public override int Skill2() {
 		if(combat.currentCharacter != 5)
 		{
 			// The intent here is to move Mei to the end of queue DURING the execute phase, this may be buggy so look for other avenues
@@ -121,35 +124,35 @@ public class Mei : Character {
 				heldBalls = maxBalls;
 			}
 		}
-		return true;
+		return 0;
     }
 
 	// Cup of Tea: Switches Elizabeth or Victoria to her calm state. If already calm instead + 15 Stamina
-    public override bool Skill3() {
+    public override int Skill3() {
 		if ( Target[0].Name == "Elizabeth" ){
             if (Target[0].allegiance == this.allegiance) { //is Elizabeth on our team?
-				Elizabeth haruna = (Elizabeth)Target[0];
-				if(haruna.Transform)
+				Elizabeth elizabeth = (Elizabeth)Target[0];
+				if(elizabeth.Transform)
 				{
 					// transform is a unique boolean to the Schola Grandis girls
-					haruna.Transform = false;
+					elizabeth.Transform = false;
 				}
 				else
 				{
-					haruna.gainStamina(15);
+					elizabeth.gainStamina(15);
 				}
             }
 		} else if (Target[0].Name == "Victoria" ){
             if (Target[0].allegiance == this.allegiance) { //is Victoria on our team?
-				Victoria chikako = (Victoria)Target[0];
-				if(chikako.Transform)
+				Victoria victoria = (Victoria)Target[0];
+				if(victoria.Transform)
 				{
 					// transform is a unique boolean to the Schola Grandis girls
-					chikako.Transform = false;
+					victoria.Transform = false;
 				}
 				else
 				{
-					chikako.gainStamina (15);
+					victoria.gainStamina (15);
 				}
             }
         }
@@ -158,11 +161,11 @@ public class Mei : Character {
 		{
 			Target [0].gainStamina (15);
 		}
-		return true;
+		return 0;
     }
 
-    public override bool Skill4() {
-		return true;
+	public override int Skill4() {
+		return 0;
     }
 
 }

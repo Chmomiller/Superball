@@ -17,6 +17,8 @@ public class CombatUI : MonoBehaviour
 	public Image actionPanel;
 	public Text actionText;
 	public ButtonsUI[] actionButtons;
+	public TargetCursor tCursors;
+
 	public int openMenu;
 	public float AlphaThreshold = 0.1f;
 
@@ -54,6 +56,7 @@ public class CombatUI : MonoBehaviour
 			actionButtons [i + 2] = skillButton [i].GetComponent<ButtonsUI> ();
 		}
 		openMenu = 0;
+		tCursors = GameObject.Find ("TargetCursors").GetComponent<TargetCursor> ();
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();
 	}
 
@@ -115,7 +118,8 @@ public class CombatUI : MonoBehaviour
 		{
 			phaseText.text = "Planning Phase";
 		}
-		if(CM.currentPhase == CombatManager.PHASE.EXECUTE)
+		if(CM.currentPhase == CombatManager.PHASE.RESULTS
+			|| CM.currentPhase == CombatManager.PHASE.EXECUTE)
 		{
 			phaseText.text = "Execution Phase";
 		}
@@ -211,6 +215,7 @@ public class CombatUI : MonoBehaviour
 
 	public void CancelAction()
 	{
+		tCursors.ClearTargets ();
 		CM.combatQueue [CM.currentCharacter].action = "None";
 		CM.combatQueue [CM.currentCharacter].actionType = "None";
 		CM.currentPhase = CombatManager.PHASE.ACTION;

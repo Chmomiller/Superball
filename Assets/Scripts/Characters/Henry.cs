@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Henry : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Henry";
         Stamina = maxStamina;
         Role = "Catcher";
@@ -19,7 +19,7 @@ public class Henry : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -44,7 +44,8 @@ public class Henry : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         float variance = Random.Range(0.8f, 1.2f);
         if (!Target[0].dodgeBall(this)) {
@@ -87,5 +88,5 @@ public class Henry : Character {
         if (Target[0].heldBalls > Target[0].maxBalls) Target[0].heldBalls = Target[0].maxBalls;
 		return false;
     }
-
+	*/
 }

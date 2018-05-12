@@ -41,8 +41,12 @@ public class AudioScript : MonoBehaviour {
    public AudioClip file2;
    
    //these two are used for actually changing audio in the methods. Most method calls in this class contains an integer that specifies the track it should affect. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This allows you to change between which track to change without having to make a new set of methods for each audio_track.  passing 0 as a track uses the audio_manager's internal amsrc and amfile.   
-   public AudioSource src;   
-   public AudioClip file;
+   public AudioSource src;
+    public AudioClip head;
+    public AudioClip body;
+    public bool wait = false;
+    public bool dualAudio = false;
+    public AudioClip file;
    public static AudioSource staticSrc;
    public static AudioClip staticFile;
    public float stopTime;  //used to hold where you are at when you stopped
@@ -88,7 +92,7 @@ public class AudioScript : MonoBehaviour {
 
     public void playSFX(string name){// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
       AudioClip sfx = Resources.Load<AudioClip> ("Audio/"+name);
-      src1.PlayOneShot(sfx);
+      src2.PlayOneShot(sfx);
         if (sfx == null) print("sfx problem");
         print("sfx");
    }
@@ -156,22 +160,35 @@ public class AudioScript : MonoBehaviour {
       src.Play();
    }
    
-   public void playAudio(string nameOrPath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
-        string name = nameOrPath;
+   public void playAudio(string filePath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
+      string name = filePath;
       chooseTrack(track);
       src.Stop();
       src.time = 0;
       playingAudio = true;
       src.clip = Resources.Load <AudioClip> ("Audio/"+name); //This is you don't
-        if (src.clip == null) print("NULL Audio Src");
-        Debug.Log(name);
+      if (src.clip == null) print("Play Audio: null Audio Source");
       src.Play();
       
    }
    
-   
-   
-   
+    public void playDualAudio(string head, string body) {
+        chooseTrack(0);
+        src.Stop();
+        src.time = 0;
+        wait = true;
+        dualAudio = true;
+        this.head = Resources.Load<AudioClip>("Audio/" + head);
+        this.body = Resources.Load<AudioClip>("Audio/" + body);
+        if (this.head == null) print("Dual Audio: null Audio Source - head");
+        if (this.body == null) print("Dual Audio: null Audio Source - body");
+        print("Playing dual audio");
+        src.clip = this.head;
+        src.Play();
+        
+    }
+
+
    
    //SAME SONG FUNCTIONS: These work with the song currently being played
    
@@ -214,13 +231,21 @@ public class AudioScript : MonoBehaviour {
       src.time = 0;
       src.Stop();
    }
+
+
+    public void IncreaseVolume(int track) {
+        chooseTrack(track);
+        src.volume += 0.1f;
+    }
    
-   
-   
-   
+    public void DecreaseVolume(int track) {
+        chooseTrack(track);
+        src.volume -= 0.1f;
+    }
+
    
    public void stopAllAudio(){
-      
+        resetAllAudio();
    }
    
    public void resetAllAudio(){
@@ -236,20 +261,31 @@ public class AudioScript : MonoBehaviour {
 
 
     // Update is called once per frame
-    public void Update () {
-      //Debug.Log("src1: "+ src.time);
-      //Debug.Log("src2: "+src2.time);
-      //these do things based upon keys pressed
-      //https://docs.unity3d.com/ScriptReference/KeyCode.html
-      if(Input.GetKeyDown(KeyCode.Space)){
-            print("Space");
-         if(playingAudio == false){
-            src0.Play(); //play file specified in the AudioClip within the Audio Source object in the editor. This is an method already defined within the Audio Source library.
-            playingAudio = true;
-         }else{
-            stopAudio(0);
-         }
-      }else if(Input.GetKeyDown(KeyCode.Backspace)){  
+    public void Update() {
+        if (instance == null) Destroy(gameObject); //QUESTIONABLE CODE
+       
+        if(src == null || src0 == null || src1 == null || src2 == null) {
+        staticSrc = GetComponents<AudioSource>()[0];
+        staticFile = file0;
+        src = GetComponents<AudioSource>()[0];
+        src0 = GetComponents<AudioSource>()[0];
+        src1 = GetComponents<AudioSource>()[1];
+        src2 = GetComponents<AudioSource>()[2];
+        src.clip = file0;
+        src0.clip = file0;
+        src1.clip = file1;
+        src2.clip = file2;
+        }
+        if(dualAudio && Mathf.Abs(src.clip.length-src.time) < .5) {
+            src.clip = body;
+            src.Play();
+        }
+
+        //Debug.Log("src1: "+ src.time);
+        //Debug.Log("src2: "+src2.time);
+        //these do things based upon keys pressed
+        //https://docs.unity3d.com/ScriptReference/KeyCode.html
+        if (Input.GetKeyDown(KeyCode.Backspace)){  
         resetAllAudio();
       }else if(  (Input.GetKeyDown(KeyCode.Equals)) || (Input.GetKeyDown(KeyCode.Plus)) ){
         src.volume+=0.1F;

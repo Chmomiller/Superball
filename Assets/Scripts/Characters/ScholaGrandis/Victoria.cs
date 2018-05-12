@@ -8,16 +8,19 @@ public class Victoria : Character {
 	private int lastStamina;
 
     // Use this for initialization
-    void Start() {
+    new void Start() {
         Name = "Victoria";
         Stamina = maxStamina;
         Role = "Catcher";
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Kawii/Kowaii", "Parasol", "Idol Scream", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)", "Rebounds next shot thrown at her", "Reduce stamina of all enemies", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls ground", 
+										  "Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)", 
+										  "Rebounds next shot thrown at her", 
+										  "Reduce stamina of all enemies", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Offense", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 2, 3 };
 
@@ -27,7 +30,7 @@ public class Victoria : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
 		/*
         if (allegiance == 1) {
             this.targetingTypes = alternateTargetingTypes;
@@ -42,7 +45,7 @@ public class Victoria : Character {
 		base.Update ();
     }
 
-	public virtual bool catchBall(Character attacker)
+	public new bool catchBall(Character attacker)
 	{
 		if(findStatus("misc") != -1)
 		{
@@ -53,7 +56,7 @@ public class Victoria : Character {
 		}
 		else if(catching)
 		{
-			base.catchBall (attacker);
+			return base.catchBall (attacker);
 		}
 		return false;
 	}
@@ -77,32 +80,34 @@ public class Victoria : Character {
     //we dont really have sequential moves yet.
 
 	//Kawaii / Kowaii: Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)
-	public override bool Skill1()
+	public override int Skill1()
 	{
 		addStatusEffect ("steady", 100);
 		Debug.Log (statusEffects [findStatus ("steady")].name + ": " + statusEffects [findStatus ("steady")].duration);
-		return true;	
+		return 0;	
 	}
 
 	//Parasoul(Kawaii): Rebounds the next shot thrown at her
 	//Nothing yet allows multi turn logic. This just needs a framework and should be simple
-    public override bool Skill2() { 
+	public override int Skill2() { 
 		this.addStatusEffect ("misc", 100);
 		Debug.Log (statusEffects [findStatus ("misc")].name + ": " + statusEffects [findStatus ("misc")].duration);
-		return false;
+		return 0;
     }
 
-    public override bool Skill3() {
+	public override int Skill3() {
         //      Idol Scream (Kowaii): reduce stamina of all enemy players
-        int value = (int)((Damage * 1.5f) * (heldBalls / 3f) * 2f);
-		enemies[0].loseStamina(value);
-		enemies[1].loseStamina(value);
-		enemies[2].loseStamina(value);
+        int value = (int)((Damage * 1.5f));
+		enemies[0].loseStamina((int)(value * attackMultiplier * enemies[0].defenseMultiplier));
+		enemies[1].loseStamina((int)(value * attackMultiplier * enemies[1].defenseMultiplier));
+		enemies[2].loseStamina((int)(value * attackMultiplier * enemies[2].defenseMultiplier));
 		Debug.Log ("Idol Scream damage: "+value);
-		return true;
+		return (int)(value * attackMultiplier * enemies[0].defenseMultiplier) + 
+			   (int)(value * attackMultiplier * enemies[1].defenseMultiplier) + 
+			   (int)(value * attackMultiplier * enemies[2].defenseMultiplier);
     }
 
-	public override bool Skill4() {return true; }
+	public override int Skill4() {return 0; }
 
 	public override void cleanUp()
 	{

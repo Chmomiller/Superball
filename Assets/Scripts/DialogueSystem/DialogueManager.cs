@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		fadeTime = 0;
+        fadeTime = 0;
 		fading = true;
 		dialogueBox.color = new Color (0.8f,0.8f,0.8f,0.0f);
 
@@ -101,8 +101,9 @@ public class DialogueManager : MonoBehaviour {
 
 
 			if (transition) {
-				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
-				//bg.GetComponent<FullScreenBG> ().ResetScale ();
+				Debug.Log (insertText [lineNum, 9]);
+				bg.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
+				bg.transform.localScale = Vector3.one;
 
 				//set next characters
 				for(int c=0; c < 6; ++c) {
@@ -254,13 +255,31 @@ public class DialogueManager : MonoBehaviour {
 					fadeTime = 0;
 				}
 			}
+            //special case Scene Loading /////////////////////////////////////////////////////////////////////////////////////////////
+            if (lineNum < insertText.GetLength(0)) {
+                if (insertText[lineNum, 8] == "load scene") {
+                    transition = true;
+                    fading = true;
+                    fadeTime = 0;
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(insertText[lineNum, 9]);
+                }
+            }
 
+            //special case Sound effect /////////////////////////////////////////////////////////////////////////////////////////////
+            if (lineNum < insertText.GetLength(0)) {
+                if (insertText[lineNum, 8] == "sound") {
+                    transition = true;
+                    fading = true;
+                    fadeTime = 0;
+                    GameObject.Find("AudioManager").GetComponent<AudioScript>().playAudio(insertText[lineNum, 8], 2);
+                }
+            }
 
-		}
-		//special cases
-		if (bColor < blackFade && isSpeaking && !fading) {
+        }
+        //special cases
+        if (bColor < blackFade && isSpeaking && !fading) {
 			bColor += 1.0f / blackFade;
-			bg.GetComponent<Image> ().color = new Color (bColor,bColor,bColor,1.0f);
+			bg.GetComponent<SpriteRenderer> ().color = new Color (bColor,bColor,bColor,1.0f);
 		}
 
 
@@ -275,7 +294,6 @@ public class DialogueManager : MonoBehaviour {
 		}
 
 	}
-
 	void AnimateText(string strComplete){
 		int i = 0;
 		string str = "";
@@ -322,7 +340,7 @@ public class DialogueManager : MonoBehaviour {
 		if (insertText [0, 8] == "black") {
 			//blackStart = true;
 			blackFade = int.Parse (insertText [0, 9]);
-			bg.GetComponent<Image> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
+			bg.GetComponent<SpriteRenderer> ().color = new Color (0.0f,0.0f,0.0f,1.0f);
 				
 		}
 

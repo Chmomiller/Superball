@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Kazuto : Character {
 
-    void Start() {
+    new void Start() {
         Name = "Kazuto";
         Stamina = maxStamina;
         
@@ -21,7 +21,7 @@ public class Kazuto : Character {
     }
 
     // Update is called once per frame
-    void Update() {
+    new void Update() {
         if (combat == null) {
             combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         } else {
@@ -36,7 +36,8 @@ public class Kazuto : Character {
             }
         }
     }
-
+	// I haven't bothered to update the skill return values
+	/*
 	public override bool Skill1() {
         float variance;
         for (int i = 0; i < 3; i++) {
@@ -80,5 +81,5 @@ public class Kazuto : Character {
         actionCooldowns[7] = 4;
 		return false;
     }
-
+	*/
 }

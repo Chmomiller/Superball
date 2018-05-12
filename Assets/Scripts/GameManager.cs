@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
     public AudioScript Audio;
 
+    public bool consistency = false; //Disables any random/easter egg content when true
+
     public static string globalString = "NA";
     public static int globalInt = 0;
     public static bool globalBool = false;
@@ -41,7 +43,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void loadAnyScene(string name) {
-        if (UnityEngine.Random.Range(0, 10) == 0) {
+        GameObject.Find("AudioManager").GetComponent<AudioScript>().resetAllAudio();
+        if (UnityEngine.Random.Range(0, 20) == 0 && consistency == false) {
             UnityEngine.SceneManagement.SceneManager.LoadScene("A New Student 7");
         } else {
             UnityEngine.SceneManagement.SceneManager.LoadScene(name);

@@ -6,7 +6,7 @@ public class Greg: Character
 {
 	public Character trevor;
 
-    void Start()
+    new void Start()
     {
         Name = "Greg";
         Stamina = maxStamina;
@@ -14,10 +14,12 @@ public class Greg: Character
         Role = "Support";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Pass Off", "Skill3", "Rest" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Immune to damage, any balls thrown at you will be given to Trevor", "Pass off all balls to target ally", "", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
+										  "Catch any balls thrown at you and pass them off to Trevor", 
+										  "Pass off all balls to target ally", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
 		base.Start ();
@@ -39,7 +41,7 @@ public class Greg: Character
     }
 
 
-    void Update() {
+    new void Update() {
 		base.Update ();
 		/*
         if (allegiance == 1) {
@@ -78,7 +80,7 @@ public class Greg: Character
 	// This skill is Greg's Terrapin skill
 	// If a hit is successful against Greg and terrapin has been used it rebounds into Trevor's ball pool
 	// Is there a cost for this?
-	public override bool Skill1()
+	public override int Skill1()
     {
 		if (trevor != null) {
 			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
@@ -92,7 +94,7 @@ public class Greg: Character
 				}
 			}
 		}
-		return false;
+		return -1;
     }
 	/*
     public override bool Skill2() {

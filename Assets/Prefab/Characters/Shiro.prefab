@@ -11,6 +11,24 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1374690070188226}
   m_IsPrefabParent: 1
+--- !u!1 &1102186326899582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4727943020154120}
+  - component: {fileID: 212779363444251118}
+  - component: {fileID: 320495288838478530}
+  - component: {fileID: 95535019660127294}
+  m_Layer: 0
+  m_Name: CharacterSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1374690070188226
 GameObject:
   m_ObjectHideFlags: 0
@@ -20,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4395387591448206}
   - component: {fileID: 114851017393098776}
-  - component: {fileID: 212889822381982474}
   m_Layer: 0
   m_Name: Shiro
   m_TagString: Player
@@ -35,12 +52,43 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1374690070188226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6723028, y: 0.47323155, z: 90}
+  m_LocalPosition: {x: -1.875, y: 0.5272785, z: 90}
   m_LocalScale: {x: 0.125, y: 0.125, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4727943020154120}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4727943020154120
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102186326899582}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4395387591448206}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95535019660127294
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102186326899582}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88e888d04749f874c85b9308900c6496, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114851017393098776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,13 +102,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
   combat: {fileID: 0}
-  CUI: {fileID: 0}
+  CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims:
+  - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+  - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Shiro
-  Damage: 1
+  Damage: 10
   Catch: 100
   Gather: 1
-  Stamina: 10
-  maxStamina: 100
+  Stamina: 140
+  maxStamina: 140
   heldBalls: 0
   maxBalls: 2
   Level: 1
@@ -81,8 +133,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -111,17 +161,27 @@ MonoBehaviour:
   - 
   - 
   - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
   targetingTypes: 
   actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
---- !u!212 &212889822381982474
+  dodgeball: {fileID: 0}
+--- !u!212 &212779363444251118
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1374690070188226}
+  m_GameObject: {fileID: 1102186326899582}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -150,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 414e440e9ce86e94e841af2c06b764f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a5d85b4788aa3644b871da9b73f3a93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -160,3 +220,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!320 &320495288838478530
+PlayableDirector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102186326899582}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 1102186326899582}
+  - key: {fileID: 0}
+    value: {fileID: 1102186326899582}
+  - key: {fileID: 0}
+    value: {fileID: 1102186326899582}
+  - key: {fileID: 114228523018858980, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+    value: {fileID: 1102186326899582}
+  - key: {fileID: 114600888612767740, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
+    value: {fileID: 1102186326899582}
+  m_ExposedReferences:
+    m_References: []
