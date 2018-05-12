@@ -14,8 +14,8 @@ public class CrowdManager : MonoBehaviour {
 		for(int i = 0; i < 20; i++)
 		{
 			currentSpectator = Instantiate (spectator, new Vector3(Random.Range(-9f, 9f),
-																   Random.Range(2f, 5f),
-																   98f), Quaternion.identity);
+																   Random.Range(1f, 5f),
+																   99f), Quaternion.identity);
 			// Change the spectator sprite
 			currentSpectator.GetComponentInChildren<SpriteRenderer>().sprite = crowd[Random.Range(0,crowd.Length)];
 			if(Random.Range(0f,100f) < 50f)

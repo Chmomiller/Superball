@@ -53,7 +53,7 @@ Transform:
   m_GameObject: {fileID: 1372298047154738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4742385474833212}
   m_RootOrder: 0
@@ -135,8 +135,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -179,6 +177,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
 --- !u!212 &212638483822345742
 SpriteRenderer:
   m_ObjectHideFlags: 1

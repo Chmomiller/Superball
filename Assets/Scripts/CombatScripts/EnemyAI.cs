@@ -93,8 +93,186 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+	public void ThrowerAI(Character actor)
+	{
+		Debug.Log ("In ThrowerAI");
+		System.Collections.Generic.List<int> skills = new List<int>();
+		if(Random.Range(0f, 100f) <= 50f)
+		{
+			for (int i = 4; i < actor.actions.Length; i++) { //for all your skills
+				if (actor.actionCooldowns [i] == 0 && actor.actionTypes [i] == "Offense" && actor.heldBalls >= actor.actionCosts [i]) { //if skill has no cooldown and is offensive
+					skills.Add(i);
+				}
+			}
+			if (skills.Count > 0) 
+			{
+				actor.action = "Throw";
+				actor.actionType = "Offense";
+				chooseRandomAlly (actor);
+				return;
+			}
+			Debug.Log ("End of Primary choice");
+		}
+		else if(Random.Range(0f, 100f) <= 50f)
+		{
+			for (int i = 4; i < actor.actions.Length; i++) { //for all your skills
+				if (actor.actionCooldowns [i] == 0 && actor.actionTypes [i] != "Offense" && actor.heldBalls >= actor.actionCosts [i]) { //if skill has no cooldown and is offensive
+					skills.Add(i);
+				}
+			}
+			Debug.Log ("End of Secondary choice");
+		}
+		if(skills.Count > 0)
+		{
+			int chosenSkill = Random.Range (4, 4 + skills.Count);
+			actor.action = actor.actions [chosenSkill];
+			actor.actionType = actor.GetAction (chosenSkill);
+			switch(actor.GetTargetingType (chosenSkill))
+			{
+			case(2):
+				chooseRandomEnemy (actor);
+				break;
+			case(1):
+				chooseRandomAlly (actor);
+				break;
+			default:
+				for(int i = 0; i < 3; i++)
+				{
+					actor.Target [i] = actor;
+				}
+				break;
+			}
+			return;
+			Debug.Log ("End of Choose skill");
+		}
+		actor.action = "Catch";
+		actor.actionType = "Defense";
+		for(int i = 0; i < 3; i++)
+		{
+			actor.Target [i] = actor;
+		}
+		Debug.Log ("End of ThrowerAI");
+	}
 
-	void SkillsAI(Character actor) { //choose first action not on cooldown and do it. If all are on cooldown, just throwS
+	public void CatcherAI(Character actor)
+	{
+		System.Collections.Generic.List<int> skills = new List<int>();
+		Debug.Log ("Skills.Count: "+skills.Count+", actor.actions.Length: "+actor.actions.Length);
+		if(Random.Range(0f, 100f) <= 75f)
+		{
+			Debug.Log ("In Primary choice");
+			for (int i = 4; i < actor.actions.Length; i++) { //for all your skills
+				Debug.Log("actor.actionCooldowns ["+i+"]: "+actor.actionCooldowns [i]+", actor.actionTypes ["+i+"]: "+actor.actionTypes [i] +", actor.heldBalls: "+actor.heldBalls+", actor.actionCosts ["+i+"]: "+actor.actionCosts [i]);
+				if (actor.actionCooldowns [i] == 0 && actor.actionTypes [i] == "Defense" && actor.heldBalls >= actor.actionCosts [i]) { //if skill has no cooldown and is offensive
+					skills.Add(i);
+					Debug.Log ("action " + i + " was added");
+				}
+			}
+			if(skills.Count == 0)
+			{
+				actor.action = "Catch";
+				actor.actionType = "Defense";
+				chooseRandomEnemy (actor);
+				return;
+			}
+		}
+		else if(Random.Range(0f, 100f) <= 50f)
+		{
+			Debug.Log ("In Secondary choice");
+			for (int i = 4; i < actor.actions.Length; i++) { //for all your skills
+				if (actor.actionCooldowns [i] == 0 && actor.actionTypes [i] != "Defense" && actor.heldBalls >= actor.actionCosts [i]) { //if skill has no cooldown and is offensive
+					skills.Add(i);
+				}
+			}
+		}
+		Debug.Log (skills.Count);
+		if(skills.Count > 0)
+		{
+			Debug.Log ("skills.Count + 4: " + (skills.Count + 4));
+			int chosenSkill = Random.Range (4, 4 + skills.Count);
+			actor.action = actor.actions [chosenSkill];
+			actor.actionType = actor.GetAction (chosenSkill);
+			switch(actor.GetTargetingType (chosenSkill))
+			{
+			case(2):
+				chooseRandomAlly (actor);
+				break;
+			case(1):
+				chooseRandomEnemy (actor);
+				break;
+			default:
+				for(int i = 0; i < 3; i++)
+				{
+					actor.Target [i] = actor;
+				}
+				break;
+			}
+			return;
+		}
+		actor.action = "Throw";
+		actor.actionType = "Offense";
+		chooseRandomAlly (actor);
+	}
+
+	public void SupporterAI(Character actor)
+	{
+		System.Collections.Generic.List<int> skills = new List<int>();
+		if(Random.Range(0f, 100f) <= 75f)
+		{
+			for (int i = 4; i < actor.actions.Length; i++) { //for all your skills
+				if (actor.actionCooldowns [i] == 0 && actor.actionTypes [i] == "Utility" && actor.heldBalls >= actor.actionCosts [i]) { //if skill has no cooldown and is offensive
+					skills.Add(i);
+				}
+			}
+		}
+		else if(Random.Range(0f, 100f) <= 50f)
+		{
+			for (int i = 4; i < actor.actions.Length; i++) { //for all your skills
+				if (actor.actionCooldowns [i] == 0 && actor.actionTypes [i] != "Utility" && actor.heldBalls >= actor.actionCosts [i]) { //if skill has no cooldown and is offensive
+					skills.Add(i);
+				}
+			}
+		}
+		if(skills.Count > 0)
+		{
+			int chosenSkill = Random.Range (4, 4 + skills.Count);
+			actor.action = actor.actions [chosenSkill];
+			actor.actionType = actor.GetAction (chosenSkill);
+			switch(actor.GetTargetingType (chosenSkill))
+			{
+			case(2):
+				chooseRandomAlly (actor);
+				break;
+			case(1):
+				chooseRandomEnemy (actor);
+				break;
+			default:
+				for(int i = 0; i < 3; i++)
+				{
+					actor.Target [i] = actor;
+				}
+				break;
+			}
+			return;
+		}
+		if(Random.Range(0f, 100f) <= 50f)
+		{
+			actor.action = "Throw";
+			actor.actionType = "Offense";
+			chooseRandomAlly (actor);
+		}
+		else
+		{
+			actor.action = "Catch";
+			actor.actionType = "Defense";
+			for(int i = 0; i < 3; i++)
+			{
+				actor.Target [i] = actor;
+			}
+		}
+	}
+
+	public void SkillsAI(Character actor) { //choose first action not on cooldown and do it. If all are on cooldown, just throwS
 		Character target = actor;
 		for (int i = 4; i < actor.actionNames.Length; i++) { //actor
 			if (actor.actionNames[i] != "Skill"+(i-3)) {
@@ -178,6 +356,7 @@ public class EnemyAI : MonoBehaviour
 				}
 			}
 
+
             } else if (actor.Role == "Catcher") {
 			for (int k = 4; k < actor.actions.Length; k++) { //for all your skills
 				if (actor.actions[k] != "") {
@@ -216,7 +395,7 @@ public class EnemyAI : MonoBehaviour
 				}
 
 			}
-
+				
 
             } else if (actor.Role == "Supporter") {
 			for (int k = 4; k < actor.actions.Length; k++) { //for all your skills
@@ -281,5 +460,38 @@ public class EnemyAI : MonoBehaviour
         }
 
     }//end SchoolAI()
+
+	public void GeneralAI(Character actor)
+	{
+		if(actor.Stamina < actor.maxStamina/4)
+		{
+			// If can use support skill on self
+			// Else If can use skill to protect self
+			// Use self protection skill
+			// Else Catch
+		}
+		if(Random.Range(0f,100f) <= 50f)
+		{
+			// use “Signature” Skills(skills we WANT them to use more often)
+		}
+		if(actor.action == "None")
+		{
+			switch(actor.Role)
+			{
+				case("Thrower"):
+					ThrowerAI (actor);
+					break;
+				case("Catcher"):
+					CatcherAI (actor);
+					break;
+				case("Supporter"):
+					SupporterAI (actor);
+					break;
+				default:
+					ThrowerAI (actor);
+					break;
+			}
+		}
+	}
 
 }// end class enemyAI.cs

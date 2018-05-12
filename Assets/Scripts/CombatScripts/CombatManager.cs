@@ -268,7 +268,8 @@ public class CombatManager : MonoBehaviour
 					{
 						// This allows the player to control enemy actions for now
 						//currentPhase = PHASE.ACTION;
-						AI.FullRandomAI (combatQueue [firstAction]);
+						AI.CatcherAI (combatQueue [firstAction]);
+						combatQueue [firstAction].CallTell ();
 
 					}
 				}

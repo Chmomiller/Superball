@@ -102,7 +102,7 @@ public class DialogueManager : MonoBehaviour {
 
 			if (transition) {
 				Debug.Log (insertText [lineNum, 9]);
-				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> (Application.dataPath+ "Sprites/Backgrounds/" + insertText [lineNum, 9]) as Sprite;
+				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Assets/Sprites/Backgrounds/Mightmain Gym Full.png"/* + insertText [lineNum, 9]*/) as Sprite;
 				bg.transform.localScale = Vector3.one;
 
 				//set next characters

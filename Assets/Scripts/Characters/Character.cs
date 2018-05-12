@@ -316,11 +316,12 @@ public class Character : MonoBehaviour
 	// Currently the character is still catching if they weren't targeted in the last round
 	public virtual bool catchBall(Character attacker)
 	{
+		loseStamina ((int)(attacker.Damage * attacker.attackMultiplier * defenseMultiplier)/2);
 		if(catching)
 		{
 			catching = false;
-			if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < this.Catch) 
-			{ // you can catch it
+			if(this.Stamina <= this.maxStamina/8)
+			{
 				if (this.heldBalls < maxBalls) 
 				{
 					this.heldBalls++;
@@ -328,6 +329,19 @@ public class Character : MonoBehaviour
 				playThrow ();
 
 				return true;
+			}
+			else
+			{
+				if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < this.Catch) 
+				{ // you can catch it
+					if (this.heldBalls < maxBalls) 
+					{
+						this.heldBalls++;
+					}
+					playThrow ();
+
+					return true;
+				}
 			}
 		}
 		return false;
