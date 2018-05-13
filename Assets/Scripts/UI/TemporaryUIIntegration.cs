@@ -21,9 +21,13 @@ public class TemporaryUIIntegration : MonoBehaviour
 
 	public void Init(Character copyCharacter)
 	{
+		HealthBar = gameObject.GetComponent<RectTransform> ();
+		StaminaBar = HealthBar.localScale.x;
+		HealthText = HealthBar.GetComponentInChildren<Text> ();
 		Player = copyCharacter;
 		HealthMax = Player.maxStamina;
 		HealthText.text = "" + Player.maxStamina + " / " + Player.maxStamina;
+		Debug.Log ("In TempUI.Init, copyChar is "+copyCharacter);
 	}
 	
 	// Update is called once per frame

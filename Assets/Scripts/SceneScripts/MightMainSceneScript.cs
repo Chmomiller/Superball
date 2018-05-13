@@ -22,7 +22,7 @@ public class MightMainSceneScript : MonoBehaviour {
             GameObject.Find("Character0").GetComponent<Character>().LevelUp(8);
             GameObject.Find("Character1").GetComponent<Character>().LevelUp(7);
             GameObject.Find("Character2").GetComponent<Character>().LevelUp(9);
-            print("start regular mode");
+           // print("start regular mode");
         }
 
     }

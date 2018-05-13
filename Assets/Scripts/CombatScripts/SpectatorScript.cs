@@ -18,7 +18,6 @@ public class SpectatorScript : MonoBehaviour {
 	}
 	IEnumerator CrowdMovement()
 	{
-		Debug.Log ("In CrowdMovement");
 		pDirector.Play (jump);
 		yield return new WaitForSeconds (Random.Range (12f, 60f));
 		StartCoroutine (CrowdMovement());

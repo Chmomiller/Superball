@@ -73,6 +73,7 @@ public class CombatManager : MonoBehaviour
 			// Set up each character's UI
 			CharUI [i] = GameObject.Find ("CharacterUI" + i);
 			CharUI [i].GetComponent<CharacterUI> ().Init(Player [i]);
+			Debug.Log (Enemy[i]);
 			EnemyUI [i] = GameObject.Find ("CharacterUI" + (i + 3));
 			EnemyUI [i].GetComponent<CharacterUI> ().Init(Enemy [i]);
 
@@ -269,8 +270,9 @@ public class CombatManager : MonoBehaviour
 					else if(combatQueue[firstAction].tag == "Enemy")
 					{
 						// This allows the player to control enemy actions for now
-						//currentPhase = PHASE.ACTION;
-						AI.FullRandomAI (combatQueue [firstAction]);
+						currentPhase = PHASE.ACTION;
+						//AI.FullRandomAI (combatQueue [firstAction]);
+						EnemyTurn(combatQueue[firstAction]);
 						combatQueue [firstAction].CallTell ();
 
 					}
@@ -648,23 +650,89 @@ public class CombatManager : MonoBehaviour
 	}
 
 	// This function randomly assigns actions and targets for enemies.
-	void EnemyTurn(int current)
+	void EnemyTurn(Character actor)
 	{
-		//combatQueue [current].action = "Throw";
-		int choice = Random.Range (0, 4);
+		int count = 0;
+		int choice = Random.Range (1, 8);
+		actor.action = actor.actions [choice];
+		actor.actionType = actor.actionTypes [choice];
 
-		combatQueue [current].action = "Throw";
-		combatQueue [current].actionType = "Offense";
+		currentPhase = PHASE.TARGET;
+		switch(actor.GetTargetingType(choice))
+		{
+		case(2):
+			choice = Random.Range(0,3);
+			for(int i = 0; i < 3; i++)
+			{
+				actor.Target[i] = Enemy[choice];
+			}
+			break;
+		case(1):
+			choice = Random.Range(0,3);
+			for(int i = 0; i < 3; i++)
+			{
+				actor.Target[i] = Player[choice];
+			}
+			break;
+		default:
+			break;
+		}
 
-		choice = Random.Range (0, 3);
-		while (Player [choice].dead) 
+		/*
+		while(actor.action != "None")
 		{
-			choice = Random.Range (0, 3);
-		}
-		for(int i = 0; i < 3; i++)
+			choice = Random.Range (1, 8);
+			if(choice !=  3 && 
+			   actor.actionCosts[choice] <= actor.heldBalls && 
+			   actor.actionCooldowns[choice] == 0)
+			{
+				actor.action = actor.actions [choice];
+				actor.actionType = actor.actionTypes [choice];
+			}
+
+			count++;
+			if(count > 10)
+			{
+				actor.action = "Throw";
+				actor.actionType = "Offense";
+				choice = 1;
+			}
+		}*/
+		/*
+		currentPhase = PHASE.TARGET;
+		switch(actor.GetTargetingType(choice))
 		{
-			combatQueue [current].Target[i] = Player [choice];
+			case(2):
+			do
+			{
+				choice = Random.Range(0,3);
+				if(!Enemy[choice].dead)
+				{
+					for(int i = 0; i < 3; i++)
+					{
+						actor.Target[i] = Enemy[choice];
+					}
+				}
+			}while(actor.Target[0] != actor);
+			break;
+			case(1):
+			do
+			{
+				choice = Random.Range(0,3);
+				if(!Player[choice].dead)
+				{
+					for(int i = 0; i < 3; i++)
+					{
+						actor.Target[i] = Player[choice];
+					}
+				}
+			}while(actor.Target[0] != actor);
+			break;
+			default:
+			break;
 		}
+		*/
+		currentPhase = PHASE.CONFLICT;
 	}
 
 

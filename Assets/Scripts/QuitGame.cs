@@ -113,9 +113,10 @@ public class QuitGame : MonoBehaviour
 				break;
             default:
                 Audio.resetAllAudio();
-                Audio.playAudio("Concept Sound/80's something", 0);
-                Audio.src0.loop = true;
-                loadingScene = false;
+			StartCoroutine(StartBattle("Concept Sound/80s something", 0, sceneName));
+                //Audio.playAudio("Concept Sound/80's something", 0);
+                //Audio.src0.loop = true;
+                //loadingScene = false;
                 break;
         }
 	}

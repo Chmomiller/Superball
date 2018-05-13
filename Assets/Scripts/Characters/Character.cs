@@ -457,6 +457,6 @@ public class Character : MonoBehaviour
             if (this.Level % 2 == 0 || this.Level % 3 == 0) this.maxBalls += 2;
             this.heldBalls = this.maxBalls;
         }
-        print("Level Up:" + this.name);
+        //print("Level Up:" + this.name);
     }
 }
