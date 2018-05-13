@@ -7,9 +7,10 @@ public class Dialogue {
     //special include offscreen
     //{character,character,character,character,character,character,dialogue,whose talking split by a space,special, special param}
     static string[,] sceneName = new string[,] {
-        { "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "" },
-        { "", "", "char1", "char2", "", "", "text","char1","" },
-        { "", "", "char1", "char2", "", "", "text","x","" },
+        { "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "", "" },
+		{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "BG", "Mightmain Battle" },
+        { "", "", "char1", "char2", "", "", "text","char1","", "" },
+        { "", "", "char1", "char2", "", "", "text","x","", "" },
 
     };
 
