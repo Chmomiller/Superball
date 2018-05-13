@@ -467,6 +467,16 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -0.50006104
       objectReference: {fileID: 0}
+    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: sceneTitle
+      value: test scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: startingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ec3375b751ae23469c65aa7d31a4374, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e69b7a2c177f5e44aad1ef401a78dc53, type: 2}
   m_IsPrefabParent: 0

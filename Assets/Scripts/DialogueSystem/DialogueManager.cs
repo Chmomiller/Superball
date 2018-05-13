@@ -120,7 +120,7 @@ public class DialogueManager : MonoBehaviour {
 						if (c > 2) {
 
 							charSprites [c].GetComponent<RectTransform> ().localScale = new Vector3 (
-								charSprites [c].GetComponent<RectTransform> ().localScale.x * -1,
+								charSprites [c].GetComponent<RectTransform> ().localScale.x,
 								charSprites [c].GetComponent<RectTransform> ().localScale.y,
 								charSprites [c].GetComponent<RectTransform> ().localScale.z
 
@@ -165,7 +165,7 @@ public class DialogueManager : MonoBehaviour {
 
 						if (ch > 2) {
 							charSprites [ch].GetComponent<RectTransform> ().localScale = new Vector3 (
-								charSprites [ch].GetComponent<RectTransform> ().localScale.x * -1,
+								charSprites [ch].GetComponent<RectTransform> ().localScale.x,
 								charSprites [ch].GetComponent<RectTransform> ().localScale.y,
 								charSprites [ch].GetComponent<RectTransform> ().localScale.z
 
@@ -262,7 +262,7 @@ public class DialogueManager : MonoBehaviour {
 					fadeTime = 0;
 				}
 
-				if (insertText [lineNum, 8] == "change sound") {
+				if (insertText [lineNum, 8] == "BG") {
 					changeSound = true;
 					source.Stop ();
 					source.clip = Resources.Load ("Audio/" + insertText [lineNum, 9]) as AudioClip;
@@ -354,7 +354,7 @@ public class DialogueManager : MonoBehaviour {
 				if (c > 2) {
 					
 					charSprites [c].GetComponent<RectTransform> ().localScale = new Vector3 (
-						charSprites [c].GetComponent<RectTransform> ().localScale.x * -1,
+						charSprites [c].GetComponent<RectTransform> ().localScale.x,
 						charSprites [c].GetComponent<RectTransform> ().localScale.y,
 						charSprites [c].GetComponent<RectTransform> ().localScale.z
 
