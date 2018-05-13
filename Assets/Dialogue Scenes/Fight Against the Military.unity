@@ -475,40 +475,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114760860483105936, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114760860483105936, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224660961853209656, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.50006104
-      objectReference: {fileID: 0}
-    - target: {fileID: 224660961853209656, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.26642275
-      objectReference: {fileID: 0}
-    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: sceneTitle
-      value: Fight Against the Military
-      objectReference: {fileID: 0}
-    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: combatDialogue
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224275642998612678, guid: e69b7a2c177f5e44aad1ef401a78dc53,
         type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.249756
+      objectReference: {fileID: 0}
+    - target: {fileID: 224615178359033446, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 3.660614
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224180533420073524, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 224548508640691732, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
         type: 2}
@@ -520,6 +505,11 @@ Prefab:
       propertyPath: startingClip
       value: 
       objectReference: {fileID: 8300000, guid: a996df230e3c883458e588150ad067ea, type: 3}
+    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: sceneTitle
+      value: Fight Against the Military
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e69b7a2c177f5e44aad1ef401a78dc53, type: 2}
   m_IsPrefabParent: 0

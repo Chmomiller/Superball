@@ -105,6 +105,12 @@ public class QuitGame : MonoBehaviour
                 Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_3");
                 StartCoroutine(StartBattle("Yamato Battle", 0, sceneName));
                 break;
+			case "Dialogue Scenes/Fight Against the Military":
+				Audio.resetAllAudio();
+				//print("open");
+				//Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_4");
+				StartCoroutine(StartBattle("MightMain Battle", 0, sceneName));
+				break;
             default:
                 Audio.resetAllAudio();
                 Audio.playAudio("Concept Sound/80's something", 0);

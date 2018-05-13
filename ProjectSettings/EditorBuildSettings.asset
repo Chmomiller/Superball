@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/MainMenu.unity
-    guid: 0f32bbb632204e946b527116e7fec557
+    path: Assets/SlugCon MainMenu.unity
+    guid: 2392fbaa4f73db14c9b8ecdbaa2bd57a
   - enabled: 1
     path: Assets/Schola Grandis Gym.unity
     guid: 0cb1d0d548dac744aa0cdc11639ce4bc
@@ -24,59 +21,47 @@ EditorBuildSettings:
     path: Assets/Yamato Gym.unity
     guid: 05bbf2b92f5827d4dbe72135e6baac55
   - enabled: 1
-    path: Assets/MapScreen.unity
-    guid: 974019bb98015f54bb69b64b4c0d0147
-  - enabled: 1
-    path: Assets/OpenOcean.unity
-    guid: 48d4383445d93604b8e8dcf15f90baa0
-  - enabled: 1
-    path: Assets/Prologue.unity
+    path: Assets/Dialogue Scenes/Prologue.unity
     guid: 8674cfb1788db5647bd015b986ed9dfb
   - enabled: 1
-    path: Assets/A New Student.unity
+    path: Assets/Dialogue Scenes/A New Student.unity
     guid: 0ec25cf46b5565245a96a3cbacf4a1b6
   - enabled: 1
-    path: Assets/A New Student 7.unity
+    path: Assets/Dialogue Scenes/A New Student 7.unity
     guid: 165bbc5a10ee1cc4d9240c1c13e508eb
   - enabled: 1
-    path: Assets/What Punks.unity
+    path: Assets/Dialogue Scenes/What Punks.unity
     guid: 1f96e23b932cb3a4885581d1564b4e4f
   - enabled: 1
-    path: Assets/Tutorial.unity
+    path: Assets/Dialogue Scenes/Tutorial.unity
     guid: 8eeecc9c371afae4bb968963b995ff5b
   - enabled: 1
-    path: Assets/Punk Defeat.unity
+    path: Assets/Dialogue Scenes/Punk Defeat.unity
     guid: aca8c19c7f7fba2498e99ad74976baa8
   - enabled: 1
-    path: Assets/DialogueMenu.unity
+    path: Assets/Dialogue Scenes/DialogueMenu.unity
     guid: 3cef7f7badfa19249bda93fb02193432
   - enabled: 1
-    path: Assets/Three Outstanding Girls.unity
+    path: Assets/Dialogue Scenes/Three Outstanding Girls.unity
     guid: e42b20a32e0b0aa4484ea24af7ab4486
   - enabled: 1
-    path: Assets/Battle_Screen.unity
-    guid: 5bf1de0677d7c8f4b92b1a979f627300
-  - enabled: 1
-    path: Assets/Fight Against the Military.unity
+    path: Assets/Dialogue Scenes/Fight Against the Military.unity
     guid: 7bbce803e2e16ab4ab5375d59810932f
   - enabled: 1
-    path: Assets/Kuro's Trump Card.unity
+    path: Assets/Dialogue Scenes/Kuro's Trump Card.unity
     guid: c39232d8b788a744d92e29d0d9f47b22
   - enabled: 1
-    path: Assets/Magical Defeat.unity
+    path: Assets/Dialogue Scenes/Magical Defeat.unity
     guid: d8e48d22762b4fc4f8abe0a837ddc605
   - enabled: 1
-    path: Assets/Magical Match.unity
+    path: Assets/Dialogue Scenes/Magical Match.unity
     guid: 65aa1b55b0fb81041b128fa75ea6426d
   - enabled: 1
-    path: Assets/Magical Preparation.unity
+    path: Assets/Dialogue Scenes/Magical Preparation.unity
     guid: 20c26a8833f29b74aacb0cf75b03146e
   - enabled: 1
-    path: Assets/Military Surrender.unity
+    path: Assets/Dialogue Scenes/Military Surrender.unity
     guid: 9b2ec76c26ff1c14283c5f7290e84853
   - enabled: 1
-    path: Assets/Options Menu.unity
-    guid: bf02988cfe9af1f4f97db8bf85567c56
-  - enabled: 1
-    path: Assets/Punk Ambush.unity
+    path: Assets/Dialogue Scenes/Punk Ambush.unity
     guid: 2dfc911e1b143bb42bf08bc178397120

@@ -8,7 +8,7 @@ public class Dialogue {
     //{character,character,character,character,character,character,dialogue,whose talking split by a space,special, special param}
     static string[,] sceneName = new string[,] {
         { "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "", "" },
-		{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "BG", "Mightmain Battle" },
+		//{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "BG", "Mightmain Battle" },
         { "", "", "char1", "char2", "", "", "text","char1","", "" },
         { "", "", "char1", "char2", "", "", "text","x","", "" },
 
@@ -2812,7 +2812,7 @@ static string[,] militaryFight = new string[,]{
         {
             "","","","","","",
             "",
-            "","transition", "Mightmain Academy Gym"
+            "","transition", "Mightmain Gym Full"
         },
         {
             "Clemence","Theodore","Shiro","Kuro","Harold","Skylar",
