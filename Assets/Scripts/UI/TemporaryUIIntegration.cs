@@ -27,7 +27,6 @@ public class TemporaryUIIntegration : MonoBehaviour
 		Player = copyCharacter;
 		HealthMax = Player.maxStamina;
 		HealthText.text = "" + Player.maxStamina + " / " + Player.maxStamina;
-		Debug.Log ("In TempUI.Init, copyChar is "+copyCharacter);
 	}
 	
 	// Update is called once per frame

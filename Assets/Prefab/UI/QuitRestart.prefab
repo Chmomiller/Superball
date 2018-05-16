@@ -332,6 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  Game: {fileID: 0}
+  loadingScene: 0
 --- !u!222 &222131914088894196
 CanvasRenderer:
   m_ObjectHideFlags: 1

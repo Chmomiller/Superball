@@ -7,14 +7,25 @@ public class CharacterSelectUI : MonoBehaviour
 {
 	public int character;
 	public Image[] status;
+	public Image Tell;
 	public Sprite[] statusImage;
 	public Sprite[] TellImage;
 	public CombatManager CM;
+
 	// Use this for initialization
 	void Start () 
 	{
 		gameObject.GetComponent<Button> ().onClick.AddListener (CharacterSelect);
-		status = gameObject.GetComponentsInChildren<Image> ();
+		Image[] temp = gameObject.GetComponentsInChildren<Image> ();
+		status = new Image[3];
+		status [0] = temp [1];
+		status [1] = temp [3];
+		status [2] = temp [5];
+		Tell = temp [7];
+		for(int i = 0; i < status.Length; i++)
+		{
+			status [i].gameObject.SetActive (false);
+		}
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager> ();	
 	}
 
@@ -22,12 +33,7 @@ public class CharacterSelectUI : MonoBehaviour
 	{
 		CM = combatManager;
 	}
-
-	// Update is called once per frame
-	void Update () {
 		
-	}
-
 	public void CharacterSelect()
 	{
 		// If this is the player SELECT phase
@@ -44,7 +50,6 @@ public class CharacterSelectUI : MonoBehaviour
 			}
 			CM.conflictInQueue = -1;
 			CM.currentPhase = CombatManager.PHASE.ACTION;
-
 		}
 		// This block runs for target selection during the TARGET phase and assigns all Targets for the current Character based on the value of int character
 		if (CM.currentPhase == CombatManager.PHASE.TARGET) 
@@ -73,7 +78,7 @@ public class CharacterSelectUI : MonoBehaviour
 	{
 		bool afflicted = false;
 		int stat = 0;
-		for(int i = 3; i > 0; i--)
+		for(int i = 2; i > -1; i--)
 		{
 			if(!status[i].enabled)
 			{
@@ -86,8 +91,10 @@ public class CharacterSelectUI : MonoBehaviour
 		}
 		if(!afflicted)
 		{
+			status [stat].gameObject.SetActive (true);
 			status [stat].sprite = statusImage[newStatus];	
 			status [stat].enabled = true;
+			status [stat].GetComponent<StatusIconUI> ().statusNumber = newStatus;
 		}
 	}
 
@@ -95,9 +102,11 @@ public class CharacterSelectUI : MonoBehaviour
 	{
 		for(int i = 0; i < 3; i++)
 		{
-			if(status[i+1].sprite == statusImage[oldStatus])
+			if(status[i].sprite == statusImage[oldStatus])
 			{
-				status [i+1].enabled = false;
+				status [i].enabled = false;
+				status [i].GetComponent<StatusIconUI> ().statusNumber = -1;
+				status [i].gameObject.SetActive (false);
 			}
 		}
 	}
@@ -107,19 +116,19 @@ public class CharacterSelectUI : MonoBehaviour
 		switch(type)
 		{
 		case("Offense"):
-			status [4].enabled = true;
-			status[4].sprite = TellImage [0];
+			Tell.enabled = true;
+			Tell.sprite = TellImage [0];
 			break;
 		case("Defense"):
-			status [4].enabled = true;
-			status[4].sprite = TellImage [1];
+			Tell.enabled = true;
+			Tell.sprite = TellImage [1];
 			break;
 		case("Utility"):
-			status [4].enabled = true;
-			status[4].sprite = TellImage [2];
+			Tell.enabled = true;
+			Tell.sprite = TellImage [2];
 			break;
 		default:
-			status [4].enabled = false;
+			Tell.enabled = false;
 			break;
 		}
 	}

@@ -32,7 +32,6 @@ public class CharacterUI : MonoBehaviour
 		characterPanel.enabled = false;
 		character = characterToSet;
 		characterName.text = character.Name;
-		Debug.Log (characterToSet);
 		gameObject.GetComponentInChildren<TemporaryUIIntegration> ().Init (characterToSet);
 	}
 

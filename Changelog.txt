@@ -95,3 +95,8 @@ Tristian:
 	Changed all Character skills to return int damage for CombatManager to display it during combat
 	Removed text from the lower right and added it to the central text
 	Changed Health bar so it's red when it goes bellow 25% stamina
+
+5/15/18:
+	Commented out scripts that manipulate Skill buttons 4-6 and page buttons so player's can't choose them
+	Reduced current AI's max skill so they don't have access to skill 4
+	Added UI and a script to control hoverover status icons for a status explaination

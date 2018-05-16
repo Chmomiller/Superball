@@ -128,12 +128,14 @@ public class CombatUI : MonoBehaviour
 			backButton.GetComponent<Image> ().enabled = true;
 			backButton.GetComponent<Button> ().enabled = true;
 			backButton.GetComponentInChildren<Text> ().enabled = true;
+			/*
 			pageNextButton.GetComponent<Image> ().enabled = true;
 			pageNextButton.GetComponent<Button> ().enabled = true;
 			pageNextButton.GetComponentInChildren<Text> ().enabled = true;
 			pageBackButton.GetComponent<Image> ().enabled = false;
 			pageBackButton.GetComponent<Button> ().enabled = false;
 			pageBackButton.GetComponentInChildren<Text> ().enabled = false;
+			*/
 			for(int i = 0; i < 3; i++)
 			{
 				skillButton [i].GetComponent<Image> ().enabled = true;
@@ -146,6 +148,7 @@ public class CombatUI : MonoBehaviour
 				skillButton [i+3].GetComponent<PolygonCollider2D> ().enabled = false;
 			}
 		}
+		/*
 		if(openMenu == 2)
 		{
 			pageNextButton.GetComponent<Image> ().enabled = false;
@@ -166,6 +169,7 @@ public class CombatUI : MonoBehaviour
 				skillButton [i+3].GetComponent<PolygonCollider2D> ().enabled = true;
 			}
 		}
+		*/
 		if(openMenu == 0)
 		{
 			backButton.GetComponent<Image> ().enabled = false;
@@ -206,13 +210,16 @@ public class CombatUI : MonoBehaviour
 		openMenu = page;
 	}
 
+	// This function shows the phase panel
 	public void ShowPhase()
 	{
 		phasePanel.enabled = true;
 		phaseText.enabled = true;
+		// call a coroutine that hides the panel
 		StartCoroutine (HidePhase());
 	}
 
+	// Clear target cursors, cancel the current ally's action, and go to ACTION phase
 	public void CancelAction()
 	{
 		tCursors.ClearTargets ();
@@ -221,6 +228,7 @@ public class CombatUI : MonoBehaviour
 		CM.currentPhase = CombatManager.PHASE.ACTION;
 	}
 
+	// This Coroutine hides the phase panel after 2 seconds
 	IEnumerator HidePhase()
 	{
 		yield return new WaitForSeconds(2);

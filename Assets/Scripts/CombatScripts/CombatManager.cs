@@ -73,7 +73,6 @@ public class CombatManager : MonoBehaviour
 			// Set up each character's UI
 			CharUI [i] = GameObject.Find ("CharacterUI" + i);
 			CharUI [i].GetComponent<CharacterUI> ().Init(Player [i]);
-			Debug.Log (Enemy[i]);
 			EnemyUI [i] = GameObject.Find ("CharacterUI" + (i + 3));
 			EnemyUI [i].GetComponent<CharacterUI> ().Init(Enemy [i]);
 
@@ -653,7 +652,7 @@ public class CombatManager : MonoBehaviour
 	void EnemyTurn(Character actor)
 	{
 		int count = 0;
-		int choice = Random.Range (1, 8);
+		int choice = Random.Range (1, 7);
 		actor.action = actor.actions [choice];
 		actor.actionType = actor.actionTypes [choice];
 
