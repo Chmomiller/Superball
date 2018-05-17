@@ -100,3 +100,6 @@ Tristian:
 	Commented out scripts that manipulate Skill buttons 4-6 and page buttons so player's can't choose them
 	Reduced current AI's max skill so they don't have access to skill 4
 	Added UI and a script to control hoverover status icons for a status explaination
+5/16/18:
+	Fixed links to combat from the MapScreen and to the MapScreen from the MainMenu
+	

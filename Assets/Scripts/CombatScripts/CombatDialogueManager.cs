@@ -26,8 +26,49 @@ public class CombatDialogueManager: MonoBehaviour {
     public GameObject catchButton;
     public GameObject skillButton;
     public GameObject textOverlay;
-    public GameObject textOverlayT;
+	public Text textOverlayT;
 
+	public string[] dialogue = {"The rules of dodgeball are a bit hazy for me, think you could give me a run-down?",
+								"So you don’t know how to play <b>dodgeball</b>?",
+								"You got me there.",
+								"Then listen well! First, when it is a player’s turn, they can do three actions.",
+								"One: throw a ball at an enemy!",
+								"Two: catch when an enemy throws at them!",
+								"And three: use special skills for great effect, but with costs, of course!",
+								"The three actions can be chosen here.",
+								"To check out how many balls a player has, look at the number on the player’s portrait.",
+								"It is now Shiro’s turn. Click the Throw button and aim at Trevor.",
+								"Now, it is Clemence’s turn. Press the Catch button.",
+								"The box above a character indicates what type of action that character will do.",
+								"Shiro and Trevor chose to attack, so they have red icons above them. ",
+								"Clemence, Frank, and Greg chose to defend, and so their icons are blue instead.",
+								"Now, it is Theodore’s turn. Try using skill 1 against Trevor. Once you do that, look at his portrait carefully.",
+								"Notice that the number of balls Theodore holds has changed because he used a skill that costs balls.",
+								"Okay, I think I got it now. But who gets to decide who goes first?",
+								"Ah, see, here’s the thing. Each player on the field has a certain amount of stamina.",
+								"The player with the highest stamina goes first. Then the player with the second-highest stamina goes next, and so on.",
+								"Once all the players have decided their actions, we leave the planning phase and enter the execution phase.",
+								"That <i>kind of</i> makes sense to me...",
+								"Whether it makes sense or not, that’s the rule.",
+								"That’s why you went first on the first turn.",
+								"All right, I think I got that. But what’s the goal of the game?",
+								"The goal is to knock out all the enemies.",
+								"If a player’s stamina is at 25% or lower, they can get knocked out of the game, even if their stamina hasn’t reached 0 yet.",
+								"Each player’s health is located under their portrait.",
+								"Anything else I should know?",
+								"Ah, yes, between rounds players gather balls automatically. That always ensures that you can at least throw at an enemy.",
+								"I see.",
+								"And here’s a tip for you if you want to win. Keep track of your enemies' actions. ",
+								"knowing what the enemies’ actions are lets you see what effects they’ll have on you.",
+								"Actions are automatically listed on the white box right here. ",
+								"To keep track of what actions have been done, look at the Battle Log right here.",
+								"Only one thing left to cover. Each player is one of three classes: <b><color=red>thrower</color>, <color=blue>catcher</color>, or <color=yellow>supporter</color></b>.",
+								"Oh yeah! If I remember correctly I’m a <color=yellow>supporter</color>!",
+								"Oh, really? That’s good! I’m a <color=red>thrower</color>, which means that I excel at dealing damage to enemies.",
+								"Clemence is a <color=blue>catcher</color>, which means that he is good at catching for himself and teammates.",
+								"And you’re a <color=yellow>supporter</color>, which means that you can help your teammates by buffing, healing, etc.",
+								"Now is that all?",
+								"I think so Let’s play!"};
 	public bool control;
 	public bool display;
 
@@ -73,428 +114,142 @@ public class CombatDialogueManager: MonoBehaviour {
         //Character4.SetActive(false);
         Character5 = GameObject.Find("Character5");
         //Character5.SetActive(false);
-        textOverlayT = GameObject.Find("textOverlayT");
+		textOverlayT = gameObject.GetComponentInChildren<Text>();
         //textOverlayT.SetActive(false);
-        textOverlay = GameObject.Find("textOverlay");
+		textOverlay = gameObject;
         //textOverlay.SetActive(false);
 
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager>();
+		//CM.enabled = false;
 }
 
     // Update is called once per frame
     void Update() {
-		if(control)
+		if(CM.currentPhase == CombatManager.PHASE.ACTION && control)
 		{
 			control = false;
 			StartCoroutine (CombatManagerControl(.1f));
 		}
-		// Use this code to control dialogue flow via mouse clicks
-		// adding count != N to the condition adds a mask for that line of dialogue
-		if(CM.lose || CM.win)
+		if(count == dialogue.Length)
 		{
-			if (count != 1 && count != 2 && Input.GetMouseButtonDown (0) == true) {
-				count++;
-				display = true;
-			}
-			if (count != 2 && count != 2 && Input.GetMouseButtonDown (0) == true) {
-				count = 2;
-				display = true;
-			}
-			if (count != 3 && count != 2 && Input.GetMouseButtonDown (0) == true) {
-				count = 3;
-				display = true;
-			}
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/MapScreen");
 		}
-		if (count == 1) 
-		{
-			count = 2;
-			textOverlayT.GetComponent<Text> ().text = "Look at that it's the end of the Demo!";
-			//StartCoroutine (CorrectTarget(Character0.GetComponent<Character>(), "Woops, wrong action. Try clicking \"Throw\"."));
-		}
-		if (count == 2) 
-		{
-			count = 3;
-			textOverlayT.GetComponent<Text> ().text = "Unfortunately ";
-		}
-		//
-		// Use this code to control flow via a specific character's action and/or target
-		// N = the count where you want to check for this condition
-		// ACTION = the action name you wnat to chack for(must be a valid )
-		//if (count == N && CharacterM.GetComponent<Character>().action == "ACTION" && CharacterM.GetComponent<Character>().Target[0] != CharacterM.GetComponent<Character>()) count = N+1;
-
-        if (count == 0) {
-            textOverlay.SetActive(true);
-            textOverlayT.SetActive(true);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text> ().text = "Click the mouse!";
-				display = false;
-			}
-        } else if (count == 1) {
-            Character0.SetActive(true);
-            textOverlay.transform.position = new Vector3(-3.5F, 3, 0);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text>().text = "Select Throw";
-				display = false;
-			}
-            //point out shiro
-        } else if (count == 2) {
-            textOverlay.transform.position = new Vector3(-4.5F, 3, 0);
-            Character1.SetActive(true);
-            Character2.SetActive(true);
-			if (display) 
-			{
-				if(Character0.GetComponent<Character> ().action != "Throw")
-				{
-				textOverlayT.GetComponent<Text>().text = "Choose an Enemy"; 
-				display = false;
-				}
-				else
-				{
-					
-				}
-			} 
-            //introuduce Clemence & Theodore
-        } else if (count == 3) {
-			StartCoroutine (CombatManagerControl(0f));
-			control = true;
-            textOverlay.transform.position = new Vector3(0, 0, 0);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text>().text = "Before we introduce you to the Punks, I would like to show you some important Superball simualtion elements";
-				display = false;
-			} 
-            //more flavor text
-        } else if (count == 4) {
-            textOverlay.transform.position = new Vector3(0, 4, 0);
-            PhasePanel.SetActive(true);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text>().text = "Here is the phase panel. It gives you information on what combat phase we are in";
-				display = false;
-			} 
-            //point out phase panel
-        } else if (count == 5) {
-            textOverlay.transform.position = new Vector3(0, 1, 0);
-            CombatPanel.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "This is the combat panel. We will see important battle information here";
-				display = false;
-			} 
-            //point out battle text
-        } else if (count == 6) {
-			CombatPanel.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Now it is time to see your foes";
-				display = false;
-			} 
-            //introduce enemies
-        } else if (count == 7) {
-            Character3.SetActive(true);
-            textOverlay.transform.position = new Vector3(3, 3, 0);
-			{
-				textOverlayT.GetComponent<Text>().text = "Tetsou Trevor";
-				display = false;
-			} 
-            //introduce trevor
-        } else if (count == 8) {
-            textOverlay.transform.position = new Vector3(4, 3, 0);
-            Character4.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Futoi Frank";
-				display = false;
-			} 
-            //introduce trevor
-        } else if (count == 9) {
-            textOverlay.transform.position = new Vector3(5, 3, 0);
-            Character5.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Gomi Greg";
-				display = false;
-			} 
-            //introduce trevor
-        } else if (count == 10) {
-            textOverlay.transform.position = new Vector3(0, 5, 0);
-			{
-				textOverlayT.GetComponent<Text>().text = "They arent the friendliest bunch but I am sure you can defeat them";
-				display = false;
-			} 
-        } else if (count == 11) {
-            textOverlay.transform.position = new Vector3(0, -1, 0);
-            PlayerUI.SetActive(true);
-            EnemyUI.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "here to help is our simlator panels, one for each combatant";
-				display = false;
-			} 
-            //point out portraits
-        } else if (count == 12) {
-            textOverlay.transform.position = new Vector3(0, 0, 0);
-			{
-				textOverlayT.GetComponent<Text>().text = "If hovered over, these portaits even give useful information such as the character's status abilities and stats";
-				display = false;
-			} 
-            //point out portrait details
-        } else if (count == 13) {
-            textOverlay.transform.position = new Vector3(0, 0, 0);
-            ActionManager.SetActive(true);
-            throwButton.SetActive(true);
-            catchButton.SetActive(true);
-            skillButton.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Now onto the actions you can take. These are shown in this 3 segment wheel";
-				display = false;
-			} 
-            //point out basic actions
-        } else if (count == 14) {
-            throwButton.SetActive(false);
-            catchButton.SetActive(false);
-            skillButton.SetActive(false);
-            skill1Button.SetActive(true);
-            skill2Button.SetActive(true);
-            skill3Button.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "There are even skills unique to each player that can be accessed by clicking Skills";
-				display = false;
-			} 
-            //point out skills examples
-        } else if (count == 10) {
-            throwButton.SetActive(true);
-            catchButton.SetActive(true);
-            skillButton.SetActive(true);
-            //point out skills 2
-        } else if (count == 11) {
-			{
-				textOverlayT.GetComponent<Text>().text = "Most moves require a target, which can be specified by clicking on either your allies or enemies";
-				display = false;
-			} 
-            //point out example skill description
-        } else if (count == 12) {
-			{
-				textOverlayT.GetComponent<Text>().text = "Ready to Ball?";
-				display = false;
-			} 
-            //point out different targetting
-        } else {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/MapScreen");
-        }
-		/*
-		if(control)
-		{
-			control = false;
-			StartCoroutine (CombatManagerControl(.1f));
-		}
-		// Use this code to control dialogue flow via mouse clicks
-		// adding count != N to the condition adds a mask for that line of dialogue
-		if (count != 1 && count != 2 && Input.GetMouseButtonDown(0) == true)
+		if (count != 9 && count != 10 && count != 14 && 
+			Input.GetMouseButtonDown(0) == true)
 		{
 			count++;
 			display = true;
 		}
-		if (count == 1 && Character0.GetComponent<Character> ().action != "None") 
+		if(count == 9 && 
+		   CM.combatQueue[CM.currentCharacter].Name == "Shiro" && 
+		   CM.combatQueue[CM.currentCharacter].action == "Throw" && 
+		   CM.combatQueue[CM.currentCharacter].Target[0].Name == "Trevor")
 		{
-			count = 2;
+			count++;
 			display = true;
+			control = true;
+			StartCoroutine (CombatManagerControl(.1f));
 		}
-		if (count == 2 && Character0.GetComponent<Character> ().action != "None" && Character0.GetComponent<Character> ().Target [0] != Character0.GetComponent<Character> ()) 
+		if(count == 10 && 
+			CM.combatQueue[CM.currentCharacter].Name == "Clemence" && 
+			CM.combatQueue[CM.currentCharacter].action == "Catch" && 
+			CM.currentPhase == CombatManager.PHASE.CONFLICT)
 		{
-			count = 3;
+			count++;
 			display = true;
+			control = true;
+			StartCoroutine (CombatManagerControl(.1f));
+		}
+		if(count == 14 && 
+			CM.combatQueue[CM.currentCharacter].Name == "Theodore" && 
+			CM.combatQueue[CM.currentCharacter].action == "Skill1" && 
+			CM.combatQueue[CM.currentCharacter].Target[0].Name == "Trevor")
+		{
+			count++;
+			display = true;
+			control = true;
+			StartCoroutine (CombatManagerControl(.1f));
+		}
+		textOverlay.SetActive(true);
+		textOverlayT.enabled = true;
+		if (display) 
+		{
+			textOverlayT.text = dialogue[count];
+			display = false;
 		}
 		/*
-		if (count == 1) 
-		{
-			if (Character0.GetComponent<Character> ().action == "Throw") 
-			{
-				count = 2;
-			} 
-			else if(Character0.GetComponent<Character> ().action != "None") 
-			{
-				textOverlayT.GetComponent<Text> ().text = "Woops, wrong action. Try clicking \"Throw\".";
-				StartCoroutine (CorrectTarget(Character0.GetComponent<Character>(), "Woops, wrong action. Try clicking \"Throw\"."));
-			}
-		}
-		if (count == 2 && Character0.GetComponent<Character>().Target[0] != Character0.GetComponent<Character>()) count = 3;
-		//
-		// Use this code to control flow via a specific character's action and/or target
-		// N = the count where you want to check for this condition
-		// ACTION = the action name you wnat to chack for(must be a valid )
-		//if (count == N && CharacterM.GetComponent<Character>().action == "ACTION" && CharacterM.GetComponent<Character>().Target[0] != CharacterM.GetComponent<Character>()) count = N+1;
+		Dialog for tutorial scene. Note: if line is said by “Narrator”, it means that no one is saying it, and so the text box should not be pointing to any character in particular. Contextually, the Narrator’s box should be placed near the features of the UI that the line is explaining.
 
-        if (count == 0) {
-            textOverlay.SetActive(true);
-            textOverlayT.SetActive(true);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text> ().text = "Click the mouse!";
-				display = false;
-			}
-        } else if (count == 1) {
-            Character0.SetActive(true);
-            textOverlay.transform.position = new Vector3(-3.5F, 3, 0);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text>().text = "Select Throw";
-				display = false;
-			}
-            //point out shiro
-        } else if (count == 2) {
-            textOverlay.transform.position = new Vector3(-4.5F, 3, 0);
-            Character1.SetActive(true);
-            Character2.SetActive(true);
-			if (display) 
-			{
-				if(Character0.GetComponent<Character> ().action != "Throw")
-				{
-				textOverlayT.GetComponent<Text>().text = "Choose an Enemy"; 
-				display = false;
-				}
-				else
-				{
-					
-				}
-			} 
-            //introuduce Clemence & Theodore
-        } else if (count == 3) {
-			StartCoroutine (CombatManagerControl(0f));
-			control = true;
-            textOverlay.transform.position = new Vector3(0, 0, 0);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text>().text = "Before we introduce you to the Punks, I would like to show you some important Superball simualtion elements";
-				display = false;
-			} 
-            //more flavor text
-        } else if (count == 4) {
-            textOverlay.transform.position = new Vector3(0, 4, 0);
-            PhasePanel.SetActive(true);
-			if (display) 
-			{
-				textOverlayT.GetComponent<Text>().text = "Here is the phase panel. It gives you information on what combat phase we are in";
-				display = false;
-			} 
-            //point out phase panel
-        } else if (count == 5) {
-            textOverlay.transform.position = new Vector3(0, 1, 0);
-            CombatPanel.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "This is the combat panel. We will see important battle information here";
-				display = false;
-			} 
-            //point out battle text
-        } else if (count == 6) {
-			CombatPanel.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Now it is time to see your foes";
-				display = false;
-			} 
-            //introduce enemies
-        } else if (count == 7) {
-            Character3.SetActive(true);
-            textOverlay.transform.position = new Vector3(3, 3, 0);
-			{
-				textOverlayT.GetComponent<Text>().text = "Tetsou Trevor";
-				display = false;
-			} 
-            //introduce trevor
-        } else if (count == 8) {
-            textOverlay.transform.position = new Vector3(4, 3, 0);
-            Character4.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Futoi Frank";
-				display = false;
-			} 
-            //introduce trevor
-        } else if (count == 9) {
-            textOverlay.transform.position = new Vector3(5, 3, 0);
-            Character5.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Gomi Greg";
-				display = false;
-			} 
-            //introduce trevor
-        } else if (count == 10) {
-            textOverlay.transform.position = new Vector3(0, 5, 0);
-			{
-				textOverlayT.GetComponent<Text>().text = "They arent the friendliest bunch but I am sure you can defeat them";
-				display = false;
-			} 
-        } else if (count == 11) {
-            textOverlay.transform.position = new Vector3(0, -1, 0);
-            PlayerUI.SetActive(true);
-            EnemyUI.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "here to help is our simlator panels, one for each combatant";
-				display = false;
-			} 
-            //point out portraits
-        } else if (count == 12) {
-            textOverlay.transform.position = new Vector3(0, 0, 0);
-			{
-				textOverlayT.GetComponent<Text>().text = "If hovered over, these portaits even give useful information such as the character's status abilities and stats";
-				display = false;
-			} 
-            //point out portrait details
-        } else if (count == 13) {
-            textOverlay.transform.position = new Vector3(0, 0, 0);
-            ActionManager.SetActive(true);
-            throwButton.SetActive(true);
-            catchButton.SetActive(true);
-            skillButton.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "Now onto the actions you can take. These are shown in this 3 segment wheel";
-				display = false;
-			} 
-            //point out basic actions
-        } else if (count == 14) {
-            throwButton.SetActive(false);
-            catchButton.SetActive(false);
-            skillButton.SetActive(false);
-            skill1Button.SetActive(true);
-            skill2Button.SetActive(true);
-            skill3Button.SetActive(true);
-			{
-				textOverlayT.GetComponent<Text>().text = "There are even skills unique to each player that can be accessed by clicking Skills";
-				display = false;
-			} 
-            //point out skills examples
-        } else if (count == 10) {
-            throwButton.SetActive(true);
-            catchButton.SetActive(true);
-            skillButton.SetActive(true);
-            //point out skills 2
-        } else if (count == 11) {
-			{
-				textOverlayT.GetComponent<Text>().text = "Most moves require a target, which can be specified by clicking on either your allies or enemies";
-				display = false;
-			} 
-            //point out example skill description
-        } else if (count == 12) {
-			{
-				textOverlayT.GetComponent<Text>().text = "Ready to Ball?";
-				display = false;
-			} 
-            //point out different targetting
-        } else {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/MapScreen");
-        }
-		*/
-        
+0. Shiro: The rules of dodgeball are a bit hazy for me, think you could give me a run-down?
+1. Theodore: So you don’t know how to play <b>dodgeball</b>?
+2. Shiro: You got me there.
+3. Theodore: Then listen well! First, when it is a player’s turn, they can do three actions. 
+4. One: throw a ball at an enemy! 
+5. Two: catch when an enemy throws at them! 
+6. And three: use special skills for great effect, but with costs, of course!
+7. Narrator: The three actions can be chosen here. 
+8. To check out how many balls a player has, look at the number on the player’s portrait. 
+9. It is now Shiro’s turn. Press the Throw button and aim at Trevor.
+
+Player has Shiro choose Trevor when doing Throw option.
+
+10. Narrator: Now, it is Clemence’s turn. Press the Catch button.
+
+Player chooses the Catch option for Clemence. Frank and Greg then choose to catch, and Trevor chooses to attack.
+
+11. Narrator: The box next to a character indicates what type of action that character will do. 
+12. Shiro and Trevor chose to attack, and so red boxes next to them have appeared. 
+13. Clemence, Frank, and Greg chose to defend, and so their boxes are blue instead. 
+//////////////////++++++++++++++++++++++++++++++++?????????????????
+13. Now, it is Theodore’s turn. Try using skill 1 against Trevor. Once you do that, look at his portrait carefully.
+
+Player chooses the Skill option for Theodore, and uses the Bishop skill at Trevor. Turn plays out.
+
+14. Narrator: Notice that the number of balls Theodore holds has changed, because he has used a skill that costs balls.
+15. Shiro: Okay, I think I got it now. But who gets to decide who goes first?
+16. Theodore: Ah, see, here’s the thing. Each player on the field has a certain amount of stamina. The player with the highest stamina goes first. Then the player with the second-highest stamina goes next, and so on. 
+17. Once all the players have decided their actions, we leave the planning phase and enter the execution phase.
+18. Shiro: That <i>kind of</i> makes sense to me...
+19. Theodore: Whether it makes sense or not, that’s the rule. That’s why you went first on the first turn.
+20. Shiro: All right, I think I got that. But what’s the point of the game?
+21. Theodore: The goal is to knock out all the enemies. 
+22. If a player’s stamina is at 25% or lower, they can get knocked out of the game, even if their stamina hasn’t reached 0 yet.
+23. Narrator: Each player’s health is located under their portrait.
+24. Shiro: Anything else I should know?
+25. Theodore: Ah, yes, between rounds players gather balls automatically. That always ensures that you can at least throw at an enemy. 
+26. Shiro: I see.
+27. Theodore: And here’s one key tip for you if you want to win. Keep track of what goes on. For example, knowing what the enemies’ actions are lets you see what effects they’ll have on you.
+28. Narrator: Actions are automatically listed on the white box right here. To keep track of what actions have been done, look at the Battle Log right here.
+29. Theodore: Only one thing left to cover. Each player can be of one of three classes: thrower, catcher, and supporter. 
+30. Shiro: Oh yeah! If I remember correctly I’m a supporter!
+31. Theodore: Oh, really? That’s good! I’m a thrower, which means that I excel at dealing damage at enemies. 
+32. Clemence is a catcher, which means that he is good at catching for himself and teammates. 
+33. And you’re a supporter, which means that you can help your teammates by buffing, healing, and other useful skills.
+34. Shiro: Now is that all?
+35. Theodore: I think so! Let’s play!
+		*/        
     }
 
-	void NextDialogue(Vector3 newPosition, string whatToSay)
+	void NextDialogue(int whatToSay, Vector3 newPosition) 
 	{
 		textOverlay.SetActive (true);
-		textOverlayT.SetActive (true);
+		textOverlayT.enabled = true;
 		textOverlay.transform.position = newPosition;
-		textOverlayT.GetComponent<Text> ().text = whatToSay;
+		textOverlayT.GetComponent<Text> ().text = dialogue[whatToSay];
+	}
+
+	void NextDialogue(int whatToSay, Vector3 offSet, Transform origin) 
+	{
+		textOverlay.SetActive (true);
+		textOverlayT.enabled = true;
+		textOverlay.transform.position = origin.transform.position + offSet;
+		textOverlayT.GetComponent<Text> ().text = dialogue[whatToSay];
 	}
 
 	void ClearDialogue()
 	{
 		textOverlay.SetActive (false);
-		textOverlayT.SetActive (false);
+		textOverlayT.enabled = false;
 	}
 
 	IEnumerator CombatManagerControl(float delay)
@@ -503,9 +258,9 @@ public class CombatDialogueManager: MonoBehaviour {
 		CM.enabled = !CM.enabled;
 	}
 
-	IEnumerator CorrectTarget(Character mistake, string whatToSay)
+	IEnumerator CorrectTarget(Character mistake, int dialogueLine)
 	{
-		textOverlayT.GetComponent<Text> ().text = whatToSay;
+		textOverlayT.GetComponent<Text> ().text = dialogue[dialogueLine];
 		mistake.Target [0] = mistake;
 		CM.currentPhase = CombatManager.PHASE.TARGET;
 		yield return new WaitForSeconds (.5f);
