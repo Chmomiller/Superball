@@ -17,7 +17,7 @@ public class Harold : Character {
 											"Throw five balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 1 };
+		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 4, 6, 5 };
 
 		base.Start ();
