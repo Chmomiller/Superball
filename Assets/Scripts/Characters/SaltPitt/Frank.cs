@@ -64,9 +64,47 @@ public class Frank : Character {
 
     }
 
-	public override int Skill2() { return 0; }
+	// Skill1
+	public override int Skill2() {
+		for(int i = 0; i < 3; i++)
+		{
+			if (enemies[i].Target[0].Name == "Trevor"){
 
-	public override int Skill3() { return 0;}
+				for(int j = 0; j < enemies[0].actionNames.Length; j++)
+				{
+					if (enemies [0].action == enemies [0].actionNames [j]) 
+					{
+						enemies[0].heldBalls -= enemies[0].GetActionCost(j);
+					}
+				}
+				enemies[i].action = "None";
+			}
+		}
+		actionCooldowns[4] = 3;
+		return -1;
+
+	}
+
+	// Skill1
+	public override int Skill3() {
+		for(int i = 0; i < 3; i++)
+		{
+			if (enemies[i].Target[0].Name == "Trevor"){
+
+				for(int j = 0; j < enemies[0].actionNames.Length; j++)
+				{
+					if (enemies [0].action == enemies [0].actionNames [j]) 
+					{
+						enemies[0].heldBalls -= enemies[0].GetActionCost(j);
+					}
+				}
+				enemies[i].action = "None";
+			}
+		}
+		actionCooldowns[4] = 3;
+		return -1;
+
+	}
 
 	public override int Skill4() { return 0;}    
 

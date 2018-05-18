@@ -574,7 +574,7 @@ public class Dialogue {
         {
             "","","","","","",
             "",
-            "","transition", "Salt Pitt Gym Interior"
+            "","transition", "Salt Pitt Gym"
         },
         {
             "Clemence","Theodore","Shiro","Trevor","Greg","Frank",
@@ -1428,7 +1428,7 @@ static string[,] magicalPreparation = new string[,]{
         {
             "","","","","","",
             "",
-            "","transition", "World Map"
+            "","transition", "Map Screen"
         },
         {
             "","","","","","",
@@ -2005,7 +2005,7 @@ static string[,] scholaGrandisDefeat = new string[,]{
         {
             "","","","","","",
             "",
-            "","transition", "World Map"
+            "","transition", "Map Screen"
         },
         {
             "","Shiro","","","Theodore","Clemence",
@@ -2617,7 +2617,7 @@ static string[,] militaryFight = new string[,]{
         {
             "","","","","","",
             "",
-            "","transition", "World Map"
+            "","transition", "Map Screen"
         },
         {
             "","","","","","",
@@ -2955,7 +2955,7 @@ static string[,] yamatoBattle = new string[,]{
         {
             "","","","","","",
             "",
-            "","transition", "Mightmain Academy Gym"
+            "","transition", "Mightmain Gym Full"
         },
         {
             "Clemence","Theodore","Shiro","","Kuro","",

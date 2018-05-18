@@ -51,12 +51,12 @@ public class Mei : Character {
 	}
 	*/
 
-	// Silver Platter: Mei gives half her balls to each of her allies
+	// Silver Platter: Mei gives half her current ball count to each of her active allies
 	public override int Skill1() {
 		int gift = heldBalls;
 		for(int i = 0; i < 3; i++)
 		{
-			if(allies[i] != this)
+			if(allies[i] != this && ! allies[i].dead)
 			{
 				// if this is the first time balls are passed off give half of gift and recaluculate int gift
 				if(gift == heldBalls)
@@ -67,7 +67,8 @@ public class Mei : Character {
 				// else just pass off the remaining balls
 				else
 				{
-					allies [i].heldBalls += (int)gift;
+					allies [i].heldBalls += gift;
+					gift = 0;
 				}
 
 				// Check for overflow in target's ball cap and correct
@@ -76,7 +77,7 @@ public class Mei : Character {
 					allies [i].heldBalls = allies [i].maxBalls;
 				}
 			}
-			heldBalls = 0;
+			heldBalls = gift;
 		}
 		return 0;
     }

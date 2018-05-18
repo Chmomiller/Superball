@@ -96,6 +96,42 @@ public class Greg: Character
 		}
 		return -1;
     }
+
+	//Skill1
+	public override int Skill2()
+	{
+		if (trevor != null) {
+			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
+			if (trevor.heldBalls < trevor.maxBalls)
+				trevor.heldBalls++;
+			actionCooldowns [4] = 3;
+
+			for (int i = 0; i < combat.combatQueue [combat.currentCharacter].actionNames.Length; i++) {
+				if (combat.combatQueue [combat.currentCharacter].action == combat.combatQueue [combat.currentCharacter].actionNames [i]) {
+					combat.combatQueue [combat.currentCharacter].heldBalls -= combat.combatQueue [combat.currentCharacter].GetActionCost (i);
+				}
+			}
+		}
+		return -1;
+	}
+
+	// Skill1
+	public override int Skill3()
+	{
+		if (trevor != null) {
+			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
+			if (trevor.heldBalls < trevor.maxBalls)
+				trevor.heldBalls++;
+			actionCooldowns [4] = 3;
+
+			for (int i = 0; i < combat.combatQueue [combat.currentCharacter].actionNames.Length; i++) {
+				if (combat.combatQueue [combat.currentCharacter].action == combat.combatQueue [combat.currentCharacter].actionNames [i]) {
+					combat.combatQueue [combat.currentCharacter].heldBalls -= combat.combatQueue [combat.currentCharacter].GetActionCost (i);
+				}
+			}
+		}
+		return -1;
+	}
 	/*
     public override bool Skill2() {
        int diff = Target[0].maxBalls - Target[0].heldBalls;

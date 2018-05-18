@@ -495,6 +495,11 @@ Prefab:
       propertyPath: sceneTitle
       value: Magical Defeat
       objectReference: {fileID: 0}
+    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: nextScene
+      value: Scenes/MapScreen
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e69b7a2c177f5e44aad1ef401a78dc53, type: 2}
   m_IsPrefabParent: 0

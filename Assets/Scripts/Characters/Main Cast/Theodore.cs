@@ -18,7 +18,7 @@ public class Theodore : Character {
 			"Throw 8 balls at an enemy. <color=red>2</color> turn cooldown.\nCost: 8 balls    Target: Single Enemy"};
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 2, 1 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 1, 2 };
-	    actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 1, 8 };
+	    actionCosts = new int[] { 0, 1, 0, 0, 4, 3, 1, 8 };
 		base.Start ();
     }
 
@@ -46,9 +46,9 @@ public class Theodore : Character {
 		// check if the target dodges the ball
 		Target[0].dodgeBall(this);
 		// deal damage and add statusEffect
-		int damage = (int)( this.Damage * variance * .75f * attackMultiplier * Target[0].defenseMultiplier);
+		int damage = (int)( this.Damage * variance * .125f * attackMultiplier * Target[0].defenseMultiplier);
 		Target[0].loseStamina( damage );
-        Target[0].addStatusEffect("stun", 2);
+        Target[0].addStatusEffect("unsteady", 2);
 		this.heldBalls -= actionCosts[4];
 		return damage;
     }

@@ -73,4 +73,73 @@ public class Trevor : Character {
 
 		return damage;
     }
+
+
+	//Skill1
+	public override int Skill2()
+	{
+		int damage = 0;
+		for (int i = 0; i < 3; i++) 
+		{
+			do{
+				int aim = UnityEngine.Random.Range (0, 3);
+				Target[i] = enemies[aim];
+			}while(!Target[i].dead);
+		}
+
+		for (int i = 0; i < 3; i++) 
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
+				{
+					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
+					Target [i] = enemies [j];
+				}
+			}
+		}
+
+		// Throw at the three targets
+		for(int i =0 ; i < 3; i++)
+		{
+			damage += this.throwBall (Target[i]);
+		}
+		actionCooldowns[4] = 1;
+
+		return damage;
+	}
+
+	// Skill1
+	public override int Skill3()
+	{
+		int damage = 0;
+		for (int i = 0; i < 3; i++) 
+		{
+			do{
+				int aim = UnityEngine.Random.Range (0, 3);
+				Target[i] = enemies[aim];
+			}while(!Target[i].dead);
+		}
+
+		for (int i = 0; i < 3; i++) 
+		{
+			for(int j = 0; j < 3; j++)
+			{
+				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
+				{
+					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
+					Target [i] = enemies [j];
+				}
+			}
+		}
+
+		// Throw at the three targets
+		for(int i =0 ; i < 3; i++)
+		{
+			damage += this.throwBall (Target[i]);
+		}
+		actionCooldowns[4] = 1;
+
+		return damage;
+	}
 }
