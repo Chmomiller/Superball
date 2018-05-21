@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour 
 {
     public bool hardMode = false;
 	public static GameManager instance = null;
+	public SaveManager Save;
     public AudioScript Audio;
 
     public bool consistency = false; //Disables any random/easter egg content when true
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
 			Destroy (gameObject);
 		}
 		DontDestroyOnLoad (gameObject);
+
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
     public void swapDifficulties() {
@@ -50,4 +54,57 @@ public class GameManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(name);
         }
     }
+
+	// This function is called when a scene is loaded and is used to activate buttons on the map screen
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		if(scene.name == "MapScreen")
+		{
+			GameObject SaltPittButton = GameObject.Find ("SaltPittButton");
+			GameObject ScholaGrandisButton = GameObject.Find ("ScholaGrandisButton");
+			GameObject MightMainButton = GameObject.Find ("MightMainButton");
+			GameObject YamatoButton = GameObject.Find ("Yamato");
+			Debug.Log (ScholaGrandisButton);
+			ScholaGrandisButton.SetActive (false);
+			MightMainButton.SetActive (false);
+			YamatoButton.SetActive (false);
+			// Activate Salt Pitt buttons
+			if(Save.SaltPittDialogue)
+			{
+				SaltPittButton.GetComponent<MapButtonOptions> ().saltPittProgress = 1;
+			}
+			// Activate Schola Grandis buttons
+			if(Save.SaltPittBattle)
+			{
+				SaltPittButton.GetComponent<MapButtonOptions> ().saltPittProgress = 2;
+				ScholaGrandisButton.SetActive (true);
+				if(Save.SaltPittDialogue)
+				{
+					ScholaGrandisButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 1;
+				}
+			}
+			// Activate MightMain Academy buttons
+			if(Save.ScholaGrandisBattle)
+			{
+				ScholaGrandisButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 2;
+				MightMainButton.SetActive (true);
+				if(Save.ScholaGrandisDialog)
+				{
+					MightMainButton.GetComponent<MapButtonOptions> ().mightMainProgress = 1;
+				}
+			}
+			// Activate Yamato buttons
+			if(Save.MightMainBattle)
+			{
+				MightMainButton.GetComponent<MapButtonOptions> ().mightMainProgress = 2;
+				YamatoButton.SetActive (true);
+			}
+			/*
+			if(Save.yamatoDialog)
+			{
+				
+			}
+			*/
+		}
+	}
 }

@@ -10,6 +10,10 @@ public class MapButtonOptions : MonoBehaviour {
     public bool scholaGrandisEnable = false;
     public bool mightMainEnable = false;
 
+	public int saltPittProgress = 1;
+	public int scholaGrandisProgress = 0;
+	public int mightMainProgress = 0;
+
     public GameObject SaltPittButton;
     public GameObject SaltPittBack;
     public GameObject SaltPittDialog;
@@ -28,23 +32,19 @@ public class MapButtonOptions : MonoBehaviour {
     public GameObject MightMainBattle;
     public GameObject MightMainBattleHard;
 
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
-
     public void splitSaltPitt() {
         saltPittEnable = !saltPittEnable;
         if (saltPittEnable) {
+			SaltPittDialog.SetActive(true);
+			if(saltPittProgress > 0)
+			{
+				SaltPittBattle.SetActive(true);
+				if(saltPittProgress == 2)
+				{
+					SaltPittBattleHard.SetActive(true);
+				}
+			}
             SaltPittBack.SetActive(true);
-            SaltPittDialog.SetActive(true);
-            SaltPittBattle.SetActive(true);
-            SaltPittBattleHard.SetActive(true);
             SaltPittButton.SetActive(false);
         } else {
             SaltPittBack.SetActive(false);
@@ -58,10 +58,16 @@ public class MapButtonOptions : MonoBehaviour {
     public void splitScholaGrandis() {
         scholaGrandisEnable = !scholaGrandisEnable;
         if (scholaGrandisEnable) {
+			ScholaGrandisDialog.SetActive(true);
+			if(scholaGrandisProgress > 0)
+			{
+				ScholaGrandisBattle.SetActive(true);
+				if(scholaGrandisProgress == 2)
+				{
+					ScholaGrandisBattleHard.SetActive(true);
+				}
+			}
             ScholaGrandisBack.SetActive(true);
-            ScholaGrandisDialog.SetActive(true);
-            ScholaGrandisBattle.SetActive(true);
-            ScholaGrandisBattleHard.SetActive(true);
             ScholaGrandisButton.SetActive(false);
         } else {
             ScholaGrandisBack.SetActive(false);
@@ -76,10 +82,16 @@ public class MapButtonOptions : MonoBehaviour {
         mightMainEnable = !mightMainEnable;
 
         if (mightMainEnable) {
+			MightMainDialog.SetActive(true);
+			if(mightMainProgress > 0)
+			{
+				MightMainBattle.SetActive(true);
+				if(mightMainProgress == 2)
+				{
+					MightMainBattleHard.SetActive(true);
+				}
+			}
             MightMainBack.SetActive(true);
-            MightMainDialog.SetActive(true);
-            MightMainBattle.SetActive(true);
-            MightMainBattleHard.SetActive(true);
             MightMainButton.SetActive(false);
         } else {
             MightMainBack.SetActive(false);

@@ -31,12 +31,13 @@ public class CombatManager : MonoBehaviour
 	public int conflictInQueue = -1;
 	// Used so the UI can get the current character
 	public int currentCharacter = 0;
-	public int turn = 0;
+	private int turn = 0;
 	public bool win = false;
 	public bool lose = false;
+	public string fightName;
 
 	// Used to stagger the order of actions taken during the execute phase
-	public float delay = 0f;
+	private float delay = 0f;
 
 	void Start()
 	{
@@ -148,15 +149,54 @@ public class CombatManager : MonoBehaviour
 		}
 		else
 		{
-			if(win)
+			if (win) 
 			{
-				//combatAction.text = "You Win!";
-				combatAction.text = "Thank you for playing the demo!";
+				GameManager GM = GameObject.Find ("GameManager").GetComponent<GameManager> ();
+				if(GM.hardMode)
+				{
+					switch(fightName)
+					{
+						case("Salt Pitt"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittBattleHard = true;
+							break;
+						case("Schola Grandis"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisBattleHard = true;
+							break;
+						case("MightMain"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainBattleHard = true;
+							break;
+						case("Yamato"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoBattleHard = true;
+							break;
+						default:
+						break;
+					}
+				}
+				else
+				{
+					switch(fightName)
+					{
+					case("Salt Pitt"):
+						GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittBattle = true;
+						break;
+					case("Schola Grandis"):
+						GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisBattle = true;
+						break;
+					case("MightMain"):
+						GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainBattle = true;
+						break;
+					case("Yamato"):
+						GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoBattle = true;
+						break;
+					default:
+						break;
+					}
+				}
+				combatAction.text = "You Win!";
 			}
 			else
 			{
-				//combatAction.text = "You Lose.";
-				combatAction.text = "Thank you for playing the demo!";
+				combatAction.text = "You Lose.";
 			}
 			for(int i = 0; i < 2; i++)
 			{

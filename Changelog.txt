@@ -108,4 +108,8 @@ Tristian:
 	Added functional Tutorial Scene(currently inaccessible and still needs some bug fixes when player chooses the wrong moves)
 5/20/18:
 	Fixed status affect UI
-	
+	Added code to scripts to incorporate SaveManager:
+		DialogueScript now sets a Save bool based on sceneTitle
+		CombatManager now sets a Save bool based on fightName and GameManager.hardMode
+		SaveManager now saves when going to MapScreen scene
+	Adde code to scripts to unlock levels on the MapScreen

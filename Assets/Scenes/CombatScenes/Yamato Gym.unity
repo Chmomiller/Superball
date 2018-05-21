@@ -329,10 +329,9 @@ MonoBehaviour:
   AI: {fileID: 0}
   conflictInQueue: -1
   currentCharacter: 0
-  turn: 0
   win: 0
   lose: 0
-  delay: 0
+  fightName: Yamato
 --- !u!4 &393305960
 Transform:
   m_ObjectHideFlags: 0

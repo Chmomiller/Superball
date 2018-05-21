@@ -54,7 +54,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hardMode: 0
+  Save: {fileID: 114798835722385696}
   Audio: {fileID: 0}
+  consistency: 0
 --- !u!114 &114729587323314292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Audio: {fileID: 0}
+  Game: {fileID: 0}
+  loadingScene: 0
 --- !u!114 &114798835722385696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,3 +82,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a199e1a232b481d46bd8ba6b3729a5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shiro: {fileID: 0}
+  clemence: {fileID: 0}
+  theodore: {fileID: 0}
+  SaltPittDialogue: 0
+  SaltPittBattle: 0
+  SaltPittBattleHard: 0
+  ScholaGrandisDialog: 0
+  ScholaGrandisBattle: 0
+  ScholaGrandisBattleHard: 0
+  MightMainDialog: 0
+  MightMainBattle: 0
+  MightMainBattleHard: 0
+  yamatoDialog: 0
+  yamatoBattle: 0
+  yamatoBattleHard: 0
+  teamSevenDialog: 0
+  teamSevenBattle: 0
+  beatSuperballRush: 0
+  unlockAll: 0

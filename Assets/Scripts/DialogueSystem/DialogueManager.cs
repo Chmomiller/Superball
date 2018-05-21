@@ -109,7 +109,6 @@ public class DialogueManager : MonoBehaviour {
 
 
 			if (transition) {
-				Debug.Log (insertText [lineNum, 9]);
 				bg.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Backgrounds/" + insertText [lineNum, 9]) as Sprite;
 				//bg.GetComponent<FullScreenBG> ().ResetScale ();
 
@@ -313,6 +312,23 @@ public class DialogueManager : MonoBehaviour {
 			}
 		} else {
 			//insert scene change here
+			switch(sceneTitle)
+			{
+				case("What Punks"):
+				GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittDialogue = true;
+					break;
+				case("Magical Match"):
+					GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisDialog = true;
+					break;
+				case("Fight Against the Military"):
+					GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainDialog = true;
+					break;
+				case("Kuro's Trump Card"):
+					GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoDialog = true;
+					break;
+				default:
+					break;
+			}
 			UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
 		}
 

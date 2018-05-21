@@ -9,6 +9,11 @@ public class QuitGame : MonoBehaviour
     public AudioScript Audio;
     public GameManager Game;
     public bool loadingScene = false;
+
+	void Start()
+	{
+		Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
+	}
 	void OnEnable()
 	{
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
@@ -39,7 +44,6 @@ public class QuitGame : MonoBehaviour
 
         loadingScene = true;
         Audio.resetAllAudio();
-        print("restart");
         switch (sceneName) {
             case "MainMenu":
                 Audio.resetAllAudio();
@@ -133,16 +137,15 @@ public class QuitGame : MonoBehaviour
             GameObject.Find("MapButton").GetComponent<Button>().onClick.AddListener(() => Restart("MapScreen"));
             GameObject.Find("DialogueMenuButton").GetComponent<Button>().onClick.AddListener(() => Restart("DialogueMenu"));
             GameObject.Find("Difficulty").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<GameManager>().swapDifficulties());
-            print("Buttons Found");
 
-        } else if (SceneManager.GetActiveScene().name == "MapScreen") {
+        } /*else if (SceneManager.GetActiveScene().name == "MapScreen") {
             GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => Restart("Yamato Gym"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => Restart("OpenOcean"));
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             //MOST OTHER BUTTONS ARE IN THEIR OWN SCRIPT CALLED MapButtonOptions.cs
 
-        } else if (SceneManager.GetActiveScene().name == "DialogueMenu") {
+        } */else if (SceneManager.GetActiveScene().name == "DialogueMenu") {
             GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
             GameObject.Find("Prologue").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("Prologue"));
             GameObject.Find("A New Student").GetComponent<Button>().onClick.AddListener(() => Game.loadAnyScene("A New Student"));

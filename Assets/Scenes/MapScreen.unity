@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 60495371}
   - component: {fileID: 60495370}
   - component: {fileID: 60495369}
+  - component: {fileID: 60495372}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017968090}
+      - m_Target: {fileID: 60495372}
         m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
@@ -203,7 +204,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainMenu
+          m_StringArgument: Scenes/MainMenu
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -241,6 +242,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60495367}
+--- !u!114 &60495372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60495367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  Game: {fileID: 0}
+  loadingScene: 0
 --- !u!1 &66468497
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,15 +485,13 @@ Prefab:
       propertyPath: Audio
       value: 
       objectReference: {fileID: 9569085}
+    - target: {fileID: 1711918528759670, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &295706434 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114482799444812728, guid: c602042cc7c39b4439c8233397e162c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 295706433}
-  m_Script: {fileID: 11500000, guid: 29030b61c2a85ec4da741e734d06a702, type: 3}
 --- !u!1 &297914925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,7 +1386,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017968090}
+      - m_Target: {fileID: 60495372}
         m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
@@ -1433,7 +1446,7 @@ GameObject:
   - component: {fileID: 627023435}
   - component: {fileID: 627023434}
   m_Layer: 5
-  m_Name: SaltPittButton (1)
+  m_Name: Extra1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,6 +1485,9 @@ MonoBehaviour:
   saltPittEnable: 0
   scholaGrandisEnable: 0
   mightMainEnable: 0
+  saltPittProgress: 1
+  scholaGrandisProgress: 0
+  mightMainProgress: 0
   SaltPittButton: {fileID: 627023432}
   SaltPittBack: {fileID: 636176443}
   SaltPittDialog: {fileID: 2080737492}
@@ -1926,6 +1942,9 @@ MonoBehaviour:
   saltPittEnable: 0
   scholaGrandisEnable: 0
   mightMainEnable: 0
+  saltPittProgress: 1
+  scholaGrandisProgress: 0
+  mightMainProgress: 0
   SaltPittButton: {fileID: 742256650}
   SaltPittBack: {fileID: 636176443}
   SaltPittDialog: {fileID: 2080737492}
@@ -2239,8 +2258,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295706434}
-        m_MethodName: loadAnyScene
+      - m_Target: {fileID: 60495372}
+        m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2470,6 +2489,9 @@ MonoBehaviour:
   saltPittEnable: 0
   scholaGrandisEnable: 0
   mightMainEnable: 0
+  saltPittProgress: 1
+  scholaGrandisProgress: 0
+  mightMainProgress: 0
   SaltPittButton: {fileID: 742256650}
   SaltPittBack: {fileID: 636176443}
   SaltPittDialog: {fileID: 2080737492}
@@ -2950,12 +2972,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 969949177}
---- !u!114 &1017968090 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114729587323314292, guid: c602042cc7c39b4439c8233397e162c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 295706433}
-  m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
 --- !u!1 &1044172284
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,7 +3381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1196570395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3423,7 +3439,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1017968090}
+      - m_Target: {fileID: 60495372}
         m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
@@ -4111,7 +4127,7 @@ GameObject:
   - component: {fileID: 1571245861}
   - component: {fileID: 1571245860}
   m_Layer: 5
-  m_Name: SaltPittButton (3)
+  m_Name: Extra3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4150,6 +4166,9 @@ MonoBehaviour:
   saltPittEnable: 0
   scholaGrandisEnable: 0
   mightMainEnable: 0
+  saltPittProgress: 1
+  scholaGrandisProgress: 0
+  mightMainProgress: 0
   SaltPittButton: {fileID: 1571245858}
   SaltPittBack: {fileID: 636176443}
   SaltPittDialog: {fileID: 2080737492}
@@ -4482,6 +4501,9 @@ MonoBehaviour:
   saltPittEnable: 0
   scholaGrandisEnable: 0
   mightMainEnable: 0
+  saltPittProgress: 1
+  scholaGrandisProgress: 0
+  mightMainProgress: 0
   SaltPittButton: {fileID: 742256650}
   SaltPittBack: {fileID: 636176443}
   SaltPittDialog: {fileID: 2080737492}
@@ -4659,7 +4681,7 @@ GameObject:
   - component: {fileID: 2062663740}
   - component: {fileID: 2062663739}
   m_Layer: 5
-  m_Name: SaltPittButton (2)
+  m_Name: Extra2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4698,6 +4720,9 @@ MonoBehaviour:
   saltPittEnable: 0
   scholaGrandisEnable: 0
   mightMainEnable: 0
+  saltPittProgress: 1
+  scholaGrandisProgress: 0
+  mightMainProgress: 0
   SaltPittButton: {fileID: 2062663737}
   SaltPittBack: {fileID: 636176443}
   SaltPittDialog: {fileID: 2080737492}
@@ -4921,9 +4946,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114482799444812728, guid: c602042cc7c39b4439c8233397e162c2,
-          type: 2}
-        m_MethodName: loadAnyScene
+      - m_Target: {fileID: 60495372}
+        m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5044,8 +5068,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295706434}
-        m_MethodName: loadAnyScene
+      - m_Target: {fileID: 60495372}
+        m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -2,6 +2,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.IO;
 
 public class SaveManager : MonoBehaviour {
@@ -17,7 +18,7 @@ public class SaveManager : MonoBehaviour {
 
     public bool ScholaGrandisDialog = false;
     public bool ScholaGrandisBattle = false;
-    public bool scholaGrandisBattleHard = false;
+    public bool ScholaGrandisBattleHard = false;
 
     public bool MightMainDialog = false;
     public bool MightMainBattle = false;
@@ -45,14 +46,15 @@ public class SaveManager : MonoBehaviour {
             clemence = new Clemence();
             theodore = new Theodore();
         }
+		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
 	public void Save(){
 		FileStream file = File.Open (Application.persistentDataPath + "/info.dat", FileMode.Create);
 		BinaryWriter bf = new BinaryWriter (file);
-		bf.Write ((decimal) shiro.Level);
-		bf.Write ((decimal) theodore.Level);
-		bf.Write ((decimal) clemence.Level);
+		//bf.Write ((decimal) shiro.Level);
+		//bf.Write ((decimal) theodore.Level);
+		//bf.Write ((decimal) clemence.Level);
 
 		bf.Write (SaltPittDialogue);
 		bf.Write (SaltPittBattle);
@@ -60,7 +62,7 @@ public class SaveManager : MonoBehaviour {
 
 		bf.Write (ScholaGrandisDialog);
 		bf.Write (ScholaGrandisBattle);
-		bf.Write (scholaGrandisBattleHard);
+		bf.Write (ScholaGrandisBattleHard);
 
 		bf.Write (MightMainDialog);
 		bf.Write (MightMainBattle);
@@ -105,7 +107,7 @@ public class SaveManager : MonoBehaviour {
 
 			ScholaGrandisDialog = conditionsMet [3];
 			ScholaGrandisBattle = conditionsMet [4];
-			scholaGrandisBattleHard = conditionsMet [5];
+			ScholaGrandisBattleHard = conditionsMet [5];
 
 			MightMainDialog = conditionsMet [6];
 			MightMainBattle = conditionsMet [7];
@@ -157,4 +159,11 @@ public class SaveManager : MonoBehaviour {
 		return conditionsCompleted;
 	}
 
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		if(scene.name == "MapScreen")
+		{
+			Save ();	
+		}
+	}
 }
