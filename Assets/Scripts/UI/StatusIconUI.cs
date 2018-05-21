@@ -12,9 +12,9 @@ public class StatusIconUI : MonoBehaviour {
 	void Start () 
 	{
 		statusNumber = -1;
-		Image[] temp = gameObject.GetComponentsInChildren<Image> ();
-		statusExplainationPanel = temp [1];
-		statusExplaination = gameObject.GetComponentInChildren<Text> ();
+		//Image[] temp = gameObject.GetComponentsInChildren<Image> ();
+		//statusExplainationPanel = temp [1];
+		//statusExplaination = gameObject.GetComponentInChildren<Text> ();
 		//statuses = new Sprite[1];
 		//statuses [0] = Resources.Load ("Sprites/UI/BuffIcon");
 	}
@@ -39,7 +39,7 @@ public class StatusIconUI : MonoBehaviour {
 				statusExplaination.text = "The charater takes 25% more damage";
 				break;
 			case(5):
-				statusExplaination.text = "The charater tis doing something special...";
+				statusExplaination.text = "The charater is doing something special...";
 				break;
 			default:
 				statusExplaination.text = "";

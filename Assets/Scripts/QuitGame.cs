@@ -35,7 +35,6 @@ public class QuitGame : MonoBehaviour
     }
     public void Restart(string sceneName)
 	{
-        print(loadingScene);
         if (loadingScene) return;
 
         loadingScene = true;

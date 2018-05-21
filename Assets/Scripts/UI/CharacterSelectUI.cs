@@ -16,12 +16,14 @@ public class CharacterSelectUI : MonoBehaviour
 	void Start () 
 	{
 		gameObject.GetComponent<Button> ().onClick.AddListener (CharacterSelect);
+		/*
 		Image[] temp = gameObject.GetComponentsInChildren<Image> ();
 		status = new Image[3];
 		status [0] = temp [1];
 		status [1] = temp [3];
 		status [2] = temp [5];
 		Tell = temp [7];
+		*/
 		for(int i = 0; i < status.Length; i++)
 		{
 			status [i].gameObject.SetActive (false);
@@ -102,7 +104,7 @@ public class CharacterSelectUI : MonoBehaviour
 	{
 		for(int i = 0; i < 3; i++)
 		{
-			if(status[i].sprite == statusImage[oldStatus])
+			if(status[i].GetComponent<StatusIconUI>().statusNumber == oldStatus)
 			{
 				status [i].enabled = false;
 				status [i].GetComponent<StatusIconUI> ().statusNumber = -1;

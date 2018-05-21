@@ -106,4 +106,6 @@ Tristian:
 	Fixed links to and from Dialogue Scenes
 	Combat now has a connection to Dialogue scenes
 	Added functional Tutorial Scene(currently inaccessible and still needs some bug fixes when player chooses the wrong moves)
+5/20/18:
+	Fixed status affect UI
 	

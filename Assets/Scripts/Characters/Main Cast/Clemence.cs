@@ -21,7 +21,7 @@ public class Clemence : Character
 										  "Catches for both allies but not yourself", 
 										  "If enemy is throwing, they are stunned", 
 										  "Blocks the first attack on the next two turns", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" , "Utility" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Defense" , "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 2, 0, 0, 1, 0 };
 
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 1, 0 };

@@ -149,6 +149,7 @@ public class Character : MonoBehaviour
 			gameObject.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
 		}
 	}
+
 	public virtual void Init(CombatManager CM, CharacterSelectUI combatUI)
 	{
 		this.combat = CM;
@@ -210,15 +211,6 @@ public class Character : MonoBehaviour
 			// remember we can check a player's statusEffects anywhere
 			CSUI.AddStatus(0);
 			break;
-		case "debuff":
-			if (findStatus ("buff") != -1) {
-				statusEffects [findStatus ("buff")].duration = 0;
-				removeDoneStatusEffects ();
-				removeStatusEffect ("buff");
-			}
-			this.attackMultiplier = .75f;
-			CSUI.AddStatus(1);
-			break;
 		case "buff":
 			if (findStatus ("debuff") != -1) {
 				statusEffects [findStatus ("debuff")].duration = 0;
@@ -226,6 +218,15 @@ public class Character : MonoBehaviour
 				removeStatusEffect ("debuff");
 			}
 			this.attackMultiplier = 1.25f;
+			CSUI.AddStatus(1);
+			break;
+		case "debuff":
+			if (findStatus ("buff") != -1) {
+				statusEffects [findStatus ("buff")].duration = 0;
+				removeDoneStatusEffects ();
+				removeStatusEffect ("buff");
+			}
+			this.attackMultiplier = .75f;
 			CSUI.AddStatus(2);
 			break;
 		case "steady":
@@ -248,10 +249,6 @@ public class Character : MonoBehaviour
 			this.defenseMultiplier = 0.75f;
 			CSUI.AddStatus(4);
 			break;
-		case "halfDmg":
-			break;
-		case "moreDmg":
-				break;
 		case "confused":
 				// check during plan and randomly choose target
 				// remember we can check a player's statusEffects anywhere
@@ -270,26 +267,22 @@ public class Character : MonoBehaviour
 			// check during plan and skip if stunned
 			// remember we can check a player's statusEffects anywhere
 			break;
-		case "debuff":
+		case "buff":
 			CSUI.RemoveStatus (1);
 			this.attackMultiplier = 1.0f;
 			break;
-		case "buff":
+		case "debuff":
 			CSUI.RemoveStatus (2);
 			this.attackMultiplier = 1.0f;
 			break;
-		case "unsteady":
+		case "steady":
 			CSUI.RemoveStatus (3);
 			this.defenseMultiplier = 1.0f;
 			break;
-		case "steady":
+		case "unsteady":
 			CSUI.RemoveStatus (4);
 			this.defenseMultiplier = 1.0f;
 			break;
-		case "halfDmg":
-				break;
-		case "moreDmg":
-				break;   
 		case "confused":
 				break;
 		case "misc":
