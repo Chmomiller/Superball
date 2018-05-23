@@ -5670,8 +5670,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114192986719866316}
   m_HandleRect: {fileID: 224131903843861866}
   m_Direction: 0
-  m_Value: 0.9999997
-  m_Size: 0.096720755
+  m_Value: 0.99999964
+  m_Size: 0.09672074
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5913,7 +5913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ebe160cfddef749896043bfc6eacc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 3
+  character: 4
   status:
   - {fileID: 114316504518878916}
   - {fileID: 114886282903076704}
@@ -6268,7 +6268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ebe160cfddef749896043bfc6eacc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 0
+  character: 2
   status:
   - {fileID: 114579751963917006}
   - {fileID: 114159248405730686}
@@ -6772,7 +6772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ebe160cfddef749896043bfc6eacc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 3
+  character: 5
   status:
   - {fileID: 114586876124386998}
   - {fileID: 114338202351798798}
@@ -7043,7 +7043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ebe160cfddef749896043bfc6eacc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 0
+  character: 1
   status:
   - {fileID: 114811358627462854}
   - {fileID: 114452111584953928}
@@ -13049,7 +13049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.00024414062}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0.0002746582}
   m_SizeDelta: {x: 445.7, y: 844.7}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224502900630866974

@@ -105,7 +105,7 @@ MonoBehaviour:
   CSUI: {fileID: 0}
   characterDirector: {fileID: 0}
   characterAnims:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
   - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Harold
   Damage: 15

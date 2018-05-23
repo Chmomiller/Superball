@@ -58,6 +58,15 @@ public class Yamato : Character {
         return false;
     }
 
+
+	new public bool dodgeBall()
+	{
+		if(Stamina < 1)
+		{
+			this.dead = true;
+		}
+		return false;
+	}
 	// 
     public override int Skill1() {
         yamatoCharge += 10;
@@ -88,4 +97,7 @@ public class Yamato : Character {
 	public override int Skill4() {
 		return 0;
     }
+
+	new void playDodge(){}
+	new void playThrow(){}
 }
