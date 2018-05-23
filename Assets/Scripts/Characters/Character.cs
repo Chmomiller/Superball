@@ -92,6 +92,12 @@ public class Character : MonoBehaviour
 		Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
 	}
 
+	public virtual void Init(CombatManager CM, CharacterSelectUI combatUI)
+	{
+		this.combat = CM;
+		this.CSUI = combatUI;	
+	}
+
 	public void loseStamina(int staminaLoss) 
 	{
         AudioScript.playStaticSFX("_SFX/Battle sfx/miss/miss_1");
@@ -150,20 +156,11 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	public virtual void Init(CombatManager CM, CharacterSelectUI combatUI)
-	{
-		this.combat = CM;
-		this.CSUI = combatUI;	
-	}
+
 
 
     //In decendant classes, update is used to set the allies,enemies,and targettingType arrays
     // to their proper values.
-    //NOTE: AS SHIRO, CLEMENCE,AND THEODORE ARE PLAYERS BY DEFAULT, THEIR DEFAULT TARGETTING IS AIMED TOWARDS
-    //ENEMIES, WHEREAS EVERYONE ELSE'S DEFAULT TARGETTING TYPE IS SET TO THE PLAYERS AS THEY ARE USUALLY THE ENEMY TEAM
-    //IE: Shiro, Clemence, and Theodore have it look reversed. That is on purpose
-
-
 
     //here to swap teams in case we need it
     public void changeAllegiance() {
@@ -190,9 +187,7 @@ public class Character : MonoBehaviour
 			}
 		}
 	}
-
-	//called at the end of your turn
-	// Changed this to public, not public in other versions
+		
 	public void removeDoneStatusEffects(){
 		for(int i =0; i<statusEffects.Length; i++){
 			if(statusEffects[i].duration == 0){

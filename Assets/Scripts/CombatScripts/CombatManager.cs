@@ -470,12 +470,14 @@ public class CombatManager : MonoBehaviour
 		int damage = 0;
 		enabled = false;
 		yield return new WaitForSeconds (finish);
-		// If the characcter is KO'd or stunned, don't perform their action
+		// If the characcter is not KO'd or stunned, perform their action
 		if(! (character.dead || character.findStatus("stun") != -1))
 		{
 			// This bool determines if character does their action after checking what the target's action is.
 			// performAction is intended to be set by Character functions which should return bools
 			bool performAction = false;
+
+			// The initial attack text
 			switch (action) 
 			{
 			case("Throw"):
@@ -498,6 +500,8 @@ public class CombatManager : MonoBehaviour
 				break;
 			}
 			combatAction.text = readOut;
+
+			// Check if the player is catching and prepair to catch
 			if(action == "Catch")
 			{
 				for(int i = 0; i < 6; i++)
@@ -516,149 +520,168 @@ public class CombatManager : MonoBehaviour
 				}
 				readOut = character.Name + " is ready to catch!";
 				combatAction.text = readOut;
-				Debug.Log (character.Name + " is ready to catch!");
 			}
 			else
 			{
-				if (character.Target[0].actionType == "Defense") 
+				// the character is attacking and the target is defending
+				if (character.actionType == "Offense") 
 				{
-					switch (character.Target[0].action) 
+					if(character.Target[0].actionType == "Defense") 
 					{
-					case("Catch"):
-						//character.heldBalls--;
-						if (character.Target[0].catchBall (character)) 
+						switch (character.Target[0].action) 
 						{
-							if (character.Target[0].tag == "Player") 
+						case("Catch"):
+							//character.heldBalls--;
+							if (character.Target[0].catchBall (character)) 
 							{
-								//ballsCaught.Add (true);
-							} 
-							else 
-							{
-								//ballsCaught.Add (false);
-							}
+								if (character.Target[0].tag == "Player") 
+								{
+									//ballsCaught.Add (true);
+								} 
+								else 
+								{
+									//ballsCaught.Add (false);
+								}
 
-							readOut += " but "+character.Target[0].Name + " caught the ball!";
+								readOut += " but "+character.Target[0].Name + " caught the ball!";
+								combatAction.text = readOut;
+							}
+							else
+							{
+								performAction = true;
+							}
+							break;
+						case("Skill1"):
+							damage = character.Target [0].Skill1 ();
+							if (damage > 0) 
+							{
+								performAction = true;
+								readOut += " but " + character.Target [0].Name + 
+										   " used " + character.Target [0].GetActionName (4) + " !";
+							}
+							else
+							{
+								readOut += " but " + character.Target [0].Name + 
+										   " used " + character.Target [0].GetActionName (4) + 
+										   " dealing " + damage + " damage !";
+							}
 							combatAction.text = readOut;
-							Debug.Log (character.Target[0].Name + " caught the ball!");
+							break;
+						case("Skill2"):
+							damage = character.Target [0].Skill2 ();
+							if (damage > 0) 
+							{
+								performAction = true;
+								readOut += " but " + character.Target [0].Name + 
+									       " used " + character.Target [0].GetActionName (5) + " !";
+							}
+							else
+							{
+								readOut += " but " + character.Target [0].Name + 
+									       " used " + character.Target [0].GetActionName (5) + 
+									       " dealing " + damage + " damage !";
+							}
+							combatAction.text = readOut;
+							break;
+						case("Skill3"):
+							damage = character.Target [0].Skill3 ();
+							if (damage > 0) 
+							{
+								performAction = true;
+								readOut += " but " + character.Target [0].Name + 
+									       " used " + character.Target [0].GetActionName (6) + " !";
+							}
+							else
+							{
+								readOut += " but " + character.Target [0].Name + 
+									       " used " + character.Target [0].GetActionName (6) + 
+									       " dealing " + damage + " damage !";
+							}
+							combatAction.text = readOut;
+							break;
+						case("Skill4"):
+							damage = character.Target [0].Skill4 ();
+							if (damage > 0) 
+							{
+								performAction = true;
+								readOut += " but " + character.Target [0].Name + 
+										   " used " + character.Target [0].GetActionName (7) + " !";
+							}
+							else
+							{
+								readOut += " but " + character.Target [0].Name + 
+										   " used " + character.Target [0].GetActionName (7) + 
+										   " dealing " + damage + " damage !";
+							}
+							combatAction.text = readOut;
+							break;
 						}
-						else
+						if (performAction) 
 						{
-							performAction = true;
+							// These perform skills after a defensive action
+							switch(action)
+							{
+							case("Throw"):
+								readOut += character.Name + " deals " + character.throwBall (character.Target[0]) + " damage!";
+								break;
+							case("Skill1"):
+								readOut += character.Name + " deals " + character.Skill1 () + " damage!";
+								break;
+							case("Skill2"):
+								readOut += character.Name + " deals " + character.Skill2 () + " damage!";
+								break;
+							case("Skill3"):
+								readOut += character.Name + " deals " + character.Skill3 () + " damage!";
+								break;
+							case("Skill4"):
+								readOut += character.Name + " deals " + character.Skill4 () + " damage!";
+								break;
+							default:
+								break;
+							}
 						}
-						break;
-					case("Skill1"):
-						damage = character.Target [0].Skill1 ();
-						if (damage == 0) 
-						{
-							performAction = true;
-							readOut += " but " + character.Target [0].Name + 
-									   " used " + character.Target [0].GetActionName (4) + " !";
-						}
-						else
-						{
-							readOut += " but " + character.Target [0].Name + 
-									   " used " + character.Target [0].GetActionName (4) + 
-									   " dealing " + damage + " damage !";
-						}
-						combatAction.text = readOut;
-						Debug.Log (character.Target[0].Name + " used  Skill 1!");
-						break;
-					case("Skill2"):
-						damage = character.Target [0].Skill2 ();
-						if (damage == 0) 
-						{
-							performAction = true;
-							readOut += " but " + character.Target [0].Name + 
-								       " used " + character.Target [0].GetActionName (5) + " !";
-						}
-						else
-						{
-							readOut += " but " + character.Target [0].Name + 
-								       " used " + character.Target [0].GetActionName (5) + 
-								       " dealing " + damage + " damage !";
-						}
-						combatAction.text = readOut;
-						Debug.Log (character.Target[0].Name + "used Skill 2 !");
-						break;
-					case("Skill3"):
-						damage = character.Target [0].Skill3 ();
-						if (damage == 0) 
-						{
-							performAction = true;
-							readOut += " but " + character.Target [0].Name + 
-								       " used " + character.Target [0].GetActionName (6) + " !";
-						}
-						else
-						{
-							readOut += " but " + character.Target [0].Name + 
-								       " used " + character.Target [0].GetActionName (6) + 
-								       " dealing " + damage + " damage !";
-						}
-						combatAction.text = readOut;
-						Debug.Log (character.Target[0].Name + " used Skill 3!");
-						break;
-					case("Skill4"):
-						damage = character.Target [0].Skill4 ();
-						if (damage == 0) 
-						{
-							performAction = true;
-							readOut += " but " + character.Target [0].Name + 
-									   " used " + character.Target [0].GetActionName (7) + " !";
-						}
-						else
-						{
-							readOut += " but " + character.Target [0].Name + 
-									   " used " + character.Target [0].GetActionName (7) + 
-									   " dealing " + damage + " damage !";
-						}
-						combatAction.text = readOut;
-						Debug.Log (character.Target[0].Name + " used Skill 4!");
-						break;
 					}
-					if (performAction) 
+					else 
 					{
-						// These perform skills after a defensive action
+						// These perform skills if the target doesn't have a defensive action
 						switch(action)
 						{
 						case("Throw"):
-							readOut += character.Name + " deals " + character.throwBall (character.Target[0]) + " damage!";
+							readOut += " dealing " + character.throwBall (character.Target[0]) + " damage!";
 							break;
 						case("Skill1"):
-							readOut += character.Name + " deals " + character.Skill1 () + " damage!";
+							readOut += " dealing " + character.Skill1 () + " damage!";
 							break;
 						case("Skill2"):
-							readOut += character.Name + " deals " + character.Skill2 () + " damage!";
+							readOut += " dealing " + character.Skill2 () + " damage!";
 							break;
 						case("Skill3"):
-							readOut += character.Name + " deals " + character.Skill3 () + " damage!";
+							readOut += " dealing " + character.Skill3 () + " damage!";
 							break;
 						case("Skill4"):
-							readOut += character.Name + " deals " + character.Skill4 () + " damage!";
+							readOut += " dealing " + character.Skill4 () + " damage!";
 							break;
 						default:
 							break;
 						}
 					}
-				} 
-				else 
+				}
+				// If the action was not offensive, perform the action
+				else
 				{
-					// These perform skills if the target doesn't have a defensive action
 					switch(action)
 					{
-					case("Throw"):
-						readOut += " dealing " + character.throwBall (character.Target[0]) + " damage!";
-						break;
 					case("Skill1"):
-						readOut += " dealing " + character.Skill1 () + " damage!";
+						character.Skill1 ();
 						break;
 					case("Skill2"):
-						readOut += " dealing " + character.Skill2 () + " damage!";
+						character.Skill2 ();
 						break;
 					case("Skill3"):
-						readOut += " dealing " + character.Skill3 () + " damage!";
+						character.Skill3 ();
 						break;
 					case("Skill4"):
-						readOut += " dealing " + character.Skill4 () + " damage!";
+						character.Skill4 ();
 						break;
 					default:
 						break;
@@ -666,6 +689,7 @@ public class CombatManager : MonoBehaviour
 				}
 			}
 		}
+		// If the player is KO'd or stunned show the appropriate text
 		else
 		{
 			if(character.dead)
@@ -680,8 +704,11 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 
+		// Update the combatLog
 		combatLog.UpdateLog (readOut);
 		combatAction.text = readOut;
+
+		// If this is the last action, enable CombatManager
 		if(finish == delay)
 		{
 			enabled = true;

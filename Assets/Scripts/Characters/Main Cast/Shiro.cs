@@ -12,7 +12,7 @@ public class Shiro : Character{
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Pass Off", "Refreshments", "Keep Fighting", "Cheer On" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
 										  "Gives all balls to a single teammate up to their max.\nCost: Varies    Target: Single Ally", 
-										  "Hands Blue Bison™ refreshments to one teammate, to recover 1/4 of their maximum stamina. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Ally", 
+										  "Hands refreshments to one teammate, healing 1/4 of their maximum stamina. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Ally", 
 										  "All teammates are <color=#00ff00ff>steadied</color> for 2 turns. <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team", 
 										  "All teammates are <color=blue>buffed</color> for two turns.  <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
@@ -53,7 +53,7 @@ public class Shiro : Character{
         if (Target[0].Stamina > Target[0].maxStamina) {
             Target[0].Stamina = Target[0].maxStamina;
         }
-        actionCooldowns[5] = 3; //where N is assuming this is the N+1th ability.
+        actionCooldowns[5] = 4; //where N is assuming this is the N+1th ability.
 		return 0;
     }
 
@@ -68,7 +68,7 @@ public class Shiro : Character{
         if (allies[2] != this) {
             allies[2].addStatusEffect("steady", 2);
         }
-        actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
+        actionCooldowns[6] = 5; //where N is assuming this is the N+1th ability.
 		return 0;
     }
 }

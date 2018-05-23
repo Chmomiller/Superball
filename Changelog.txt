@@ -113,3 +113,7 @@ Tristian:
 		CombatManager now sets a Save bool based on fightName and GameManager.hardMode
 		SaveManager now saves when going to MapScreen scene
 	Adde code to scripts to unlock levels on the MapScreen
+5/22/18:
+	Reformatted Main cast skill descriptions
+	Changed CombatManager.DoAction to report damage more accurately
+	Added cursor bob animation

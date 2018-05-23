@@ -12,7 +12,7 @@ public class Theodore : Character {
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
-			"Throw a weaker attack that <color=yellow>stuns</color> for 1 turn\nCost: 2 balls    Target: Single Enemy", 
+			"Throw a <i>weaker</i> attack that leaves the foe <color=orange>unsteady</color> for 1 turn\nCost: 2 balls    Target: Single Enemy", 
 			"Throw a ball that ignores catching. <color=red>2</color> turn cooldown.\nCost: 3 balls    Target: Single Enemy", 
 			"If a ball is to be thrown at you, redirect at a target ally instead", 
 			"Throw 8 balls at an enemy. <color=red>2</color> turn cooldown.\nCost: 8 balls    Target: Single Enemy"};

@@ -237,7 +237,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 80370383}
+      - m_Target: {fileID: 1924060379}
         m_MethodName: Restart
         m_Mode: 5
         m_Arguments:
@@ -283,12 +283,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 77681880}
---- !u!114 &80370383 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114729587323314292, guid: c602042cc7c39b4439c8233397e162c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 379765569}
-  m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
 --- !u!1 &116761396
 GameObject:
   m_ObjectHideFlags: 0
