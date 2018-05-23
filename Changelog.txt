@@ -117,3 +117,6 @@ Tristian:
 	Reformatted Main cast skill descriptions
 	Changed CombatManager.DoAction to report damage more accurately
 	Added cursor bob animation
+	Re-did Character portraits
+	Resized Combat sprites to more uniform scale
+	

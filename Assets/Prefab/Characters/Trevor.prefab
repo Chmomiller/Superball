@@ -53,7 +53,7 @@ Transform:
   m_GameObject: {fileID: 1714382150950498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.85182, y: 0.71, z: 90}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
   m_Children:
   - {fileID: 4564855933159568}
   m_Father: {fileID: 0}
@@ -67,7 +67,7 @@ Transform:
   m_GameObject: {fileID: 1954241027913256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4019975854269442}
   m_RootOrder: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   CSUI: {fileID: 0}
   characterDirector: {fileID: 0}
   characterAnims:
-  - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Trevor
   Damage: 13
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5213c86fe808a9840af1b98666704fad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f792f9fc7bdcca343a1e1112e0fccaf9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

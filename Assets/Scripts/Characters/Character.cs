@@ -339,6 +339,7 @@ public class Character : MonoBehaviour
 
 	public int throwBall(Character target)
 	{
+		Debug.Log ("In Throwball");
 		Transform DB = Instantiate (dodgeball, gameObject.transform.position, Quaternion.identity);
 		/*DB.transform.position = new Vector3 (DB.transform.position.x, 
 											 DB.transform.position.y, 

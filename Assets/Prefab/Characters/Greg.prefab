@@ -53,7 +53,7 @@ Transform:
   m_GameObject: {fileID: 1883574158194466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232647257470812}
   m_RootOrder: 0
@@ -66,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 1978174293078186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.2025404, y: 0.44310075, z: 90}
-  m_LocalScale: {x: -0.125, y: 0.125, z: 1}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
   m_Children:
   - {fileID: 4065642340213278}
   m_Father: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   CSUI: {fileID: 0}
   characterDirector: {fileID: 0}
   characterAnims:
-  - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Greg
   Damage: 9

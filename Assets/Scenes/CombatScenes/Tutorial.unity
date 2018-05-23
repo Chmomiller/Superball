@@ -432,10 +432,9 @@ MonoBehaviour:
   AI: {fileID: 0}
   conflictInQueue: -1
   currentCharacter: 0
-  turn: 0
   win: 0
   lose: 0
-  delay: 0
+  fightName: 
 --- !u!4 &393305960
 Transform:
   m_ObjectHideFlags: 0
@@ -970,6 +969,24 @@ Prefab:
       propertyPath: m_Name
       value: Character4
       objectReference: {fileID: 0}
+    - target: {fileID: 212665951622860348, guid: 01a2cfe2add8cf5469762c8dc4d5e527,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d96537935f48fb46850785a3611e663,
+        type: 3}
+    - target: {fileID: 4890650866261862, guid: 01a2cfe2add8cf5469762c8dc4d5e527, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955906357475200, guid: 01a2cfe2add8cf5469762c8dc4d5e527, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955906357475200, guid: 01a2cfe2add8cf5469762c8dc4d5e527, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01a2cfe2add8cf5469762c8dc4d5e527, type: 2}
   m_IsPrefabParent: 0
@@ -1015,6 +1032,20 @@ Prefab:
     - target: {fileID: 1978174293078186, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
       propertyPath: m_Name
       value: Character5
+      objectReference: {fileID: 0}
+    - target: {fileID: 212202726367449014, guid: 9e978ddd4eb3bf84c843f5042a0e5d93,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1dae12aae9d611e40807f39a6e51bfca,
+        type: 3}
+    - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232647257470812, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e978ddd4eb3bf84c843f5042a0e5d93, type: 2}
@@ -1128,6 +1159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hardMode: 1
+  Save: {fileID: 0}
   Audio: {fileID: 0}
   consistency: 1
 --- !u!114 &1862253762
@@ -1232,6 +1264,20 @@ Prefab:
     - target: {fileID: 1714382150950498, guid: 68d73248284fd3045a55027a01b49943, type: 2}
       propertyPath: m_Name
       value: Character3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212889965310803212, guid: 68d73248284fd3045a55027a01b49943,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a4331c533956af4a8ce15ada5214011,
+        type: 3}
+    - target: {fileID: 4019975854269442, guid: 68d73248284fd3045a55027a01b49943, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019975854269442, guid: 68d73248284fd3045a55027a01b49943, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68d73248284fd3045a55027a01b49943, type: 2}

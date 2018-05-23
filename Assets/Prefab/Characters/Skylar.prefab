@@ -66,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 1365132067671048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.448522, y: -0.649036, z: 90}
-  m_LocalScale: {x: -0.125, y: 0.125, z: 1}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
   m_Children:
   - {fileID: 4743055983546802}
   m_Father: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   CSUI: {fileID: 0}
   characterDirector: {fileID: 0}
   characterAnims:
-  - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
   Name: Skylar
   Damage: 14

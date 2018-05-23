@@ -15,7 +15,7 @@ public class CursorManager : MonoBehaviour
 
 	void Update () 
 	{
-		if(CM.currentPhase != CombatManager.PHASE.START && CM.currentPhase != CombatManager.PHASE.EXECUTE)
+		if(CM.currentPhase != CombatManager.PHASE.START && CM.currentPhase != CombatManager.PHASE.RESULTS)
 		{
 			if (CM.currentCharacter > -1 && CM.currentCharacter < 6) 
 			{
@@ -25,7 +25,7 @@ public class CursorManager : MonoBehaviour
 		}
 		else
 		{
-			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -5f);
+			gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -100f);
 		}
 	}
 }
