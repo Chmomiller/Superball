@@ -87,26 +87,22 @@ public class AudioScript : MonoBehaviour {
         AudioClip sfx = Resources.Load<AudioClip>("Audio/" + name);
         src1.PlayOneShot(sfx);
         if (sfx == null) print("sfx problem");
-        print("sfx");
     }
 
     public void playSFX(string name){// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
       AudioClip sfx = Resources.Load<AudioClip> ("Audio/"+name);
       src2.PlayOneShot(sfx);
         if (sfx == null) print("sfx problem");
-        print("sfx");
    }
 
     public static void playStaticSFX(string name) {// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
         AudioClip sfx = Resources.Load<AudioClip>("Audio/" + name);
         staticSrc.PlayOneShot(sfx);
         if (sfx == null) print("sfx problem");
-        print("static sfx");
     }
 
 
     public void chooseTrack(int track){ //this method is called in most other functions in here and serves to take in the track integer input that is passed to the methods in this class that is then passed here. It takes this integer and sets src and file to point to the the class regarding the track integer variable. They are kind of like pointers and point to src# and file# where # is the track integer given as input. This makes it so that we only affect the track sent to us.
-        print("Track number: " + track);
         if (track == 1){ //these are to set the pointer src and file to the audio_track you want to change
          src = src1;
          file = file1;

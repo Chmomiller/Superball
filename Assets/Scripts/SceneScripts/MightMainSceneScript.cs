@@ -11,7 +11,7 @@ public class MightMainSceneScript : MonoBehaviour {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(12);
             GameObject.Find("Character5").GetComponent<Character>().LevelUp(11);
             GameObject.Find("Character3").GetComponent<Character>().LevelUp(13);
-            GameObject.Find("Character0").GetComponent<Character>().LevelUp(10);
+            GameObject.Find("Character0").GetComponent<Character>().LevelUp(12);
             GameObject.Find("Character1").GetComponent<Character>().LevelUp(12);
             GameObject.Find("Character2").GetComponent<Character>().LevelUp(13);
             print("start hard mode");
