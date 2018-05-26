@@ -16,7 +16,7 @@ public class DebuggerScript : MonoBehaviour {
 
 	public void UnlockAll()
 	{
-		SaveManager SM = GameObject.Find ("GameManager").GetComponent<SaveManager> ();
+		SaveManager SM = GameObject.Find ("GameManager").GetComponent<GameManager> ().Save;
 		SM.SaltPittDialogue = true;
 		SM.SaltPittBattle = true;
 		SM.SaltPittBattleHard = true;

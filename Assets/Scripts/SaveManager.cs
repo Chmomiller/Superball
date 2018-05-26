@@ -52,9 +52,9 @@ public class SaveManager : MonoBehaviour {
 	public void Save(){
 		FileStream file = File.Open (Application.persistentDataPath + "/info.dat", FileMode.Create);
 		BinaryWriter bf = new BinaryWriter (file);
-		//bf.Write ((decimal) shiro.Level);
-		//bf.Write ((decimal) theodore.Level);
-		//bf.Write ((decimal) clemence.Level);
+		bf.Write ((decimal) shiro.Level);
+		bf.Write ((decimal) theodore.Level);
+		bf.Write ((decimal) clemence.Level);
 
 		bf.Write (SaltPittDialogue);
 		bf.Write (SaltPittBattle);
