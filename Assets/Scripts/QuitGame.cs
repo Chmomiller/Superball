@@ -127,8 +127,9 @@ public class QuitGame : MonoBehaviour
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 
-        if(GameObject.Find("MainMenu") != null) GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
-
+        if(GameObject.Find("MainMenu") != null){
+            GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+        }
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
         if (SceneManager.GetActiveScene().name == "MainMenu") {
             //GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => Restart("Salt Pitt High Gym"));
