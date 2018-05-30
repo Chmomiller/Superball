@@ -118,5 +118,10 @@ Tristian:
 	Changed CombatManager.DoAction to report damage more accurately
 	Added cursor bob animation
 	Re-did Character portraits
-	Resized Combat sprites to more uniform scale
+	Resized Dialogue sprites to more uniform scale
+5/25/18:
+	Added Schola Grandis character sprites
+	Added error checking to Combat Dialogue
+5/29/18:
+	Added reset function to Character and main cast along with function in SaveManager that calls resetCharacter
 	

@@ -126,6 +126,13 @@ public class SaveManager : MonoBehaviour {
 		return true;
 	}
 
+	public void Reset()
+	{
+		shiro.ResetChar ();
+		theodore.ResetChar ();
+		clemence.ResetChar ();
+	}
+
 	public int[] ReadLevels(){
 		int[] characterLevels = new int[3];
 		if (File.Exists (Application.persistentDataPath + "/info.dat")) {

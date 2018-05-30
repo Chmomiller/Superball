@@ -97,4 +97,16 @@ public class Theodore : Character {
 		this.heldBalls -= actionCosts[7];
 		return damage;
     }
+
+	public override void ResetChar()
+	{
+		Damage = 15;
+		Catch = 100;
+		Gather = 1;
+		Stamina = 120;
+		maxStamina = 120;
+		maxBalls = 2;
+		Level = 1;
+		Experience = 0;
+	}
 }

@@ -38,5 +38,7 @@ public class DebuggerScript : MonoBehaviour {
 
 		SM.beatSuperballRush = true;
 		SM.unlockAll = true;
+
+        gameObject.SetActive(false);
 	}
 }

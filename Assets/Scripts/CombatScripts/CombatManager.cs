@@ -723,7 +723,14 @@ public class CombatManager : MonoBehaviour
 		actor.action = actor.actions [choice];
 		actor.actionType = actor.actionTypes [choice];
 
-		currentPhase = PHASE.TARGET;
+        //Check if you can actually do the skill. IE, No cooldown and you have the balls.
+        while (actor.actionCooldowns[choice] > 0 || actor.heldBalls <= actor.actionCosts[count]) {
+            choice = Random.Range(1, 7);
+            actor.action = actor.actions[choice];
+            actor.actionType = actor.actionTypes[choice];
+        }
+
+        currentPhase = PHASE.TARGET;
 		switch(actor.GetTargetingType(choice))
 		{
 		case(2):

@@ -118,7 +118,8 @@ MonoBehaviour:
   Level: 1
   attackMultiplier: 1
   defenseMultiplier: 1
-  Role: Supporter
+  Experience: 0
+  Role: Thrower
   Target:
   - {fileID: 0}
   action: None

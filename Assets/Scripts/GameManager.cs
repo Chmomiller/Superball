@@ -106,10 +106,11 @@ public class GameManager : MonoBehaviour
 			}
 			*/
 		}
+		/*
 		if(scene.name == "SlugCon MightMain Academy Gym")
 		{
-			
 			Audio.playAudio ("Mightmain Battle", 0);
 		}
+		*/
 	}
 }

@@ -112,4 +112,15 @@ public class Clemence : Character
 		}
 		catchAttempts = 0;
 	}
+
+	public override void ResetChar()
+	{
+		Damage = 10;
+		Catch = 100;
+		Gather = 1;
+		maxStamina = 130;
+		maxBalls = 2;
+		Level = 1;
+		Experience = 0;
+	}
 }

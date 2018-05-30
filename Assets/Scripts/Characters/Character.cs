@@ -24,6 +24,7 @@ public class Character : MonoBehaviour
     public int Level = 1;
 	public float attackMultiplier = 1.0f;
 	public float defenseMultiplier = 1.0f;
+    public int Experience = 0;
 
     public string Role = "Supporter";
 	public Character[] Target = new Character[3]; //Create an empty Character in the combat manager that other charaters can select when not targetting
@@ -434,17 +435,37 @@ public class Character : MonoBehaviour
 		characterDirector.Play (characterAnims[1]);
 	}
 
+    public void gainExperience(int exp) {
+        this.Experience += exp;
+        this.LevelUp(this.Experience / 100);
+        this.Experience = this.Experience % 100;
+    }
+
     public void LevelUp(int number) {
         float variance;
         for (int i = 0; i < number; i++) {
             this.Level++;
-            if (this.Level < 5) { variance = UnityEngine.Random.Range(0, 5);} else{variance = UnityEngine.Random.Range(4, 9);}
+            if (this.Level < 5) { variance = UnityEngine.Random.Range(0, 2);} else{variance = UnityEngine.Random.Range(3, 5);}
             this.maxStamina = (int)((this.maxStamina * 1.1) + variance);
             this.Stamina = this.maxStamina;
-            this.Damage = (int)((this.Damage * 1.1) + UnityEngine.Random.Range(0, 2));
+            this.Damage = (int)((this.Damage * 1.1) + UnityEngine.Random.Range(0, 1));
             if (this.Level % 2 == 0 || this.Level % 3 == 0) this.maxBalls += 2;
             this.heldBalls = this.maxBalls;
         }
         //print("Level Up:" + this.name);
     }
+
+	public virtual void ResetChar()
+	{
+		Name = "default";
+		Damage = 10;
+		Catch = 100;
+		Gather = 1;
+		Stamina = 100;
+		maxStamina = 100;
+		heldBalls = 0;
+		maxBalls = 4;
+		Level = 1;
+		Experience = 0;
+	}
 }

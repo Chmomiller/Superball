@@ -71,4 +71,15 @@ public class Shiro : Character{
         actionCooldowns[6] = 5; //where N is assuming this is the N+1th ability.
 		return 0;
     }
+
+	public override void ResetChar()
+	{
+		Damage = 10;
+		Catch = 100;
+		Gather = 2;
+		maxStamina = 140;
+		maxBalls = 4;
+		Level = 1;
+		Experience = 0;
+	}
 }

@@ -27,7 +27,7 @@ public class Transition : MonoBehaviour {
 		coverSize.sizeDelta = new Vector2 (canvas.rect.width + 50, canvas.rect.height + 50);
 	}
 
-	//void Update () {
+	void Update () {
 		/*if (done == 0) {
 			transform.Translate (0f, speed, 0f);
 			if (button.position.y < -button.rect.height)
@@ -43,13 +43,22 @@ public class Transition : MonoBehaviour {
 			//done = 0;
 			StartCoroutine("uncoverScreen");
 		}
-		if (Input.GetKeyDown (KeyCode.U)) {
+		if (Input.GetKeyDown (KeyCode.E)) {
 			//done = 1;
 			StartCoroutine("coverScreen");
 		}*/
-	//}
+	}
 
-	IEnumerator uncoverScreen () {
+	public void screenUp () {
+		StartCoroutine ("coverScreen");
+	}
+
+	public void screenDown() {
+		StartCoroutine ("uncoverScreen");
+	}
+
+
+	public IEnumerator uncoverScreen () {
 		bool comp = false;
 		while (!comp) {
 			if (cover.position.y < -canvas.rect.height){
@@ -62,7 +71,7 @@ public class Transition : MonoBehaviour {
 		}
 	}
 
-	IEnumerator coverScreen () {
+	public IEnumerator coverScreen () {
 		bool comp = false;
 		while (!comp) {
 			if (cover.position.y > (canvas.rect.height - (cover.rect.height/2))) {

@@ -127,7 +127,8 @@ public class CombatDialogueManager: MonoBehaviour {
 				StartCoroutine (CombatManagerControl(.1f));
 			}
 		}
-		else
+		// Error if the action is wrong
+		else if(error == 1)
 		{
 			// Error conditions
 			if (count != 10 && count != 11 && count != 15 && 
@@ -136,6 +137,16 @@ public class CombatDialogueManager: MonoBehaviour {
 				count--;
 				display = true;
 			}
+		}
+		// Error if the target is wrong
+		else if(error == 2)
+		{
+			
+		}
+		// Critical error, THE ACTING CHARACTER IS WRONG!
+		else if(error == 3)
+		{
+			
 		}
 		textOverlay.SetActive(true);
 		textOverlayT.enabled = true;

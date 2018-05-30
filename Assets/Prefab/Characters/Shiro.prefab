@@ -110,14 +110,15 @@ MonoBehaviour:
   Name: Shiro
   Damage: 10
   Catch: 100
-  Gather: 1
+  Gather: 2
   Stamina: 140
   maxStamina: 140
   heldBalls: 0
-  maxBalls: 2
+  maxBalls: 4
   Level: 1
   attackMultiplier: 1
   defenseMultiplier: 1
+  Experience: 0
   Role: Supporter
   Target:
   - {fileID: 0}
