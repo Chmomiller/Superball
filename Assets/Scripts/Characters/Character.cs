@@ -191,7 +191,7 @@ public class Character : MonoBehaviour
 		
 	public void removeDoneStatusEffects(){
 		for(int i =0; i<statusEffects.Length; i++){
-			if(statusEffects[i].duration == 0){
+			if(statusEffects[i].duration <= 0){
 				removeStatusEffect(statusEffects[i].name);
 				statusEffects [i].name = "none";
 			}
@@ -437,7 +437,7 @@ public class Character : MonoBehaviour
 
     public void gainExperience(int exp) {
         this.Experience += exp;
-        this.LevelUp(this.Experience / 100);
+        this.LevelUp( (int)(this.Experience / 100) );
         this.Experience = this.Experience % 100;
     }
 
