@@ -262,14 +262,16 @@ public class DialogueManager : MonoBehaviour {
 					fadeTime = 0;
 				}
 
-				if (insertText [lineNum, 8] == "BG") {
+				if (insertText [lineNum, 8] == "Background Audio") {
 					changeSound = true;
 					source.Stop ();
 					source.clip = Resources.Load ("Audio/" + insertText [lineNum, 9]) as AudioClip;
 					source.Play ();
 				}
-
-			}
+                if (insertText[lineNum, 8] == "SFX" || insertText[lineNum,8] == "sfx") {
+                    AudioScript.playStaticSFX(insertText[lineNum, 9]);
+                }
+            }
 
 
 		}
