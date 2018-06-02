@@ -25,7 +25,7 @@ public class Transition : MonoBehaviour {
 		canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
 		speed = -10f;
 		var coverSize = cover.transform as RectTransform;
-		coverSize.sizeDelta = new Vector2 (canvas.rect.width + 50, canvas.rect.height + 50);
+		coverSize.sizeDelta = new Vector2 (canvas.rect.width + .5f*canvas.rect.width, canvas.rect.height + 50);
 		if (startDown) {
 			transform.Translate(0, -canvas.rect.height - 40, 0);
 		} /* else {
