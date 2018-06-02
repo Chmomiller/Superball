@@ -124,4 +124,7 @@ Tristian:
 	Added error checking to Combat Dialogue
 5/29/18:
 	Added reset function to Character and main cast along with function in SaveManager that calls resetCharacter
+6/1/18:
+	Added Victoria Battle Sprite and Character Portraits
+	Fixed Trevor's skill based infinite loop
 	

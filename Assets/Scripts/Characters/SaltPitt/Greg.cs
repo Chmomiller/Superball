@@ -22,7 +22,11 @@ public class Greg: Character
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
+
+
 		base.Start ();
+
+		trevor = GameObject.FindObjectOfType<Trevor> ();
 		/*
 		foreach (Character C in enemies) 
 		{
@@ -82,13 +86,14 @@ public class Greg: Character
 	// Is there a cost for this?
 	public override int Skill1()
     {
-		if (trevor != null) {
+		if (trevor) {
 			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
 			if (trevor.heldBalls < trevor.maxBalls)
 				trevor.heldBalls++;
 			actionCooldowns [4] = 3;
-
+			Debug.Log ("combat.combatQueue [combat.currentCharacter].actionNames.Length: " + combat.combatQueue [combat.currentCharacter].actionNames.Length);
 			for (int i = 0; i < combat.combatQueue [combat.currentCharacter].actionNames.Length; i++) {
+				Debug.Log ("i = "+i);
 				if (combat.combatQueue [combat.currentCharacter].action == combat.combatQueue [combat.currentCharacter].actionNames [i]) {
 					combat.combatQueue [combat.currentCharacter].heldBalls -= combat.combatQueue [combat.currentCharacter].GetActionCost (i);
 				}
@@ -100,7 +105,7 @@ public class Greg: Character
 	//Skill1
 	public override int Skill2()
 	{
-		if (trevor != null) {
+		if (trevor) {
 			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
 			if (trevor.heldBalls < trevor.maxBalls)
 				trevor.heldBalls++;
@@ -118,7 +123,7 @@ public class Greg: Character
 	// Skill1
 	public override int Skill3()
 	{
-		if (trevor != null) {
+		if (trevor) {
 			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
 			if (trevor.heldBalls < trevor.maxBalls)
 				trevor.heldBalls++;
