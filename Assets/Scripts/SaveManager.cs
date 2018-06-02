@@ -53,8 +53,22 @@ public class SaveManager : MonoBehaviour {
 		FileStream file = File.Open (Application.persistentDataPath + "/info.dat", FileMode.Create);
 		BinaryWriter bf = new BinaryWriter (file);
 		bf.Write ((decimal) shiro.Level);
+		bf.Write ((decimal) shiro.maxStamina);
+		bf.Write ((decimal)shiro.Damage);
+		bf.Write ((decimal)shiro.maxBalls);
+		//bf.Write ((decimal) shiro.experience);
+
 		bf.Write ((decimal) theodore.Level);
+		bf.Write ((decimal) theodore.maxStamina);
+		bf.Write ((decimal) theodore.Damage);
+		bf.Write ((decimal) theodore.maxBalls);
+		//bf.Write ((decimal) theodore.experience);
+
 		bf.Write ((decimal) clemence.Level);
+		bf.Write ((decimal) clemence.maxStamina);
+		bf.Write ((decimal) clemence.Damage);
+		bf.Write ((decimal) clemence.maxBalls);
+		//bf.Write ((decimal) clemence.experience);
 
 		bf.Write (SaltPittDialogue);
 		bf.Write (SaltPittBattle);
@@ -83,23 +97,34 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	public bool Read(){
-		int[] characterLevels = this.ReadLevels ();
+		int[] characterStats = this.ReadCharacters ();
 		bool[] conditionsMet = this.ReadBooleans ();
-		if (characterLevels [0] == 0 || conditionsMet [0] == false) {
+		if (characterStats [0] == 0 || conditionsMet [0] == false) {
 			return false;
 		} else {
-			int shiroTempLvl = characterLevels [0];
+			int shiroTempLvl = characterStats [0];
 			if (shiroTempLvl > shiro.Level) {
 				shiro.LevelUp (shiroTempLvl - shiro.Level);
 			}
-			int theoTempLvl = characterLevels [1];
+			shiro.maxStamina = characterStats [1];
+			shiro.Damage = characterStats [2];
+			shiro.maxBalls = characterStats [3];
+
+			int theoTempLvl = characterStats [4];
 			if (theoTempLvl > theodore.Level) {
 				theodore.LevelUp (theoTempLvl - theodore.Level);
 			}
-			int clemTempLvl = characterLevels [2];
+			theodore.maxStamina = characterStats [5];
+			theodore.Damage = characterStats [6];
+			theodore.maxBalls = characterStats [7];
+
+			int clemTempLvl = characterStats [8];
 			if(clemTempLvl > clemence.Level) {
 				clemence.LevelUp (clemTempLvl - clemence.Level);
 			}
+			clemence.maxStamina = characterStats [9];
+			clemence.Damage = characterStats [10];
+			clemence.maxBalls = characterStats [11];
 
 			SaltPittDialogue = conditionsMet [0];
 			SaltPittBattle = conditionsMet [1];
@@ -133,19 +158,19 @@ public class SaveManager : MonoBehaviour {
 		clemence.ResetChar ();
 	}
 
-	public int[] ReadLevels(){
-		int[] characterLevels = new int[3];
+	public int[] ReadCharacters(){
+		int[] characterStats = new int[12];
 		if (File.Exists (Application.persistentDataPath + "/info.dat")) {
 			FileStream file = File.Open (Application.persistentDataPath + "/info.dat", FileMode.Open);
 			BinaryReader br = new BinaryReader(file);
-			for (int i = 0; i < 3; i++) {
-				characterLevels [i] = (int) br.ReadDecimal ();
+			for (int i = 0; i < 12; i++) {
+				characterStats [i] = (int) br.ReadDecimal ();
 			}
 
 			br.Close ();
 			file.Close ();
 		}
-		return characterLevels;
+		return characterStats;
 	}
 		
 	public bool[] ReadBooleans(){
@@ -153,7 +178,7 @@ public class SaveManager : MonoBehaviour {
 		if (File.Exists (Application.persistentDataPath + "/info.dat")) {
 			FileStream file = File.Open (Application.persistentDataPath + "/info.dat", FileMode.Open);
 			BinaryReader br = new BinaryReader(file);
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 12; i++) {
 				br.ReadDecimal ();
 			}
 			for (int i = 0; i < 16; i++) {

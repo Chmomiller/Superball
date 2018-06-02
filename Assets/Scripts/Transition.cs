@@ -17,6 +17,7 @@ public class Transition : MonoBehaviour {
 	RectTransform canvas;
 	RectTransform cover;
 	public float speed;
+	public bool startDown;
 
 	void Start()
 	{
@@ -25,6 +26,11 @@ public class Transition : MonoBehaviour {
 		speed = -10f;
 		var coverSize = cover.transform as RectTransform;
 		coverSize.sizeDelta = new Vector2 (canvas.rect.width + 50, canvas.rect.height + 50);
+		if (startDown) {
+			transform.Translate(0, -canvas.rect.height - 40, 0);
+		} /* else {
+			transform.Translate(0, canvas.rect.height - (cover.rect.height / 2), 0);
+		} */
 	}
 
 	void Update () {

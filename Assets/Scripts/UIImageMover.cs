@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIImageMover : MonoBehaviour {
 
+	public RectTransform canvas;
 	public RectTransform loc;
 	public float speed;
 	public float finalX;
@@ -13,7 +14,10 @@ public class UIImageMover : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		loc = gameObject.GetComponent<RectTransform> ();
+		canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
 		speed = 10f;
+		finalX = canvas.rect.width/2 -directionMultiplier*canvas.rect.width*finalX;
+		//transform.Translate (-directionMultiplier * canvas.rect.width / 2 - directionMultiplier * 50, 0, 0);
 	}
 	
 	// Update is called once per frame
