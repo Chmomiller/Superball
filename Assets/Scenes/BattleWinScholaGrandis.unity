@@ -1358,6 +1358,11 @@ Prefab:
       propertyPath: startDown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114991505434416198, guid: 39a70f224340403448dc0de3a6269efc,
+        type: 2}
+      propertyPath: sceneToTransitionTo
+      value: Dialogue Scenes/Magical Defeat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39a70f224340403448dc0de3a6269efc, type: 2}
   m_IsPrefabParent: 0

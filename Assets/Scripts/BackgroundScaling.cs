@@ -11,7 +11,7 @@ public class BackgroundScaling : MonoBehaviour {
 	void Start () {
 		backdrop = gameObject.GetComponent<RectTransform>();
 		canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
-		backdrop.sizeDelta = new Vector2 (canvas.rect.width + .25f * canvas.rect.width, canvas.rect.height + .15f * canvas.rect.height);
+		backdrop.sizeDelta = new Vector2 (canvas.rect.width + .35f * canvas.rect.width, canvas.rect.height + .2f * canvas.rect.height);
 	}
 
 	// Update is called once per frame

@@ -789,7 +789,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 72e7db9ce676bda4d9b9a442eefe7039, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07b733885e24b64489db19340d807cbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1361,7 +1361,7 @@ Prefab:
     - target: {fileID: 114991505434416198, guid: 39a70f224340403448dc0de3a6269efc,
         type: 2}
       propertyPath: sceneToTransitionTo
-      value: Dialogue Scenes/Punk Defeat
+      value: Dialogue Scenes/Military Surrender
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39a70f224340403448dc0de3a6269efc, type: 2}

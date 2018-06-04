@@ -41,7 +41,7 @@ public class LvlUpTxt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Time.time > .75f) && !newXpGranted) {
+		if ((Time.time > .9f) && !newXpGranted) {
 			newExp = 301;
 			newXpGranted = true;
 			greenBar.Translate(-50f, 0f, 0f);
