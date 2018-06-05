@@ -288,6 +288,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1924694074110328, guid: 9301d2c46086010438e8d3a59b53a246, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9301d2c46086010438e8d3a59b53a246, type: 2}
   m_IsPrefabParent: 0
@@ -789,7 +793,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0eb17218ef493614c9b475c27145d094, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e7db9ce676bda4d9b9a442eefe7039, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -888,6 +892,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1695676741}
+        m_MethodName: Restart
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Dialogue Scenes/Punk Defeat
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1250,12 +1265,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 694294724}
---- !u!114 &739530600 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114569337189141702, guid: 9301d2c46086010438e8d3a59b53a246,
-    type: 2}
-  m_PrefabInternal: {fileID: 52254293}
-  m_Script: {fileID: 11500000, guid: a199e1a232b481d46bd8ba6b3729a5ef, type: 3}
 --- !u!1001 &761717846
 Prefab:
   m_ObjectHideFlags: 0
@@ -1361,7 +1370,7 @@ Prefab:
     - target: {fileID: 114991505434416198, guid: 39a70f224340403448dc0de3a6269efc,
         type: 2}
       propertyPath: sceneToTransitionTo
-      value: Dialogue Scenes/Kuro's Trump Card
+      value: Dialogue Scenes/Punk Defeat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39a70f224340403448dc0de3a6269efc, type: 2}
@@ -1394,8 +1403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveManager: {fileID: 739530600}
-  character: {fileID: 1985512578}
+  saveManager: {fileID: 0}
+  character: {fileID: 0}
   characterName: Shiro
   newExpTotal: 0
   characterInfo: {fileID: 312059499}
@@ -1742,7 +1751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveManager: {fileID: 739530600}
+  saveManager: {fileID: 0}
   character: {fileID: 0}
   characterName: Clemence
   newExpTotal: 0
@@ -2142,6 +2151,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f54919b5d1596543b2fafc2aab0e0fd, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1695676741 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114965867189132494, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1695676740}
+  m_Script: {fileID: 11500000, guid: 45e7f8b2a7559dd4a920a6c33c0b59dd, type: 3}
 --- !u!1 &1820000882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,12 +2361,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1961862968}
---- !u!114 &1985512578 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114934331285537062, guid: 9301d2c46086010438e8d3a59b53a246,
-    type: 2}
-  m_PrefabInternal: {fileID: 52254293}
-  m_Script: {fileID: 11500000, guid: 7c0ab69ddba1c0c45a7dcd3491cc6b5a, type: 3}
 --- !u!1 &2088354731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,7 +2388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveManager: {fileID: 739530600}
+  saveManager: {fileID: 0}
   character: {fileID: 0}
   characterName: Theodore
   newExpTotal: 0

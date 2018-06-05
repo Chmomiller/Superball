@@ -23,6 +23,19 @@ public class LvlUpTxt : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		saveManager = FindObjectOfType<SaveManager> ();
+		switch(characterName)
+		{
+			case("Shiro"):
+				character = saveManager.shiro;
+			break;
+			case("Theodore"):
+				character = saveManager.theodore;
+			break;
+			case("Clemence"):
+				character = saveManager.clemence;
+			break;
+		}
 		//characterInfo = gameObject.GetComponent<Text> ();
 		//greenBar.Translate(-50f, 0f, 0f);
 		//saveManager = (SaveManager) GameObject.Find ("SaveManager");

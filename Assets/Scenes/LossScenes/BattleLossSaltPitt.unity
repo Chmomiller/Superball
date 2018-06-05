@@ -993,11 +993,12 @@ MonoBehaviour:
   characterChanges: {fileID: 12153868}
   currExp: 0
   newExp: 0
-  particleEffectDone: 1
   greenBar: {fileID: 0}
   ogStam: 0
   ogDam: 0
   ogBalls: 0
+  backdropBar: {fileID: 0}
+  newXpGranted: 0
 --- !u!222 &1027098681
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1216,11 +1217,12 @@ MonoBehaviour:
   characterChanges: {fileID: 1054634386}
   currExp: 0
   newExp: 0
-  particleEffectDone: 1
   greenBar: {fileID: 0}
   ogStam: 0
   ogDam: 0
   ogBalls: 0
+  backdropBar: {fileID: 0}
+  newXpGranted: 0
 --- !u!4 &1192216092
 Transform:
   m_ObjectHideFlags: 0
@@ -1681,6 +1683,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114282978661318022, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Scenes/CombatScenes/Salt Pitt High Gym
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f54919b5d1596543b2fafc2aab0e0fd, type: 2}
   m_IsPrefabParent: 0
@@ -2002,11 +2009,12 @@ MonoBehaviour:
   characterChanges: {fileID: 400353223}
   currExp: 0
   newExp: 0
-  particleEffectDone: 1
   greenBar: {fileID: 0}
   ogStam: 0
   ogDam: 0
   ogBalls: 0
+  backdropBar: {fileID: 0}
+  newXpGranted: 0
 --- !u!4 &2088354733
 Transform:
   m_ObjectHideFlags: 0

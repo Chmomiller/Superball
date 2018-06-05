@@ -198,4 +198,15 @@ public class SaveManager : MonoBehaviour {
 			Save ();	
 		}
 	}
+
+	void CopyChar(Character source, Character destination)
+	{
+		destination.Damage = source.Damage;
+		destination.Gather = source.Gather;
+		destination.maxStamina = source.maxStamina;
+		destination.Stamina = destination.maxStamina;
+		destination.maxBalls = source.maxBalls;
+		destination.Level = source.Level;
+		destination.Experience = source.Experience;
+	}
 }

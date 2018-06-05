@@ -113,11 +113,12 @@ MonoBehaviour:
   Gather: 1
   Stamina: 130
   maxStamina: 130
-  heldBalls: 0
+  heldBalls: 8
   maxBalls: 2
   Level: 1
   attackMultiplier: 1
   defenseMultiplier: 1
+  Experience: 0
   Role: Supporter
   Target:
   - {fileID: 0}

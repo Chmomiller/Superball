@@ -55,11 +55,11 @@ public class CombatDialogueManager: MonoBehaviour {
 								"I think so Let’s play!"};
 
 
-	string[] errorDialogue = { "Looks like you chose the wrong action.\nPress the \"Back\" button.", // Error 1: 
-							   "Ok...That's the target too...\nLet's go pack a step.",
-							   "Hold up, that's the wrong skill, let's try again.",
-							   "I feel like I should be using Skill 1...",
-							   "Why do I have the sudden urge to <b>NOT</> do that?"};
+	string[] errorDialogue = { "Looks like you chose the wrong action.\nPress the \"Back\" button.", // Error 1: Shiro didn't catch
+							   "Ok...That's the target too...\nLet's go pack a step.",				 // Error 2: Shiro didn't target Trevor
+							   "Hold up, that's the wrong action, let's try again.",				 // Error 3: Clemence didn't catch
+							   "I feel like I should be using Skill 1...",							 // Error 4: Theodore didn't choose skill 1
+							   "Why do I have the sudden urge to <b>NOT</> do that?"};				 // Error 5: Theodore didn't target Trevor
 	public bool control;
 	public bool display;
 
@@ -84,9 +84,9 @@ public class CombatDialogueManager: MonoBehaviour {
 		}
 
 		// error conditions
-		CheckErrors(10, "Shiro", "Throw", "Trevor");
-		CheckErrors (11, "Clemence", "Catch");
-		CheckErrors (15, "Theodore", "Skill1", "Trevor");
+		error = (CheckErrors(9, "Shiro", "Throw", "Trevor")+
+				  CheckErrors (10, "Clemence", "Catch")+
+				  CheckErrors (14, "Theodore", "Skill1", "Trevor"));
 
 		if(error == 0)
 		{
@@ -155,7 +155,6 @@ public class CombatDialogueManager: MonoBehaviour {
 			textOverlayT.text = dialogue[count];
 			display = false;
 		}
-		error = 0;
     }
 
 	void NextDialogue(int whatToSay, Vector3 newPosition) 
@@ -180,52 +179,63 @@ public class CombatDialogueManager: MonoBehaviour {
 		textOverlayT.enabled = false;
 	}
 
-	void CheckErrors(int line, string name, string action, string target)
+	int CheckErrors(int line, string name, string action, string target)
 	{
+		Debug.Log ("Count: "+count+", Checking for line: "+line+
+			"\nIn CheckErrors, currentCharacter: "+CM.combatQueue [CM.currentCharacter].Name+", name should be: "+name+
+			"\nAction: "+CM.combatQueue [CM.currentCharacter].action+", checking for: "+action+
+			"\nTarget: "+CM.combatQueue [CM.currentCharacter].Target[0].Name+", checking for: "+target);
 		Character currentCharacter = CM.combatQueue [CM.currentCharacter];
 		if(count == line)
 		{
 			if(currentCharacter.Name != name)
 			{
-				error = 3;
+				return 3;
 			}
 			else
 			{
 				if(currentCharacter.action != action &&
 					currentCharacter.action != "None")
 				{
-					error = 1;
+					Debug.Log ("error 1 found");
+					return 1;
 				}
 				else
 				{
 					if(currentCharacter.Target[0].Name != target && 
 						currentCharacter.Target[0].Name != currentCharacter.Name)
 					{
-						error = 2;
+						return 2;
 					}
 				}
 			}
 		}
+		return 0;
 	}
 
-	void CheckErrors(int line, string name, string action)
+	int CheckErrors(int line, string name, string action)
 	{
+		Debug.Log ("Count: "+count+", Checking for line: "+line+
+					"\nIn CheckErrors, currentCharacter: "+CM.combatQueue [CM.currentCharacter].Name+", name should be: "+name+
+					"\nAction: "+CM.combatQueue [CM.currentCharacter].action+", checking for: "+action);
 		Character currentCharacter = CM.combatQueue [CM.currentCharacter];
 		if(count == line)
 		{
 			if(currentCharacter.Name != name)
 			{
-				error = 3;
+				return 3;
 			}
 			else
 			{
 				if(currentCharacter.action != action &&
 					currentCharacter.action != "None")
 				{
-					error = 1;
+					Debug.Log ("error 1 found");
+					return 1;
 				}
 			}
 		}
+		return 0;
 	}
 
 	IEnumerator CombatManagerControl(float delay)

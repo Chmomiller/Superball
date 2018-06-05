@@ -14,8 +14,7 @@ public class CombatManager : MonoBehaviour
 	// The buttons for selecting the players and enemies
 	public Button[] playerSelect;
 	public Button[] enemySelect;
-	// The buttons that show up at the ned of combat
-	public Button[] endButton;
+
 	public CombatUI CUI;
 	// This is for debug purposes
 	public Text combatAction;
@@ -31,7 +30,7 @@ public class CombatManager : MonoBehaviour
 	public int conflictInQueue = -1;
 	// Used so the UI can get the current character
 	public int currentCharacter = 0;
-	private int turn = 0;
+	public int turn = 0;
 	public bool win = false;
 	public bool lose = false;
 	public string fightName;
@@ -51,7 +50,6 @@ public class CombatManager : MonoBehaviour
 		Enemy = new Character[3];
 		playerSelect = new Button [3];
 		enemySelect = new Button [3];
-		endButton = new Button[2];
 
 		// his block sets up the the characters and character select buttons 
 		for (int i = 0; i < 3; i++) 
@@ -99,10 +97,7 @@ public class CombatManager : MonoBehaviour
 
 		// Get text components and the end buttons
 		combatAction = GameObject.Find ("CombatAction").GetComponent<Text> ();
-		combatLog = GameObject.Find ("CombatLog").GetComponentInChildren<CombatLog> ();
-		endButton [0] = GameObject.Find ("RetryButton").GetComponent<Button> ();
-		endButton [1] = GameObject.Find ("ContinueButton").GetComponent<Button> ();
-			
+		combatLog = GameObject.Find ("CombatLog").GetComponentInChildren<CombatLog> ();			
 		//ballsCaught = new System.Collections.Generic.List<bool>();
 
 		// This sets up the character's healthbars and sets their allies and enemies internally
@@ -198,17 +193,11 @@ public class CombatManager : MonoBehaviour
 			{
 				combatAction.text = "You Lose.";
 			}
-			for(int i = 0; i < 2; i++)
-			{
-				endButton [i].enabled = true;
-				endButton [i].GetComponent<Image> ().enabled = true;
-				endButton [i].GetComponentInChildren<Text> ().enabled = true;
-			}
 		}
 	}
 
 	// This function is the start of the turn. It orders the characters by stamina
-	void StartQueue()								
+	public void StartQueue()								
 	{
 		turn++;
 		combatLog.UpdateLog ("-----Turn "+turn+" Start-----");
@@ -225,8 +214,7 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < 6; i++) 
 		{
 			for (int j = i+1; j < 6; j++) 
-			{
-				//The first clause orders by stamina, the second ignores the case where j is out but j-1 is active
+			{				//The first clause orders by stamina, the second ignores the case where j is out but j-1 is active
 				if (tempChar [j-1].Stamina < tempChar [j].Stamina && !(tempChar [j].dead && !tempChar [j-1].dead)) 
 				{
 					Character temp = tempChar [j];
@@ -239,7 +227,6 @@ public class CombatManager : MonoBehaviour
 		for (int i = 0; i < 6; i++) 
 		{
 			combatQueue [i] = tempChar [i];
-			//combatQueue [i].action = "None";
 			combatQueue [i].gatherBall ();
 		}
 		currentPhase = PHASE.CONFLICT;
