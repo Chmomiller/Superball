@@ -84,9 +84,9 @@ public class GameManager : MonoBehaviour
 				SaltPittButton.GetComponent<MapButtonOptions> ().saltPittProgress = 2;
 				Debug.Log (ScholaGrandisButton.GetComponent<Image> ());
 				Debug.Log ("before "+ScholaGrandisButton.GetComponent<Image> ().enabled);
-				ScholaGrandisButton.GetComponent<Image> ().enabled = true;
+				//ScholaGrandisButton.GetComponent<Image> ().enabled = true;
 				Debug.Log ("After "+ScholaGrandisButton.GetComponent<Image> ().enabled);
-				ScholaGrandisButton.GetComponent<Button> ().enabled = true;
+				//ScholaGrandisButton.GetComponent<Button> ().enabled = true;
 				if(Save.SaltPittDialogue)
 				{
 					SaltPittButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 1;
@@ -96,8 +96,8 @@ public class GameManager : MonoBehaviour
 			if(Save.ScholaGrandisBattle)
 			{
 				SaltPittButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 2;
-				MightMainButton.GetComponent<Image> ().enabled = true;
-				MightMainButton.GetComponent<Button> ().enabled = true;
+				//MightMainButton.GetComponent<Image> ().enabled = true;
+				//MightMainButton.GetComponent<Button> ().enabled = true;
 				if(Save.ScholaGrandisDialog)
 				{
 					SaltPittButton.GetComponent<MapButtonOptions> ().mightMainProgress = 1;
@@ -107,8 +107,8 @@ public class GameManager : MonoBehaviour
 			if(Save.MightMainBattle)
 			{
 				SaltPittButton.GetComponent<MapButtonOptions> ().mightMainProgress = 2;
-				YamatoButton.GetComponent<Image> ().enabled = true;
-				YamatoButton.GetComponent<Button> ().enabled = true;
+				//YamatoButton.GetComponent<Image> ().enabled = true;
+				//YamatoButton.GetComponent<Button> ().enabled = true;
 			}
 			/*
 			if(Save.yamatoDialog)

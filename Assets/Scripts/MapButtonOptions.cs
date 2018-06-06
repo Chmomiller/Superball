@@ -34,9 +34,22 @@ public class MapButtonOptions : MonoBehaviour {
 
 	public GameObject Yamato;
 
-	void Update()
+
+
+	void Start()
 	{
-		Debug.Log(ScholaGrandisButton.GetComponent<Image>().enabled);
+		if(saltPittProgress > 1)
+		{
+			ScholaGrandisButton.SetActive (true);
+		}
+		if(scholaGrandisProgress > 1)
+		{
+			MightMainButton.SetActive (true);
+		}
+		if(mightMainProgress > 1)
+		{
+			Yamato.SetActive (true);
+		}
 	}
 
     public void splitSaltPitt() {
