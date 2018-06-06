@@ -9,11 +9,11 @@ public class Trevor : Character {
         Name = "Trevor";
         Role = "Thrower";
 
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Skill2", "Skill3", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Throw at 3 random Targets", 
-										  "Target is blocked from throwing balls and must do something else next", 
-										  "Blocks the first attack on the next two turns", "" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Riled Up", "Skill3", "Skill4" };
+		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls",
+                                          "Choose <color = red>3 random targets on the enemy team and throw one ball at each. These targets can be the same more than once.", 
+										  "Target is <i>blocked</i> from throwing balls and must do something else next", 
+										  "Blocks the first attack on the next <color = red>2 turns", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 }; 
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
@@ -76,6 +76,12 @@ public class Trevor : Character {
 
 
 	//Skill1
+    public override int Skill2() {
+        this.addStatusEffect("buffed", 3);
+        return 0;
+    }
+
+    /*
 	public override int Skill2()
 	{
 		int damage = 0;
@@ -108,9 +114,17 @@ public class Trevor : Character {
 
 		return damage;
 	}
+    */
+    // Skill3
 
-	// Skill1
-	public override int Skill3()
+    public override int Skill3() {
+        Target[0].addStatusEffect("buff", 3);
+        Target[0].addStatusEffect("unsteady", 2);
+        actionCooldowns[5] = 4;
+        return 0;
+    }
+    /*
+    public override int Skill3()
 	{
 		int damage = 0;
 		for (int i = 0; i < 3; i++) 
@@ -142,4 +156,14 @@ public class Trevor : Character {
 
 		return damage;
 	}
+    */
+    public override int Skill4() {
+        this.throwBall(Target[0]);
+        Target[0].addStatusEffect("buff", 3);
+        Target[0].addStatusEffect("steady", 3);
+        this.heldBalls -= 3;
+        this.actionCooldowns[6] = 3; 
+        return this.Damage;
+    }
+
 }

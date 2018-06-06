@@ -87,14 +87,14 @@ public class Clemence : Character
         if (Target[0].actionType == "Offense") {
 			Target [0].addStatusEffect ("stun", 1);
         }
-        actionCooldowns[4] = 4;
+        actionCooldowns[5] = 4;
 		return 0;
     }
 
 	// Rain Shield: Blocks the first attack on the next two turns
     public override int Skill3() {
 		addStatusEffect ("misc", 3);
-        actionCooldowns[5] = 3;
+        actionCooldowns[6] = 3;
 		return 0;
     }
 
