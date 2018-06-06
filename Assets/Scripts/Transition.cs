@@ -1,23 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Transition : MonoBehaviour {
 
 	public static Transition blackScreen;
-	void Awake () {
+	/*void Awake () {
 		if (blackScreen == null) {
 			DontDestroyOnLoad (this);
 			blackScreen = this;
 		} else if (blackScreen != this) {
 			Destroy (this);
 		}
-	}
+	}*/
 
 	RectTransform canvas;
 	RectTransform cover;
 	public float speed;
 	public bool startDown;
+	public string sceneToTransitionTo;
 
 	void Start()
 	{
@@ -25,7 +27,7 @@ public class Transition : MonoBehaviour {
 		canvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
 		speed = -10f;
 		var coverSize = cover.transform as RectTransform;
-		coverSize.sizeDelta = new Vector2 (canvas.rect.width + 50, canvas.rect.height + 50);
+		coverSize.sizeDelta = new Vector2 (canvas.rect.width + .5f*canvas.rect.width, canvas.rect.height + 50);
 		if (startDown) {
 			transform.Translate(0, -canvas.rect.height - 40, 0);
 		} /* else {
@@ -82,6 +84,9 @@ public class Transition : MonoBehaviour {
 		while (!comp) {
 			if (cover.position.y > (canvas.rect.height - (cover.rect.height/2))) {
 				comp = true;
+				if (sceneToTransitionTo != null) {
+					SceneManager.LoadScene (sceneToTransitionTo);
+				}
 			} else {
 				transform.Translate (0f, -1f * speed, 0f);
 			}

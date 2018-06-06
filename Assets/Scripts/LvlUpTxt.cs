@@ -12,15 +12,30 @@ public class LvlUpTxt : MonoBehaviour {
 	public Text characterInfo;
 	public Text characterChanges;
 	public int currExp = 0;
-	public int newExp = 0;
-	public bool particleEffectDone = true;
+	public int newExp = 1;
 	public RectTransform greenBar;
 	public int ogStam;
 	public int ogDam;
 	public int ogBalls;
+	public RectTransform backdropBar;
+	bool backdropBarResized = false;
+	public bool newXpGranted = false;
 
 	// Use this for initialization
 	void Start () {
+		saveManager = FindObjectOfType<SaveManager> ();
+		switch(characterName)
+		{
+			case("Shiro"):
+				character = saveManager.shiro;
+			break;
+			case("Theodore"):
+				character = saveManager.theodore;
+			break;
+			case("Clemence"):
+				character = saveManager.clemence;
+			break;
+		}
 		//characterInfo = gameObject.GetComponent<Text> ();
 		//greenBar.Translate(-50f, 0f, 0f);
 		//saveManager = (SaveManager) GameObject.Find ("SaveManager");
@@ -39,18 +54,22 @@ public class LvlUpTxt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if ((Time.time > .9f) && !newXpGranted) {
+			newExp = 301;
+			newXpGranted = true;
+			greenBar.Translate(-50f, 0f, 0f);
+			currExp++;
+		}
 		characterInfo.text = character.name
 			+ "\n Level: " + character.Level
 			+ "\n Exp: " + currExp%100 + " / 100";
 		if (currExp < newExp) {
 			if ((currExp % 100) == 0) {
-				particleEffectDone = false;
 				//particle effect
 				newStats();
-				if (particleEffectDone == true) {
-					currExp++;
-					greenBar.Translate (-50f, 0f, 0f);
-				}
+				currExp++;
+				greenBar.Translate (-50f, 0f, 0f);
+				greenBar.sizeDelta = new Vector2 (0f, 20);
 			} else {
 				currExp ++;
 				greenBar.sizeDelta = new Vector2(currExp%101 , 20);
@@ -59,32 +78,30 @@ public class LvlUpTxt : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.U)) {
 			print ("new exp total");
-			setNewExp (540);
+			newExp = 540;
 			greenBar.Translate(-50f, 0f, 0f);
 			currExp++;
 		}
-		if (Input.GetKeyDown (KeyCode.S)) {
-			character.LevelUp (1);
-		}
 
 	}
-
-	public void setNewExp(int newValue){
-		newExp = newValue;
-	}
+		
 
 	public void newStats(){
 		character.LevelUp (1);
+		if (!backdropBarResized) {
+			backdropBar.Translate (0f, -50f, 0f);
+			backdropBar.sizeDelta = new Vector2 (100f, 148);
+			backdropBarResized = true;
+		}
 		int newStam = character.maxStamina;
 		int newDam = character.Damage;
 		int newBalls = character.maxBalls;
 		characterChanges.text =
 			"Stamina:\n" +
-			ogStam + "  ->  " + "<color=#24e50a>" + newStam + "</color>" + "\n"
+			ogStam + "  ->  " + "<color=#25a913>" + newStam + "</color>" + "\n"
 			+ "Damage:\n"
-			+ ogDam + "  ->  " + "<color=#24e50a>" + newDam + "</color>" + "\n"
+			+ ogDam + "  ->  " + "<color=#25a913>" + newDam + "</color>" + "\n"
 			+ "Balls Held:\n"
-			+ ogBalls + "  ->  " + "<color=#24e50a>" + newBalls + "</color>" + "\n";
-		particleEffectDone = true;
+			+ ogBalls + "  ->  " + "<color=#25a913>" + newBalls + "</color>" + "\n";
 	}
 }

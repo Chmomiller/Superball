@@ -38,7 +38,35 @@ public class DebuggerScript : MonoBehaviour {
 
 		SM.beatSuperballRush = true;
 		SM.unlockAll = true;
+	}
 
-        gameObject.SetActive(false);
+	public void ResetProgress()
+	{
+		SaveManager SM = GameObject.Find ("GameManager").GetComponent<GameManager> ().Save;
+		SM.SaltPittDialogue = false;
+		SM.SaltPittBattle = false;
+		SM.SaltPittBattleHard = false;
+
+		SM.ScholaGrandisDialog = false;
+		SM.ScholaGrandisBattle = false;
+		SM.ScholaGrandisBattleHard = false;
+
+		SM.MightMainDialog = false;
+		SM.MightMainBattle = false;
+		SM.MightMainBattleHard = false;
+
+		SM.yamatoDialog = false;
+		SM.yamatoBattle = false;
+		SM.yamatoBattleHard = false;
+
+		SM.teamSevenDialog = false;
+		SM.teamSevenBattle = false;
+
+		SM.beatSuperballRush = false;
+		SM.unlockAll = false;
+
+		SM.shiro.ResetChar ();
+		SM.theodore.ResetChar ();
+		SM.clemence.ResetChar ();
 	}
 }

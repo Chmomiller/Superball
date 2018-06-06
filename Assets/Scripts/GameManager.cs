@@ -61,13 +61,18 @@ public class GameManager : MonoBehaviour
 		if(scene.name == "MapScreen")
 		{
 			GameObject SaltPittButton = GameObject.Find ("SaltPittButton");
-			GameObject ScholaGrandisButton = GameObject.Find ("ScholaGrandisButton");
-			GameObject MightMainButton = GameObject.Find ("MightMainButton");
-			GameObject YamatoButton = GameObject.Find ("Yamato");
-			Debug.Log (ScholaGrandisButton);
-			ScholaGrandisButton.SetActive (false);
-			MightMainButton.SetActive (false);
-			YamatoButton.SetActive (false);
+			GameObject ScholaGrandisButton = SaltPittButton.GetComponent<MapButtonOptions> ().ScholaGrandisButton;
+			GameObject MightMainButton = SaltPittButton.GetComponent<MapButtonOptions>().MightMainButton;
+			GameObject YamatoButton = SaltPittButton.GetComponent<MapButtonOptions>().Yamato;
+
+			/*
+			ScholaGrandisButton.GetComponent<Image> ().enabled = false;
+			ScholaGrandisButton.GetComponent<Button> ().enabled = false;
+			MightMainButton.GetComponent<Image> ().enabled = false;
+			MightMainButton.GetComponent<Button> ().enabled = false;
+			YamatoButton.GetComponent<Image> ().enabled = false;
+			YamatoButton.GetComponent<Button> ().enabled = false;
+			*/
 			// Activate Salt Pitt buttons
 			if(Save.SaltPittDialogue)
 			{
@@ -77,27 +82,33 @@ public class GameManager : MonoBehaviour
 			if(Save.SaltPittBattle)
 			{
 				SaltPittButton.GetComponent<MapButtonOptions> ().saltPittProgress = 2;
-				ScholaGrandisButton.SetActive (true);
+				Debug.Log (ScholaGrandisButton.GetComponent<Image> ());
+				Debug.Log ("before "+ScholaGrandisButton.GetComponent<Image> ().enabled);
+				//ScholaGrandisButton.GetComponent<Image> ().enabled = true;
+				Debug.Log ("After "+ScholaGrandisButton.GetComponent<Image> ().enabled);
+				//ScholaGrandisButton.GetComponent<Button> ().enabled = true;
 				if(Save.SaltPittDialogue)
 				{
-					ScholaGrandisButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 1;
+					SaltPittButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 1;
 				}
 			}
 			// Activate MightMain Academy buttons
 			if(Save.ScholaGrandisBattle)
 			{
-				ScholaGrandisButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 2;
-				MightMainButton.SetActive (true);
+				SaltPittButton.GetComponent<MapButtonOptions> ().scholaGrandisProgress = 2;
+				//MightMainButton.GetComponent<Image> ().enabled = true;
+				//MightMainButton.GetComponent<Button> ().enabled = true;
 				if(Save.ScholaGrandisDialog)
 				{
-					MightMainButton.GetComponent<MapButtonOptions> ().mightMainProgress = 1;
+					SaltPittButton.GetComponent<MapButtonOptions> ().mightMainProgress = 1;
 				}
 			}
 			// Activate Yamato buttons
 			if(Save.MightMainBattle)
 			{
-				MightMainButton.GetComponent<MapButtonOptions> ().mightMainProgress = 2;
-				YamatoButton.SetActive (true);
+				SaltPittButton.GetComponent<MapButtonOptions> ().mightMainProgress = 2;
+				//YamatoButton.GetComponent<Image> ().enabled = true;
+				//YamatoButton.GetComponent<Button> ().enabled = true;
 			}
 			/*
 			if(Save.yamatoDialog)

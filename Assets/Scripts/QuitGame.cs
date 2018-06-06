@@ -27,7 +27,9 @@ public class QuitGame : MonoBehaviour
 	{
 		Application.Quit();
 	}
+
     IEnumerator StartBattle(string audioPath, int track, string sceneName) {
+		Debug.Log ("StartBattle called");
         yield return new WaitForSeconds(2);
         Audio.playSFX("_SFX/UI/Referee Whistle 2");
         yield return new WaitForSeconds(1);
@@ -35,9 +37,8 @@ public class QuitGame : MonoBehaviour
         Audio.src0.loop = true;
         loadingScene = false;
         SceneManager.LoadScene(sceneName);
-        
-
     }
+
     public void Restart(string sceneName)
 	{
         if (loadingScene) return;
@@ -62,7 +63,7 @@ public class QuitGame : MonoBehaviour
             case "MapScreen":
                 Audio.resetAllAudio();
                 int random = UnityEngine.Random.Range(0, 100);
-
+			/*
                 if (random <= 5 && Game.consistency == false) {
                     if (random <= 1) {
                         Audio.playAudio("Concept Sound/Unknown Individuals 2", 0);
@@ -70,8 +71,10 @@ public class QuitGame : MonoBehaviour
                         Audio.playAudio("Concept Sound/Who Am I", 0);
                     }
                 } else {
+                */
                     Audio.playAudio("Concept Sound/80s something", 1);
-                }
+                //}
+              
                 
                 Audio.src0.loop = true;
                 loadingScene = false;
@@ -114,8 +117,9 @@ public class QuitGame : MonoBehaviour
 				//Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_4");
 				StartCoroutine(StartBattle("MightMain Battle", 0, sceneName));
 				break;
-            default:
-                Audio.resetAllAudio();
+		default:
+			Audio.resetAllAudio ();
+			//SceneManager.LoadScene(sceneName);
 			StartCoroutine(StartBattle("Concept Sound/80s something", 0, sceneName));
                 //Audio.playAudio("Concept Sound/80's something", 0);
                 //Audio.src0.loop = true;
@@ -128,7 +132,7 @@ public class QuitGame : MonoBehaviour
 	{
 
         if(GameObject.Find("MainMenu") != null){
-            GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
+            //GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => Restart("MainMenu"));
         }
         Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
         if (SceneManager.GetActiveScene().name == "MainMenu") {

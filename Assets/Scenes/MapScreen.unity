@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &9569085 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
-    type: 2}
-  m_PrefabInternal: {fileID: 539833504}
-  m_Script: {fileID: 11500000, guid: 3870c12bdf4803e40ac602d9e67a4930, type: 3}
 --- !u!1 &60495367
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +350,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &104303853
 GameObject:
@@ -432,66 +426,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 104303853}
---- !u!1001 &295706433
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -8.269835
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.325261
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 88.859856
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4355707895128580, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711918528759670, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 114482799444812728, guid: c602042cc7c39b4439c8233397e162c2,
-        type: 2}
-      propertyPath: Audio
-      value: 
-      objectReference: {fileID: 9569085}
-    - target: {fileID: 114729587323314292, guid: c602042cc7c39b4439c8233397e162c2,
-        type: 2}
-      propertyPath: Audio
-      value: 
-      objectReference: {fileID: 9569085}
-    - target: {fileID: 1711918528759670, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c602042cc7c39b4439c8233397e162c2, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &297914925
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +708,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &471897613
 GameObject:
@@ -1000,7 +934,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571646086}
+      - m_Target: {fileID: 742256656}
         m_MethodName: startBattle
         m_Mode: 5
         m_Arguments:
@@ -1143,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &533910881
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1281,7 +1215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &586315922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1503,6 +1437,7 @@ MonoBehaviour:
   MightMainDialog: {fileID: 731445764}
   MightMainBattle: {fileID: 509178725}
   MightMainBattleHard: {fileID: 886244952}
+  Yamato: {fileID: 0}
 --- !u!114 &627023435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,14 +1704,13 @@ GameObject:
   - component: {fileID: 652034009}
   - component: {fileID: 652034008}
   - component: {fileID: 652034007}
-  - component: {fileID: 652034012}
   m_Layer: 5
   m_Name: ScholaGrandisButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &652034007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,7 +1797,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 652034012}
+      - m_Target: {fileID: 742256656}
         m_MethodName: splitScholaGrandis
         m_Mode: 1
         m_Arguments:
@@ -1928,38 +1862,6 @@ RectTransform:
   m_AnchoredPosition: {x: -183.8, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &652034012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 652034006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1554b3635750734b941d217c705799e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saltPittEnable: 0
-  scholaGrandisEnable: 0
-  mightMainEnable: 0
-  saltPittProgress: 1
-  scholaGrandisProgress: 0
-  mightMainProgress: 0
-  SaltPittButton: {fileID: 742256650}
-  SaltPittBack: {fileID: 636176443}
-  SaltPittDialog: {fileID: 2080737492}
-  SaltPittBattle: {fileID: 1350986815}
-  SaltPittBattleHard: {fileID: 1271230469}
-  ScholaGrandisButton: {fileID: 652034006}
-  ScholaGrandisBack: {fileID: 1160299224}
-  ScholaGrandisDialog: {fileID: 2073540258}
-  ScholaGrandisBattle: {fileID: 1462064145}
-  ScholaGrandisBattleHard: {fileID: 1044172284}
-  MightMainButton: {fileID: 1571646080}
-  MightMainBack: {fileID: 866119940}
-  MightMainDialog: {fileID: 731445764}
-  MightMainBattle: {fileID: 509178725}
-  MightMainBattleHard: {fileID: 886244952}
 --- !u!1 &682960865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,6 +2409,7 @@ MonoBehaviour:
   MightMainDialog: {fileID: 731445764}
   MightMainBattle: {fileID: 509178725}
   MightMainBattleHard: {fileID: 886244952}
+  Yamato: {fileID: 586315921}
 --- !u!1 &780155468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2511,7 @@ Transform:
   m_LocalScale: {x: 0.34923375, y: 0.34923378, z: 0.34923378}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &783759841
 SpriteRenderer:
@@ -2852,7 +2755,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571646086}
+      - m_Target: {fileID: 742256656}
         m_MethodName: startHardModeBattle
         m_Mode: 5
         m_Arguments:
@@ -3048,7 +2951,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 652034012}
+      - m_Target: {fileID: 742256656}
         m_MethodName: startHardModeBattle
         m_Mode: 5
         m_Arguments:
@@ -3984,7 +3887,7 @@ RectTransform:
   - {fileID: 2062663738}
   - {fileID: 1571245859}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4067,7 +3970,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 652034012}
+      - m_Target: {fileID: 742256656}
         m_MethodName: startBattle
         m_Mode: 5
         m_Arguments:
@@ -4184,6 +4087,7 @@ MonoBehaviour:
   MightMainDialog: {fileID: 731445764}
   MightMainBattle: {fileID: 509178725}
   MightMainBattleHard: {fileID: 886244952}
+  Yamato: {fileID: 0}
 --- !u!114 &1571245861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,14 +4232,13 @@ GameObject:
   - component: {fileID: 1571646083}
   - component: {fileID: 1571646082}
   - component: {fileID: 1571646081}
-  - component: {fileID: 1571646086}
   m_Layer: 5
   m_Name: MightMainButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1571646081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4422,7 +4325,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571646086}
+      - m_Target: {fileID: 742256656}
         m_MethodName: splitMightMain
         m_Mode: 1
         m_Arguments:
@@ -4487,38 +4390,6 @@ RectTransform:
   m_AnchoredPosition: {x: 448.1, y: 215.2}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1571646086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1571646080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1554b3635750734b941d217c705799e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saltPittEnable: 0
-  scholaGrandisEnable: 0
-  mightMainEnable: 0
-  saltPittProgress: 1
-  scholaGrandisProgress: 0
-  mightMainProgress: 0
-  SaltPittButton: {fileID: 742256650}
-  SaltPittBack: {fileID: 636176443}
-  SaltPittDialog: {fileID: 2080737492}
-  SaltPittBattle: {fileID: 1350986815}
-  SaltPittBattleHard: {fileID: 1271230469}
-  ScholaGrandisButton: {fileID: 652034006}
-  ScholaGrandisBack: {fileID: 1160299224}
-  ScholaGrandisDialog: {fileID: 2073540258}
-  ScholaGrandisBattle: {fileID: 1462064145}
-  ScholaGrandisBattleHard: {fileID: 1044172284}
-  MightMainButton: {fileID: 1571646080}
-  MightMainBack: {fileID: 866119940}
-  MightMainDialog: {fileID: 731445764}
-  MightMainBattle: {fileID: 509178725}
-  MightMainBattleHard: {fileID: 886244952}
 --- !u!1 &1919358309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,6 +4609,7 @@ MonoBehaviour:
   MightMainDialog: {fileID: 731445764}
   MightMainBattle: {fileID: 509178725}
   MightMainBattleHard: {fileID: 886244952}
+  Yamato: {fileID: 0}
 --- !u!114 &2062663740
 MonoBehaviour:
   m_ObjectHideFlags: 0

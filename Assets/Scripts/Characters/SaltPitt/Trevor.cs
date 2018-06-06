@@ -58,7 +58,6 @@ public class Trevor : Character {
 			{
 				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
 				{
-					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
 					Target [i] = enemies [j];
 				}
 			}
@@ -132,6 +131,10 @@ public class Trevor : Character {
 			do{
 				int aim = UnityEngine.Random.Range (0, 3);
 				Target[i] = enemies[aim];
+				if(!Target[i].dead)
+				{
+					break;
+				}
 			}while(!Target[i].dead);
 		}
 
@@ -141,7 +144,6 @@ public class Trevor : Character {
 			{
 				if(enemies[j].Target[0] == Target[i] && enemies[j].actionType == "Defense")
 				{
-					Debug.Log (enemies[j].Name+" is blocking for "+Target[i].Name);
 					Target [i] = enemies [j];
 				}
 			}

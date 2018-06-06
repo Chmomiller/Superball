@@ -447,12 +447,10 @@ public class Character : MonoBehaviour
             this.Level++;
             if (this.Level < 5) { variance = UnityEngine.Random.Range(0, 2);} else{variance = UnityEngine.Random.Range(3, 5);}
             this.maxStamina = (int)((this.maxStamina * 1.1) + variance);
-            this.Stamina = this.maxStamina;
             this.Damage = (int)((this.Damage * 1.1) + UnityEngine.Random.Range(0, 1));
             if (this.Level % 2 == 0 || this.Level % 3 == 0) this.maxBalls += 2;
             this.heldBalls = this.maxBalls;
         }
-        //print("Level Up:" + this.name);
     }
 
 	public virtual void ResetChar()

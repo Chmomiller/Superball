@@ -32,6 +32,26 @@ public class MapButtonOptions : MonoBehaviour {
     public GameObject MightMainBattle;
     public GameObject MightMainBattleHard;
 
+	public GameObject Yamato;
+
+
+
+	void Start()
+	{
+		if(saltPittProgress > 1)
+		{
+			ScholaGrandisButton.SetActive (true);
+		}
+		if(scholaGrandisProgress > 1)
+		{
+			MightMainButton.SetActive (true);
+		}
+		if(mightMainProgress > 1)
+		{
+			Yamato.SetActive (true);
+		}
+	}
+
     public void splitSaltPitt() {
         saltPittEnable = !saltPittEnable;
         if (saltPittEnable) {
@@ -112,6 +132,7 @@ public class MapButtonOptions : MonoBehaviour {
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+		/*
         GameObject.Find("SaltPittButton").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
         GameObject.Find("SaltPittBack").GetComponent<Button>().onClick.AddListener(() => this.splitSaltPitt());
         GameObject.Find("SaltPittBattle").GetComponent<Button>().onClick.AddListener(() => this.startBattle("SaltPittHighGym"));
@@ -134,6 +155,7 @@ public class MapButtonOptions : MonoBehaviour {
         GameObject.Find("Yamato").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("Yamato Gym Battle"));
         GameObject.Find("MainMenu").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("MainMenu"));
         GameObject.Find("OpenOcean").GetComponent<Button>().onClick.AddListener(() => GameObject.Find("GameManager").GetComponent<QuitGame>().Restart("OpenOcean"));
-    }
+	*/
+	}
 
 }

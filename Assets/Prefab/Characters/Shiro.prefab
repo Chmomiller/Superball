@@ -113,7 +113,7 @@ MonoBehaviour:
   Gather: 2
   Stamina: 140
   maxStamina: 140
-  heldBalls: 0
+  heldBalls: 10
   maxBalls: 4
   Level: 1
   attackMultiplier: 1

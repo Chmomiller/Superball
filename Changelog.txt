@@ -124,4 +124,18 @@ Tristian:
 	Added error checking to Combat Dialogue
 5/29/18:
 	Added reset function to Character and main cast along with function in SaveManager that calls resetCharacter
-	
+6/1/18:
+	Added Victoria Battle Sprite and Character Portraits
+	Fixed Trevor's skill based infinite loop
+6/2/18:
+	Added int for controlling spawn number of crowd
+	Audience members now spawn relative to the Crowd object
+	Added crowd to Schola Grandis Gym
+6/4/18:
+	Added win/loss scenes to build
+	Created links to and from win/loss scenes
+	Made transition into win/loss scenes
+	Added reset progress button to MainMenu
+	Removed redundant scripts from buttons on MapScreen
+6/5/18:
+	changed code in MapScreenButtons so that buttons showed up properly

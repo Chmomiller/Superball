@@ -83,3 +83,33 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Dialogue Scenes/What Punks.unity
     guid: 069656d56dca1eb459d641bf954fc7d9
+  - enabled: 1
+    path: Assets/Scenes/WinScenes/BattleWinSaltPitt.unity
+    guid: 1fd734521d037264785dddb69cc137ad
+  - enabled: 1
+    path: Assets/Scenes/WinScenes/BattleWinScholaGrandis.unity
+    guid: ba628a9ee4098414ebe75d8f7d5e3189
+  - enabled: 1
+    path: Assets/Scenes/WinScenes/BattleWinMightMain.unity
+    guid: 93dd7ba6b23a8634ba7fa25003481fda
+  - enabled: 1
+    path: Assets/Scenes/WinScenes/BattleWinYamato.unity
+    guid: 812c2f96d79fe074fa9897edbc7bc992
+  - enabled: 0
+    path: Assets/Scenes/WinScenes/BattleWinVoid.unity
+    guid: ac74371d2a5d6f74aba14c68a583fb6d
+  - enabled: 1
+    path: Assets/Scenes/LossScenes/BattleLossSaltPitt.unity
+    guid: 85525e9c792af52479094f225c1c7ff5
+  - enabled: 1
+    path: Assets/Scenes/LossScenes/BattleLossScholaGrandis.unity
+    guid: 501f7dc434eb1c4489004e6b19bd8302
+  - enabled: 1
+    path: Assets/Scenes/LossScenes/BattleLossMightMain.unity
+    guid: d3bc6daaeb45a0c4fa89031d74dc48f1
+  - enabled: 1
+    path: Assets/Scenes/LossScenes/BattleLossYamato.unity
+    guid: c4b5e0c990e29214c963aaba723879b8
+  - enabled: 0
+    path: Assets/Scenes/LossScenes/BattleLossVoid.unity
+    guid: 329aa22932be4e04eb96bcb6fa51ece5
