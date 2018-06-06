@@ -90,9 +90,14 @@ public class AudioScript : MonoBehaviour {
     }
 
     public void playSFX(string name){// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
+    try{
       AudioClip sfx = Resources.Load<AudioClip> ("Audio/"+name);
       src2.PlayOneShot(sfx);
         if (sfx == null) print("sfx problem");
+    }catch(Exception E){
+      System.Log("SFX not found");
+      return;
+    }
    }
 
     public static void playStaticSFX(string name) {// This would be for playing short sounds like sound effects. Think collision, level complete, footsteps
@@ -157,6 +162,8 @@ public class AudioScript : MonoBehaviour {
    }
    
    public void playAudio(string filePath, int track){ //just play new song //overloaded method that just plays the audio from where it last stopped. Call this if you dont want to change the place of the current song
+      try{
+      
       string name = filePath;
       chooseTrack(track);
       src.Stop();
@@ -165,7 +172,9 @@ public class AudioScript : MonoBehaviour {
       src.clip = Resources.Load <AudioClip> ("Audio/"+name); //This is you don't
       if (src.clip == null) print("Play Audio: null Audio Source");
       src.Play();
-      
+      }catch(Exception E){
+      System.Log("Audio file not found");
+      return;
    }
    
     public void playDualAudio(string head, string body) {
