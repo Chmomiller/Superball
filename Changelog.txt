@@ -137,3 +137,5 @@ Tristian:
 	Made transition into win/loss scenes
 	Added reset progress button to MainMenu
 	Removed redundant scripts from buttons on MapScreen
+6/5/18:
+	changed code in MapScreenButtons so that buttons showed up properly
