@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ivy : Character {
+public class James : Character {
     
     new void Start() {  //affects art of other characters and their stats
-        Name = "Artist Ivy";
+        Name = "Artist James";
 		Stamina = maxStamina;
         Role = "Thrower";
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };

@@ -12,10 +12,14 @@ public class YamatoBridge : Yamato {
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Observation Gathering", "Captain's Orders", "Hasty Repairs", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Observation Gathering", "Captain's Orders", "Hasty Repairs", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Stuns each ally, but buffs it in return", "Attacks an enemy with an attack 0.5 times stronger, but the bridge becomes steady as well", "Each of the bridge’s allies gets 40 armor, but each ally becomes staggered as well", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
+                                                                            "Stuns each ally, but <color =orange>Buffs</color> it in return",
+                                                                            "Attacks an enemy with an attack <color = red>50</color>% stronger, but the bridge becomes <color = orange>Steady</color> as well",
+                                                                            "Each of the bridge’s allies gets <color=red>40</color> armor, but each ally becomes <color = orange>Unsteady</color> as well",
+                                                                            "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
 
 		// Check to see if this overwrites stats correctly
@@ -31,7 +35,7 @@ public class YamatoBridge : Yamato {
 		{
 			if (this.allies [i] != this && !allies [i].dead) 
 			{
-				allies [i].addStatusEffect ("stun", 2);
+				allies [i].addStatusEffect ("stun", 1);
 				allies [i].addStatusEffect ("buff", 3);
 			}
         }
@@ -54,6 +58,7 @@ public class YamatoBridge : Yamato {
 			if(allies[i] != this)
 			{
 				allies [i].gainStamina (40);
+                if (allies[i].Stamina > allies[i].maxStamina) allies[i].Stamina = allies[i].maxStamina;
 				addStatusEffect ("unsteady", 2);
 			}
         }

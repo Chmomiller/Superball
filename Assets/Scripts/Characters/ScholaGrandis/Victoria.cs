@@ -13,16 +13,16 @@ public class Victoria : Character {
         Stamina = maxStamina;
         Role = "Catcher";
 
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Kawii/Kowaii", "Parasol", "Idol Scream", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls ground", 
-										  "Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)", 
-										  "Rebounds next shot thrown at her", 
-										  "Reduce stamina of all enemies", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Offense", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 2, 3 };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Viscious Mockery", "Parasol", "Idol Scream", "Skill4" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls ground",
+                                          "Deliver a <i>weak</i> attack with a high chance to <color=orange>Debuff</color> the target", 
+										  "Rebounds next shot hrown at her back at the attacker for the intended damaage",
+                                          "Deals <i>weak</i> damage and <color=orange>Stuns</color> target enemy",
+                                          "" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Defense", "Utility", "Utility" };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 1, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 2, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 1, 4, 3, 0 };
 
 		base.Start ();
 
@@ -82,9 +82,12 @@ public class Victoria : Character {
 	//Kawaii / Kowaii: Gets a boost to catch until misses a catch(Kawaii), then gets a hit boost (Kowaii)
 	public override int Skill1()
 	{
-		addStatusEffect ("steady", 100);
-		Debug.Log (statusEffects [findStatus ("steady")].name + ": " + statusEffects [findStatus ("steady")].duration);
-		return 0;	
+        float dmg = UnityEngine.Random.Range(0.5f, 1)*this.Damage*this.attackMultiplier;
+        if (UnityEngine.Random.Range(0, 9) > 3) { Target[0].addStatusEffect("debuff", 2); }
+        this.heldBalls -= this.actionCosts[4];
+        this.actionCooldowns[4] = 1;
+        return (int)dmg;
+
 	}
 
 	//Parasoul(Kawaii): Rebounds the next shot thrown at her
@@ -92,9 +95,19 @@ public class Victoria : Character {
 	public override int Skill2() { 
 		this.addStatusEffect ("misc", 100);
 		Debug.Log (statusEffects [findStatus ("misc")].name + ": " + statusEffects [findStatus ("misc")].duration);
-		return 0;
+        this.heldBalls -= this.actionCosts[5];
+        this.actionCooldowns[5] = 3;
+        return 0;
     }
 
+
+    public override int Skill3() {
+        Target[0].addStatusEffect("stun", 2);
+        Target[0].loseStamina(this.Damage / 2);
+        return this.Damage / 2;
+    }
+
+    /*
 	public override int Skill3() {
         //      Idol Scream (Kowaii): reduce stamina of all enemy players
         int value = (int)((Damage * 1.5f));
@@ -106,8 +119,8 @@ public class Victoria : Character {
 			   (int)(value * attackMultiplier * enemies[1].defenseMultiplier) + 
 			   (int)(value * attackMultiplier * enemies[2].defenseMultiplier);
     }
-
-	public override int Skill4() {return 0; }
+    */
+    public override int Skill4() {return 0; }
 
 	public override void cleanUp()
 	{

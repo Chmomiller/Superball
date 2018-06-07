@@ -33,12 +33,19 @@ public class QuitGame : MonoBehaviour
         yield return new WaitForSeconds(2);
         Audio.playSFX("_SFX/UI/Referee Whistle 2");
         yield return new WaitForSeconds(1);
-        Audio.playAudio(audioPath, track);
+        //Audio.playAudio(audioPath, track);
         Audio.src0.loop = true;
         loadingScene = false;
         SceneManager.LoadScene(sceneName);
     }
 
+    IEnumerator StartBattle(string sceneName) {
+        Audio.playSFX("_SFX/UI/Referee Whistle 2");
+        yield return new WaitForSeconds(2);
+        loadingScene = false;
+        SceneManager.LoadScene(sceneName);
+
+    }
     public void Restart(string sceneName)
 	{
         if (loadingScene) return;
@@ -72,11 +79,8 @@ public class QuitGame : MonoBehaviour
                     }
                 } else {
                 */
-                    Audio.playAudio("Concept Sound/80s something", 1);
-                //}
+                   
               
-                
-                Audio.src0.loop = true;
                 loadingScene = false;
                 SceneManager.LoadScene("MapScreen");
                 break;
@@ -117,6 +121,11 @@ public class QuitGame : MonoBehaviour
 				//Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Eric_SaltpittAnnouncer_4");
 				StartCoroutine(StartBattle("MightMain Battle", 0, sceneName));
 				break;
+            case "CombatScenes/Team 7":
+                Audio.resetAllAudio();
+                Audio.playSFX("Voice Acting/Announcer Lines/Saltpitt/Charles_SaltpittAnnouncer_1");
+                StartCoroutine(StartBattle("credits_demo", 5, sceneName));
+                break;
 		default:
 			Audio.resetAllAudio ();
 			//SceneManager.LoadScene(sceneName);

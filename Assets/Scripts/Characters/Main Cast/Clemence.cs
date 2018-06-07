@@ -18,15 +18,16 @@ public class Clemence : Character
         //heldBalls = 0;
         Role = "Catcher";
 
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Rain Shield", "Skill4" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Planted Stance", "Rain Shield" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", 
 										  "Atempt to catch for both allies. <color=red>1</color> turn cooldown.\nCost: None    Target: Ally Team", 
-										  "If target enemy is throwing, they are <color=yellow>stunned</color> for 1 turn. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Enemy", 
-										  "Block the first attack on the next two turns. <color=red>2</color> turn cooldown.\nCost: None    Target: Self", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Defense" , "Utility" };
+										  "If target enemy is throwing, they are <color=yellow>stunned</color> for 1 turn. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Enemy",
+                                          "Become <color = orange>steady</color> and reduce the turns remaining for skills on cooldown by <color = red>2</color> turns",
+                                          "Block the first attack on the next two turns. <color=red>2</color> turn cooldown.\nCost: None    Target: Self", "" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Utility" , "Defense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 2, 0, 0, 1, 0, 0 };
 
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 1, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 0, 1 };
 		base.Start ();
     }
 
@@ -93,13 +94,18 @@ public class Clemence : Character
 
 	// Rain Shield: Blocks the first attack on the next two turns
     public override int Skill3() {
-		addStatusEffect ("misc", 3);
-        actionCooldowns[6] = 3;
-		return 0;
-    }
+        this.addStatusEffect("steady", 2);
+
+        if (this.actionCooldowns[4] > 2) { this.actionCooldowns[4] -= 2; } else { this.actionCooldowns[4] = 0; }
+        if (this.actionCooldowns[5] > 2) { this.actionCooldowns[5] -= 2; } else { this.actionCooldowns[5] = 0; }
+        if (this.actionCooldowns[7] > 2) { this.actionCooldowns[7] -= 2; } else { this.actionCooldowns[7] = 0; }
+        return 0;
+        }
 
     public override int Skill4() {
-		return 0;
+        addStatusEffect("misc", 3);
+        actionCooldowns[7] = 3;
+        return 0;
     }
 
 	new public void cleanUp()

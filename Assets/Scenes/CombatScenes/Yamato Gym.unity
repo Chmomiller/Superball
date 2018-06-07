@@ -184,6 +184,16 @@ Prefab:
       propertyPath: m_Name
       value: Character4
       objectReference: {fileID: 0}
+    - target: {fileID: 114333612945287404, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: Stamina
+      value: 290
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333612945287404, guid: a0046e759a0a8574e812a4dcfcf7c029,
+        type: 2}
+      propertyPath: maxStamina
+      value: 290
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0046e759a0a8574e812a4dcfcf7c029, type: 2}
   m_IsPrefabParent: 0
@@ -367,7 +377,6 @@ MonoBehaviour:
   Enemy: []
   playerSelect: []
   enemySelect: []
-  endButton: []
   CUI: {fileID: 0}
   combatAction: {fileID: 0}
   tCursor: {fileID: 0}
@@ -375,6 +384,7 @@ MonoBehaviour:
   AI: {fileID: 0}
   conflictInQueue: -1
   currentCharacter: 0
+  turn: 0
   win: 0
   lose: 0
   fightName: Yamato
@@ -651,22 +661,22 @@ Prefab:
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.9032789
       objectReference: {fileID: 0}
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.99999964
       objectReference: {fileID: 0}
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114423588766967868, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
@@ -953,6 +963,21 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114639965042759932, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: Stamina
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114639965042759932, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: maxStamina
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 114639965042759932, guid: b53b565942d3283419c716f4801d92cf,
+        type: 2}
+      propertyPath: Damage
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b53b565942d3283419c716f4801d92cf, type: 2}
   m_IsPrefabParent: 0
@@ -1002,7 +1027,7 @@ Prefab:
     - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
         type: 2}
       propertyPath: Damage
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 114416044395526712, guid: dcc80db259b44fd4da3cace86ae21475,
         type: 2}
@@ -1141,7 +1166,7 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 132417bed41e5f4479d206176cccfcd4, type: 3}
+      objectReference: {fileID: 8300000, guid: 24ca551c9d794824196ce43d54fdce92, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
   m_IsPrefabParent: 0
@@ -1358,6 +1383,16 @@ Prefab:
       propertyPath: m_Name
       value: Character5
       objectReference: {fileID: 0}
+    - target: {fileID: 114663773123278812, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: Stamina
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 114663773123278812, guid: 28fd4f95086615347a730a94c8302c05,
+        type: 2}
+      propertyPath: maxStamina
+      value: 230
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28fd4f95086615347a730a94c8302c05, type: 2}
   m_IsPrefabParent: 0
@@ -1417,6 +1452,11 @@ Prefab:
     - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
         type: 2}
       propertyPath: maxStamina
+      value: 212
+      objectReference: {fileID: 0}
+    - target: {fileID: 114851017393098776, guid: ad419056f3e8dad419048553232f0b37,
+        type: 2}
+      propertyPath: Stamina
       value: 212
       objectReference: {fileID: 0}
     m_RemovedComponents: []

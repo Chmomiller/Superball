@@ -15,7 +15,7 @@ public class Shiro : Character{
 										  "Hands refreshments to one teammate, healing 1/4 of their maximum stamina. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Ally", 
 										  "All teammates are <color=#00ff00ff>steadied</color> for 2 turns. <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team", 
 										  "All teammates are <color=blue>buffed</color> for two turns.  <color=red>4</color> turn cooldown.\nCost: None    Target: Ally Team" };
-	    actionTypes = new string[] { "None", "Offense", "Defense", "utility", "Utility", "Utility", "Utility" };
+	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 1, 0, 0 };
@@ -68,7 +68,7 @@ public class Shiro : Character{
         if (allies[2] != this) {
             allies[2].addStatusEffect("steady", 2);
         }
-        actionCooldowns[6] = 5; //where N is assuming this is the N+1th ability.
+        actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
 		return 0;
     }
 

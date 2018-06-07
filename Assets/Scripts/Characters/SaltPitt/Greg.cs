@@ -13,14 +13,16 @@ public class Greg: Character
         
         Role = "Support";
 
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Pass Off", "Skill3", "Rest" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Hide", "Steal", "Roller Derby" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Catch any balls thrown at you and pass them off to Trevor", 
-										  "Pass off all balls to target ally", "", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 1, 0, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+										  "Become immune to all attacks for 1 turn, sending any balls aimed at you to trevor", 
+										  "Block incoming attacks, but become <color = orange>stunned</color> on next turn",
+                                          "Reduce an enemy's ball count by <color = red>2</color> and increase your own by <color = red>2</color>",
+                                          "Reduce an enemy's stamina by 25%" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 3 };
 
 
 
@@ -102,42 +104,34 @@ public class Greg: Character
 		return -1;
     }
 
-	//Skill1
+	//Skill2
 	public override int Skill2()
 	{
-		if (trevor) {
-			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
-			if (trevor.heldBalls < trevor.maxBalls)
-				trevor.heldBalls++;
-			actionCooldowns [4] = 3;
-
-			for (int i = 0; i < combat.combatQueue [combat.currentCharacter].actionNames.Length; i++) {
-				if (combat.combatQueue [combat.currentCharacter].action == combat.combatQueue [combat.currentCharacter].actionNames [i]) {
-					combat.combatQueue [combat.currentCharacter].heldBalls -= combat.combatQueue [combat.currentCharacter].GetActionCost (i);
-				}
-			}
-		}
+        //recall status effects dont stack
+        this.addStatusEffect("stunned", 1);
+        actionCooldowns[5] = 3;
 		return -1;
 	}
 
-	// Skill1
+	// Steal
 	public override int Skill3()
 	{
-		if (trevor) {
-			//recall this is a defense skill so it is called to see if you get hit, ignoring what the enemie's ability is. If they throw multiple balls, then Terrapin happens multiple times
-			if (trevor.heldBalls < trevor.maxBalls)
-				trevor.heldBalls++;
-			actionCooldowns [4] = 3;
-
-			for (int i = 0; i < combat.combatQueue [combat.currentCharacter].actionNames.Length; i++) {
-				if (combat.combatQueue [combat.currentCharacter].action == combat.combatQueue [combat.currentCharacter].actionNames [i]) {
-					combat.combatQueue [combat.currentCharacter].heldBalls -= combat.combatQueue [combat.currentCharacter].GetActionCost (i);
-				}
-			}
-		}
-		return -1;
+        for (int i = 0; i < 2 && Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls; i++) {
+            Target[0].heldBalls--;
+            this.heldBalls++;
+        }
+        actionCooldowns[6] = 3;
+		return this.Damage/4;
 	}
-	/*
+
+    public override int Skill4() {
+        int max = Target[0].maxStamina;
+        Target[0].loseStamina(Target[0].maxStamina / 4);
+        this.heldBalls -= actionCosts[7];
+        this.actionCooldowns[7] = 4;
+        return max;
+    }
+    /*
     public override bool Skill2() {
        int diff = Target[0].maxBalls - Target[0].heldBalls;
         while (diff > 0 && this.heldBalls > 0) {

@@ -240,6 +240,16 @@ Prefab:
       propertyPath: nextScene
       value: Dialogue Scenes/Fight Against the Military
       objectReference: {fileID: 0}
+    - target: {fileID: 82989696288111394, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2600dd489a85a174295dd2b3bce6be4d, type: 3}
+    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: startingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2600dd489a85a174295dd2b3bce6be4d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e69b7a2c177f5e44aad1ef401a78dc53, type: 2}
   m_IsPrefabParent: 0

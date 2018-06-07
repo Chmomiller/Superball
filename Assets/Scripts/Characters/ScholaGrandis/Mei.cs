@@ -13,12 +13,12 @@ public class Mei : Character {
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Silver Platter", "Clean Up", "Cup of Tea", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Gives all of your balls to allies", 
-										  "Gather half of the balls used this turn", 
-										  "Heal an ally and calm them", "" };
+										  "Gives half of your balls to each of your allies",
+                                          "Gather the amount of balls equal to half the number of all balls spent on abilities this turn (including opponent abilities), rounded up. Mei will become last in the action order when this is cast.", 
+										  "Heal an ally for <color=red>20</color>% of their stamina and remove all status effects from them", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
 		base.Start ();
@@ -86,6 +86,9 @@ public class Mei : Character {
 
 	//Method of doing so in involving setting copying the past turn into oldCombatQueue at the end of the current execute phase. Thus, when in the current planning and execute phase, you can reference last turn
 
+
+
+
 	//oldCombatQueue = combatQueue
 	// Clean-Up: Gather an amount of balls equal to half the balls spent on actions last turn(?)
 	// 
@@ -125,43 +128,18 @@ public class Mei : Character {
 				heldBalls = maxBalls;
 			}
 		}
+        this.actionCooldowns[5] = 2;
 		return 0;
     }
 
-	// Cup of Tea: Switches Elizabeth or Victoria to her calm state. If already calm instead + 15 Stamina
-    public override int Skill3() {
-		if ( Target[0].Name == "Elizabeth" ){
-            if (Target[0].allegiance == this.allegiance) { //is Elizabeth on our team?
-				Elizabeth elizabeth = (Elizabeth)Target[0];
-				if(elizabeth.Transform)
-				{
-					// transform is a unique boolean to the Schola Grandis girls
-					elizabeth.Transform = false;
-				}
-				else
-				{
-					elizabeth.gainStamina(15);
-				}
-            }
-		} else if (Target[0].Name == "Victoria" ){
-            if (Target[0].allegiance == this.allegiance) { //is Victoria on our team?
-				Victoria victoria = (Victoria)Target[0];
-				if(victoria.Transform)
-				{
-					// transform is a unique boolean to the Schola Grandis girls
-					victoria.Transform = false;
-				}
-				else
-				{
-					victoria.gainStamina (15);
-				}
-            }
+
+	public override int Skill3() {
+		Target [0].gainStamina (Target[0].maxStamina/5);
+        for(int i =0; i<Target[0].statusEffects.Length; i++) {
+            Target[0].statusEffects[i].duration = 0;
         }
-		// This statement only runs if the target is neither Elizabeth or Victoria
-		else
-		{
-			Target [0].gainStamina (15);
-		}
+        Target[0].removeDoneStatusEffects();
+        this.actionCooldowns[6] = 3;
 		return 0;
     }
 

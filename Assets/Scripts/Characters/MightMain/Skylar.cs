@@ -10,19 +10,17 @@ public class Skylar : Character {
         Stamina = maxStamina;
         Role = "Supporter";
 
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Bombing Run", "Supply Run", "Supply Drop", "Running Interference" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-											"Make all enemies staggered", 
-											"Gather half of your remaining ball capacity", 
-											"Gives all balls to an ally and heals them for 20", 
-											"Applies confusion to all enemies" };
+											"Make all enemies <color = orange>Unsteady</color>",
+                                            "Take the difference between the number of balls that you have and your maximum ball capacity. Halve the number and round it up if need be, and you will gather that many balls.",
+                                            "Let an ally gain 20 stamina and the same number of balls as you have. If there is no ally, then the skill cannot be used", 
+											"Makes all enemies <color = orange> Unsteady & Debuffed</color> for <color = red>2</color> turns" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
-        //actionCosts = new int[]{ 0, 1, 0, 0, 2, 0, 4, 3 };
-        actionCosts = new int[]{ 0, 0, 0, 0, 0, 0, 0, 0 };
-
+        actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 3 };
+        
         base.Start ();
     }
 
@@ -50,8 +48,7 @@ public class Skylar : Character {
 		enemies[0].addStatusEffect("unsteady", 3);
 		enemies[1].addStatusEffect("unsteady", 3);
 		enemies[2].addStatusEffect("unsteady", 3);
-		this.heldBalls -= actionCosts[4];
-		actionCooldowns[4] = 6;
+		actionCooldowns[4] = 3;
 		return 0;
 	}
 
@@ -62,19 +59,20 @@ public class Skylar : Character {
 		{
 			this.heldBalls += (maxBalls - heldBalls) / 2;
 		}
-		actionCooldowns[5] = 20;
+		actionCooldowns[5] = 3;
 		return 0;
 	}
 
 	// Supply Drop: Gives all balls to an ally and heals them for 20
 	public override int Skill3() {
 		Target [0].heldBalls += this.heldBalls;
-		if (Target [0].heldBalls > Target [0].maxBalls)
+        if (Target [0].heldBalls > Target [0].maxBalls)
 		{
 			Target [0].heldBalls = Target [0].maxBalls;
 		}
+        if (this.Stamina > 20) { this.loseStamina(20); } else { this.loseStamina(19); }
 		Target[0].gainStamina(20);
-		this.Stamina -= 20;
+		
 		this.heldBalls = 0;
 		actionCooldowns[6] = 3;
 		return 0;
@@ -83,9 +81,12 @@ public class Skylar : Character {
 	// Currently does nothing because there is no support for confuse
     public override int Skill4() {
         this.heldBalls -= 3;
-        enemies[0].addStatusEffect("confuse", 3);
-        enemies[1].addStatusEffect("confuse", 3);
-        enemies[2].addStatusEffect("confuse", 3);
+        enemies[0].addStatusEffect("unsteady", 2);
+        enemies[1].addStatusEffect("unsteady", 2);
+        enemies[2].addStatusEffect("unsteady", 2);
+        enemies[0].addStatusEffect("debuff", 2);
+        enemies[1].addStatusEffect("debuff", 2);
+        enemies[2].addStatusEffect("debuff", 2);
         actionCooldowns[6] = 4;
 		return 0;
     }

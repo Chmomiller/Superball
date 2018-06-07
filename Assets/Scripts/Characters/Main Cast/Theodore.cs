@@ -9,16 +9,16 @@ public class Theodore : Character {
         Stamina = maxStamina;
         Role = "Thrower";
 
-	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Castling", "Queen" };
+	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rook", "Bishop", "Queen", "Castling" };
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
 			"Throw a <i>weaker</i> attack that leaves the foe <color=orange>unsteady</color> for 1 turn\nCost: 2 balls    Target: Single Enemy", 
-			"Throw a ball that ignores catching. <color=red>2</color> turn cooldown.\nCost: 3 balls    Target: Single Enemy", 
-			"If a ball is to be thrown at you, redirect at a target ally instead", 
-			"Throw 8 balls at an enemy. <color=red>2</color> turn cooldown.\nCost: 8 balls    Target: Single Enemy"};
-	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 2, 1 };
-	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 1, 2 };
-	    actionCosts = new int[] { 0, 1, 0, 0, 4, 3, 1, 8 };
+			"Throw a ball that ignores catching. <color=red>2</color> turn cooldown.\nCost: 3 balls    Target: Single Enemy",
+            "Throw 8 balls at an enemy. <color=red>2</color> turn cooldown.\nCost: 8 balls    Target: Single Enemy",
+            "If a ball is to be thrown at you, redirect at a target ally instead" };
+	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 2 };
+	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 2, 1 };
+	    actionCosts = new int[] { 0, 1, 0, 0, 4, 3, 8, 1 };
 		base.Start ();
     }
 
@@ -71,32 +71,35 @@ public class Theodore : Character {
 		return damage;
     }
 
-	// What skill is this
-	// If a ball is to be thrown at you, redirect at a target ally instead
-	public override int Skill3() {
+
+    // Queen: Throws 8 balls at a single enemy
+    public override int Skill3() {
+        float variance;
+        int damage = 0;
+        for (int i = 0; i < 8; i++) {
+            variance = Random.Range(0.7f, 1.1f);
+            Target[0].dodgeBall(this);
+            int partialDamage = (int)(this.Damage * variance * attackMultiplier * Target[0].defenseMultiplier);
+            Target[0].loseStamina(partialDamage);
+            damage += partialDamage;
+        }
+        actionCooldowns[6] = 3;
+        this.heldBalls -= actionCosts[6];
+        return damage;
+    }
+
+
+    // What skill is this
+    // If a ball is to be thrown at you, redirect at a target ally instead
+    public override int Skill4() {
         //This uses your accuracy 
 		Target[0].dodgeBall(this); 
 		Target[0].loseStamina(this.Damage - 15);
-        actionCooldowns[6] = 2; //where N is assuming this is the N+1th ability.
-		this.heldBalls -= actionCosts[6];
+        actionCooldowns[7] = 2; //where N is assuming this is the N+1th ability.
+		this.heldBalls -= actionCosts[7];
 		return 0;
     }
 
-	// Queen: Throws 8 balls at a single enemy
-	public override int Skill4() {
-        float variance;
-		int damage = 0;
-        for (int i = 0; i < 8; i++) {
-            variance = Random.Range(0.7f, 1.1f);
-			Target[0].dodgeBall(this);
-			int partialDamage = (int)(this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
-			Target[0].loseStamina(partialDamage);
-			damage += partialDamage;
-        }
-		actionCooldowns[7] = 3;
-		this.heldBalls -= actionCosts[7];
-		return damage;
-    }
 
 	public override void ResetChar()
 	{

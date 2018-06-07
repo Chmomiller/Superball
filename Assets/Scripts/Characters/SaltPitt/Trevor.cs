@@ -9,15 +9,16 @@ public class Trevor : Character {
         Name = "Trevor";
         Role = "Thrower";
 
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Riled Up", "Skill3", "Skill4" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Riled Up", "Taunt", "Blowbeat" };
 		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls",
                                           "Choose <color = red>3 random targets on the enemy team and throw one ball at each. These targets can be the same more than once.", 
-										  "Target is <i>blocked</i> from throwing balls and must do something else next", 
-										  "Blocks the first attack on the next <color = red>2 turns", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 }; 
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 0 };
+										  "Get <color = orange>buffed</color> for two turns",
+                                          "Buff enemy but make him <color=orange>unsteady</color> for <color= red> 2<color> turns",
+                                          "Attack an ally but <color=orange>steady</color> him for <color = red>2</color> turns" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Offense" };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 1, 2 }; 
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 2, 1 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 3 };
 
 		base.Start ();
     }
@@ -68,7 +69,7 @@ public class Trevor : Character {
 		{
 			damage += this.throwBall (Target[i]);
 		}
-	    actionCooldowns[4] = 1;
+	    actionCooldowns[4] = 3;
 
 		return damage;
     }
@@ -77,6 +78,7 @@ public class Trevor : Character {
 	//Skill1
     public override int Skill2() {
         this.addStatusEffect("buffed", 3);
+        actionCooldowns[5] = 4;
         return 0;
     }
 
@@ -119,7 +121,7 @@ public class Trevor : Character {
     public override int Skill3() {
         Target[0].addStatusEffect("buff", 3);
         Target[0].addStatusEffect("unsteady", 2);
-        actionCooldowns[5] = 4;
+        actionCooldowns[6] = 4;
         return 0;
     }
     /*
@@ -164,7 +166,7 @@ public class Trevor : Character {
         Target[0].addStatusEffect("buff", 3);
         Target[0].addStatusEffect("steady", 3);
         this.heldBalls -= 3;
-        this.actionCooldowns[6] = 3; 
+        this.actionCooldowns[7] = 3; 
         return this.Damage;
     }
 

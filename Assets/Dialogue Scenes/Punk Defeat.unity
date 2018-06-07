@@ -406,6 +406,16 @@ Prefab:
       propertyPath: nextScene
       value: Scenes/MapScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: startingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d3f1b38fb786cf4abac956bf0d58d00, type: 3}
+    - target: {fileID: 82989696288111394, guid: e69b7a2c177f5e44aad1ef401a78dc53,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e0d1e83ffbbc2ff4bbadeec1fcad2864, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e69b7a2c177f5e44aad1ef401a78dc53, type: 2}
   m_IsPrefabParent: 0

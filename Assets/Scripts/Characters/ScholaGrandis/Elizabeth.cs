@@ -15,15 +15,16 @@ public class Elizabeth : Character {
 		
         Role = "Catcher";
 
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Preen", "Royal Touch", "Skill3", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Become staggered until attacked, then become steady", 	
-										  "Become buffed", 
-										  "Strong attack that may stun against one enemy", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Offense", "Utility", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 0, 0 };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Blow a Kiss", "Preen", "Royal Touch", "Skill4" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
+                                          "Make the target <color = orange>Unsteady</color> for <color = red>2</color> turns",
+                                          "<color=orange>Buff</color> yourself for <color =red>2</color> turns",
+										  "Deal an enemy a <b>hard-hitting</b> attack that may <color = red>Stun</color>",
+                                          "" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Offense", "Utility" };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 1, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 2, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 
 		base.Start ();
 
@@ -49,14 +50,17 @@ public class Elizabeth : Character {
     //Unfocused/Attack: Elizabeth is now unsteady, taking more dmg until she is attacked. At end of turn if she was attacked she switches to steady (less dmg);
     //this one is kinda weird since its more of a passive to be checked at the beginning of the execute phase, like the other abilities that occur post planning (change target to me, all attack me, etc.) 
 	public override int Skill1() {
-		// adds unsteady status for a period no player should be able to reach
-		addStatusEffect ("unsteady", 100);
-		return 0;
+        // adds unsteady status for a period no player should be able to reach
+        Target[0].addStatusEffect("unsteady", 3);
+        this.actionCooldowns[4] = 3;
+        return 0;
     }
 
 	//   Preen (Unfocused): stacking self damage buff to stamina dmg.
 	// cant do stacking buffs yet    //
 	public override int Skill2(){
+        this.addStatusEffect("steady", 2);
+        this.actionCooldowns[5] = 3;
 		return 0;
 	}
 	// Royal Touch: Hard Hitting Attack that may stun an enemy
@@ -68,7 +72,8 @@ public class Elizabeth : Character {
 		{
            	Target[0].addStatusEffect("stun", 2);
         }
-        actionCooldowns[5] = 3;
+        this.heldBalls -= actionCosts[6];
+        actionCooldowns[6] = 2;
 		return damage;
     }
 		

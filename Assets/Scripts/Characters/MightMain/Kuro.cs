@@ -9,17 +9,16 @@ public class Kuro : Character {
         Stamina = maxStamina;
         Role = "Catcher";
 
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Smoke Screen", "Safe Haven", "Lord of the Seven Seas", "Cannon Adjustments" };
+		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Smokescreen", "Safe Haven", "Lord of the Seven Seas", "Cannon Adjustments" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-											"Steady your team", 
-											"Catch for the whole team", 
-											"Charge up for a turn before unleashing an attack against all enemies", 
-											"Buff your team" };
+											"make yourself and allies <color=orange>Steady</color>", 
+											"Catch for yourself and both allies", 
+											"Charge up for a turn before unleashing an attack against all enemies",
+                                            "<color=orange>Buff</color> yourself and allies" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 0 };
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 4 };
 
 		base.Start ();
     }
@@ -92,6 +91,7 @@ public class Kuro : Character {
 		{
 			enemies [i].addStatusEffect ("buff",2);
 		}
+        this.heldBalls -= this.actionCosts[7];
 		return 0;
 	}
 

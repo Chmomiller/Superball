@@ -12,7 +12,9 @@ public class YamatoBow : Yamato {
 
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
-		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Charges forward with a ram", "Drops explosives off the front", "", "" };
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
+                                                    "Ram into target with an attack that makes the target <color = orange>Unsteady</color>",
+                                                    "Drops explosives off the front, hitting all enemies with a regular attack", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
@@ -29,6 +31,7 @@ public class YamatoBow : Yamato {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
 		int damage = (int)(1.5f * this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target[0].loseStamina(damage);
+        Target[0].addStatusEffect("unsteady", 2);
         this.actionCooldowns[4] = 3;
 		return damage;
     }

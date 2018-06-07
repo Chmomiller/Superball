@@ -8,17 +8,17 @@ public class Harold : Character {
         Name = "Harold";
 		Stamina = maxStamina;
         Role = "Thrower";
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
-		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Reactive Armor", "Suppressing Fire", "Heavy Bombardment", "Five Rounds Rapid" };
-		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-											"If attacked this turn, catch the ball and gain steady", 
-											"Counterattack when attacked on the next two turns", 
-											"Charge for a turn then attack with a powerful strike against an enemy and becomes staggered", 
-											"Throw five balls at a single target inaccurately" };
+
+        actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Reactive Armor", "Suppressing Fire", "Heavy Bombardment", "Five Rounds Rapid" };
+		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
+                                            "If attacked this turn, catch the ball and gain <color=orange>Steady</color>", 
+											"Become ready to <color = orange>Counterattack</color> whenever attacked on the next <color = red>2</color> turns", 
+											"Charge for a turn then attack with a powerful strike against an enemy, at the cost of becoming <color=orange>Unsteady</color>", 
+											"Throw <color = red>5</color><i>weaker</i> balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 0, 4, 6, 5 };
+		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 3, 4, 6 };
 
 		base.Start ();
     }
@@ -68,6 +68,7 @@ public class Harold : Character {
 	// Suppressing Fire: Counterattack when attacked on the next two turns
     public override int Skill2() {
 		addStatusEffect ("misc", 3);
+        this.heldBalls -= this.actionCosts[5];
 		return 0;
     }
 
@@ -99,6 +100,8 @@ public class Harold : Character {
 			damage += partialDamage;
 			Target[0].loseStamina(partialDamage);
         }
+        this.heldBalls -= this.actionCosts[7];
+        this.actionCooldowns[7] = 4;
 		return damage;
     }
 

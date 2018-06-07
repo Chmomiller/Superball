@@ -319,22 +319,22 @@ Prefab:
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.90327924
       objectReference: {fileID: 0}
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114423588766967868, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
@@ -898,12 +898,17 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: d5cf81c95850af343a77e1f74874406e, type: 3}
+      objectReference: {fileID: 8300000, guid: 66a1b03a37baf9a419149bbff566c877, type: 3}
     - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114492731395360138, guid: faa8207a9f50b8145b7794239621e9ea,
+        type: 2}
+      propertyPath: file
+      value: 
+      objectReference: {fileID: 8300000, guid: a996df230e3c883458e588150ad067ea, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
   m_IsPrefabParent: 0
