@@ -19,15 +19,15 @@ public class Clemence : Character
         Role = "Catcher";
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Planted Stance", "Rain Shield" };
-        actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
-                                          "<color=orange>Steady</color> a teammate for <color=red>2</color> turns cooldown.\nCost: None    Target: Single Teammate",
-                                          "<color=orange>Debuff</color> an enemy for <color=red>3</color> turns \n <color=red>4</color> turn cooldown.  Cost: 3    Target: Single Enemy",
-                                          "Become <color=orange>Steady</color> and reduce the turns remaining for skills on cooldown by <color=red>2</color> turns.\n",
-                                          ""};
+		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", 
+										  "Atempt to catch for both allies. <color=red>1</color> turn cooldown.\nCost: None    Target: Ally Team", 
+										  "If target enemy is throwing, they are <color=yellow>stunned</color> for 1 turn. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Enemy",
+                                          "Become <color = orange>steady</color> and reduce the turns remaining for skills on cooldown by <color = red>2</color> turns",
+                                          "Block the first attack on the next two turns. <color=red>2</color> turn cooldown.\nCost: None    Target: Self", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Utility" , "Defense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 2, 0, 0, 1, 0, 0 };
 
-		actionCosts = new int[]{ 0, 1, 0, 0, 2, 3, 0, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 0, 2, 0, 1 };
 		base.Start ();
     }
 
@@ -58,31 +58,6 @@ public class Clemence : Character
 		return base.dodgeBall (attacker);
 	}
 
-
-    public override int Skill1() {
-        Target[0].addStatusEffect("steady", 3);
-        this.heldBalls -= actionCosts[4];
-        this.actionCooldowns[4] = 3;
-        return 0;
-    }
-
-    public override int Skill2() {
-        Target[0].addStatusEffect("debuff", 4);
-        this.heldBalls -= actionCosts[5];
-        this.actionCooldowns[5] = 4;
-        return 0;
-    }
-
-    public override int Skill3() {
-        this.addStatusEffect("steady", 3);
-        for(int i = 0; i<this.statusEffects.Length; i++) {
-            statusEffects[i].duration -= 2;
-            if (statusEffects[i].duration < 0) statusEffects[i].duration = 0;
-        }
-        this.actionCooldowns[6] = 5;
-        return 0;
-    }
-    /*
 	// Picket Fence: Catches for both allies but not yourself
 	public override int Skill1() {
 		int count = 0;
@@ -108,7 +83,7 @@ public class Clemence : Character
 
     }
 
-    // Vines: If enemy is throwing, they are stunned
+	// Vines: If enemy is throwing, they are stunned
     public override int Skill2() {
         if (Target[0].actionType == "Offense") {
 			Target [0].addStatusEffect ("stun", 1);
@@ -116,7 +91,7 @@ public class Clemence : Character
         actionCooldowns[5] = 4;
 		return 0;
     }
-    
+
 	// Rain Shield: Blocks the first attack on the next two turns
     public override int Skill3() {
         this.addStatusEffect("steady", 2);
@@ -126,7 +101,7 @@ public class Clemence : Character
         if (this.actionCooldowns[7] > 2) { this.actionCooldowns[7] -= 2; } else { this.actionCooldowns[7] = 0; }
         return 0;
         }
-        */
+
     public override int Skill4() {
         addStatusEffect("misc", 3);
         actionCooldowns[7] = 3;

@@ -13,7 +13,7 @@ public class YamatoBow : Yamato {
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
-                                                    "Ram into target with an attack that makes the target <color = orange>Unsteady</color>",
+                                                    "Ram into target with an attack that makes the target <color=orange>Unsteady</color>",
                                                     "Drops explosives off the front, hitting all enemies with a regular attack", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };

@@ -13,9 +13,9 @@ public class YamatoBridge : Yamato {
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Observation Gathering", "Captain's Orders", "Hasty Repairs", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Observation Gathering", "Captain's Orders", "Hasty Repairs", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
-                                                                            "Stuns each ally, but <color =orange>Buffs</color> it in return",
-                                                                            "Attacks an enemy with an attack <color = red>50</color>% stronger, but the bridge becomes <color = orange>Steady</color> as well",
-                                                                            "Each of the bridge’s allies gets <color=red>40</color> armor, but each ally becomes <color = orange>Unsteady</color> as well",
+                                                                            "Stuns each ally, but <color=orange>Buffs</color> it in return",
+                                                                            "Attacks an enemy with an attack <color=red>50</color>% stronger, but the bridge becomes <color=orange>Steady</color> as well",
+                                                                            "Each of the bridge’s allies gets <color=red>40</color> armor, but each ally becomes <color=orange>Unsteady</color> as well",
                                                                             "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 };

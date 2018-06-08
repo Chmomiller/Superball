@@ -12,9 +12,9 @@ public class Harold : Character {
         actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Reactive Armor", "Suppressing Fire", "Heavy Bombardment", "Five Rounds Rapid" };
 		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
                                             "If attacked this turn, catch the ball and gain <color=orange>Steady</color>", 
-											"Become ready to <color = orange>Counterattack</color> whenever attacked on the next <color = red>2</color> turns", 
+											"Become ready to <color=orange>Counterattack</color> whenever attacked on the next <color=red>2</color> turns", 
 											"Charge for a turn then attack with a powerful strike against an enemy, at the cost of becoming <color=orange>Unsteady</color>", 
-											"Throw <color = red>5</color><i>weaker</i> balls at a single target inaccurately" };
+											"Throw <color=red>5</color><i>weaker</i> balls at a single target inaccurately" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };

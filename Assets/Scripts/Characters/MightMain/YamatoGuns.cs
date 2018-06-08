@@ -12,7 +12,7 @@ public class YamatoGuns : Yamato {
 
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Artillery Barrage", "Bombardment", "Skill3", "Skill4" };
         actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", 
-										  "Hit an enemy with an attack at <color = red>1.25</color> stronger", 
+										  "Hit an enemy with an attack at <color=red>1.25</color> stronger that cannot be caught", 
 										  "Choose <color=red>3</color> random targets on the enemy team and hit them with a <i>weak</i> attack", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "O", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };

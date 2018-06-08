@@ -11,10 +11,10 @@ public class Trevor : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Riled Up", "Taunt", "Blowbeat" };
 		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls",
-                                          "Choose <color = red>3 random targets on the enemy team and throw one ball at each. These targets can be the same more than once.", 
-										  "Get <color = orange>buffed</color> for two turns",
-                                          "Buff enemy but make him <color=orange>unsteady</color> for <color= red> 2<color> turns",
-                                          "Attack an ally but <color=orange>steady</color> him for <color = red>2</color> turns" };
+                                          "Choose <color=red>3 random targets on the enemy team and throw one ball at each. These targets can be the same more than once.", 
+										  "Get <color=orange>buffed</color> for two turns",
+                                          "Buff enemy but make him <color=orange>unsteady</color> for <color=red> 2<color> turns",
+                                          "Attack an ally but <color=orange>steady</color> him for <color=red>2</color> turns" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 1, 2 }; 
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 2, 1 };

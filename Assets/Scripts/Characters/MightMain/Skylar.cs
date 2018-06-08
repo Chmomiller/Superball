@@ -12,10 +12,10 @@ public class Skylar : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Bombing Run", "Supply Run", "Supply Drop", "Running Interference" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-											"Make all enemies <color = orange>Unsteady</color>",
+											"Make all enemies <color=orange>Unsteady</color>",
                                             "Take the difference between the number of balls that you have and your maximum ball capacity. Halve the number and round it up if need be, and you will gather that many balls.",
                                             "Let an ally gain 20 stamina and the same number of balls as you have. If there is no ally, then the skill cannot be used", 
-											"Makes all enemies <color = orange> Unsteady & Debuffed</color> for <color = red>2</color> turns" };
+											"Makes all enemies <color=orange> Unsteady & Debuffed</color> for <color=red>2</color> turns" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };

@@ -15,9 +15,9 @@ public class Greg: Character
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Hide", "Steal", "Roller Derby" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Become immune to all attacks for 1 turn, sending any balls aimed at you to trevor", 
-										  "Block incoming attacks, but become <color = orange>stunned</color> on next turn",
-                                          "Reduce an enemy's ball count by <color = red>2</color> and increase your own by <color = red>2</color>",
+										  "Become immune to all attacks for 1 turn, sending any balls aimed at you to Trevor", 
+										  "Block incoming attacks, but become <color=orange>stunned</color> on next turn",
+                                          "Reduce an enemy's ball count by <color=red>2</color> and increase your own by <color=red>2</color>",
                                           "Reduce an enemy's stamina by 25%" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };

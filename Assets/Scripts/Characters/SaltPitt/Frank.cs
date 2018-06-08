@@ -15,10 +15,10 @@ public class Frank : Character {
 
 	    actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Rumble", "Power Stance", "Work Time", "Waxing Wroth" };
 	    actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Blocks all atacks aimed at Trevor for <color = red>1</color> turn",
-                                          "Become <color = orange>Steady</color> for <color = red>2</color> turns",
-                                          "Gather <color = red>3</color> balls",
-                                          "If attacked on next turn, become buffed and gain <color = red>30</color> stamina"};
+										  "Blocks all atacks aimed at Trevor for <color=red>1</color> turn",
+                                          "Become <color=orange>Steady</color> for <color=red>2</color> turns",
+                                          "Gather <color=red>3</color> balls",
+                                          "If attacked on next turn, become buffed and gain <color=red>30</color> stamina"};
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility","Utility" };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };        

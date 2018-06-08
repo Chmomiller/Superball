@@ -17,8 +17,8 @@ public class Elizabeth : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Blow a Kiss", "Preen", "Royal Touch", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
-                                          "Make the target <color = orange>Unsteady</color> for <color = red>2</color> turns",
-                                          "<color=orange>Buff</color> yourself for <color =red>2</color> turns",
+                                          "Make the target <color=orange>Unsteady</color> for <color=red>2</color> turns",
+                                          "<color=orange>Buff</color> yourself for <color=red>2</color> turns",
 										  "Deal an enemy a <b>hard-hitting</b> attack that may <color = red>Stun</color>",
                                           "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Offense", "Utility" };
