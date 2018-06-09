@@ -8,15 +8,15 @@ public class Dialogue {
     //{character,character,character,character,character,character,dialogue,whose talking split by a space,special, special param}
     static string[,] sceneName = new string[,] {
         { "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "", "" },
-		//{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "BG", "Mightmain Battle" },
+		//{ "char1", "char2", "char3", "char4", "char5", "char6", "text", "char1 char2 char3", "audio", "Mightmain Battle" },
         { "", "", "char1", "char2", "", "", "text","char1","", "" },
         { "", "", "char1", "char2", "", "", "text","x","", "" },
 
     };
 
-// Prologue and scenes 1-2 of Salt Pitt High
+// Prologue
     
-static string[,] saltPittPrebattle = new string[,]{
+static string[,] prologue = new string[,]{
         {   
             "","","","","","",
             "Dear Kuro,",
@@ -25,7 +25,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","","","","","",
             "I’ve come to Ball City at last!",
-            "Shiro", "BG", "TodaysTale"
+            "Shiro", "audio", "TodaysTale"
         },
                        {    
             "","","","","","",
@@ -72,6 +72,9 @@ static string[,] saltPittPrebattle = new string[,]{
             "Best wishes, your little sister, Shiro.",
             "Shiro", "", ""
         },
+};
+
+static string[,] aNewStudent = new string[,]{
         {
             "","","","","","",
             "",
@@ -80,12 +83,12 @@ static string[,] saltPittPrebattle = new string[,]{
             {   
             "","","","","","",
             "A few days later...",
-            "Narrator", "BG", "Audio stop"
+            "Narrator", "audio", "Audio stop"
         },
         {   
             "","Shiro","","","","",
             "Now, where’s Salt Pitt High? It’s my first day, and I couldn’t be any more lost.",
-            "Shiro", "BG", "lovelyTime"
+            "Shiro", "audio", "lovelyTime"
         },
         {   
             "","Shiro","","","","",
@@ -170,8 +173,11 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","Shiro","","","","",
             "Now for that big building at the edge of campus.",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
+};
+
+static string[,] punkConfrontation = new string[,]{
         {
             "","","","","","",
             "",
@@ -195,7 +201,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","Shiro","","","Greg","Frank",
             "You must be new meat! We’re the Pitt Crew, the school’s dodgeball club, and this old gym’s our turf!",
-            "Greg", "BG", "UpToNoGood"
+            "Greg", "audio", "UpToNoGood"
         },
         {   
             "","Shiro","","","Greg","Frank",
@@ -230,12 +236,12 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","Shiro","","","Greg","Frank",
             "I’m sorry to interrupt, but I must insist that this verbal roughhousing cease immediately. The fun is over!",
-            "???", "BG", "Audio stop"
+            "???", "audio", "Audio stop"
         },
            {    
             "Shiro","Theodore","Clemence","","Greg","Frank",
             "Now that I’m here, I’ll make sure you won’t lay a hand on her.",
-            "Theodore", "BG", "End Battle"
+            "Theodore", "audio", "End Battle"
         },
         {   
             "Shiro","Theodore","Clemence","","Greg","Frank",
@@ -280,7 +286,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","","Greg","Frank",
             "Am I famous enough for nicknames already, Theodore?",
-            "???", "BG", "Audio stop"
+            "???", "audio", "Audio stop"
         },
         {   
             "Shiro","Theodore","Clemence","","Greg","Frank",
@@ -295,7 +301,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "Greg’s right on this one, you know. This girl ought to know her place here.",
-            "Trevor", "BG", "UpToNoGood"
+            "Trevor", "audio", "UpToNoGood"
         },
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
@@ -525,13 +531,13 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "Now, then, let’s begin!",
-            "Trevor", "BG", "Audio stop"
-        }
-	};
+            "Trevor", "audio", "Audio stop"
+        },
+};
 
 // Scene 3 of Salt Pitt High
 
-    static string[,] saltPittPostbattle = new string[,]{
+static string[,] punkDefeat = new string[,]{
         {
             "","","","","","",
             "",
@@ -540,7 +546,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "What?! No way! I can’t believe this!",
-            "Trevor", "BG", "End Battle"
+            "Trevor", "audio", "End Battle"
         },
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
@@ -610,7 +616,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "Eep!",
-            "Greg", "BG", "_SFX/Final Voice Lines/Crowd Sounds/Booing/Booing_3"
+            "Greg", "audio", "_SFX/Final Voice Lines/Crowd Sounds/Booing/Booing_3"
         },
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
@@ -620,7 +626,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "You’re a sham of a dodgeball club! Get out, Pitt Crew!",
-            "Student B", "", "_SFX/Battle sfx/crowd/get out of here/get out of here"
+            "Student B", "audio", "_SFX/Battle sfx/crowd/get out of here/get out of here"
         },
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
@@ -670,7 +676,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "The next time you see me, you’d better be ready. Pitt Crew out!",
-            "Trevor", "BG", "Audio stop"
+            "Trevor", "audio", "Audio stop"
         },
         {
             "","","","","","",
@@ -680,7 +686,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "And that’s checkmate. Now, the game is over, and we can all go back home.",
-            "Theodore", "BG", "lovelyTime"
+            "Theodore", "audio", "lovelyTime"
         },
         {   
             "","Shiro","","","Theodore","Clemence",
@@ -800,7 +806,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "See you later, Shiro!",
-            "Clemence", "BG", "Audio stop"
+            "Clemence", "audio", "Audio stop"
         },
         {
             "","","","","","",
@@ -810,7 +816,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","","","","","",
             "Dear Kuro,",
-            "Shiro", "BG", "TodaysTale"
+            "Shiro", "audio", "TodaysTale"
         },
         {   
             "","","","","","",
@@ -860,7 +866,7 @@ static string[,] saltPittPrebattle = new string[,]{
         {   
             "","","","","","",
             "Best wishes, Shiro.",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
 };
 
@@ -896,9 +902,9 @@ static string[,] saltPittPrebattle = new string[,]{
     /// 
     ///////////////////////////////////////////////////////////////
 
-// Scenes 1-3 of Schola Grandis
+// Scene 1 of Schola Grandis
     
-static string[,] scholaGrandisPrebattle = new string[,]{
+static string[,] scholaGrandisIntro = new string[,]{
         {
             "","","","","","",
             "",
@@ -947,7 +953,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
             "This school… has a kind of… simple charm, I suppose. Clean and drab like an airport bathroom.",
-            "Elizabeth", "BG", "Audio stop"
+            "Elizabeth", "audio", "Audio stop"
         },
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
@@ -962,7 +968,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
             "Where are the balloons, the flowers, the pink rabbits, the kitties, the cute dresses, the cute blond boys—",
-            "Victoria", "unskippable", ""
+            "Victoria", "", ""
         },
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
@@ -992,7 +998,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
             "Oh, hi! You are too sweet. No, I think we are getting along just fine. You can go back to sweeping the floors or whatever.",
-            "Elizabeth", "BG", "TheOneOnTop"
+            "Elizabeth", "audio", "TheOneOnTop"
         },
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
@@ -1096,7 +1102,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         },
         {   
             "","Shiro","","Elizabeth","Victoria","Mei",
-            "……… ",
+            "………",
             "Mei", "", ""
         },
         {   
@@ -1272,7 +1278,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {   
             "Shiro","Clemence","","Elizabeth","Victoria","Mei",
             "Goodbye, Clemence! I’ll stay true to you, my darling!",
-            "Victoria", "BG", "Audio stop"
+            "Victoria", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","","","Theodore","",
@@ -1292,7 +1298,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {   
             "Shiro","Clemence","","","Theodore","",
             "Hmm… I see… Schola Grandis. It’s as if the perfume were sticking to the walls.",
-            "Theodore", "BG", "lovelyTime"
+            "Theodore", "audio", "lovelyTime"
         },
         {   
             "Shiro","Clemence","","","Theodore","",
@@ -1332,8 +1338,13 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {   
             "Shiro","Clemence","","","Theodore","",
             "Well, I think we can buy a few things first before ending things for the day. Never hurts to have more refreshments, after all.",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
+};
+
+// Scene 2 of Schola Grandis
+
+static string[,] magicalPreparation = new string[,]{
         {
             "","","","","","",
             "",
@@ -1347,7 +1358,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "","Shiro","","","Theodore","Clemence",
             "Wow. This school is absolutely spectacular!",
-            "Shiro","BG", "lovelyTime"
+            "Shiro","audio", "lovelyTime"
         },
         {
             "","Shiro","","","Theodore","Clemence",
@@ -1377,12 +1388,12 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "","Shiro","","","Theodore","Clemence",
             "And this queen never disappoints!",
-            "???","BG", "Audio stop"
+            "???","audio", "Audio stop"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "I am totally shocked! I want you to know I won’t shame you if you give up now.",
-            "Elizabeth","BG", "TheOneOnTop"
+            "Elizabeth","audio", "TheOneOnTop"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1442,7 +1453,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","","Mei","",
             "Miss Smith, I have some information that would help you.",
-            "Mei","BG", "Audio stop"
+            "Mei","audio", "Audio stop"
         },
         {
             "Shiro","Theodore","Clemence","","Mei","",
@@ -1507,7 +1518,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","","Mei","",
             "… I have one request for you. I humbly ask that you beat Miss Elizabeth in the match.",
-            "Mei","BG", "DrearyDay"
+            "Mei","audio", "DrearyDay"
         },
         {
             "Shiro","Theodore","Clemence","","Mei","",
@@ -1597,7 +1608,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","","Mei","",
             "Thank you, Miss Smith.",
-            "Mei","BG", "Audio stop"
+            "Mei","audio", "Audio stop"
         },
         {
             "","Shiro","","","Theodore","Clemence",
@@ -1619,6 +1630,9 @@ static string[,] scholaGrandisPrebattle = new string[,]{
             "Fulfilling her request to beat Elizabeth, of course! Come on, let’s go ready ourselves and then go to the gym!",
             "Shiro","", ""
         },
+};
+
+static string[,] magicalMatch = new string[,]{
         {
             "","","","","","",
             "",
@@ -1627,7 +1641,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "","Shiro","","","Theodore","Clemence",
             "Everyone looks pretty pumped to see us compete.",
-            "Shiro","", "_SFX/Final Voice Lines/Crowd Sounds/Murmuring/Murmuring_1"
+            "Shiro","audio", "_SFX/Final Voice Lines/Crowd Sounds/Murmuring/Murmuring_1"
         },
         {
             "","Shiro","","","Theodore","Clemence",
@@ -1657,7 +1671,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "Hello, everyone! I am very glad that you could make it today!",
-            "Elizabeth","BG", "TheOneOnTop"
+            "Elizabeth","audio", "TheOneOnTop"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1802,14 +1816,13 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "Uh, all right, then. Let’s begin!",
-            "Shiro","BG", "Audio stop"
+            "Shiro","audio", "Audio stop"
         },
 };
 
 // Scene 4 of Schola Grandis.
 
-    
-static string[,] scholaGrandisPostbattle = new string[,]{
+static string[,] scholaGrandisDefeat = new string[,]{
         {
             "","","","","","",
             "",
@@ -1818,7 +1831,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "What just happened? WHAT JUST HAPPENED?!",
-            "Elizabeth","BG", "End Battle"
+            "Elizabeth","audio", "End Battle"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1828,7 +1841,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "Hurray for Salt Pitt!",
-            "Student A","BG", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_4"
+            "Student A","audio", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_4"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1863,7 +1876,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "No… No! I can’t accept this! I’m Elizabeth Kanasaki IV, heiress of Kanasaki Technologies!",
-            "Elizabeth","", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_1"
+            "Elizabeth","audio", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_1"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1878,7 +1891,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "No! This isn’t fair! I… I demand a rematch!",
-            "Elizabeth","BG", "Audio stop"
+            "Elizabeth","audio", "Audio stop"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1893,7 +1906,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
             "What? Not you, too, Victoria!",
-            "Elizabeth","BG", "_SFX/Final Voice Lines/Crowd Sounds/Booing/Booing_3"
+            "Elizabeth","audio", "_SFX/Final Voice Lines/Crowd Sounds/Booing/Booing_3"
         },
         {
             "Shiro","Theodore","Clemence","Elizabeth","Victoria","Mei",
@@ -1908,7 +1921,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "Shiro","Theodore","Clemence","","Victoria","Mei",
             "No, Elizabeth! She’s fallen!",
-            "Student A","BG", "_SFX/Battle sfx/hit/hit+grunt_1"
+            "Student A","audio", "_SFX/Battle sfx/hit/hit+grunt_1"
         },
         {
             "Shiro","Theodore","Clemence","","Victoria","Mei",
@@ -1958,7 +1971,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "","Shiro","","","Theodore","Clemence",
             "And that’s the end of that. Elizabeth Kanasaki’s gotten her just deserts. And I hope that Mei and her two younger brothers will live happier lives.",
-            "Shiro","BG", "lovelyTime"
+            "Shiro","audio", "lovelyTime"
         },
         {
             "","Shiro","","","Theodore","Clemence",
@@ -1993,7 +2006,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {
             "","Shiro","","","Theodore","Clemence",
             "I’ll take that risk. I’m feeling really pumped for some reason.",
-            "Clemence","BG", "Audio stop"
+            "Clemence","audio", "Audio stop"
         },
         {
             "","","","","","",
@@ -2008,7 +2021,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {   
             "","","","","","",
             "How are you doing now?",
-            "Shiro", "BG", "TodaysTale"
+            "Shiro", "audio", "TodaysTale"
         },
         {   
             "","","","","","",
@@ -2043,7 +2056,7 @@ static string[,] scholaGrandisPostbattle = new string[,]{
         {   
             "","","","","","",
             "Best wishes, Shiro.",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
 };
 
@@ -2072,9 +2085,9 @@ static string[,] scholaGrandisPostbattle = new string[,]{
 
 
 
-// Scenes 1 and 2 of Mightmain Academy.
+// Scene 1 of Mightmain Academy.
         
-static string[,] mightmainPrebattle = new string[,]{
+static string[,] mightmainIntro = new string[,]{
         {
             "","","","","","",
             "",
@@ -2088,7 +2101,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "… Oh yeah, there are lots of schools in Ball City, I tell ya! We have a population of nearly nine million people, after all!",
-            "Clemence", "BG", "lovelyTime"
+            "Clemence", "audio", "lovelyTime"
         },
         {   
             "","Shiro","","","Theodore","Clemence",
@@ -2118,12 +2131,12 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "You’re gonna be eating that burger through a straw!",
-            "???", "BG", "Audio stop"
+            "???", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","Trevor","Greg","Frank",
             "Oh, man, I thought I smelled something.",
-            "Shiro", "BG", "UpToNoGood"
+            "Shiro", "audio", "UpToNoGood"
         },
         {   
             "Shiro","Clemence","Theodore","Trevor","Greg","Frank",
@@ -2263,17 +2276,17 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","Trevor","Greg","Frank",
             "Yes, boss! One, two, three, go!",
-            "Greg", "BG", "Audio stop"
+            "Greg", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","Trevor","Greg","Frank",
             "Oof!",
-            "Theodore", "BG", "_SFX/Battle sfx/hit/hit+grunt_1"
+            "Theodore", "audio", "_SFX/Battle sfx/hit/hit+grunt_1"
         },
         {   
             "Shiro","Clemence","Theodore","Trevor","Greg","Frank",
             "Gah!",
-            "Clemence", "BG", "_SFX/Battle sfx/hit/hit+grunt_2"
+            "Clemence", "audio", "_SFX/Battle sfx/hit/hit+grunt_2"
         },
         {   
             "","Shiro","","Trevor","Greg","Frank",
@@ -2283,7 +2296,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","Trevor","Greg","Frank",
             "They interfered with our fight last time. It’d be bad for me if that were to happen again, I thought.",
-            "Trevor", "BG", "UpToNoGood"
+            "Trevor", "audio", "UpToNoGood"
         },
         {   
             "","Shiro","","Trevor","Greg","Frank",
@@ -2333,12 +2346,12 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","Trevor","Greg","Frank",
             "Worry not, miss! We two will deal with those no-good punks in no time!",
-            "???", "BG", "Audio stop"
+            "???", "audio", "Audio stop"
         },
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
             "(Whoa! Who are these two?! They look like they’re from the military, and the guy is so… angular!)",
-            "Shiro", "BG", "MilitaryMight"
+            "Shiro", "audio", "MilitaryMight"
         },
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
@@ -2388,7 +2401,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
             "Thank you, miss! Now, let’s get down to it!",
-            "Harold", "BG", "Audio stop"
+            "Harold", "audio", "Audio stop"
         },
         {
             "","","","","","",
@@ -2413,7 +2426,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
             "As I thought. You may rev up pretty loud, but when the going gets tough, you fall and crash.",
-            "Skylar", "BG", "MilitaryMight"
+            "Skylar", "audio", "MilitaryMight"
         },
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
@@ -2433,7 +2446,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
             "…… It seems that my judgment was wrong. Payback has just been rescheduled, boys.",
-            "Trevor", "BG", "Audio stop"
+            "Trevor", "audio", "Audio stop"
         },
         {   
             "Shiro","Harold","Skylar","Trevor","Greg","Frank",
@@ -2448,7 +2461,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","","Harold","Skylar",
             "Oh, yes, yes, I am! Thank you very much for helping me against those punks!",
-            "Shiro", "BG", "lovelyTime"
+            "Shiro", "audio", "lovelyTime"
         },
         {   
             "","Shiro","","","Harold","Skylar",
@@ -2498,7 +2511,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Harold","Skylar",
             "Wait! You said \"Mightmain Academy\"?",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","","Harold","Skylar",
@@ -2513,7 +2526,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Harold","Skylar",
             "Wh-What?! Your brother goes to Mightmain, Shiro?!",
-            "Clemence", "BG", "MilitaryMight"
+            "Clemence", "audio", "MilitaryMight"
         },
         {   
             "Shiro","Clemence","Theodore","","Harold","Skylar",
@@ -2613,7 +2626,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Harold","Skylar",
             "Hoorah! Mission accomplished! Today has been a good day!",
-            "Harold", "BG", "Audio stop"
+            "Harold", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","","Harold","Skylar",
@@ -2645,6 +2658,9 @@ static string[,] mightmainPrebattle = new string[,]{
             "I guess it’s one thing to fight rival schools, but another to fight family.",
             "Clemence", "", ""
         },
+};
+
+static string[,] militaryFight = new string[,]{
         {
             "","","","","","",
             "",
@@ -2658,7 +2674,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "(Today’s the big day! I’ll be going up against Kuro! We’ve trained all week for this, but we still have no idea how tough my brother will really be.)",
-            "Shiro", "BG", "lovelyTime"
+            "Shiro", "audio", "lovelyTime"
         },
         {   
             "","Shiro","","","Theodore","Clemence",
@@ -2738,7 +2754,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "I want more than that from you, Shiro!",
-            "???", "BG", "Audio stop"
+            "???", "audio", "Audio stop"
         },
         {   
             "","Shiro","","","Theodore","Clemence",
@@ -2748,7 +2764,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "Kuro! Big brother!",
-            "Shiro", "BG", "MilitaryMight"
+            "Shiro", "audio", "MilitaryMight"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
@@ -2783,12 +2799,12 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "Kuro… What pushed you to arrange this fight?",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "… I’ve told you that I’ve gotten your letters.",
-            "Kuro", "BG", "DrearyDay"
+            "Kuro", "audio", "DrearyDay"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
@@ -2828,7 +2844,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "Well, I must get going! I must go prepare with Harold and Skylar.",
-            "Kuro", "BG", "Audio stop"
+            "Kuro", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
@@ -2868,7 +2884,7 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","Kuro","Harold","Skylar",
             "(Ah, Kuro’s team is already here! Harold’s wearing some scary cannon, and Skylar’s boots look like planes!)",
-            "Shiro", "BG", "MilitaryMight"
+            "Shiro", "audio", "MilitaryMight"
         },
         {   
             "Shiro","Clemence","Theodore","Kuro","Harold","Skylar",
@@ -2903,14 +2919,13 @@ static string[,] mightmainPrebattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","Kuro","Harold","Skylar",
             "Yes, let’s begin!",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
 };
 
-
-
+// Scene 3 of Mightmain Academy.
     
-static string[,] mightmainInterbattle = new string[,]{
+static string[,] yamatoBattle = new string[,]{
         {
             "","","","","","",
             "",
@@ -2929,7 +2944,7 @@ static string[,] mightmainInterbattle = new string[,]{
         {   
             "","Shiro","","","Theodore","Clemence",
             "I-I can’t believe I’ve managed to beat them on their own turf!",
-            "Shiro", "BG", "End Battle"
+            "Shiro", "audio", "End Battle"
         },
         {   
             "","Shiro","","","Theodore","Clemence",
@@ -2949,7 +2964,7 @@ static string[,] mightmainInterbattle = new string[,]{
         {   
             "","","","","Kuro","",
             "Huff… Huff...",
-            "Kuro", "BG", "Audio stop"
+            "Kuro", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
@@ -3019,7 +3034,7 @@ static string[,] mightmainInterbattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "Wh-Wh-Wh… WHAAAAAAAAAAAAAAAAAT?! What in the world is that doing here?!",
-            "Clemence", "BG", "KurosTrumpCard"
+            "Clemence", "audio", "KurosTrumpCard"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
@@ -3169,12 +3184,12 @@ static string[,] mightmainInterbattle = new string[,]{
                        {    
             "Shiro","Clemence","Theodore","Kuro","","",
             "... Oh! Shiro, look around! Look at the audience!",
-            "Clemence", "BG", "Audio Stop"
+            "Clemence", "audio", "Audio stop"
         },
         {   
             "Shiro","Clemence","Theodore","Kuro","","",
             "What? … Ah! It’s not only our students and Mightmain ones!",
-            "Shiro", "BG", "End Battle"
+            "Shiro", "audio", "End Battle"
         },
         {   
             "Shiro","Clemence","Theodore","Kuro","","",
@@ -3199,7 +3214,7 @@ static string[,] mightmainInterbattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","Kuro","","",
             "Why, what a marvelous sight!",
-            "Theodore", "BG", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_4"
+            "Theodore", "audio", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_4"
         },
         {   
             "Shiro","Clemence","Theodore","Kuro","","",
@@ -3259,7 +3274,7 @@ static string[,] mightmainInterbattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "Can… Can I still beat him?",
-            "Shiro", "BG", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_1"
+            "Shiro", "audio", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_1"
         },
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
@@ -3309,12 +3324,12 @@ static string[,] mightmainInterbattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","Kuro","",
             "Thanks, guys! Now, let’s get to the end of this game!",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
 };
 
     
-static string[,] mightmainPostbattle = new string[,]{
+static string[,] mightmainDefeat = new string[,]{
         {
             "","","","","","",
             "",
@@ -3353,12 +3368,12 @@ static string[,] mightmainPostbattle = new string[,]{
         {   
             "Shiro","Clemence","Theodore","","","",
             "I… I can’t believe it! We’ve won! We’ve won! We’ve won!",
-            "Shiro", "BG", "End Battle"
+            "Shiro", "audio", "End Battle"
         },
         {   
             "Shiro","Clemence","Theodore","","","",
             "I can’t believe it, too! We beat your brother, and he was definitely stretching the rulebook with that last stunt.",
-            "Theodore", "BG", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_4"
+            "Theodore", "audio", "_SFX/Final Voice Lines/Crowd Sounds/Cheering/Cheering_4"
         },
         {   
             "Shiro","Clemence","Theodore","","","",
@@ -3423,7 +3438,7 @@ static string[,] mightmainPostbattle = new string[,]{
         {   
             "","Shiro","","","Kuro","",
             "What a day this has been! I still can’t believe I won our match!",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
         {   
             "","Shiro","","","Kuro","",
@@ -3433,7 +3448,7 @@ static string[,] mightmainPostbattle = new string[,]{
         {   
             "","Shiro","","","Kuro","",
             "Now that things are all over, maybe we can finally spend some time together.",
-            "Shiro", "BG", "Resolution"
+            "Shiro", "audio", "Resolution"
         },
         {   
             "","Shiro","","","Kuro","",
@@ -3603,7 +3618,7 @@ static string[,] mightmainPostbattle = new string[,]{
         {   
             "","Shiro","","","Kuro","",
             "I’m all ready to go now, Kuro. Let’s go.",
-            "Shiro", "BG", "Audio stop"
+            "Shiro", "audio", "Audio stop"
         },
         {
             "","","","","","",
@@ -3611,6 +3626,8 @@ static string[,] mightmainPostbattle = new string[,]{
             "","black", ""
         },
 };
+
+// The credits of the game. The epilogue starts when Trevor and his henchmen appear.
 
 static string[,] credits = new string[,]{
         {
@@ -3680,7 +3697,7 @@ static string[,] credits = new string[,]{
         },
         {
             "","Mei","","","Elizabeth","",
-            "My dear equipment cost thousands of dollars! It’s first class!",
+            "My precious gear cost thousands of dollars! It’s first class!",
             "Elizabeth","unskippable", ""
         },
         {
@@ -3808,184 +3825,6 @@ static string[,] credits = new string[,]{
             "… And maybe I need to stop talking to myself. Baby steps, Theodore...",
             "Theodore","unskippable", ""
         },
-		{
-			"","","","","","",
-			"",
-			"","transition", "Stadium"
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Boss, it’s been weeks since we got beaten badly, and we still haven’t gotten back at those nerds! I’m getting itchy.",
-			"Frank","BG", "Audio stop"
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Yeah, what gives, boss? Don’t we have a plan to take our revenge?",
-			"Greg","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"I thought we were the Pitt Crew, the best of them all!",
-			"Greg","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Waiting is difficult, but it’s the most important part of the plan.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Think you lunks can handle it?",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Sure thing. I’ve got nothing better to do.",
-			"Frank","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"But how long do we have to wait?I can hear the school’s laughter echoing in my head.",
-			"Greg","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"I’ll let you in on my thinking.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"As Shiro Smith and her crew have just beaten Mightmain Academy, they will likely be rising again and again in the world of dodgeball. They may even be chosen for the nationals!",
-			"Trevor","", ""
-		},      
-		{
-			"","Trevor","","","Greg","Frank",
-			"How painful her downfall will be from such lofty heights.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"That’s good thinking there, boss! Ohohohohoho!",
-			"Frank","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Yeah! What a great plan! Ahahahahaha!",
-			"Greg","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Now, go around the school and find information on what Shiro Smith’s up to.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"And be subtle about it, for once. She’s not gonna get away with this, I swear it.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"Yes, boss!",
-			"Frank","", ""
-		},
-		{
-			"","Trevor","","","Greg","Frank",
-			"We’ll be right back!",
-			"Greg","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"…………",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Ugh… Damn it!",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Why do I have to wait this long to get what I want?!",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"How could I let this happen?! I should have beaten that girl and her two stupid friends that day!",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"How did I lose?! Did I make a mistake? Impossible!",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"It was Shiro Smith! It was her friends! It was all those who went against me!",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Well, to hell with them all! One day, they’ll all be bowing to me, and I’ll have the last laugh!",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"……… No, no, I shouldn’t get too angry. I can still win.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Yes, yes, even with these setbacks, everything’s going smoothly.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Greg and Frank, those witless saps, have served me well, at least.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"For now, all I have to do is wait.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Shiro Smith’s no beginner anymore, but she truly does not know what she’ll be up against.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"I almost feel bad for the girl. But she was dead meat the second she stepped onto my turf.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Hahaha… Come to think of it, it’s the end of fall.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"It’ll be the beginning of winter… and the beginning of Shiro Smith’s end.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Funny how things should line up. Not a bad end for this season.",
-			"Trevor","", ""
-		},
-		{
-			"","Trevor","","","","",
-			"Business will be exciting next season.",
-			"Trevor","", ""
-		},
-		{
-			"","","","","","",
-			"",
-			"","black", ""
-		},
-};
-
-static string[,] epilogue = new string[,]{
         {
             "","","","","","",
             "",
@@ -3994,7 +3833,7 @@ static string[,] epilogue = new string[,]{
         {
             "","Trevor","","","Greg","Frank",
             "Boss, it’s been weeks since we got beaten badly, and we still haven’t gotten back at those nerds! I’m getting itchy.",
-            "Frank","BG", "Audio stop"
+            "Frank","audio", "Audio stop"
         },
         {
             "","Trevor","","","Greg","Frank",
@@ -4162,6 +4001,7 @@ static string[,] epilogue = new string[,]{
             "","black", ""
         },
 };
+        
 
 
 
@@ -4249,15 +4089,19 @@ static string[,] epilogue = new string[,]{
 
     public Dictionary<string, string[,]> allDialogue = new Dictionary<string, string[,]> {
         {"test scene", sceneName},
-        {"Salt Pitt Prebattle", saltPittPrebattle},
-        {"Salt Pitt Postbattle", saltPittPostbattle},
-        {"Schola Grandis Prebattle", scholaGrandisPrebattle},
-        {"Schola Grandis Postbattle", scholaGrandisPostbattle},
-        {"Mightmain Prebattle", mightmainPrebattle},
-        {"Mightmain Interbattle", mightmainInterbattle},
-        {"Mightmain Postbattle", mightmainPostbattle},
+        {"Prologue", prologue},
+        {"A New Student", aNewStudent},
+        {"Punk Confrontation", punkConfrontation},
+        {"Punk Defeat", punkDefeat},
+        {"Three Outstanding Girls", scholaGrandisIntro},
+        {"Magical Preparation", magicalPreparation},
+        {"Magical Match", magicalMatch},
+        {"Magical Defeat", scholaGrandisDefeat},
+        {"Punk Ambush", mightmainIntro},
+        {"Fight Against the Military", militaryFight},
+        {"Kuro's Trump Card", yamatoBattle},
+        {"Military Surrender", mightmainDefeat},
         {"Credits", credits},
-        {"Epilogue", epilogue},
 	};
 	/*
 	public Dictionary<string, string[][]> characters = new Dictionary<string, string[][]> {
