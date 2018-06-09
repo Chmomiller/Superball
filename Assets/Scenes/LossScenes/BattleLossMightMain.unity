@@ -954,6 +954,11 @@ Prefab:
       propertyPath: startDown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114991505434416198, guid: 39a70f224340403448dc0de3a6269efc,
+        type: 2}
+      propertyPath: sceneToTransitionTo
+      value: Scenes/CombatScenes/MightMain Academy Gym
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39a70f224340403448dc0de3a6269efc, type: 2}
   m_IsPrefabParent: 0
@@ -1406,7 +1411,7 @@ Prefab:
     - target: {fileID: 114282978661318022, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224304472569730514, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
         type: 2}
@@ -1686,7 +1691,22 @@ Prefab:
     - target: {fileID: 114282978661318022, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Scenes/CombatScenes/MightMain Academy Gym
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114282978661318022, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1206882791}
+    - target: {fileID: 114282978661318022, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: screenUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114282978661318022, guid: 7f54919b5d1596543b2fafc2aab0e0fd,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f54919b5d1596543b2fafc2aab0e0fd, type: 2}

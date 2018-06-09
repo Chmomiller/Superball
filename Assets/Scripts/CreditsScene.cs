@@ -19,9 +19,9 @@ public class CreditsScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > 25f) {
-			SceneManager.LoadScene("Scenes/MapScreen");
-		}
+		//if (Time.time > 25f) {
+		//	SceneManager.LoadScene("Scenes/MapScreen");
+		//}
 	}
 
 	public IEnumerator rollCredits () {
@@ -29,6 +29,7 @@ public class CreditsScene : MonoBehaviour {
 		while (!comp) {
 			if (scroll.position.y > (canvas.rect.height + (scroll.rect.height/2))) {
 				comp = true;
+				SceneManager.LoadScene("Scenes/MapScreen");
 			} else {
 				transform.Translate (0f, 4f, 0f);
 			}
