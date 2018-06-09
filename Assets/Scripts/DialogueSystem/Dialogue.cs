@@ -912,7 +912,7 @@ static string[,] scholaGrandisPrebattle = new string[,]{
         {
             "","Shiro","","","","",
             "(It seems like the three stooges have made tracks. Thank goodness for that. I don’t know if I could make a repeat performance.)",
-            "Shiro","BG", "lovelyTime"
+            "Shiro","audio", "lovelyTime"
         },
         {
             "","Shiro","","","","",
