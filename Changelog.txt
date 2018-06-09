@@ -139,3 +139,6 @@ Tristian:
 	Removed redundant scripts from buttons on MapScreen
 6/5/18:
 	changed code in MapScreenButtons so that buttons showed up properly
+6/8/18:
+	Did some more reformatting of Character Skills
+	Scaled up characters in combat and dialogue
