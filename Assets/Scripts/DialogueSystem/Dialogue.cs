@@ -3808,6 +3808,181 @@ public class Dialogue {
 			"… And maybe I need to stop talking to myself. Baby steps, Theodore...",
 			"Theodore","unskippable", ""
 		},
+		{
+			"","","","","","",
+			"",
+			"","transition", "Stadium"
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Boss, it’s been weeks since we got beaten badly, and we still haven’t gotten back at those nerds! I’m getting itchy.",
+			"Frank","audio", "Audio stop"
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Yeah, what gives, boss? Don’t we have a plan to take our revenge?",
+			"Greg","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"I thought we were the Pitt Crew, the best of them all!",
+			"Greg","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Waiting is difficult, but it’s the most important part of the plan.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Think you lunks can handle it?",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Sure thing. I’ve got nothing better to do.",
+			"Frank","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"But how long do we have to wait?I can hear the school’s laughter echoing in my head.",
+			"Greg","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"I’ll let you in on my thinking.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"As Shiro Smith and her crew have just beaten Mightmain Academy, they will likely be rising again and again in the world of dodgeball. They may even be chosen for the nationals!",
+			"Trevor","", ""
+		},      
+		{
+			"","Trevor","","","Greg","Frank",
+			"How painful her downfall will be from such lofty heights.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"That’s good thinking there, boss! Ohohohohoho!",
+			"Frank","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Yeah! What a great plan! Ahahahahaha!",
+			"Greg","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Now, go around the school and find information on what Shiro Smith’s up to.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"And be subtle about it, for once. She’s not gonna get away with this, I swear it.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"Yes, boss!",
+			"Frank","", ""
+		},
+		{
+			"","Trevor","","","Greg","Frank",
+			"We’ll be right back!",
+			"Greg","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"…………",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Ugh… Damn it!",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Why do I have to wait this long to get what I want?!",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"How could I let this happen?! I should have beaten that girl and her two stupid friends that day!",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"How did I lose?! Did I make a mistake? Impossible!",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"It was Shiro Smith! It was her friends! It was all those who went against me!",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Well, to hell with them all! One day, they’ll all be bowing to me, and I’ll have the last laugh!",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"……… No, no, I shouldn’t get too angry. I can still win.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Yes, yes, even with these setbacks, everything’s going smoothly.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Greg and Frank, those witless saps, have served me well, at least.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"For now, all I have to do is wait.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Shiro Smith’s no beginner anymore, but she truly does not know what she’ll be up against.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"I almost feel bad for the girl. But she was dead meat the second she stepped onto my turf.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Hahaha… Come to think of it, it’s the end of fall.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"It’ll be the beginning of winter… and the beginning of Shiro Smith’s end.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Funny how things should line up. Not a bad end for this season.",
+			"Trevor","", ""
+		},
+		{
+			"","Trevor","","","","",
+			"Business will be exciting next season.",
+			"Trevor","", ""
+		},
+		{
+			"","","","","","",
+			"",
+			"","black", ""
+		},
 	};
 
 	static string[,] epilogue = new string[,]{
