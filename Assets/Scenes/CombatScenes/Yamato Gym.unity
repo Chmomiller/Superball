@@ -661,17 +661,17 @@ Prefab:
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.000000469668
       objectReference: {fileID: 0}
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.09672116
       objectReference: {fileID: 0}
     - target: {fileID: 224131903843861866, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224498640881085694, guid: 8816f530933511049b637d01a9973e77,
         type: 2}
@@ -1258,6 +1258,11 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 24ca551c9d794824196ce43d54fdce92, type: 3}
+    - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
+        type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faa8207a9f50b8145b7794239621e9ea, type: 2}
   m_IsPrefabParent: 0
