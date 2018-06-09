@@ -275,17 +275,12 @@ Prefab:
     - target: {fileID: 114760860483105936, guid: e69b7a2c177f5e44aad1ef401a78dc53,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114760860483105936, guid: e69b7a2c177f5e44aad1ef401a78dc53,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114796987632625810, guid: e69b7a2c177f5e44aad1ef401a78dc53,
-        type: 2}
-      propertyPath: sceneTitle
-      value: What Punks
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e69b7a2c177f5e44aad1ef401a78dc53, type: 2}
