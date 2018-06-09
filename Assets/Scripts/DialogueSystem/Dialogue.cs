@@ -526,8 +526,8 @@ static string[,] saltPittPrebattle = new string[,]{
             "Shiro","Theodore","Clemence","Trevor","Greg","Frank",
             "Now, then, let’s begin!",
             "Trevor", "BG", "Audio stop"
-        },
-}
+        }
+	};
 
 // Scene 3 of Salt Pitt High
 

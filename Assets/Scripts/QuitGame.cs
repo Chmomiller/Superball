@@ -30,10 +30,10 @@ public class QuitGame : MonoBehaviour
 
     IEnumerator StartBattle(string audioPath, int track, string sceneName) {
 		Debug.Log ("StartBattle called");
-        yield return new WaitForSeconds(2);
-        Audio.playSFX("_SFX/UI/Referee Whistle 2");
-        yield return new WaitForSeconds(1);
-        //Audio.playAudio(audioPath, track);
+        //yield return new WaitForSeconds(2);
+        //Audio.playSFX("_SFX/UI/Referee Whistle 2");
+        yield return new WaitForSeconds(0);
+        Audio.playAudio(audioPath, track);
         Audio.src0.loop = true;
         loadingScene = false;
         SceneManager.LoadScene(sceneName);

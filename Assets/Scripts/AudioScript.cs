@@ -54,14 +54,14 @@ public class AudioScript : MonoBehaviour {
 
     public static AudioScript instance = null;
 
-   public void Awake(){
+   public void Awake(){/*
         if(instance == null) {
             instance = this;
             DontDestroyOnLoad(this);
 
         } else {
             Destroy(gameObject);
-        }
+        }*/
     }
    
 	// Use this for initialization
@@ -260,7 +260,7 @@ public class AudioScript : MonoBehaviour {
 
     // Update is called once per frame
     public void Update() {
-        if (instance == null) Destroy(gameObject); //QUESTIONABLE CODE
+       // if (instance == null) Destroy(gameObject); //QUESTIONABLE CODE
        
         if(src == null || src0 == null || src1 == null || src2 == null) {
         staticSrc = GetComponents<AudioSource>()[0];
