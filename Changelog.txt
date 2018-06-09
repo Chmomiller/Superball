@@ -142,3 +142,5 @@ Tristian:
 6/8/18:
 	Did some more reformatting of Character Skills
 	Scaled up characters in combat and dialogue
+6/9/18:
+	Added DamageTextScript.cs, DamageText prefab, and added code to Character.cs to display this

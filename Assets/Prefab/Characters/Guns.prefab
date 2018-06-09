@@ -55,6 +55,9 @@ MonoBehaviour:
   Audio: {fileID: 0}
   combat: {fileID: 0}
   CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
+  damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
   Name: default
   Damage: 25
   Catch: 100
@@ -66,6 +69,7 @@ MonoBehaviour:
   Level: 10
   attackMultiplier: 1
   defenseMultiplier: 1
+  Experience: 0
   Role: Supporter
   Target:
   - {fileID: 0}
@@ -83,8 +87,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  attack: 0
-  dodge: 0
   actions:
   - None
   - Throw
@@ -127,6 +129,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
+  dodgeball: {fileID: 0}
   yamatoCharge: 0
 --- !u!212 &212770678142005348
 SpriteRenderer:
@@ -170,5 +173,5 @@ SpriteRenderer:
   m_Size: {x: 1.97, y: 3.42}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0

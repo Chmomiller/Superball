@@ -107,6 +107,7 @@ MonoBehaviour:
   characterAnims:
   - {fileID: 11400000, guid: 18e73e1a94dcfed4c9db2033217122e0, type: 2}
   - {fileID: 11400000, guid: a8fdbc1d5d3244b439bc3e24794539d2, type: 2}
+  damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
   Name: Frank
   Damage: 12
   Catch: 100

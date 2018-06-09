@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 using System;
 
 public class Character : MonoBehaviour
@@ -12,6 +13,7 @@ public class Character : MonoBehaviour
 	public CharacterSelectUI CSUI;
 	public PlayableDirector characterDirector;
 	public TimelineAsset[] characterAnims;
+	public GameObject damageText;
 
     public string Name = "default";
 	public int Damage = 10;
@@ -102,6 +104,13 @@ public class Character : MonoBehaviour
 	public void loseStamina(int staminaLoss) 
 	{
         AudioScript.playStaticSFX("_SFX/Battle sfx/miss/miss_1");
+		GameObject DT = Instantiate (damageText);
+		DT.GetComponent<DamageTextScript> ().speed = .075f;
+		DT.transform.SetParent (CSUI.transform);
+		DT.transform.position = CSUI.transform.position;
+		DT.transform.localScale = new Vector3 (1f, 1f, 1f);
+		DT.GetComponent<Text> ().text = "-"+staminaLoss;
+
 		this.Stamina -= staminaLoss; 
 		if(this.Stamina < 0)
 		{
