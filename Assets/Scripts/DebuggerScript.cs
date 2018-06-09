@@ -6,8 +6,8 @@ public class DebuggerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        UnlockAll();
+	}   
 	
 	// Update is called once per frame
 	void Update () {

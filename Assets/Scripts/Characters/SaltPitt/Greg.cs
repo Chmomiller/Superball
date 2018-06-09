@@ -116,10 +116,19 @@ public class Greg: Character
 	// Steal
 	public override int Skill3()
 	{
-        for (int i = 0; i < 2 && Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls; i++) {
+        if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
             Target[0].heldBalls--;
             this.heldBalls++;
         }
+        if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
+            Target[0].heldBalls--;
+            this.heldBalls++;
+        }
+        if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
+            Target[0].heldBalls--;
+            this.heldBalls++;
+        }
+
         actionCooldowns[6] = 3;
 		return this.Damage/4;
 	}
