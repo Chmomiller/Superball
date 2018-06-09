@@ -1352,12 +1352,12 @@ Prefab:
         type: 2}
       propertyPath: file0
       value: 
-      objectReference: {fileID: 8300000, guid: 2600dd489a85a174295dd2b3bce6be4d, type: 3}
+      objectReference: {fileID: 8300000, guid: fa92e147f34a58945a95eef70e23f249, type: 3}
     - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 2600dd489a85a174295dd2b3bce6be4d, type: 3}
+      objectReference: {fileID: 8300000, guid: 85ba22518931f3249b2a5d97d70e8393, type: 3}
     - target: {fileID: 82685842878383802, guid: faa8207a9f50b8145b7794239621e9ea,
         type: 2}
       propertyPath: Loop
