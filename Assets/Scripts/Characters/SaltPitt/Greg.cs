@@ -15,10 +15,10 @@ public class Greg: Character
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Terrapin", "Hide", "Steal", "Roller Derby" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Become immune to all attacks for 1 turn, sending any balls aimed at you to Trevor", 
-										  "Block incoming attacks, but become <color=orange>stunned</color> on next turn",
-                                          "Reduce an enemy's ball count by <color=red>2</color> and increase your own by <color=red>2</color>",
-                                          "Reduce an enemy's stamina by 25%" };
+										  "Become immune to all attacks for 1 turn, sending any balls aimed at you to Trevor. <color=red>2</color> turn cooldown.\nCost: 1    Target: Self", 
+										  "Block incoming attacks, but become <color=yellow>stunned</color> on next turn. <color=red>2</color> turn cooldown.\nCost: None    Target: Self",
+                                          "Reduce an enemy's ball count by 2 and increase your own by 2. <color=red>2</color> tunr cooldown.\nCost: None    Target: Single Enemy",
+                                          "Reduce an enemy's stamina by 25% of their max stamina. <color=red>3</color> turn cooldown.\nCost: 3    Target: Single Enemy" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };
@@ -108,7 +108,7 @@ public class Greg: Character
 	public override int Skill2()
 	{
         //recall status effects dont stack
-        this.addStatusEffect("stunned", 1);
+        this.addStatusEffect("stunned", 2);
         actionCooldowns[5] = 3;
 		return -1;
 	}
@@ -129,7 +129,7 @@ public class Greg: Character
         Target[0].loseStamina(Target[0].maxStamina / 4);
         this.heldBalls -= actionCosts[7];
         this.actionCooldowns[7] = 4;
-        return max;
+        return max/4;
     }
     /*
     public override bool Skill2() {

@@ -20,9 +20,9 @@ public class Clemence : Character
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Picket Fence", "Vines", "Planted Stance", "Rain Shield" };
         actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
-                                          "<color=orange>Steady</color> a teammate for <color=red>2</color> turns cooldown.\nCost: None    Target: Single Teammate",
-                                          "<color=orange>Debuff</color> an enemy for <color=red>3</color> turns \n <color=red>4</color> turn cooldown.  Cost: 3    Target: Single Enemy",
-                                          "Become <color=orange>Steady</color> and reduce the turns remaining for skills on cooldown by <color=red>2</color> turns.\n",
+                                          "<color=orange>Steady</color> a teammate for 2 turns. <color=red>2</color> turn cooldown.\nCost: None    Target: Single Ally",
+                                          "<color=blue>Debuff</color> an enemy for <color=red>3</color> turns. <color=red>4</color> turn cooldown.\nCost: 3    Target: Single Enemy",
+                                          "Become <color=orange>Steady</color> and reduce the cooldown on other skills by 2. <color=red>5</color> turn cooldown.\nCost: None    Target: Self",
                                           ""};
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Utility" , "Defense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 2, 0, 0, 1, 0, 0 };

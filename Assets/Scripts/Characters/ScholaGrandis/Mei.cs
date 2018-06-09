@@ -13,9 +13,10 @@ public class Mei : Character {
 		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Skill1", "Skill2", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Silver Platter", "Clean Up", "Cup of Tea", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-										  "Gives half of your balls to each of your allies",
-                                          "Gather the amount of balls equal to half the number of all balls spent on abilities this turn (including opponent abilities), rounded up. Mei will become last in the action order when this is cast.", 
-										  "Heal an ally for <color=red>20</color>% of their stamina and remove all status effects from them", "" };
+										  "Give half of your ball count to each of your allies.\nCost: Varies    Target: Ally Team",
+                                          "Gather half of the balls used this turn at the end of the round. <color=red>1</color> turn cooldown.\nCost: None    Target: Self", 
+										  "Heal an ally for 20% of their stamina and remove all status effects on them. <color=red>2</color> turn cooldown.\nCost: None    Target: Single Ally", 
+										  "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };

@@ -15,9 +15,9 @@ public class Victoria : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Viscious Mockery", "Parasol", "Idol Scream", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls ground",
-                                          "Deliver a <i>weak</i> attack with a high chance to <color=orange>Debuff</color> the target", 
-										  "Rebounds next shot hrown at her back at the attacker for the intended damaage",
-                                          "Deals <i>weak</i> damage and <color=orange>Stuns</color> target enemy",
+                                          "Deliver a <i>weak</i> attack with a high chance to <color=blue>debuff</color> the target. <color=red>1</color> turn cooldown.\nCost: 1    Target: Single Enemy", 
+										  "Rebounds the next shot thrown at her back at the attacker. <color=red>2</color> cooldown.\nCost: 4    Target: Self",
+                                          "Throw a <i>weak</i> attack and <color=yellow>stun</color> target enemy.\nCost: 3    Target: Single Enemy",
                                           "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Defense", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 1, 0 };
@@ -85,7 +85,7 @@ public class Victoria : Character {
         float dmg = UnityEngine.Random.Range(0.5f, 1)*this.Damage*this.attackMultiplier;
         if (UnityEngine.Random.Range(0, 9) > 3) { Target[0].addStatusEffect("debuff", 2); }
         this.heldBalls -= this.actionCosts[4];
-        this.actionCooldowns[4] = 1;
+        this.actionCooldowns[4] = 2;
         return (int)dmg;
 
 	}

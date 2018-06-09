@@ -11,10 +11,10 @@ public class Trevor : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Thrash", "Riled Up", "Taunt", "Blowbeat" };
 		actionDescription = new string[]{ "Wait", "Throw ball at Target enemy", "Attempt to catch any incoming balls", "Gather balls",
-                                          "Choose <color=red>3 random targets on the enemy team and throw one ball at each. These targets can be the same more than once.", 
-										  "Get <color=orange>buffed</color> for two turns",
-                                          "Buff enemy but make him <color=orange>unsteady</color> for <color=red> 2<color> turns",
-                                          "Attack an ally but <color=orange>steady</color> him for <color=red>2</color> turns" };
+										  "Throw a ball at 3 random enemies. These targets can be attacked more than once. <color=red>2</color> turn cooldown\n Cost: 3    Target: Enemy Team", 
+										  "Get <color=red>buffed</color> for 2 turns. <color=red>3</color> turn cooldown.\nCost: None    Target: Self",
+                                          "<color=red>Buff</color> an enemy but make them <color=orange>unsteady</color> for 2 turns. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Enemy",
+										  "Attack an ally but <color=red>buff</color> and <color=lime>steady</color> them for 2 turns. <color=red>2</color> turn cooldown.\nCost: 3    Target: single Ally" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 1, 2 }; 
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 2, 1 };
@@ -119,8 +119,8 @@ public class Trevor : Character {
     // Skill3
 
     public override int Skill3() {
-        Target[0].addStatusEffect("buff", 3);
-        Target[0].addStatusEffect("unsteady", 2);
+        Target[0].addStatusEffect("buff", 2);
+        Target[0].addStatusEffect("unsteady", 3);
         actionCooldowns[6] = 4;
         return 0;
     }
@@ -165,7 +165,7 @@ public class Trevor : Character {
         this.throwBall(Target[0]);
         Target[0].addStatusEffect("buff", 3);
         Target[0].addStatusEffect("steady", 3);
-        this.heldBalls -= 3;
+		this.heldBalls -= this.actionCosts[7];
         this.actionCooldowns[7] = 3; 
         return this.Damage;
     }

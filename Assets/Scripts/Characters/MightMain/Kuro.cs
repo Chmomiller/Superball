@@ -11,10 +11,10 @@ public class Kuro : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Smokescreen", "Safe Haven", "Lord of the Seven Seas", "Cannon Adjustments" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
-											"make yourself and allies <color=orange>Steady</color>", 
-											"Catch for yourself and both allies", 
-											"Charge up for a turn before unleashing an attack against all enemies",
-                                            "<color=orange>Buff</color> yourself and allies" };
+											"<color=lime>Steady</color> your team for one turn. <color=red>2</color> cooldown.\nCost: None    Target: Ally Team", 
+											"Catch for your team. <color=red>1</color> turn cooldown.\nCost: None    Target: Ally Team", 
+											"Charge up for a turn before unleashing an attack against all enemies. <color=red>2</color> turn cooldown.\nCost: 3    Target: Enemy Team",
+                                            "<color=orange>Buff</color> your team for a turn.\nCost: 4    Target: Ally Team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
@@ -43,7 +43,7 @@ public class Kuro : Character {
 	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
-			allies [i].addStatusEffect ("steady", 1);
+			allies [i].addStatusEffect ("steady", 2);
 		}
         actionCooldowns[4] = 3;
 		return 0;

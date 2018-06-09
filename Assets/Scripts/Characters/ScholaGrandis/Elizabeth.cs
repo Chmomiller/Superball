@@ -17,9 +17,9 @@ public class Elizabeth : Character {
 
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Blow a Kiss", "Preen", "Royal Touch", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
-                                          "Make the target <color=orange>Unsteady</color> for <color=red>2</color> turns",
-                                          "<color=orange>Buff</color> yourself for <color=red>2</color> turns",
-										  "Deal an enemy a <b>hard-hitting</b> attack that may <color = red>Stun</color>",
+                                          "Make the target <color=orange>unsteady</color> for 2 turns. <color=red>2</color> turn cooldown.\nCost: None    Target: Single Enemy",
+                                          "<color=red>Buff</color> yourself for 2 turns. <color=red>2</color> turn cooldown.\nCost: None:    Target: Self",
+										  "Deal an enemy a <b>hard-hitting</b> attack that may <color=yellow>stun</color>. <color=red>1</color> turn cooldown.\nCost: 2    Target: Single Enemy",
                                           "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 1, 0 };

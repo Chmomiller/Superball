@@ -11,10 +11,10 @@ public class Harold : Character {
 
         actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Reactive Armor", "Suppressing Fire", "Heavy Bombardment", "Five Rounds Rapid" };
 		actionDescription = new string[]{ "Wait", "Throw a ball at target enemy", "Attempt to catch any incoming balls", "Gather balls",
-                                            "If attacked this turn, catch the ball and gain <color=orange>Steady</color>", 
-											"Become ready to <color=orange>Counterattack</color> whenever attacked on the next <color=red>2</color> turns", 
-											"Charge for a turn then attack with a powerful strike against an enemy, at the cost of becoming <color=orange>Unsteady</color>", 
-											"Throw <color=red>5</color><i>weaker</i> balls at a single target inaccurately" };
+                                            "If attacked this turn, catch the ball and gain <color=lime>steady</color> for a turn. <color=red>2</color> turn cooldown.\nCost: None    Target: Self", 
+											"Counterattack when attacked on the next 2 turns\nCost: 3    Target: Self", 
+											"Charge for a turn then attack with a <b>hard-hitting</b> attack against an enemy and become <color=orange>unsteady</color>.\nCost: 4    Target: Single Enemy", 
+											"Throw 5<i>weak</i> attacks at a single target with a chance to miss.  <color=red>3</color> turn cooldown.\nCost: 6    Target: Single Enemy" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };
@@ -81,11 +81,11 @@ public class Harold : Character {
 			damage = (int)(Damage * 2 * attackMultiplier * Target[2].defenseMultiplier);
 			Target[2].loseStamina(damage);
 			Target[2].dodgeBall (this);
-			addStatusEffect ("unsteady", 1);
+			addStatusEffect ("unsteady", 2);
 		}
 		else
 		{
-			addStatusEffect("misc", 2);
+			addStatusEffect("misc", 3);
 		}
 		this.heldBalls -= actionCosts [6];
 		return damage;
