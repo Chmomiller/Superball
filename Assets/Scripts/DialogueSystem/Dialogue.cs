@@ -3775,7 +3775,7 @@ public class Dialogue {
 		},
 		{
 			"","Harold","","","Skylar","",
-			"Hah! Is that a challenge, I hear? Well, then, I’ll show you how wrong you are! I’ll get myself a wife before you know it!",
+			"Hah! Is that a challenge, I hear? Well, then, I’ll show you how wrong you are!",
 			"Harold","unskippable", ""
 		},
 		{
@@ -3805,22 +3805,7 @@ public class Dialogue {
 		},
 		{
 			"","Theodore","","","","",
-			"… And maybe I need to stop talking to myself.",
-			"Theodore","unskippable", ""
-		},
-		{
-			"","Theodore","","","","",
-			"I ought to call someone about all this instead.",
-			"Theodore","unskippable", ""
-		},
-		{
-			"","Theodore","","","","",
-			"Let’s see here… Which number to pick… Ah.",
-			"Theodore","unskippable", ""
-		},
-		{
-			"","Theodore","","","","",
-			"I haven’t called this one for a long while. I wonder how he’s been…",
+			"… And maybe I need to stop talking to myself. Baby steps, Theodore...",
 			"Theodore","unskippable", ""
 		},
 	};
