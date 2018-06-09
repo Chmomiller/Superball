@@ -91,13 +91,16 @@ public class DialogueManager : MonoBehaviour {
 			} else if (transition) {
 				//bg.GetComponent<SpriteRenderer> ().color = new Color (bg.GetComponent<SpriteRenderer> ().color.r - (Time.deltaTime / fadeDuration)*4,bg.GetComponent<SpriteRenderer> ().color.g - (Time.deltaTime / fadeDuration)*4, bg.GetComponent<SpriteRenderer> ().color.b - (Time.deltaTime / fadeDuration)*4,1.0f);
 				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a + Time.deltaTime / fadeDuration);
+
 			} else if (fadeIn) {
 				screen.color = new Color (0.0f, 0.0f, 0.0f, screen.color.a - Time.deltaTime / fadeDuration);
-
 			}
 
 		} else {
 			fading = false;
+			if (insertText [lineNum, 8] == "transition") {
+				nextLine ();
+			}
 			if (fadeIn) {
 				fadeIn = false;
 				changeBG = true;
@@ -137,6 +140,7 @@ public class DialogueManager : MonoBehaviour {
 				fadeIn = true;
 				fading = true;
 				fadeTime = 0;
+
 			}
 			initialFade = false;
 			transition = false;

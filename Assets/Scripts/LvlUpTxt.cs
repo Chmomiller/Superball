@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LvlUpTxt : MonoBehaviour {
 
+	public GameManager gameManager;
 	public SaveManager saveManager;
 	public Character character;
 	public string characterName;
@@ -23,8 +24,10 @@ public class LvlUpTxt : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		saveManager = FindObjectOfType<SaveManager> ();
+		gameManager = FindObjectOfType<GameManager> ();
+		saveManager = gameManager.GetComponent<SaveManager>();
 		switch(characterName)
+
 		{
 			case("Shiro"):
 				character = saveManager.shiro;

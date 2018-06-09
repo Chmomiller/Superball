@@ -363,6 +363,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 119117635}
+--- !u!114 &293535497 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114569337189141702, guid: 9301d2c46086010438e8d3a59b53a246,
+    type: 2}
+  m_PrefabInternal: {fileID: 52254293}
+  m_Script: {fileID: 11500000, guid: a199e1a232b481d46bd8ba6b3729a5ef, type: 3}
 --- !u!1 &312059496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,8 +1409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveManager: {fileID: 0}
-  character: {fileID: 0}
+  saveManager: {fileID: 293535497}
+  character: {fileID: 1381679469}
   characterName: Shiro
   newExpTotal: 0
   characterInfo: {fileID: 312059499}
@@ -1857,6 +1863,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1300028525}
+--- !u!114 &1381679469 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114934331285537062, guid: 9301d2c46086010438e8d3a59b53a246,
+    type: 2}
+  m_PrefabInternal: {fileID: 52254293}
+  m_Script: {fileID: 11500000, guid: 7c0ab69ddba1c0c45a7dcd3491cc6b5a, type: 3}
 --- !u!1 &1600109752
 GameObject:
   m_ObjectHideFlags: 0

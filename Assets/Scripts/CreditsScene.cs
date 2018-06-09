@@ -27,11 +27,12 @@ public class CreditsScene : MonoBehaviour {
 	public IEnumerator rollCredits () {
 		bool comp = false;
 		while (!comp) {
-			if (scroll.position.y > (canvas.rect.height + (scroll.rect.height/2))) {
+			if (scroll.position.y > (canvas.rect.height + (scroll.rect.height/2.6))) {
 				comp = true;
-				SceneManager.LoadScene("Scenes/MapScreen");
+				yield return new WaitForSeconds (2.5f);
+				SceneManager.LoadScene("Dialogue Scenes/PostCredits");
 			} else {
-				transform.Translate (0f, 4f, 0f);
+				transform.Translate (0f, 2f, 0f);
 			}
 			yield return new WaitForEndOfFrame ();
 		}
