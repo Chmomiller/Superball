@@ -6695,8 +6695,6 @@ static string[,] barrowTempleDefeat = new string[,]{
 
 
 
-
-
     /*	static string[,] steamedHam = new string[,] {
             {"Chalmers", "Seymour" , "Well, Seymour, I made it- despite your directions."},
             {"Seymour", "Chalmers" ,"Ah. Superintendent Chalmers. Welcome. I hope you're prepared for an unforgettable luncheon."},
