@@ -11,17 +11,17 @@ public class YamatoSceneScript : MonoBehaviour {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(18);
             GameObject.Find("Character5").GetComponent<Character>().LevelUp(19);
             GameObject.Find("Character3").GetComponent<Character>().LevelUp(19);
-            //GameObject.Find("Character0").GetComponent<Character>().LevelUp(18);
-            //GameObject.Find("Character1").GetComponent<Character>().LevelUp(17);
-            //GameObject.Find("Character2").GetComponent<Character>().LevelUp(16);
+            GameObject.Find("Character0").GetComponent<Character>().LevelUp(18);
+            GameObject.Find("Character1").GetComponent<Character>().LevelUp(17);
+            GameObject.Find("Character2").GetComponent<Character>().LevelUp(16);
             print("start hard mode");
         } else {
             GameObject.Find("Character4").GetComponent<Character>().LevelUp(13);
             GameObject.Find("Character5").GetComponent<Character>().LevelUp(14);
             GameObject.Find("Character3").GetComponent<Character>().LevelUp(12);
-            //GameObject.Find("Character0").GetComponent<Character>().LevelUp(11);
-            //GameObject.Find("Character1").GetComponent<Character>().LevelUp(13);
-            //GameObject.Find("Character2").GetComponent<Character>().LevelUp(15);
+            GameObject.Find("Character0").GetComponent<Character>().LevelUp(11);
+            GameObject.Find("Character1").GetComponent<Character>().LevelUp(13);
+            GameObject.Find("Character2").GetComponent<Character>().LevelUp(15);
             print("start regular mode");
         }
 
