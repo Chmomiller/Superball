@@ -323,7 +323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -200, y: -146}
+  m_AnchoredPosition: {x: -200, y: -162}
   m_SizeDelta: {x: 160, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &312059498
@@ -353,7 +353,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -397,7 +397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -7.1200113, y: -154.89}
+  m_AnchoredPosition: {x: -7.1200113, y: -164}
   m_SizeDelta: {x: 114.24, y: 65.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359161236
@@ -545,8 +545,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 220, y: -134}
-  m_SizeDelta: {x: 100, y: 24}
+  m_AnchoredPosition: {x: 220, y: -152}
+  m_SizeDelta: {x: 150, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485047527
 MonoBehaviour:
@@ -721,7 +721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 252, y: -149}
+  m_AnchoredPosition: {x: 237, y: -161}
   m_SizeDelta: {x: 160, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657369976
@@ -745,7 +745,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -796,7 +796,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -10, y: -94}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694294726
 MonoBehaviour:
@@ -990,6 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   saveManager: {fileID: 739530600}
   character: {fileID: 1985512578}
   characterName: Shiro
@@ -1214,6 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   saveManager: {fileID: 739530600}
   character: {fileID: 0}
   characterName: Clemence
@@ -1366,7 +1368,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -240, y: -94}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667901158
 MonoBehaviour:
@@ -1744,7 +1746,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 220, y: -94}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820000884
 MonoBehaviour:
@@ -1811,8 +1813,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -240, y: -134}
-  m_SizeDelta: {x: 100, y: 24}
+  m_AnchoredPosition: {x: -240, y: -151.5}
+  m_SizeDelta: {x: 150, y: 32.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1932989629
 MonoBehaviour:
@@ -1879,8 +1881,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -6.385, y: -142.89}
-  m_SizeDelta: {x: 121.23, y: 41.78}
+  m_AnchoredPosition: {x: -10.385, y: -152.89}
+  m_SizeDelta: {x: 152, y: 41.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961862970
 MonoBehaviour:
@@ -2021,6 +2023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0e47dccff59740a0403028e2df657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   saveManager: {fileID: 739530600}
   character: {fileID: 0}
   characterName: Theodore
