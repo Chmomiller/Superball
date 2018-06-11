@@ -20,8 +20,7 @@ public class Frank : Character {
                                           "Gather 3 balls. <color=red>1</color> turn cooldown.\nCost: None    Target: Self",
                                           ""/*"If attacked on next turn, become buffed and gain <color=red>30</color> stamina"*/};
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility","Utility" };
-	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
-	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };        
+	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };     
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 
 		base.Start ();

@@ -14,26 +14,13 @@ public class Lily : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Heals ally by 30 stamina", "Buffs both allies attack for 3 turns", "Weakens an enemy, halving their attack for 2 turns", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Offense", "Offense", "Offense" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 1, 0, 2, 0 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 2, 0, 1, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 1, 3, 2, 0 };
 
 		base.Start ();
     }
 
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skill return values
 	/*

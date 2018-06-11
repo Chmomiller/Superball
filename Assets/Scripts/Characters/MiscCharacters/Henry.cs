@@ -14,25 +14,12 @@ public class Henry : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Hurts an enemy with an attack 0.5 times stronger and makes him unsteady", "Remove all status effects from anyone", "Makes all enemies unsteady", "Gives an ally 3 balls" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Offense", "Utility" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 0, 2, 1 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 0, 1, 2 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 3, 3 };
     }
 
     // Update is called once per frame
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 
 

@@ -14,25 +14,12 @@ public class Fulton : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Attack enemy twice", "Attacks all enemies at once with an attack 0.5 as powerful", "Attacks an enemy. If the enemy is stunned, this does 1.5x damage", "1.5x attack and gains steady" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
             defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 0, 2, 2 };
-          alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 0, 1, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 4, 5 };
     }
 
     // Update is called once per frame
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 
 

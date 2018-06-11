@@ -14,25 +14,12 @@ public class Ichirou : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Attacks enemy with a 0.5x damage attack and stuns if enemy stamina is below half", "Debuffs an enemy", "On the next turn, all damage taken is reduced by 0.5", "if enemy has less stamina than you, 1.25x damage" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Defense", "Offense" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 2, 0, 2 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 1, 0, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 0, 0, 3 };
     }
 
     // Update is called once per frame
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skill return values
 	/*

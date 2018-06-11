@@ -16,7 +16,6 @@ public class YamatoGuns : Yamato {
 										  "Choose <color=red>3</color> random targets on the enemy team and hit them with a <i>weak</i> attack", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "O", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
 
 		base.Start ();

@@ -17,7 +17,6 @@ public class YamatoBow : Yamato {
                                                     "Drops explosives off the front, hitting all enemies with a regular attack", "", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
 
 		base.Start ();

@@ -15,7 +15,6 @@ public class MontanaGuns : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "They'll find out eventually you know", "Drops explosives off the front", "", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
         defaultTargetingTypes = new int[] { 0, 1, 0, 0, 1, 0, 0, 0 };
-        alternateTargetingTypes = new int[] { 0, 2, 0, 0, 2, 0, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
     }
 

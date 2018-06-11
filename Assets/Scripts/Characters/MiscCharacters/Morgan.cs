@@ -14,26 +14,13 @@ public class Morgan : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Slightly stronger attack against an enemy", "Hits an enemy while making yourself steady", "Weakened attack against all enemies that has a change to make target unsteady", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 2, 2, 0, 0 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 5, 0 };
 
 		base.Start ();
     }
 
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skill return values
 	/*

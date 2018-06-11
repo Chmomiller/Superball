@@ -17,7 +17,6 @@ public class Kuro : Character {
                                             "<color=orange>Buff</color> your team for a turn.\nCost: 4    Target: Ally Team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Defense", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 3, 4 };
 
 		base.Start ();

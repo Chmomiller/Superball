@@ -18,7 +18,6 @@ public class Shiro : Character{
 	    actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility" };
 	    actionCosts = new int[] { 0, 1, 0, 1, 0, 0, 0, 0 };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 2, 2, 0, 0 };
-	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 1, 1, 0, 0 };
 		base.Start ();
     }
 		
@@ -75,7 +74,6 @@ public class Shiro : Character{
 	public override void ResetChar()
 	{
 		Damage = 10;
-		Catch = 100;
 		Gather = 2;
 		maxStamina = 140;
 		maxBalls = 4;

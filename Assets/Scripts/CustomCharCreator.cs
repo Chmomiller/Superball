@@ -122,11 +122,7 @@ void Update () {
         //UI Button: - Attack
         { newKid.Damage--;
             maxStats += 5;
-        }        
-        
-        //UI Button: + Catch %
-        { newKid.Catch+= 5; }        
-        
+        }           
 
         //<etc...>//
     }

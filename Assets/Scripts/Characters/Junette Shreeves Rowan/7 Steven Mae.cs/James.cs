@@ -17,7 +17,6 @@ public class James : Character {
 											"" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Offense", "", "" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };
 
 		base.Start ();

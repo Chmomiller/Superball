@@ -14,7 +14,6 @@ public class Kazuto : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Attacks all enemies with an 0.75 strength attack", "Attack an enemy with a 75% of making them unsteady", "If the enemy is unsteady, this tatck has 1.25x damage", "attacks enemy with 1.75x strike but debuffs you for 2 turns" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Offense" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 2, 2, 2 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 1, 1, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 2, 1, 4 };
 
 		base.Start ();
@@ -22,19 +21,7 @@ public class Kazuto : Character {
 
     // Update is called once per frame
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skill return values
 	/*

@@ -18,7 +18,6 @@ public class Skylar : Character {
 											"<color=orange>Unsteady</color> and <color=blue>debuffed</color> enemy team for 1 turn. <color=red>3</color>\nCost: 3    Target: Enemy Team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 2, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 1, 0 };
         actionCosts = new int[]{ 0, 1, 0, 0, 0, 0, 0, 3 };
         
         base.Start ();

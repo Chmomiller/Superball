@@ -17,7 +17,6 @@ public class Harold : Character {
 											"Throw 5<i>weak</i> attacks at a single target with a chance to miss.  <color=red>3</color> turn cooldown.\nCost: 6    Target: Single Enemy" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 0, 3, 4, 6 };
 
 		base.Start ();

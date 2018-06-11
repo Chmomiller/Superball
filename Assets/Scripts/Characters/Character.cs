@@ -17,7 +17,6 @@ public class Character : MonoBehaviour
 
     public string Name = "default";
 	public int Damage = 10;
-    public int Catch = 100;
     public int Gather = 1;
     public int Stamina = 100;
 	public int maxStamina = 100;
@@ -61,7 +60,6 @@ public class Character : MonoBehaviour
     // or else they will do their actions on the wrong team.
     /* This change allows characters to be on whatever team they want*/
     protected int[]    defaultTargetingTypes = { 0, 1, 0, 0, 0, 0, 0, 0 };
-    protected int[] alternateTargetingTypes = { 0, 2, 0, 0, 0, 0, 0, 0 };
     //depending on their allegiance, targeting types will be assigned to default or alternate within start
     public  int[] targetingTypes;
 
@@ -73,7 +71,7 @@ public class Character : MonoBehaviour
 	public bool dead = false;
 	public bool catching = false;
 
-	public Transform dodgeball;
+	public GameObject dodgeball;
 
 	protected void Start() {
 		Stamina = maxStamina;
@@ -89,7 +87,6 @@ public class Character : MonoBehaviour
 			statusEffects [i].name = "none";
 		}
 			
-		dodgeball = GameObject.Find ("Dodgeball").transform;
 		characterDirector = gameObject.GetComponentInChildren<PlayableDirector> ();
 		combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
 		Audio = GameObject.Find("AudioManager").GetComponent<AudioScript>();
@@ -317,7 +314,7 @@ public class Character : MonoBehaviour
 		if(catching)
 		{
 			catching = false;
-			if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < this.Catch) 
+			if ((UnityEngine.Random.Range (1, 100) + UnityEngine.Random.Range (1, 100) / 2) < 100) 
 			{ // you can catch it
 				if (this.heldBalls < maxBalls) 
 				{
@@ -336,9 +333,7 @@ public class Character : MonoBehaviour
         if (this.Stamina <= this.maxStamina/4) {
             if (UnityEngine.Random.Range(1, this.maxStamina / 4) < 5) {
                 this.dead = true;
-                print("Dodgeball hit " + this.name +" taking them out of the game!!!");
             }
-            print("Dodgeball narrowly missed " + this.name + "!!!");
         }
 		if(!dead)
 		{
@@ -349,11 +344,11 @@ public class Character : MonoBehaviour
 
 	public int throwBall(Character target)
 	{
-		Transform DB = Instantiate (dodgeball, gameObject.transform.position, Quaternion.identity);
+		GameObject DB = Instantiate (dodgeball, gameObject.transform.position, Quaternion.identity);
 		/*DB.transform.position = new Vector3 (DB.transform.position.x, 
 											 DB.transform.position.y, 
 											 0f);*/
-		DB.localScale = new Vector3(.125f, .125f, 1f);
+		DB.transform.localScale = new Vector3(.125f, .125f, 1f);
 		DB.GetComponent<Dodgeball> ().target = target;
 		playThrow ();
         Audio.playDelayedSFX("_SFX/Battle sfx/swoosh/swoosh", 2);
@@ -466,7 +461,6 @@ public class Character : MonoBehaviour
 	{
 		Name = "default";
 		Damage = 10;
-		Catch = 100;
 		Gather = 1;
 		Stamina = 100;
 		maxStamina = 100;

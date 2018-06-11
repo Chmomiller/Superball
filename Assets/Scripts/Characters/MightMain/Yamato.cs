@@ -20,7 +20,6 @@ public class Yamato : Character {
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Charges up Ultimate Cannon", "Fires the 3 balls via the front cannon", "Attacks 6 random enemies", "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 0, 0 };
-		alternateTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 0, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 2, 3, 3, 6, 0 };
 
 		base.Start();

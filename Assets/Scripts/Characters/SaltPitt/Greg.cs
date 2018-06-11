@@ -21,7 +21,6 @@ public class Greg: Character
                                           "Reduce an enemy's stamina by 25% of their max stamina. <color=red>3</color> turn cooldown.\nCost: 3    Target: Single Enemy" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 0, 2, 2 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 3 };
 
 

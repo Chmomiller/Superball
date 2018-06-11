@@ -17,7 +17,6 @@ public class Theodore : Character {
             "Throw 8 balls at an enemy. <color=red>2</color> turn cooldown.\nCost: 8 balls    Target: Single Enemy",
             "If a ball is to be thrown at you, redirect at a target ally instead" };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 1, 1, 2 };
-	    alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 2, 2, 1 };
 	    actionCosts = new int[] { 0, 1, 0, 0, 4, 3, 8, 1 };
 		base.Start ();
     }
@@ -104,7 +103,6 @@ public class Theodore : Character {
 	public override void ResetChar()
 	{
 		Damage = 15;
-		Catch = 100;
 		Gather = 1;
 		Stamina = 120;
 		maxStamina = 120;

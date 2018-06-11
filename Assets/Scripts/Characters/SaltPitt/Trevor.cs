@@ -17,7 +17,6 @@ public class Trevor : Character {
 										  "Attack an ally but <color=red>buff</color> and <color=lime>steady</color> them for 2 turns. <color=red>2</color> turn cooldown.\nCost: 3    Target: single Ally" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 1, 2 }; 
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 0, 2, 2, 1 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 3 };
 
 		base.Start ();

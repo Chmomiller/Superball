@@ -14,24 +14,11 @@ public class Ash : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Halves damage you take for 1 turn", "Buffs yourself and gives 20 stamina", "Hit an enemy with a 1.5x attack with a chance to debuff", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Offense", "Offense" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 0, 2, 0 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 0, 1, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 3, 5, 0 };
     }
 
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { //this is unique for Shiro, Clemence and Theodore as they are defaultly under player control
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skill return values
 	/*

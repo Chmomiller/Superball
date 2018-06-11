@@ -14,26 +14,13 @@ public class Cygnus : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Buffs all allies", "Debuffs all enemies", "All allies gain 20 stamina", "Stuns an enemy" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Offense"};
           defaultTargetingTypes = new int[] { 0, 2, 0, 0, 0, 0, 0, 2 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 0, 0, 0, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 2, 2, 3, 0 };
 
 		base.Start ();
     }
 
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) {
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skills' return values
 	/*

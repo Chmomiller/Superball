@@ -21,7 +21,6 @@ public class Victoria : Character {
                                           "" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Defense", "Utility", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 1, 0 };
-		alternateTargetingTypes = new int[]{ 0, 2, 0, 0, 2, 0, 2, 0 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 4, 3, 0 };
 
 		base.Start ();
@@ -31,17 +30,6 @@ public class Victoria : Character {
 
     // Update is called once per frame
     new void Update() {
-		/*
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
-        }
-        */
 		base.Update ();
     }
 

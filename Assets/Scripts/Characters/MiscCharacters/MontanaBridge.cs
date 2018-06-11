@@ -15,7 +15,6 @@ public class MontanaBridge : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Stuns each ally, but buffs it in return", "Attacks an enemy with an attack 0.5 times stronger, but the bridge becomes steady as well", "Each of the bridge’s allies gets 40 armor, but each ally becomes staggered as well", "" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
         defaultTargetingTypes = new int[] { 0, 1, 0, 0, 0, 1, 0, 0 };
-        alternateTargetingTypes = new int[] { 0, 2, 0, 0, 0, 2, 0, 0 };
         actionCosts = new int[] { 0, 1, 0, 0, 1, 1, 0, 0 };
     }
 

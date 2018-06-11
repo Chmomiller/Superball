@@ -13,7 +13,6 @@ public class Yoichi : Character {
         actionDescription = new string[] { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "Get of rid of unsteady and debuff effecs on ally", "Get 2 balls and recover 15 stamina", "Attack enemy 1.15x as strong. If the enemy's stamina is reduced below half you are buffed", "Attack an enemy with 1.25x damage but make yourself unsteady for 2 turns" };
         actionTypes = new string[] { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Offense", "Offense" };
         defaultTargetingTypes = new int[] { 0, 2, 0, 0, 1, 0, 2, 2 };
-        alternateTargetingTypes = new int[] { 0, 1, 0, 0, 2, 0, 1, 1 };
         actionCosts = new int[] { 0, 1, 0, 0, 0, 0, 3, 2 };
 
 		base.Start ();
@@ -21,19 +20,7 @@ public class Yoichi : Character {
 
     // Update is called once per frame
     new void Update() {
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
+		base.Update ();
     }
 	// I haven't bothered to update the skill return values
 	/*
