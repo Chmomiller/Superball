@@ -87,9 +87,9 @@ MonoBehaviour:
   CSUI: {fileID: 0}
   characterDirector: {fileID: 0}
   characterAnims: []
+  damageText: {fileID: 0}
   Name: default
   Damage: 18
-  Catch: 100
   Gather: 1
   Stamina: 350
   maxStamina: 350
@@ -98,6 +98,7 @@ MonoBehaviour:
   Level: 10
   attackMultiplier: 1
   defenseMultiplier: 1
+  Experience: 0
   Role: Supporter
   Target:
   - {fileID: 0}
@@ -157,7 +158,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
-  dodgeball: {fileID: 0}
+  dodgeball: {fileID: 1494414517151262, guid: 519257fb80300a645ab979680729e5f6, type: 2}
   yamatoCharge: 0
 --- !u!212 &212700153442336818
 SpriteRenderer:

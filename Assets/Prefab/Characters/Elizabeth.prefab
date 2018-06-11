@@ -110,7 +110,6 @@ MonoBehaviour:
   damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
   Name: Elizabeth
   Damage: 15
-  Catch: 100
   Gather: 1
   Stamina: 130
   maxStamina: 130
@@ -177,7 +176,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
-  dodgeball: {fileID: 0}
+  dodgeball: {fileID: 1494414517151262, guid: b42188a5a060d364ebfba8837410acd8, type: 2}
   Transform: 0
   lastStamina: 0
 --- !u!212 &212666497761388730

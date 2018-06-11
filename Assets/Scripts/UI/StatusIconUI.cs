@@ -6,18 +6,7 @@ using UnityEngine.UI;
 public class StatusIconUI : MonoBehaviour {
 	public Image statusExplainationPanel;
 	public Text statusExplaination;
-	public int statusNumber;
-
-	// Use this for initialization
-	void Start () 
-	{
-		statusNumber = -1;
-		//Image[] temp = gameObject.GetComponentsInChildren<Image> ();
-		//statusExplainationPanel = temp [1];
-		//statusExplaination = gameObject.GetComponentInChildren<Text> ();
-		//statuses = new Sprite[1];
-		//statuses [0] = Resources.Load ("Sprites/UI/BuffIcon");
-	}
+	public int statusNumber = -1;
 
 	void OnMouseOver()
 	{

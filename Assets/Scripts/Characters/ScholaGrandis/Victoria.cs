@@ -82,7 +82,6 @@ public class Victoria : Character {
 	//Nothing yet allows multi turn logic. This just needs a framework and should be simple
 	public override int Skill2() { 
 		this.addStatusEffect ("misc", 100);
-		Debug.Log (statusEffects [findStatus ("misc")].name + ": " + statusEffects [findStatus ("misc")].duration);
         this.heldBalls -= this.actionCosts[5];
         this.actionCooldowns[5] = 3;
         return 0;

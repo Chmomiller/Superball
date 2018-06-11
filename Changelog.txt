@@ -149,3 +149,4 @@ Tristian:
 	Scaled up Character selection UI to accomidate larger characters
 	Added bools to CombatManager for better control with debugging and control by other scripts
 	removed Catch stat and AlternateTargetingTypes from Character scripts
+	Changed StatusIcon.statusNumber from 0 to -1 in inspector and removed the declaration from Start(This should fix the empty status explaination bug)

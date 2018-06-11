@@ -110,7 +110,6 @@ MonoBehaviour:
   damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
   Name: Shiro
   Damage: 10
-  Catch: 100
   Gather: 2
   Stamina: 140
   maxStamina: 140
@@ -177,7 +176,7 @@ MonoBehaviour:
   actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
   dead: 0
   catching: 0
-  dodgeball: {fileID: 0}
+  dodgeball: {fileID: 1494414517151262, guid: a95a31524767803418b8dadbf125b731, type: 2}
 --- !u!212 &212779363444251118
 SpriteRenderer:
   m_ObjectHideFlags: 1
