@@ -30,6 +30,11 @@ public class CombatManager : MonoBehaviour
 	public int conflictInQueue = -1;
 	// Used so the UI can get the current character
 	public int currentCharacter = 0;
+	// This bool is a debug tool that switches control of enemy moves off and on
+	// true = AI control, false = player control
+	public bool enemyControl = true;
+	// This bool switches the CombatManager on and off, similar to this.enabled
+	public bool combatControl = true;
 	public int turn = 0;
 	public bool win = false;
 	public bool lose = false;
@@ -116,83 +121,90 @@ public class CombatManager : MonoBehaviour
 
 	void Update()
 	{
-		if(!win && !lose)
+		if(combatControl)
 		{
-			switch (currentPhase) {
-			case(PHASE.START):
-				StartQueue ();
-				break;
-			case(PHASE.CONFLICT):
-				Conflict ();
-				break;
-			case(PHASE.SELECT):
-				Select ();
-				break;
-			case(PHASE.ACTION):
-				Action ();
-				break;
-			case(PHASE.TARGET):
-				Target ();
-				break;
-			case(PHASE.EXECUTE):
-			//Execute ();
-				break;
-			case(PHASE.RESULTS):
-				Results ();
-				break;
+			if(!win && !lose)
+			{
+				switch (currentPhase) {
+				case(PHASE.START):
+					StartQueue ();
+					break;
+				case(PHASE.CONFLICT):
+					Conflict ();
+					break;
+				case(PHASE.SELECT):
+					Select ();
+					break;
+				case(PHASE.ACTION):
+					Action ();
+					break;
+				case(PHASE.TARGET):
+					Target ();
+					break;
+				case(PHASE.EXECUTE):
+				//Execute ();
+					break;
+				case(PHASE.RESULTS):
+					Results ();
+					break;
+				}
+			}
+			else
+			{
+				if (win) 
+				{
+					GameManager GM = GameObject.Find ("GameManager").GetComponent<GameManager> ();
+					if(GM.hardMode)
+					{
+						switch(fightName)
+						{
+							case("Salt Pitt"):
+								GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittBattleHard = true;
+								break;
+							case("Schola Grandis"):
+								GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisBattleHard = true;
+								break;
+							case("MightMain"):
+								GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainBattleHard = true;
+								break;
+							case("Yamato"):
+								GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoBattleHard = true;
+								break;
+							default:
+							break;
+						}
+					}
+					else
+					{
+						switch(fightName)
+						{
+						case("Salt Pitt"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittBattle = true;
+							break;
+						case("Schola Grandis"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisBattle = true;
+							break;
+						case("MightMain"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainBattle = true;
+							break;
+						case("Yamato"):
+							GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoBattle = true;
+							break;
+						default:
+							break;
+						}
+					}
+					combatAction.text = "You Win!";
+				}
+				else
+				{
+					combatAction.text = "You Lose.";
+				}
 			}
 		}
 		else
 		{
-			if (win) 
-			{
-				GameManager GM = GameObject.Find ("GameManager").GetComponent<GameManager> ();
-				if(GM.hardMode)
-				{
-					switch(fightName)
-					{
-						case("Salt Pitt"):
-							GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittBattleHard = true;
-							break;
-						case("Schola Grandis"):
-							GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisBattleHard = true;
-							break;
-						case("MightMain"):
-							GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainBattleHard = true;
-							break;
-						case("Yamato"):
-							GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoBattleHard = true;
-							break;
-						default:
-						break;
-					}
-				}
-				else
-				{
-					switch(fightName)
-					{
-					case("Salt Pitt"):
-						GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittBattle = true;
-						break;
-					case("Schola Grandis"):
-						GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisBattle = true;
-						break;
-					case("MightMain"):
-						GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainBattle = true;
-						break;
-					case("Yamato"):
-						GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoBattle = true;
-						break;
-					default:
-						break;
-					}
-				}
-				combatAction.text = "You Win!";
-			}
-			else
-			{
-				combatAction.text = "You Lose.";
-			}
+			currentPhase = PHASE.CONFLICT;
 		}
 	}
 
@@ -297,8 +309,12 @@ public class CombatManager : MonoBehaviour
 					{
 						// This allows the player to control enemy actions for now
 						currentPhase = PHASE.ACTION;
-						//AI.FullRandomAI (combatQueue [firstAction]);
-						EnemyTurn(combatQueue[firstAction]);
+						// This bool is used for debugging in the inspector
+						if(enemyControl)
+						{
+							//AI.FullRandomAI (combatQueue [firstAction]);
+							EnemyTurn(combatQueue[firstAction]);
+						}
 						combatQueue [firstAction].CallTell ();
 
 					}

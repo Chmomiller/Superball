@@ -147,3 +147,4 @@ Tristian:
 6/10/18:
 	Added buttons to portraits so they could be used for CharacterSelectUI
 	Scaled up Character selection UI to accomidate larger characters
+	Added bools to CombatManager for better control with debugging and control by other scripts
