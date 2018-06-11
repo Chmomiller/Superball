@@ -108,6 +108,7 @@ public class Harold : Character {
 	public override void cleanUp()
 	{
 		// Checks if Skill3 or Skill2 was used
+		Character tempTarget = Target[2];
 		bool whichAction = false;
 		if(action == "Skill3")
 		{
@@ -126,6 +127,10 @@ public class Harold : Character {
 				Target [1] = Target [2];
 				CSUI.ShowTell ("Offense");
 			}
+		}
+		if(Random.Range(0f, 100f) < 75f)
+		{
+			Target [2] = tempTarget;
 		}
 	}
 }

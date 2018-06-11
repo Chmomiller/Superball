@@ -144,3 +144,6 @@ Tristian:
 	Scaled up characters in combat and dialogue
 6/9/18:
 	Added DamageTextScript.cs, DamageText prefab, and added code to Character.cs to display this
+6/10/18:
+	Added buttons to portraits so they could be used for CharacterSelectUI
+	Scaled up Character selection UI to accomidate larger characters
