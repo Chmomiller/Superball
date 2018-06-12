@@ -150,3 +150,9 @@ Tristian:
 	Added bools to CombatManager for better control with debugging and control by other scripts
 	removed Catch stat and AlternateTargetingTypes from Character scripts
 	Changed StatusIcon.statusNumber from 0 to -1 in inspector and removed the declaration from Start(This should fix the empty status explaination bug)
+6/12/18:
+	Fixed big in CombatManager that caused -1 and 0 to report in action damage
+	Fixed Trevor's Skill1(again?)
+	Fixed Trevor's skill2 targeting enemies
+	Fixed Frank's skill1
+	Fixed Defensive moves not being moved to the front of the queue

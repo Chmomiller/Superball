@@ -16,7 +16,7 @@ public class Trevor : Character {
                                           "<color=red>Buff</color> an enemy but make them <color=orange>unsteady</color> for 2 turns. <color=red>3</color> turn cooldown.\nCost: None    Target: Single Enemy",
 										  "Attack an ally but <color=red>buff</color> and <color=lime>steady</color> them for 2 turns. <color=red>2</color> turn cooldown.\nCost: 3    Target: single Ally" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Utility", "Utility", "Offense" };
-		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 1, 1, 2 }; 
+		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 2 }; 
 		actionCosts = new int[]{ 0, 1, 0, 0, 3, 0, 0, 3 };
 
 		base.Start ();
@@ -25,17 +25,6 @@ public class Trevor : Character {
     // Update is called once per frame
     new void Update() {
 		base.Update ();
-		/*
-        if (allegiance == 1) {
-            this.Target[0]Types = alternateTarget[0]ingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else{
-            this.Target[0]Types = defaultTarget[0]ingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
-        }
-        */
 	}
 
 
@@ -49,6 +38,10 @@ public class Trevor : Character {
 			do{
 				int aim = UnityEngine.Random.Range (0, 3);
 				Target[i] = enemies[aim];
+				if(!Target[i].dead)
+				{
+					break;
+				}
 			}while(!Target[i].dead);
 		}
 

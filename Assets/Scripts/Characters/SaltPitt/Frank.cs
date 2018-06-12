@@ -19,7 +19,7 @@ public class Frank : Character {
                                           "Become <color=lime>Steady</color> for 2 turns. <color=red>1</color> turn cooldown.\nCost: None    Target: Self",
                                           "Gather 3 balls. <color=red>1</color> turn cooldown.\nCost: None    Target: Self",
                                           ""/*"If attacked on next turn, become buffed and gain <color=red>30</color> stamina"*/};
-	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Utility", "Utility", "Utility","Utility" };
+	    actionTypes = new string[] { "None", "Offense", "Defense", "Defense", "Defense", "Utility", "Utility","Utility" };
 	    defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 0, 0 };     
 	    actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
 
@@ -30,35 +30,23 @@ public class Frank : Character {
     // Update is called once per frame
     new void Update() {
 		base.Update ();
-		/*
-        if (allegiance == 1) {
-            this.Target[0]ingTypes = alternateTarget[0]ingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else {
-            this.Target[0]ingTypes = defaultTarget[0]ingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
-        }
-        */
     }
 
 
 
-    // Rumble: Frank blocks an attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
+    // Rumble: Frank blocks all attack aimed at Trevor. 1 turn cooldown. Cost: 1 ball
 	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
 			if (enemies[i].Target[0].Name == "Trevor"){
-				
+				enemies [i].Target [0] = this;
 				for(int j = 0; j < enemies[0].actionNames.Length; j++)
 				{
-					if (enemies [0].action == enemies [0].actionNames [j]) 
+					if (enemies [i].action == enemies [i].actionNames [j]) 
 					{
-						enemies[0].heldBalls -= enemies[0].GetActionCost(j);
+						enemies[i].heldBalls -= enemies[i].GetActionCost(j);
 					}
 				}
-				enemies[i].action = "None";
 	        }
 		}
         actionCooldowns[4] = 3;

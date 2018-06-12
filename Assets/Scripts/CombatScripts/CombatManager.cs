@@ -412,6 +412,19 @@ public class CombatManager : MonoBehaviour
 	void Execute()
 	{
 		// Show the execute phase
+		for(int i = 0; i < combatQueue.Length-1; i++)
+		{
+			for(int j = i+1; j < combatQueue.Length; j++)
+			{
+				if(combatQueue[i].actionType != "Defense" && 
+					combatQueue[j].actionType == "Defense")
+				{
+					Character swap = combatQueue [i];
+					combatQueue [i] = combatQueue [j];
+					combatQueue [j] = swap;
+				}
+			}
+		}
 		CUI.ShowPhase ();
 		for (currentCharacter = 0; currentCharacter < 6; currentCharacter++) 
 		{ 
@@ -560,13 +573,13 @@ public class CombatManager : MonoBehaviour
 							{
 								performAction = true;
 								readOut += " but " + character.Target [0].Name + 
-										   " used " + character.Target [0].GetActionName (4) + " !";
+									" used " + character.Target [0].GetActionName (4) + 
+									" dealing " + damage + " damage !";
 							}
 							else
 							{
 								readOut += " but " + character.Target [0].Name + 
-										   " used " + character.Target [0].GetActionName (4) + 
-										   " dealing " + damage + " damage !";
+										   " used " + character.Target [0].GetActionName (4) + "!";
 							}
 							combatAction.text = readOut;
 							break;
@@ -576,13 +589,13 @@ public class CombatManager : MonoBehaviour
 							{
 								performAction = true;
 								readOut += " but " + character.Target [0].Name + 
-									       " used " + character.Target [0].GetActionName (5) + " !";
+									" used " + character.Target [0].GetActionName (5) + 
+									" dealing " + damage + " damage !";
 							}
 							else
 							{
 								readOut += " but " + character.Target [0].Name + 
-									       " used " + character.Target [0].GetActionName (5) + 
-									       " dealing " + damage + " damage !";
+									       " used " + character.Target [0].GetActionName (5) + "!";
 							}
 							combatAction.text = readOut;
 							break;
@@ -592,13 +605,13 @@ public class CombatManager : MonoBehaviour
 							{
 								performAction = true;
 								readOut += " but " + character.Target [0].Name + 
-									       " used " + character.Target [0].GetActionName (6) + " !";
+									" used " + character.Target [0].GetActionName (6) + 
+									" dealing " + damage + " damage !";
 							}
 							else
 							{
 								readOut += " but " + character.Target [0].Name + 
-									       " used " + character.Target [0].GetActionName (6) + 
-									       " dealing " + damage + " damage !";
+									       " used " + character.Target [0].GetActionName (6) + "!";
 							}
 							combatAction.text = readOut;
 							break;
@@ -608,13 +621,13 @@ public class CombatManager : MonoBehaviour
 							{
 								performAction = true;
 								readOut += " but " + character.Target [0].Name + 
-										   " used " + character.Target [0].GetActionName (7) + " !";
+									" used " + character.Target [0].GetActionName (7) + 
+									" dealing " + damage + " damage !";
 							}
 							else
 							{
 								readOut += " but " + character.Target [0].Name + 
-										   " used " + character.Target [0].GetActionName (7) + 
-										   " dealing " + damage + " damage !";
+										   " used " + character.Target [0].GetActionName (7) + "!";
 							}
 							combatAction.text = readOut;
 							break;
@@ -753,61 +766,6 @@ public class CombatManager : MonoBehaviour
 		default:
 			break;
 		}
-
-		/*
-		while(actor.action != "None")
-		{
-			choice = Random.Range (1, 8);
-			if(choice !=  3 && 
-			   actor.actionCosts[choice] <= actor.heldBalls && 
-			   actor.actionCooldowns[choice] == 0)
-			{
-				actor.action = actor.actions [choice];
-				actor.actionType = actor.actionTypes [choice];
-			}
-
-			count++;
-			if(count > 10)
-			{
-				actor.action = "Throw";
-				actor.actionType = "Offense";
-				choice = 1;
-			}
-		}*/
-		/*
-		currentPhase = PHASE.TARGET;
-		switch(actor.GetTargetingType(choice))
-		{
-			case(2):
-			do
-			{
-				choice = Random.Range(0,3);
-				if(!Enemy[choice].dead)
-				{
-					for(int i = 0; i < 3; i++)
-					{
-						actor.Target[i] = Enemy[choice];
-					}
-				}
-			}while(actor.Target[0] != actor);
-			break;
-			case(1):
-			do
-			{
-				choice = Random.Range(0,3);
-				if(!Player[choice].dead)
-				{
-					for(int i = 0; i < 3; i++)
-					{
-						actor.Target[i] = Player[choice];
-					}
-				}
-			}while(actor.Target[0] != actor);
-			break;
-			default:
-			break;
-		}
-		*/
 		currentPhase = PHASE.CONFLICT;
 	}
 
