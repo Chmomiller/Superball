@@ -79,11 +79,23 @@ public class Victoria : Character {
 	}
 
 	//Parasoul(Kawaii): Rebounds the next shot thrown at her
-	//Nothing yet allows multi turn logic. This just needs a framework and should be simple
 	public override int Skill2() { 
-		this.addStatusEffect (STATUS.MISC, 100);
-        this.heldBalls -= this.actionCosts[5];
-        this.actionCooldowns[5] = 3;
+		// This block sets Victoria's status only if it is currently her turn in the queue
+		if(combat.combatQueue[combat.currentCharacter] == this)
+		{
+			this.addStatusEffect (STATUS.MISC, 100);
+			this.heldBalls -= this.actionCosts[5];
+			this.actionCooldowns[5] = 3;
+		}
+		// If Victoria has activated Parasoul but hasn't used it yet
+		if(combat.combatQueue[combat.currentCharacter].actionType == "Offense" &&
+			findStatus(STATUS.MISC) != -1)
+		{
+			int damage = combat.combatQueue[combat.currentCharacter].throwBall (combat.combatQueue[combat.currentCharacter]);
+			statusEffects [findStatus (STATUS.MISC)].duration = 0;
+			removeDoneStatusEffects ();
+			return damage;
+		}
         return 0;
     }
 

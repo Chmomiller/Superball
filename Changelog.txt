@@ -158,3 +158,6 @@ Tristian:
 	Fixed Defensive moves not being moved to the front of the queue
 	Fixed Greg's Skill1 and Skill3
 	Replaced status strings with status enums: Character.STATUS.[STATUS NAME]
+	Fixed Victoria's Skill1 to work as described(still needs some work to consistently display the correct text)
+	Fixed Mei's Skill1 to distribute the correct amount of balls
+	Fixed Mei's Skill2 to collect at the end of turn regardless of position in queue

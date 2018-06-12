@@ -420,6 +420,7 @@ public class CombatManager : MonoBehaviour
 				if(combatQueue[i].actionType != "Defense" && 
 					combatQueue[j].actionType == "Defense")
 				{
+					combatQueue [j].catching = true;
 					Character swap = combatQueue [i];
 					combatQueue [i] = combatQueue [j];
 					combatQueue [j] = swap;
@@ -632,6 +633,14 @@ public class CombatManager : MonoBehaviour
 							}
 							combatAction.text = readOut;
 							break;
+						}
+						if(damage == 0)
+						{
+							performAction = true;
+						}
+						else
+						{
+							performAction = false;
 						}
 						if (performAction) 
 						{
