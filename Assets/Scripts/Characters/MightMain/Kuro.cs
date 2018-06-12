@@ -42,7 +42,7 @@ public class Kuro : Character {
 	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
-			allies [i].addStatusEffect ("steady", 2);
+			allies [i].addStatusEffect (STATUS.STEADY, 2);
 		}
         actionCooldowns[4] = 3;
 		return 0;
@@ -64,7 +64,7 @@ public class Kuro : Character {
 	// Lord of the Seven Seas: Charge up for a turn before unleashing an attack against all enemies
 	public override int Skill3() { 
 		int damage = 0;
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			for(int i = 0; i < 3; i++)
 			{
@@ -77,7 +77,7 @@ public class Kuro : Character {
 		}
 		else
 		{
-			addStatusEffect("misc", 2);
+			addStatusEffect(STATUS.MISC, 2);
 		}
 		this.heldBalls -= actionCosts [6];
 		actionCooldowns [6] = 3;
@@ -88,7 +88,7 @@ public class Kuro : Character {
 	public override int Skill4() { 
 		for(int i = 0; i < 3; i++)
 		{
-			enemies [i].addStatusEffect ("buff",2);
+			enemies [i].addStatusEffect (STATUS.BUFF,2);
 		}
         this.heldBalls -= this.actionCosts[7];
 		return 0;
@@ -99,7 +99,7 @@ public class Kuro : Character {
 		base.cleanUp ();
 
 		// If getting ready for skill 3 set action for next turn
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			action = "Skill3";
 			actionType = "Offense";

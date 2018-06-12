@@ -280,7 +280,7 @@ public class CombatManager : MonoBehaviour
 		}
 		// This block will run when findstatus can work properly
 		if(firstAction != -1
-			&& combatQueue[firstAction].findStatus("stun") != -1)
+			&& combatQueue[firstAction].findStatus(Character.STATUS.STUN) != -1)
 		{
 			combatQueue[firstAction].action = "Wait";
 			combatQueue [firstAction].actionType = "None";
@@ -411,6 +411,7 @@ public class CombatManager : MonoBehaviour
 	// This function has the charcters perform their actions in the correct order
 	void Execute()
 	{
+		currentCharacter = 0;
 		// Show the execute phase
 		for(int i = 0; i < combatQueue.Length-1; i++)
 		{
@@ -426,11 +427,11 @@ public class CombatManager : MonoBehaviour
 			}
 		}
 		CUI.ShowPhase ();
-		for (currentCharacter = 0; currentCharacter < 6; currentCharacter++) 
+		for (int i = 0; i < 6; i++) 
 		{ 
 			delay += 2;
-			StartCoroutine( DoAction (combatQueue [currentCharacter], combatQueue [currentCharacter].action, delay));
-			if(combatQueue[currentCharacter].dead)
+			StartCoroutine( DoAction (combatQueue [i], combatQueue [i].action, delay));
+			if(combatQueue[i].dead)
 			{
 				//combatQueue[currentCharacter].action = "Rest";
 			}
@@ -487,7 +488,7 @@ public class CombatManager : MonoBehaviour
 		enabled = false;
 		yield return new WaitForSeconds (finish);
 		// If the characcter is not KO'd or stunned, perform their action
-		if(! (character.dead || character.findStatus("stun") != -1))
+		if(! (character.dead || character.findStatus(Character.STATUS.STUN) != -1))
 		{
 			// This bool determines if character does their action after checking what the target's action is.
 			// performAction is intended to be set by Character functions which should return bools
@@ -729,6 +730,7 @@ public class CombatManager : MonoBehaviour
 		{
 			enabled = true;
 		}
+		currentCharacter++;
 	}
 
 	// This function randomly assigns actions and targets for enemies.

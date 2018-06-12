@@ -30,7 +30,7 @@ public class YamatoBow : Yamato {
         float variance = UnityEngine.Random.Range(.7f, 1.2f);
 		int damage = (int)(1.5f * this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target[0].loseStamina(damage);
-        Target[0].addStatusEffect("unsteady", 2);
+		Target[0].addStatusEffect(STATUS.UNSTEADY, 2);
         this.actionCooldowns[4] = 3;
 		return damage;
     }

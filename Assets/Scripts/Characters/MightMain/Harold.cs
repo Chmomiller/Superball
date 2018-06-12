@@ -43,7 +43,7 @@ public class Harold : Character {
 
 	public new bool dodgeBall(Character attacker)
 	{
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			this.throwBall (attacker);
 		}
@@ -58,7 +58,7 @@ public class Harold : Character {
 			this.heldBalls = this.maxBalls;
 		}
 		// adds steady for 1 turn
-		addStatusEffect ("steady", 2);
+		addStatusEffect (STATUS.STEADY, 2);
 
         actionCooldowns[4] = 3;
 		return -1;
@@ -66,7 +66,7 @@ public class Harold : Character {
 
 	// Suppressing Fire: Counterattack when attacked on the next two turns
     public override int Skill2() {
-		addStatusEffect ("misc", 3);
+		addStatusEffect (STATUS.MISC, 3);
         this.heldBalls -= this.actionCosts[5];
 		return 0;
     }
@@ -74,17 +74,17 @@ public class Harold : Character {
 	// Heavy Bombardment: Charges for a turn then attacks with a powerful strike against all enemies and becomes staggered
 	public override int Skill3() {
 		int damage = 0;
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			// This attack does stamina loss before checking for dodging
 			damage = (int)(Damage * 2 * attackMultiplier * Target[2].defenseMultiplier);
 			Target[2].loseStamina(damage);
 			Target[2].dodgeBall (this);
-			addStatusEffect ("unsteady", 2);
+			addStatusEffect (STATUS.UNSTEADY, 2);
 		}
 		else
 		{
-			addStatusEffect("misc", 3);
+			addStatusEffect(STATUS.MISC, 3);
 		}
 		this.heldBalls -= actionCosts [6];
 		return damage;
@@ -116,7 +116,7 @@ public class Harold : Character {
 		base.cleanUp ();
 
 		// If getting ready for skill 3 set action and target for next turn
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			if(whichAction)
 			{

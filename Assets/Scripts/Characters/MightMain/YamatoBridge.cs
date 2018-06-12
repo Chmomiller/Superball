@@ -34,8 +34,8 @@ public class YamatoBridge : Yamato {
 		{
 			if (this.allies [i] != this && !allies [i].dead) 
 			{
-				allies [i].addStatusEffect ("stun", 1);
-				allies [i].addStatusEffect ("buff", 3);
+				allies [i].addStatusEffect (STATUS.STUN, 2);
+				allies [i].addStatusEffect (STATUS.BUFF, 3);
 			}
         }
 
@@ -47,7 +47,7 @@ public class YamatoBridge : Yamato {
         float variance = UnityEngine.Random.Range(0.9f, 1.8f);
 		int damage = (int)(Damage * .5 * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target [0].loseStamina (damage);
-        this.addStatusEffect("steady", 2);
+		this.addStatusEffect(STATUS.STEADY, 2);
         this.actionCooldowns[5] = 2;
 		return damage;
     }
@@ -58,7 +58,7 @@ public class YamatoBridge : Yamato {
 			{
 				allies [i].gainStamina (40);
                 if (allies[i].Stamina > allies[i].maxStamina) allies[i].Stamina = allies[i].maxStamina;
-				addStatusEffect ("unsteady", 2);
+				addStatusEffect (STATUS.UNSTEADY, 2);
 			}
         }
         this.actionCooldowns[6] = 3;

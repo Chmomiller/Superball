@@ -59,21 +59,21 @@ public class Clemence : Character
 
 
     public override int Skill1() {
-        Target[0].addStatusEffect("steady", 3);
+		Target[0].addStatusEffect(STATUS.STEADY, 3);
         this.heldBalls -= actionCosts[4];
         this.actionCooldowns[4] = 3;
         return 0;
     }
 
     public override int Skill2() {
-        Target[0].addStatusEffect("debuff", 4);
+		Target[0].addStatusEffect(STATUS.DEBUFF, 4);
         this.heldBalls -= actionCosts[5];
         this.actionCooldowns[5] = 4;
         return 0;
     }
 
     public override int Skill3() {
-        this.addStatusEffect("steady", 3);
+		this.addStatusEffect(STATUS.STEADY, 3);
         for(int i = 0; i<this.statusEffects.Length; i++) {
             statusEffects[i].duration -= 2;
             if (statusEffects[i].duration < 0) statusEffects[i].duration = 0;
@@ -127,7 +127,7 @@ public class Clemence : Character
         }
         */
     public override int Skill4() {
-        addStatusEffect("misc", 3);
+		addStatusEffect(STATUS.MISC, 3);
         actionCooldowns[7] = 3;
         return 0;
     }
@@ -135,7 +135,7 @@ public class Clemence : Character
 	new public void cleanUp()
 	{
 		base.cleanUp ();
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			blocking = true;
 			startingHealth = Stamina;

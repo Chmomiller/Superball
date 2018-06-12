@@ -69,7 +69,7 @@ public class Trevor : Character {
 
 	//Skill1
     public override int Skill2() {
-        this.addStatusEffect("buffed", 3);
+		this.addStatusEffect(STATUS.BUFF, 3);
         actionCooldowns[5] = 4;
         return 0;
     }
@@ -111,8 +111,8 @@ public class Trevor : Character {
     // Skill3
 
     public override int Skill3() {
-        Target[0].addStatusEffect("buff", 2);
-        Target[0].addStatusEffect("unsteady", 3);
+		Target[0].addStatusEffect(STATUS.BUFF, 2);
+		Target[0].addStatusEffect(STATUS.UNSTEADY, 3);
         actionCooldowns[6] = 4;
         return 0;
     }
@@ -155,8 +155,8 @@ public class Trevor : Character {
     */
     public override int Skill4() {
         this.throwBall(Target[0]);
-        Target[0].addStatusEffect("buff", 3);
-        Target[0].addStatusEffect("steady", 3);
+		Target[0].addStatusEffect(STATUS.BUFF, 3);
+		Target[0].addStatusEffect(STATUS.STEADY, 3);
 		this.heldBalls -= this.actionCosts[7];
         this.actionCooldowns[7] = 3; 
         return this.Damage;

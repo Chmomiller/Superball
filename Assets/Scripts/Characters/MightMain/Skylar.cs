@@ -44,9 +44,10 @@ public class Skylar : Character {
 		
 	// Bombing Run: Make all enemies staggered
 	public override int Skill1() {
-		enemies[0].addStatusEffect("unsteady", 3);
-		enemies[1].addStatusEffect("unsteady", 3);
-		enemies[2].addStatusEffect("unsteady", 3);
+		for(int i = 0; i < 3; i++)
+		{
+			enemies[i].addStatusEffect(STATUS.UNSTEADY, 3);
+		}
 		actionCooldowns[4] = 3;
 		return 0;
 	}
@@ -80,12 +81,11 @@ public class Skylar : Character {
 	// Currently does nothing because there is no support for confuse
     public override int Skill4() {
         this.heldBalls -= 3;
-        enemies[0].addStatusEffect("unsteady", 2);
-        enemies[1].addStatusEffect("unsteady", 2);
-        enemies[2].addStatusEffect("unsteady", 2);
-        enemies[0].addStatusEffect("debuff", 2);
-        enemies[1].addStatusEffect("debuff", 2);
-        enemies[2].addStatusEffect("debuff", 2);
+		for(int i = 0; i < 3; i++)
+		{
+			enemies[i].addStatusEffect(STATUS.UNSTEADY, 2);
+			enemies[i].addStatusEffect(STATUS.DEBUFF, 2);
+		}
         actionCooldowns[6] = 4;
 		return 0;
     }

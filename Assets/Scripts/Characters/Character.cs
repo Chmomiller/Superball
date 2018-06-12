@@ -8,6 +8,8 @@ using System;
 
 public class Character : MonoBehaviour
 {
+	public enum STATUS{NONE, STUN, BUFF, DEBUFF, STEADY, UNSTEADY, MISC}
+
     public AudioScript Audio;
     public CombatManager combat;
 	public CharacterSelectUI CSUI;
@@ -52,13 +54,10 @@ public class Character : MonoBehaviour
     public string[] actionDescription = { "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", "", "", "", "", "" };
     public string[] actionTypes = { "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
 
-    //These are to dictate who each ability can target: 0 for none or predetermined, 1 for Enemy[], 2 for Player[]
-    //default is for what you would expect, alternate is if they switched teams. 
-    //IE: Shiro's throw is default to enemies if you were to put Shiro on team two, 
-    // she would need to now throw at team 1, which in CombatManager, is Player[], which as shown above ^ is the Player[]
-    //This is because the current state makes it so Shiro,Clemence and Theodore must be the Player[] and all others must be on Enemy[]
-    // or else they will do their actions on the wrong team.
-    /* This change allows characters to be on whatever team they want*/
+    // These determine skill targets: 
+	// 0: Targets none or predetermined
+	// 1: Targets enemies
+	// 2: Targets allies
     protected int[]    defaultTargetingTypes = { 0, 1, 0, 0, 0, 0, 0, 0 };
     //depending on their allegiance, targeting types will be assigned to default or alternate within start
     public  int[] targetingTypes;
@@ -84,7 +83,7 @@ public class Character : MonoBehaviour
 		for(int i = 0; i < 3; i++)
 		{
 			statusEffects [i].duration = 0;
-			statusEffects [i].name = "none";
+			statusEffects [i].name = STATUS.NONE;
 		}
 			
 		characterDirector = gameObject.GetComponentInChildren<PlayableDirector> ();
@@ -129,7 +128,7 @@ public class Character : MonoBehaviour
 	public int GetTargetingType(int index){return this.defaultTargetingTypes [index];}
 	public int GetActionCost(int index){return this.actionCosts [index];}
 	public struct status {
-		public string name;
+		public STATUS name;
 		public int duration;
 	}
 		
@@ -179,14 +178,14 @@ public class Character : MonoBehaviour
 
 
 
-	public void addStatusEffect(string name, int duration){
+	public void addStatusEffect(STATUS name, int duration){
 		for(int i =0; i<statusEffects.Length; i++){
 			//refresh status effect of same name;
 			if(statusEffects[i].name == name && statusEffects[i].duration < duration){
 				statusEffects[i].duration = duration;
 			}
 			//slot is empty
-			if(statusEffects[i].name.Equals("none")){
+			if(statusEffects[i].name == STATUS.NONE){
 				statusEffects[i].name = name;
 				statusEffects[i].duration = duration;
 				applyStatusEffect(name);
@@ -199,95 +198,93 @@ public class Character : MonoBehaviour
 		for(int i =0; i<statusEffects.Length; i++){
 			if(statusEffects[i].duration <= 0){
 				removeStatusEffect(statusEffects[i].name);
-				statusEffects [i].name = "none";
+				statusEffects [i].name = STATUS.NONE;
 			}
 		}
 	}
 
 
 	//looks at name and applies change
-	void applyStatusEffect(string name){
+	void applyStatusEffect(STATUS name){
 		switch(name){
-		case "stun":
-			// check during plan and skip if stunned
-			// remember we can check a player's statusEffects anywhere
+		case STATUS.STUN:
+			// check during plan/execution and skip if stunned
 			CSUI.AddStatus(0);
 			break;
-		case "buff":
-			if (findStatus ("debuff") != -1) {
-				statusEffects [findStatus ("debuff")].duration = 0;
+		case STATUS.BUFF:
+			if (findStatus (STATUS.DEBUFF) != -1) {
+				statusEffects [findStatus (STATUS.DEBUFF)].duration = 0;
 				removeDoneStatusEffects ();
-				removeStatusEffect ("debuff");
+				removeStatusEffect (STATUS.DEBUFF);
 			}
 			this.attackMultiplier = 1.25f;
 			CSUI.AddStatus(1);
 			break;
-		case "debuff":
-			if (findStatus ("buff") != -1) {
-				statusEffects [findStatus ("buff")].duration = 0;
+		case STATUS.DEBUFF:
+			if (findStatus (STATUS.DEBUFF) != -1) {
+				statusEffects [findStatus (STATUS.DEBUFF)].duration = 0;
 				removeDoneStatusEffects ();
-				removeStatusEffect ("buff");
+				removeStatusEffect (STATUS.DEBUFF);
 			}
 			this.attackMultiplier = .75f;
 			CSUI.AddStatus(2);
 			break;
-		case "steady":
-			if(findStatus("unsteady") != -1)
+		case STATUS.STEADY:
+			if(findStatus(STATUS.UNSTEADY) != -1)
 			{
-				statusEffects [findStatus ("unsteady")].duration = 0;
+				statusEffects [findStatus (STATUS.UNSTEADY)].duration = 0;
 				removeDoneStatusEffects ();
-				removeStatusEffect ("unsteady");
+				removeStatusEffect (STATUS.UNSTEADY);
 			}
 			this.defenseMultiplier = 1.25f;
 			CSUI.AddStatus(3);
 			break;
-		case "unsteady":
-			if(findStatus("steady") != -1)
+		case STATUS.UNSTEADY:
+			if(findStatus(STATUS.STEADY) != -1)
 			{
-				statusEffects [findStatus ("steady")].duration = 0;
+				statusEffects [findStatus (STATUS.STEADY)].duration = 0;
 				removeDoneStatusEffects ();
-				removeStatusEffect ("steady");
+				removeStatusEffect (STATUS.STEADY);
 			}
 			this.defenseMultiplier = 0.75f;
 			CSUI.AddStatus(4);
 			break;
-		case "confused":
-				// check during plan and randomly choose target
-				// remember we can check a player's statusEffects anywhere
-				break;
-		case "misc":
+		case STATUS.MISC:
 			// This is used to check for multiturn logic
 			CSUI.AddStatus(5);
 			break;
+		//case "confused":
+				// check during plan and randomly choose target
+				//break;
 		}
 	}
 
-	public void removeStatusEffect(string name){
+	public void removeStatusEffect(STATUS name){
 		switch(name){
-		case "stun":
+		case STATUS.STUN:
 			CSUI.RemoveStatus (0);
 			// check during plan and skip if stunned
 			// remember we can check a player's statusEffects anywhere
 			break;
-		case "buff":
+		case STATUS.BUFF:
 			CSUI.RemoveStatus (1);
 			this.attackMultiplier = 1.0f;
 			break;
-		case "debuff":
+		case STATUS.DEBUFF:
 			CSUI.RemoveStatus (2);
 			this.attackMultiplier = 1.0f;
 			break;
-		case "steady":
+		case STATUS.STEADY:
 			CSUI.RemoveStatus (3);
 			this.defenseMultiplier = 1.0f;
 			break;
-		case "unsteady":
+		case STATUS.UNSTEADY:
 			CSUI.RemoveStatus (4);
 			this.defenseMultiplier = 1.0f;
 			break;
-		case "confused":
-				break;
-		case "misc":
+		//case "confused":
+		//		break;
+		case STATUS.MISC:
 			CSUI.RemoveStatus (5);
 			break;
 		}
@@ -295,7 +292,7 @@ public class Character : MonoBehaviour
 
 
 	// I added this function, it is not in the character file normally
-	public int findStatus(string effect)
+	public int findStatus(STATUS effect)
 	{
 		for (int i = 0; i < statusEffects.Length; i++) 
 		{

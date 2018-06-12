@@ -35,10 +35,10 @@ public class Victoria : Character {
 
 	public new bool catchBall(Character attacker)
 	{
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			attacker.throwBall (attacker);
-			statusEffects [findStatus ("misc")].duration = 0;
+			statusEffects [findStatus (STATUS.MISC)].duration = 0;
 			removeDoneStatusEffects ();
 			return true;
 		}
@@ -51,10 +51,10 @@ public class Victoria : Character {
 
 	public new bool dodgeBall(Character attacker)
 	{
-		if (findStatus ("misc") != -1) 
+		if (findStatus (STATUS.MISC) != -1) 
 		{
 			attacker.throwBall (attacker);
-			statusEffects [findStatus ("misc")].duration = 0;
+			statusEffects [findStatus (STATUS.MISC)].duration = 0;
 			removeDoneStatusEffects ();
 			return false;
 		}
@@ -71,7 +71,7 @@ public class Victoria : Character {
 	public override int Skill1()
 	{
         float dmg = UnityEngine.Random.Range(0.5f, 1)*this.Damage*this.attackMultiplier;
-        if (UnityEngine.Random.Range(0, 9) > 3) { Target[0].addStatusEffect("debuff", 2); }
+		if (UnityEngine.Random.Range(0, 9) > 3) { Target[0].addStatusEffect(STATUS.DEBUFF, 2); }
         this.heldBalls -= this.actionCosts[4];
         this.actionCooldowns[4] = 2;
         return (int)dmg;
@@ -81,7 +81,7 @@ public class Victoria : Character {
 	//Parasoul(Kawaii): Rebounds the next shot thrown at her
 	//Nothing yet allows multi turn logic. This just needs a framework and should be simple
 	public override int Skill2() { 
-		this.addStatusEffect ("misc", 100);
+		this.addStatusEffect (STATUS.MISC, 100);
         this.heldBalls -= this.actionCosts[5];
         this.actionCooldowns[5] = 3;
         return 0;
@@ -89,7 +89,7 @@ public class Victoria : Character {
 
 
     public override int Skill3() {
-        Target[0].addStatusEffect("stun", 2);
+		Target[0].addStatusEffect(STATUS.STUN, 2);
         Target[0].loseStamina(this.Damage / 2);
         return this.Damage / 2;
     }
@@ -114,13 +114,12 @@ public class Victoria : Character {
 		base.cleanUp ();
 
 		// This checks if Elizabeth was attacked this turn, isn't transformed, and is unsteady
-		if(this.lastStamina < Stamina && !Transform && findStatus("steady") != -1)
+		if(this.lastStamina < Stamina && !Transform && findStatus(STATUS.STEADY) != -1)
 		{
 			this.Transform = true;
-			addStatusEffect ("buff", 1);
-			statusEffects [findStatus ("steady")].duration = 0;
+			addStatusEffect (STATUS.BUFF, 1);
+			statusEffects [findStatus (STATUS.STEADY)].duration = 0;
 			removeDoneStatusEffects ();
-			print (statusEffects [findStatus ("buff")].name + ": " + statusEffects [findStatus ("buff")].duration);
 
 		}
 

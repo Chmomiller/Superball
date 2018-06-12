@@ -58,15 +58,12 @@ public class Shiro : Character{
 
 	// Keep Fighting:
     public override int Skill3() { //keep fighting
-        if (allies[0] != this) {
-            allies[0].addStatusEffect("steady", 2);
-        }
-        if (allies[1] != this) {
-            allies[1].addStatusEffect("steady", 2);
-        }
-        if (allies[2] != this) {
-            allies[2].addStatusEffect("steady", 2);
-        }
+		for(int i = 0; i < 3; i++)
+		{
+			if (allies[i] != this && !allies[i].dead) {
+				allies[i].addStatusEffect(STATUS.UNSTEADY, 2);
+			}
+		}
         actionCooldowns[6] = 4; //where N is assuming this is the N+1th ability.
 		return 0;
     }

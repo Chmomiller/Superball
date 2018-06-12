@@ -39,7 +39,7 @@ public class Elizabeth : Character {
     //this one is kinda weird since its more of a passive to be checked at the beginning of the execute phase, like the other abilities that occur post planning (change target to me, all attack me, etc.) 
 	public override int Skill1() {
         // adds unsteady status for a period no player should be able to reach
-        Target[0].addStatusEffect("unsteady", 3);
+		Target[0].addStatusEffect(STATUS.UNSTEADY, 3);
         this.actionCooldowns[4] = 3;
         return 0;
     }
@@ -47,7 +47,7 @@ public class Elizabeth : Character {
 	//   Preen (Unfocused): stacking self damage buff to stamina dmg.
 	// cant do stacking buffs yet    //
 	public override int Skill2(){
-        this.addStatusEffect("steady", 2);
+		this.addStatusEffect(STATUS.STEADY, 2);
         this.actionCooldowns[5] = 3;
 		return 0;
 	}
@@ -58,7 +58,7 @@ public class Elizabeth : Character {
 		Target[0].loseStamina(damage);
         if (UnityEngine.Random.Range(0, 5) > 4) 
 		{
-           	Target[0].addStatusEffect("stun", 2);
+			Target[0].addStatusEffect(STATUS.STUN, 2);
         }
         this.heldBalls -= actionCosts[6];
         actionCooldowns[6] = 2;
@@ -72,12 +72,12 @@ public class Elizabeth : Character {
 		base.cleanUp ();
 
 		// This checks if Elizabeth was attacked this turn, isn't transformed, and is unsteady
-		if(this.lastStamina < Stamina && !Transform && findStatus("unsteady") != -1)
+		if(this.lastStamina < Stamina && !Transform && findStatus(STATUS.UNSTEADY) != -1)
 		{
 			this.Transform = true;
-			addStatusEffect ("buff", 1);
-			addStatusEffect ("steady", 1);
-			print (statusEffects [findStatus ("buff")].name + ": " + statusEffects [findStatus ("buff")].duration);
+			addStatusEffect (STATUS.BUFF, 1);
+			addStatusEffect (STATUS.STEADY, 1);
+		
 
 		}
 

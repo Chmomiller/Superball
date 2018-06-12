@@ -47,7 +47,7 @@ public class Theodore : Character {
 		// deal damage and add statusEffect
 		int damage = (int)( this.Damage * variance * .125f * attackMultiplier * Target[0].defenseMultiplier);
 		Target[0].loseStamina( damage );
-        Target[0].addStatusEffect("unsteady", 2);
+		Target[0].addStatusEffect(STATUS.UNSTEADY, 2);
 		this.heldBalls -= actionCosts[4];
 		return damage;
     }

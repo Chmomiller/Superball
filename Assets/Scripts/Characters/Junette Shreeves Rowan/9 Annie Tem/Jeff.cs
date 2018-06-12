@@ -28,7 +28,7 @@ public class Jeff : Character {
 
 	public new bool dodgeBall(Character attacker)
 	{
-		if(findStatus("misc") != -1)
+		if(findStatus(STATUS.MISC) != -1)
 		{
 			this.throwBall (attacker);
 		}

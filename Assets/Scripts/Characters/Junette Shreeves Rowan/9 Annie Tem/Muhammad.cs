@@ -25,15 +25,7 @@ public class Muhammad : Character {
     new void Update() {
 		
     }
-
-	public new bool dodgeBall(Character attacker)
-	{
-		if(findStatus("misc") != -1)
-		{
-			this.throwBall (attacker);
-		}
-		return base.dodgeBall (attacker);
-	}
+		
 	// I haven't bothered to update the skill return values
 	/*
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady

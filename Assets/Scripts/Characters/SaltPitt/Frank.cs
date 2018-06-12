@@ -56,7 +56,7 @@ public class Frank : Character {
 
 	// Skill1
 	public override int Skill2() {
-        this.addStatusEffect("steady", 3);
+		this.addStatusEffect(STATUS.STEADY, 3);
         actionCooldowns[5] = 2;
 		return 0;
 	}

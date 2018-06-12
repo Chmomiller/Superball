@@ -19,7 +19,7 @@ public class Greg: Character
 										  "Block incoming attacks, but become <color=yellow>stunned</color> on next turn. <color=red>2</color> turn cooldown.\nCost: None    Target: Self",
                                           "Reduce an enemy's ball count by 2 and increase your own by 2. <color=red>2</color> tunr cooldown.\nCost: None    Target: Single Enemy",
                                           "Reduce an enemy's stamina by 25% of their max stamina. <color=red>3</color> turn cooldown.\nCost: 3    Target: Single Enemy" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Offense", "Offense" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Defense", "Defense", "Utility", "Offense" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 0, 0, 1, 1 };
 		actionCosts = new int[]{ 0, 1, 0, 0, 1, 0, 0, 3 };
 
@@ -48,17 +48,6 @@ public class Greg: Character
 
     new void Update() {
 		base.Update ();
-		/*
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
-        }
-        */
     }
     
 
@@ -92,9 +81,7 @@ public class Greg: Character
 			if (trevor.heldBalls < trevor.maxBalls)
 				trevor.heldBalls++;
 			actionCooldowns [4] = 3;
-			Debug.Log ("combat.combatQueue [combat.currentCharacter].actionNames.Length: " + combat.combatQueue [combat.currentCharacter].actionNames.Length);
 			for (int i = 0; i < combat.combatQueue [combat.currentCharacter].actionNames.Length; i++) {
-				Debug.Log ("i = "+i);
 				if (combat.combatQueue [combat.currentCharacter].action == combat.combatQueue [combat.currentCharacter].actionNames [i]) {
 					combat.combatQueue [combat.currentCharacter].heldBalls -= combat.combatQueue [combat.currentCharacter].GetActionCost (i);
 				}
@@ -107,7 +94,7 @@ public class Greg: Character
 	public override int Skill2()
 	{
         //recall status effects dont stack
-        this.addStatusEffect("stunned", 2);
+		this.addStatusEffect(STATUS.STUN, 2);
         actionCooldowns[5] = 3;
 		return -1;
 	}
@@ -115,21 +102,15 @@ public class Greg: Character
 	// Steal
 	public override int Skill3()
 	{
-        if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
-            Target[0].heldBalls--;
-            this.heldBalls++;
-        }
-        if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
-            Target[0].heldBalls--;
-            this.heldBalls++;
-        }
-        if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
-            Target[0].heldBalls--;
-            this.heldBalls++;
-        }
-
+		for(int i = 0; i < 3; i++)
+		{
+			if (Target[0].heldBalls > 0 && this.heldBalls < this.maxBalls) {
+				Target[0].heldBalls--;
+				this.heldBalls++;
+			}
+		}
         actionCooldowns[6] = 3;
-		return this.Damage/4;
+		return 0;
 	}
 
     public override int Skill4() {

@@ -156,3 +156,5 @@ Tristian:
 	Fixed Trevor's skill2 targeting enemies
 	Fixed Frank's skill1
 	Fixed Defensive moves not being moved to the front of the queue
+	Fixed Greg's Skill1 and Skill3
+	Replaced status strings with status enums: Character.STATUS.[STATUS NAME]
