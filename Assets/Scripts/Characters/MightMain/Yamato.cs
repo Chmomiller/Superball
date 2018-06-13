@@ -97,6 +97,13 @@ public class Yamato : Character {
 		return 0;
     }
 
-	new void playDodge(){}
-	new void playThrow(){}
+	public override void playDodge()
+	{
+
+	}
+
+	public override void playThrow()
+	{
+
+	}
 }

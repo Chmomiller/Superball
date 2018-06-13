@@ -1,0 +1,562 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1427886312067840}
+  m_IsPrefabParent: 1
+--- !u!1 &1228915212165350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4924703859737672}
+  - component: {fileID: 212161502566510446}
+  - component: {fileID: 114623326781770160}
+  m_Layer: 0
+  m_Name: Character5
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1427886312067840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4719978662189018}
+  m_Layer: 0
+  m_Name: Yamato 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1463494443616034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4627008810157720}
+  - component: {fileID: 212186360221062064}
+  - component: {fileID: 114089252347168926}
+  m_Layer: 0
+  m_Name: Character3
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1929671082937232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4205633063485224}
+  - component: {fileID: 114479489091300700}
+  m_Layer: 0
+  m_Name: Character4
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1982797272391798
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4517262030181484}
+  - component: {fileID: 212406643947757538}
+  m_Layer: 0
+  m_Name: Sprite
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4205633063485224
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929671082937232}
+  m_LocalRotation: {x: -0, y: -0, z: 0.08773572, w: 0.9961439}
+  m_LocalPosition: {x: -1.4069129, y: 3.011333, z: 40.75293}
+  m_LocalScale: {x: 0.35137483, y: 0.35137472, z: 0.35137472}
+  m_Children: []
+  m_Father: {fileID: 4719978662189018}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.067}
+--- !u!4 &4517262030181484
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1982797272391798}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0025716722, w: -0.9999967}
+  m_LocalPosition: {x: 9.7, y: -54.4, z: 0}
+  m_LocalScale: {x: 8.042378, y: 8.042379, z: 8.0423765}
+  m_Children: []
+  m_Father: {fileID: 4924703859737672}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.29500002}
+--- !u!4 &4627008810157720
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463494443616034}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.9136322, y: 2.2289863, z: 32.75293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4719978662189018}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4719978662189018
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1427886312067840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.236913, y: -2.671333, z: 57.24707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4627008810157720}
+  - {fileID: 4205633063485224}
+  - {fileID: 4924703859737672}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4924703859737672
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228915212165350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.423087, y: 2.3213332, z: 32.75293}
+  m_LocalScale: {x: 0.04705758, y: 0.04705758, z: 0.13392417}
+  m_Children:
+  - {fileID: 4517262030181484}
+  m_Father: {fileID: 4719978662189018}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114089252347168926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463494443616034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0f4ebd9326c654abb070f6aa196afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  combat: {fileID: 0}
+  CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
+  damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
+  Name: default
+  Damage: 10
+  Gather: 1
+  Stamina: 100
+  maxStamina: 100
+  heldBalls: 0
+  maxBalls: 4
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  Experience: 0
+  Role: Supporter
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  action: None
+  actionType: None
+  targetingType: 0
+  allegiance: 1
+  allies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionDescription:
+  - Wait
+  - Throw ball at target enemy
+  - Attempt to catch any incoming balls
+  - Gather balls from the ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
+  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
+  dead: 0
+  catching: 0
+  dodgeball: {fileID: 1494414517151262, guid: 519257fb80300a645ab979680729e5f6, type: 2}
+  yamatoCharge: 0
+--- !u!114 &114479489091300700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929671082937232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d602bd526d5754e8553e82a5627afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  combat: {fileID: 0}
+  CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
+  damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
+  Name: default
+  Damage: 23
+  Gather: 1
+  Stamina: 270
+  maxStamina: 270
+  heldBalls: 0
+  maxBalls: 2
+  Level: 10
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  Experience: 0
+  Role: Supporter
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  action: None
+  actionType: 
+  targetingType: 0
+  allegiance: 1
+  allies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionDescription:
+  - Wait
+  - Throw ball at target enemy
+  - Attempt to catch any incoming balls
+  - Gather balls from the ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
+  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
+  dead: 0
+  catching: 0
+  dodgeball: {fileID: 1494414517151262, guid: 519257fb80300a645ab979680729e5f6, type: 2}
+  yamatoCharge: 0
+--- !u!114 &114623326781770160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228915212165350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ce4e589b55b5649b8c6a862f4eb07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  combat: {fileID: 0}
+  CSUI: {fileID: 0}
+  characterDirector: {fileID: 0}
+  characterAnims: []
+  damageText: {fileID: 1756570091902850, guid: 3ff9f3c105dc7764191b3a43eabcfb16, type: 2}
+  Name: default
+  Damage: 10
+  Gather: 1
+  Stamina: 100
+  maxStamina: 100
+  heldBalls: 0
+  maxBalls: 4
+  Level: 1
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  Experience: 0
+  Role: Supporter
+  Target:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  action: None
+  actionType: None
+  targetingType: 0
+  allegiance: 1
+  allies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  actions:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionNames:
+  - None
+  - Throw
+  - Catch
+  - Gather
+  - Skill1
+  - Skill2
+  - Skill3
+  - Skill4
+  actionDescription:
+  - Wait
+  - Throw ball at target enemy
+  - Attempt to catch any incoming balls
+  - Gather balls from the ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  actionTypes:
+  - None
+  - Offense
+  - Defense
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  - Utility
+  targetingTypes: 
+  actionCosts: 0000000001000000000000000000000000000000000000000000000000000000
+  actionCooldowns: 0000000000000000000000000000000000000000000000000000000000000000
+  dead: 0
+  catching: 0
+  dodgeball: {fileID: 1494414517151262, guid: 519257fb80300a645ab979680729e5f6, type: 2}
+  yamatoCharge: 0
+--- !u!212 &212161502566510446
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228915212165350}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 50755ff65201a8f41a4bae0ed8ebccd1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.25, y: 4.21}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!212 &212186360221062064
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463494443616034}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: dfa788c650f38bd44aafc41edb12cce4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.83, y: 2.84}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+--- !u!212 &212406643947757538
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1982797272391798}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 50755ff65201a8f41a4bae0ed8ebccd1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.25, y: 4.21}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

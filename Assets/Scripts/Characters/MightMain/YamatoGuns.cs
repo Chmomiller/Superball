@@ -6,17 +6,18 @@ public class YamatoGuns : Yamato {
 	
     
     new void Start() {
-        Name = "The Main Armamment";
+        Name = "The Gun";
         Stamina = maxStamina;
         Role = "Thrower";
 
         actionNames = new string[] { "None", "Throw", "Catch", "Gather", "Artillery Barrage", "Bombardment", "Skill3", "Skill4" };
         actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground", 
-										  "Hit an enemy with an attack at <color=red>1.25</color> stronger that cannot be caught", 
-										  "Choose <color=red>3</color> random targets on the enemy team and hit them with a <i>weak</i> attack", "", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "O", "Utility" };
+										  "Fire at an enemy with a <b>heavy-hitting</b> attack that can't be caught. <color=red>2</color> turn cooldown.\nCost: 3    Target: Single Enemy", 
+										  "Fire at 3 random enemies with a <i>weak</i> attack. <color=red>4</color> turn cooldown.\nCost: 3    Target: Enemy Team", 
+										  "", "" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 3, 3, 0, 0 };
 
 		base.Start ();
     }
@@ -30,7 +31,7 @@ public class YamatoGuns : Yamato {
         float variance = UnityEngine.Random.Range(1.7f, 2.2f);
 		int damage = (int)(this.Damage * 1.25 * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target [0].loseStamina (damage);
-        this.heldBalls -= 3;
+		this.heldBalls -= actionCosts[4];
         actionCooldowns[4] = 2;
 		return damage;
     }
@@ -42,6 +43,10 @@ public class YamatoGuns : Yamato {
 			do{
 				int aim = UnityEngine.Random.Range (0, 3);
 				Target[i] = enemies[aim];
+				if(!Target[i].dead)
+				{
+					break;
+				}
 			}while(!Target[i].dead);
 		}
 

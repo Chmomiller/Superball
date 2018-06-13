@@ -10,14 +10,14 @@ public class YamatoBow : Yamato {
         Stamina = maxStamina;
         Role = "Thrower";
 
-		actions = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Skill3", "Skill4" };
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Strong Ram", "Depth Charge", "Deep Torpedoes", "Skill4" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls from the ground",
-                                                    "Ram into target with an attack that makes the target <color=orange>Unsteady</color>",
-                                                    "Drops explosives off the front, hitting all enemies with a regular attack", "", "" };
-		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offensive", "Offensive", "Offensive", "Utility" };
+                                          "Ram into a target and make them <color=orange>unsteady</color>. <color=red>3</color> turn cooldown.\nCost: 1   Target: Single Enemy",
+                                          "Drops explosives off the front, hitting all enemies with a regular attack. <color=red>2</color> turn cooldown.\nCost: 3    Target: Enemy Team", 
+										  "", "" };
+		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Offense", "Offense", "Offense", "Utility" };
 		defaultTargetingTypes = new int[]{ 0, 1, 0, 0, 1, 0, 0, 0 };
-		actionCosts = new int[]{ 0, 1, 0, 0, 1, 1, 0, 0 };
+		actionCosts = new int[]{ 0, 1, 0, 0, 1, 3, 0, 0 };
 
 		base.Start ();
     }
@@ -31,6 +31,7 @@ public class YamatoBow : Yamato {
 		int damage = (int)(1.5f * this.Damage * variance * attackMultiplier * Target [0].defenseMultiplier);
 		Target[0].loseStamina(damage);
 		Target[0].addStatusEffect(STATUS.UNSTEADY, 2);
+		this.heldBalls -= this.actionCosts [4];
         this.actionCooldowns[4] = 3;
 		return damage;
     }
@@ -46,6 +47,7 @@ public class YamatoBow : Yamato {
 			damage += partialDamage;
 			enemies[i].loseStamina(partialDamage);
         }
+		this.heldBalls -= this.actionCosts [5];
         this.actionCooldowns[5] = 2;
 		return damage;
     }

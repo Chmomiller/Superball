@@ -168,3 +168,9 @@ Tristian:
 	Fixed Harold's catchBall to work with Skill2
 	Added Status STATUS.MISC2 which uses the same status icon as misc
 	Fixed Hatold's CleanUp to work with Skill3
+6/13/18:
+	Fixed error in Yamato where Character.playDodge and Character.playCatch were called instead of the Yamato's
+	Scaled main cast in Yamato Gym
+	Reformatted Yamato skill description
+	Fixed Yamato Gun Skill1 bug that caused infinite loop
+	Fixed Tamato Bridge Skill3 to unsteady allies instead of self

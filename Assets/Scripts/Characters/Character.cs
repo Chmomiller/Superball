@@ -430,12 +430,12 @@ public class Character : MonoBehaviour
 		CSUI.ShowTell ("None");
 	}
    
-	public void playDodge()
+	public virtual void playDodge()
 	{
 		characterDirector.Play (characterAnims[0]);
 	}
 
-	public void playThrow()
+	public virtual void playThrow()
 	{
 		characterDirector.Play (characterAnims[1]);
 	}
