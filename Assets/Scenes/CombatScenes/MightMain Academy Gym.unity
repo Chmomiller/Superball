@@ -557,7 +557,7 @@ MonoBehaviour:
   AI: {fileID: 0}
   conflictInQueue: -1
   currentCharacter: 0
-  enemyControl: 0
+  enemyControl: 1
   combatControl: 1
   turn: 0
   win: 0
