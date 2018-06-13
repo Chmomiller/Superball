@@ -24,49 +24,37 @@ public class Harold : Character {
 
     new void Update() {
 		base.Update ();
-		/*
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
-        */
     }
 
-	public new bool dodgeBall(Character attacker)
+	public override bool dodgeBall(Character attacker)
 	{
-		if(findStatus(STATUS.MISC) != -1)
+		if(findStatus(STATUS.MISC) != -1 && action != "Skill2")
 		{
-			this.throwBall (attacker);
+			throwBall (attacker);
 		}
 		return base.dodgeBall (attacker);
 	}
 
 	// Reactive Armor: If he is attacked on this turn, catch the ball and become steady
     public override int Skill1() {
-		this.heldBalls++;
-		if(this.heldBalls > this.maxBalls)
+		if(combat.combatQueue[combat.currentCharacter] != this)
 		{
-			this.heldBalls = this.maxBalls;
-		}
-		// adds steady for 1 turn
-		addStatusEffect (STATUS.STEADY, 2);
+			this.heldBalls++;
+			if(this.heldBalls > this.maxBalls)
+			{
+				this.heldBalls = this.maxBalls;
+			}
+			// adds steady for 1 turn
+			addStatusEffect (STATUS.STEADY, 1);
 
-        actionCooldowns[4] = 3;
+			actionCooldowns[4] = 3;
+		}
 		return -1;
     }
 
 	// Suppressing Fire: Counterattack when attacked on the next two turns
     public override int Skill2() {
-		addStatusEffect (STATUS.MISC, 3);
+		addStatusEffect (STATUS.MISC, 2);
         this.heldBalls -= this.actionCosts[5];
 		return 0;
     }
@@ -74,7 +62,7 @@ public class Harold : Character {
 	// Heavy Bombardment: Charges for a turn then attacks with a powerful strike against all enemies and becomes staggered
 	public override int Skill3() {
 		int damage = 0;
-		if(findStatus(STATUS.MISC) != -1)
+		if(findStatus(STATUS.MISC2) != -1)
 		{
 			// This attack does stamina loss before checking for dodging
 			damage = (int)(Damage * 2 * attackMultiplier * Target[2].defenseMultiplier);
@@ -84,7 +72,7 @@ public class Harold : Character {
 		}
 		else
 		{
-			addStatusEffect(STATUS.MISC, 3);
+			addStatusEffect(STATUS.MISC2, 1);
 		}
 		this.heldBalls -= actionCosts [6];
 		return damage;
@@ -116,8 +104,12 @@ public class Harold : Character {
 		base.cleanUp ();
 
 		// If getting ready for skill 3 set action and target for next turn
-		if(findStatus(STATUS.MISC) != -1)
+		if(findStatus(STATUS.MISC2) != -1)
 		{
+			if(Random.Range(0f, 100f) < 80f)
+			{
+				Target [2] = tempTarget;
+			}
 			if(whichAction)
 			{
 				action = "Skill3";
@@ -127,9 +119,6 @@ public class Harold : Character {
 				CSUI.ShowTell ("Offense");
 			}
 		}
-		if(Random.Range(0f, 100f) < 75f)
-		{
-			Target [2] = tempTarget;
-		}
+
 	}
 }

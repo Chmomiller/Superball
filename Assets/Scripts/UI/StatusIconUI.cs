@@ -30,6 +30,9 @@ public class StatusIconUI : MonoBehaviour {
 			case(5):
 				statusExplaination.text = "The charater is doing something special...";
 				break;
+			case(6):
+				statusExplaination.text = "The charater is doing something special...";
+				break;
 			default:
 				statusExplaination.text = "";
 			break;

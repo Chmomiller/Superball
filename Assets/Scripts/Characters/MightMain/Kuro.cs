@@ -25,24 +25,13 @@ public class Kuro : Character {
     // Update is called once per frame
     new void Update() {
 		base.Update ();
-		/*
-        if (allegiance == 1) {
-            this.targetingTypes = alternateTargetingTypes;
-            allies = combat.Player;
-            enemies = combat.Enemy;
-        } else {
-            this.targetingTypes = defaultTargetingTypes;
-            allies = combat.Enemy;
-            enemies = combat.Player;
-        }
-        */
     }
 
 	// Smokescreen: Steady your team
 	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
-			allies [i].addStatusEffect (STATUS.STEADY, 2);
+			allies [i].addStatusEffect (STATUS.STEADY, 1);
 		}
         actionCooldowns[4] = 3;
 		return 0;
@@ -58,6 +47,7 @@ public class Kuro : Character {
 			}
 		}
 		actionCooldowns [5] = 2;
+		this.action = "Catch";
 		return 0;
 	}
 
@@ -77,7 +67,7 @@ public class Kuro : Character {
 		}
 		else
 		{
-			addStatusEffect(STATUS.MISC, 2);
+			addStatusEffect(STATUS.MISC, 1);
 		}
 		this.heldBalls -= actionCosts [6];
 		actionCooldowns [6] = 3;

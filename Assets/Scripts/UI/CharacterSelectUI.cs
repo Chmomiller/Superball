@@ -78,7 +78,6 @@ public class CharacterSelectUI : MonoBehaviour
 
 	public void AddStatus(int newStatus)
 	{
-		Debug.Log ("AddStatus: "+newStatus);
 		bool afflicted = false;
 		int stat = 0;
 		for(int i = 2; i > -1; i--)
@@ -98,13 +97,11 @@ public class CharacterSelectUI : MonoBehaviour
 			status [stat].sprite = statusImage[newStatus];	
 			status [stat].enabled = true;
 			status [stat].GetComponent<StatusIconUI> ().statusNumber = newStatus;
-			Debug.Log ("Current Status: "+status [stat].GetComponent<StatusIconUI> ().statusNumber);
 		}
 	}
 
 	public void RemoveStatus(int oldStatus)
 	{
-		Debug.Log ("RemoveStatus: "+oldStatus);
 		for(int i = 0; i < 3; i++)
 		{
 			if(status[i].GetComponent<StatusIconUI>().statusNumber == oldStatus)

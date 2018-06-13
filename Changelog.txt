@@ -161,3 +161,10 @@ Tristian:
 	Fixed Victoria's Skill1 to work as described(still needs some work to consistently display the correct text)
 	Fixed Mei's Skill1 to distribute the correct amount of balls
 	Fixed Mei's Skill2 to collect at the end of turn regardless of position in queue
+	Fixed some errors on status lengths for one of Mei's skills and MightMain skills
+	Fixed Kuro's Skill1 so that he catches instead of just taking the hit for teammates
+	Fixed wording in Skylar's skill2 to accurately represen the skill
+	Fixed Harold's skill1 so that it only activates if attacked
+	Fixed Harold's catchBall to work with Skill2
+	Added Status STATUS.MISC2 which uses the same status icon as misc
+	Fixed Hatold's CleanUp to work with Skill3

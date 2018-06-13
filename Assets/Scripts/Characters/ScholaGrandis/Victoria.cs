@@ -49,7 +49,7 @@ public class Victoria : Character {
 		return false;
 	}
 
-	public new bool dodgeBall(Character attacker)
+	public override bool dodgeBall(Character attacker)
 	{
 		if (findStatus (STATUS.MISC) != -1) 
 		{
@@ -60,9 +60,8 @@ public class Victoria : Character {
 		}
 		else
 		{
-			base.dodgeBall (attacker);
+			return base.dodgeBall (attacker);
 		}
-		return false;
 	}
 
     //we dont really have sequential moves yet.
@@ -101,7 +100,7 @@ public class Victoria : Character {
 
 
     public override int Skill3() {
-		Target[0].addStatusEffect(STATUS.STUN, 2);
+		Target[0].addStatusEffect(STATUS.STUN, 1);
         Target[0].loseStamina(this.Damage / 2);
         return this.Damage / 2;
     }

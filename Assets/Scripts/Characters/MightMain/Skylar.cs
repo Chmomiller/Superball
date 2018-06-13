@@ -13,7 +13,7 @@ public class Skylar : Character {
 		actionNames = new string[]{ "None", "Throw", "Catch", "Gather", "Bombing Run", "Supply Run", "Supply Drop", "Running Interference" };
 		actionDescription = new string[]{ "Wait", "Throw ball at target enemy", "Attempt to catch any incoming balls", "Gather balls", 
 											"Make all enemies <color=orange>unsteady</color> for 2 turns. <color=red>2</color> turn cooldown.\nCost: None    Target: Enemy Team",
-                                            "Gather half of your max ball count. <color=red>2</color> turn cooldown.\nCost: None    Target: Self",
+                                            "Gather half of your max ball count minus your current ball count. <color=red>2</color> turn cooldown.\nCost: None    Target: Self",
                                             "Heal an ally for 20 stamina and pass off all heald balls. <color=red>2</color> turn cooldown.\nCost: None    Target: Single Ally", 
 											"<color=orange>Unsteady</color> and <color=blue>debuffed</color> enemy team for 1 turn. <color=red>3</color>\nCost: 3    Target: Enemy Team" };
 		actionTypes = new string[]{ "None", "Offense", "Defense", "Utility", "Utility", "Utility", "Utility", "Utility" };
@@ -24,21 +24,6 @@ public class Skylar : Character {
     }
 
     new void Update() {
-		/*
-        if (combat == null) {
-            combat = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-        } else {
-            if (allegiance == 1) { 
-                this.targetingTypes = alternateTargetingTypes;
-                allies = combat.Player;
-                enemies = combat.Enemy;
-            } else {
-                this.targetingTypes = defaultTargetingTypes;
-                allies = combat.Enemy;
-                enemies = combat.Player;
-            }
-        }
-        */
 		base.Update ();
     }
 		
@@ -46,7 +31,7 @@ public class Skylar : Character {
 	public override int Skill1() {
 		for(int i = 0; i < 3; i++)
 		{
-			enemies[i].addStatusEffect(STATUS.UNSTEADY, 3);
+			enemies[i].addStatusEffect(STATUS.UNSTEADY, 2);
 		}
 		actionCooldowns[4] = 3;
 		return 0;

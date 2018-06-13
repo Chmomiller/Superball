@@ -61,9 +61,6 @@ public class GameManager : MonoBehaviour
 		if(scene.name == "MapScreen")
 		{
 			GameObject SaltPittButton = GameObject.Find ("SaltPittButton");
-			GameObject ScholaGrandisButton = SaltPittButton.GetComponent<MapButtonOptions> ().ScholaGrandisButton;
-			GameObject MightMainButton = SaltPittButton.GetComponent<MapButtonOptions>().MightMainButton;
-			GameObject YamatoButton = SaltPittButton.GetComponent<MapButtonOptions>().Yamato;
 
 			// Activate Salt Pitt buttons
 			if(Save.SaltPittDialogue)

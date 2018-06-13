@@ -8,7 +8,7 @@ using System;
 
 public class Character : MonoBehaviour
 {
-	public enum STATUS{NONE, STUN, BUFF, DEBUFF, STEADY, UNSTEADY, MISC}
+	public enum STATUS{NONE, STUN, BUFF, DEBUFF, STEADY, UNSTEADY, MISC, MISC2}
 
     public AudioScript Audio;
     public CombatManager combat;
@@ -253,6 +253,10 @@ public class Character : MonoBehaviour
 			// This is used to check for multiturn logic
 			CSUI.AddStatus(5);
 			break;
+		case STATUS.MISC2:
+			// This is used to check for multiturn logic
+			CSUI.AddStatus(5);
+			break;
 		//case "confused":
 				// check during plan and randomly choose target
 				//break;
@@ -285,6 +289,9 @@ public class Character : MonoBehaviour
 		//case "confused":
 		//		break;
 		case STATUS.MISC:
+			CSUI.RemoveStatus (5);
+			break;
+		case STATUS.MISC2:
 			CSUI.RemoveStatus (5);
 			break;
 		}
@@ -326,7 +333,7 @@ public class Character : MonoBehaviour
 	}
 
 
-    public bool dodgeBall(Character attacker) {
+    public virtual bool dodgeBall(Character attacker) {
         if (this.Stamina <= this.maxStamina/4) {
             if (UnityEngine.Random.Range(1, this.maxStamina / 4) < 5) {
                 this.dead = true;
@@ -342,9 +349,6 @@ public class Character : MonoBehaviour
 	public int throwBall(Character target)
 	{
 		GameObject DB = Instantiate (dodgeball, gameObject.transform.position, Quaternion.identity);
-		/*DB.transform.position = new Vector3 (DB.transform.position.x, 
-											 DB.transform.position.y, 
-											 0f);*/
 		DB.transform.localScale = new Vector3(.125f, .125f, 1f);
 		DB.GetComponent<Dodgeball> ().target = target;
 		playThrow ();
