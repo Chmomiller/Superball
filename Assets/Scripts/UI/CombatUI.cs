@@ -31,19 +31,12 @@ public class CombatUI : MonoBehaviour
 		cancelButton = GameObject.Find ("CancelButton").GetComponent<Button> ();
 		cancelButton.onClick.AddListener (CancelAction);
 		//skillButton = GameObject.FindGameObjectsWithTag ("Skill");
-		skillButton = new GameObject[6];
+		skillButton = new GameObject[3];
 		skillButton [0] = GameObject.Find ("Skill1Button");
 		skillButton [1] = GameObject.Find ("Skill2Button");
 		skillButton [2] = GameObject.Find ("Skill3Button");
-		skillButton [3] = GameObject.Find ("Skill4Button");
-		skillButton [4] = GameObject.Find ("Skill5Button");
-		skillButton [5] = GameObject.Find ("Skill6Button");
 		skillMenu = GameObject.Find ("SkillButton").GetComponent<Button>();
 		skillMenu.onClick.AddListener (ToggleSkillMenu);
-		pageNextButton = GameObject.Find ("PageNextButton").GetComponent<Button> ();
-		//pageNextButton.onClick.AddListener (()=>ToggleVisibleSkills (1));
-		pageBackButton = GameObject.Find ("PageBackButton").GetComponent<Button> ();
-		//pageBackButton.onClick.AddListener (()=>ToggleVisibleSkills (2));
 		phasePanel = GameObject.Find ("PhasePanel").GetComponentInChildren<Image> ();
 		phaseText = GameObject.Find ("PhasePanel").GetComponentInChildren<Text> ();
 		actionPanel = GameObject.Find ("ActionPanel").GetComponent<Image>();
@@ -175,12 +168,6 @@ public class CombatUI : MonoBehaviour
 			backButton.GetComponent<Image> ().enabled = false;
 			backButton.GetComponent<Button> ().enabled = false;
 			backButton.GetComponentInChildren<Text> ().enabled = false;
-			pageNextButton.GetComponent<Image> ().enabled = false;
-			pageNextButton.GetComponent<Button> ().enabled = false;
-			pageNextButton.GetComponentInChildren<Text> ().enabled = false;
-			pageBackButton.GetComponent<Image> ().enabled = false;
-			pageBackButton.GetComponent<Button> ().enabled = false;
-			pageBackButton.GetComponentInChildren<Text> ().enabled = false;
 			for(int i = 0; i < skillButton.Length; i++)
 			{
 				skillButton [i].GetComponent<Image> ().enabled = false;

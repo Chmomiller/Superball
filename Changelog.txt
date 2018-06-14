@@ -174,3 +174,6 @@ Tristian:
 	Reformatted Yamato skill description
 	Fixed Yamato Gun Skill1 bug that caused infinite loop
 	Fixed Tamato Bridge Skill3 to unsteady allies instead of self
+6/14/18:
+	Finally removed Skill4-6 buttons and page skill buttons and references to them
+	Changed CombatManager, CharacterSelect, CursorManager, and ConflictCursor so that the player must now always select the character before selecting their action, and the cursor now hovers over the center during the action phase

@@ -162,4 +162,8 @@ public class Trevor : Character {
         return this.Damage;
     }
 
+	IEnumerator playThrash(int damage)
+	{
+		yield return new WaitForSeconds(0f);
+	}
 }

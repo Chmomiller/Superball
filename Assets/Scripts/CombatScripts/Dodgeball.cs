@@ -15,10 +15,15 @@ public class Dodgeball : MonoBehaviour {
 			this.transform.position = new Vector3 (Mathf.Lerp (this.transform.position.x, target.transform.position.x, percent),
 												   Mathf.Lerp(this.transform.position.y, target.transform.position.y, percent), 
 												   97f);
-			if(Vector3.Distance(this.transform.position, target.transform.position) <= 1f)
+			if(Vector3.Distance(this.transform.position, target.transform.position) <= 1f)// && target.dead)
 			{
 				Destroy (gameObject);
 			}
 		}
+	}
+
+	void OnBecameInvisible()
+	{
+		Destroy (gameObject);
 	}
 }

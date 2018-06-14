@@ -18,7 +18,7 @@ public class CombatDialogueManager: MonoBehaviour {
 								"Then listen well! First, when it is a player’s turn, they can do three actions.",
 								"One: throw a ball at an enemy!",
 								"Two: catch when an enemy throws at them!",
-								"And three: use special skills for great effect, but with costs, of course!",
+								"And three: use special skills for great effect, but with a cost, of course!",
 								"The three actions can be chosen here.",
 								"To check out how many balls a player has, look at the number on the player’s portrait.",
 								"It is now Shiro’s turn. Click the Throw button and aim at Trevor.",
@@ -56,7 +56,7 @@ public class CombatDialogueManager: MonoBehaviour {
 
 
 	string[] errorDialogue = { "Looks like you chose the wrong action.\nPress the \"Back\" button.", // Error 1: Shiro didn't catch
-							   "Ok...That's the target too...\nLet's go pack a step.",				 // Error 2: Shiro didn't target Trevor
+							   "Ok...That's the wrong target too...\nLet's go back a step.",				 // Error 2: Shiro didn't target Trevor
 							   "Hold up, that's the wrong action, let's try again.",				 // Error 3: Clemence didn't catch
 							   "I feel like I should be using Skill 1...",							 // Error 4: Theodore didn't choose skill 1
 							   "Why do I have the sudden urge to <b>NOT</> do that?"};				 // Error 5: Theodore didn't target Trevor

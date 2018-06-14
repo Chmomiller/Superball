@@ -86,15 +86,12 @@ public class CombatManager : MonoBehaviour
 		}  
 
 		// Get the action buttons and set them up
-		Button[] action = new Button[8];
+		Button[] action = new Button[5];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
 		action [1] = GameObject.Find ("CatchButton").GetComponent<Button> ();
 		action [2] = GameObject.Find ("Skill1Button").GetComponent<Button> ();
 		action [3] = GameObject.Find ("Skill2Button").GetComponent<Button> ();
 		action [4] = GameObject.Find ("Skill3Button").GetComponent<Button> ();
-		action [5] = GameObject.Find ("Skill4Button").GetComponent<Button> ();
-		action [6] = GameObject.Find ("Skill5Button").GetComponent<Button> ();
-		action [7] = GameObject.Find ("Skill6Button").GetComponent<Button> ();
 		for (int i = 0; i < action.Length; i++) 
 		{
 			action [i].GetComponent<ButtonsUI> ().CM = this;
@@ -278,7 +275,7 @@ public class CombatManager : MonoBehaviour
 				firstAction = i;
 			}
 		}
-		// This block will run when findstatus can work properly
+		// If the character is stunned have them do nothing
 		if(firstAction != -1
 			&& combatQueue[firstAction].findStatus(Character.STATUS.STUN) != -1)
 		{
@@ -303,7 +300,8 @@ public class CombatManager : MonoBehaviour
 				{
 					if (combatQueue [firstAction].tag == "Player") 
 					{
-						currentPhase = PHASE.ACTION;
+						//currentPhase = PHASE.ACTION;
+						currentPhase = PHASE.SELECT;
 					} 
 					else if(combatQueue[firstAction].tag == "Enemy")
 					{
@@ -337,23 +335,6 @@ public class CombatManager : MonoBehaviour
 		// If there are no characters without actions
 		if (firstAction == -1) 
 		{
-			// This block does a stable sort to move the players who are catching to the front of the queue
-			int j = 0;
-			for (int i = 0; i < 6; i++) 
-			{
-				int k = 0;
-				if(combatQueue[i].action == "Catch")
-				{
-					Character temp = combatQueue [i];
-					while (i - k > j) 
-					{
-						combatQueue [i - k] = combatQueue [i - k - 1];
-						k++;
-					}
-					combatQueue [j] = temp;
-					j++;
-				}
-			}
 			// This is a brute force way to make sure the last character's tell is shown, even if they aren't last in the queue
 			foreach(Character C in combatQueue)
 			{
@@ -377,13 +358,26 @@ public class CombatManager : MonoBehaviour
 	void Select()
 	{
 		// delegates would help here
-		combatAction.text = "Choose " + combatQueue[conflictInQueue].Name + " or " + combatQueue[conflictInQueue+1].Name;
-		for(int i = 0; i < 3; i++)
+		if(conflictInQueue != -1)
 		{
-			if(combatQueue[conflictInQueue] == Player[i] 
-				|| combatQueue[conflictInQueue+1] == Player[i])
+			combatAction.text = "Choose " + combatQueue[conflictInQueue].Name + " or " + combatQueue[conflictInQueue+1].Name;
+			for(int i = 0; i < 3; i++)
 			{
-				playerSelect [i].enabled = true;
+				if(combatQueue[conflictInQueue] == Player[i] 
+					|| combatQueue[conflictInQueue+1] == Player[i])
+				{
+					playerSelect [i].enabled = true;
+				}
+			}
+		}
+		else
+		{
+			for(int i = 0; i < 3; i++)
+			{
+				if(combatQueue[currentCharacter] == Player[i])
+				{
+					playerSelect [i].enabled = true;
+				}
 			}
 		}
 	}

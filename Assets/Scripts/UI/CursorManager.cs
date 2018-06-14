@@ -15,7 +15,13 @@ public class CursorManager : MonoBehaviour
 
 	void Update () 
 	{
-		if(CM.currentPhase != CombatManager.PHASE.START && CM.currentPhase != CombatManager.PHASE.RESULTS)
+		if(CM.currentPhase == CombatManager.PHASE.ACTION)
+		{
+			gameObject.transform.position = new Vector3 (CM.CUI.backButton.transform.position.x, 
+														 CM.CUI.backButton.transform.position.y + 4.5f, 
+														 -5f);
+		}
+		else if(CM.currentPhase != CombatManager.PHASE.START && CM.currentPhase != CombatManager.PHASE.RESULTS)
 		{
 			if (CM.currentCharacter > -1 && CM.currentCharacter < 6) 
 			{
