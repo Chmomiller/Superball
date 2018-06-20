@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DebuggerScript : MonoBehaviour {	
 
+	public GameObject Continue;
+
 	public void UnlockAll()
 	{
 		SaveManager SM = GameObject.Find ("GameManager").GetComponent<GameManager> ().Save;
@@ -28,6 +30,8 @@ public class DebuggerScript : MonoBehaviour {
 
 		SM.beatSuperballRush = true;
 		SM.unlockAll = true;
+
+		Continue.SetActive (true);
 	}
 
 	public void ResetProgress()
@@ -58,5 +62,7 @@ public class DebuggerScript : MonoBehaviour {
 		SM.shiro.ResetChar ();
 		SM.theodore.ResetChar ();
 		SM.clemence.ResetChar ();
+
+		Continue.SetActive (false);
 	}
 }

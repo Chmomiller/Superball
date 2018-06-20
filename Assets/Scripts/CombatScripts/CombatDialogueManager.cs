@@ -6,257 +6,642 @@ using UnityEngine.UI;
 public class CombatDialogueManager: MonoBehaviour {
 
     public int count = 0;
-	public int error = 0;
+	public bool correction = false;
 
 	public CombatManager CM;
     public GameObject textOverlay;
 	public Text textOverlayT;
+	public GameObject[] characters;
+	public GameObject[] pointOfInterest;
 
-	public string[] dialogue = {"The rules of dodgeball are a bit hazy for me, think you could give me a run-down?",
-								"So you don’t know how to play <b>dodgeball</b>?",
-								"You got me there.",
-								"Then listen well! First, when it is a player’s turn, they can do three actions.",
-								"One: throw a ball at an enemy!",
-								"Two: catch when an enemy throws at them!",
-								"And three: use special skills for great effect, but with a cost, of course!",
-								"The three actions can be chosen here.",
-								"To check out how many balls a player has, look at the number on the player’s portrait.",
-								"It is now Shiro’s turn. Click the Throw button and aim at Trevor.",
-								"Now, it is Clemence’s turn. Press the Catch button.",
-								"The box above a character indicates what type of action that character will do.",
-								"Shiro and Trevor chose to attack, so they have red icons above them. ",
-								"Clemence, Frank, and Greg chose to defend, and so their icons are blue instead.",
-								"Now, it is Theodore’s turn. Try using skill 1 against Trevor. Once you do that, look at his portrait carefully.",
-								"Notice that the number of balls Theodore holds has changed because he used a skill that costs balls.",
-								"Okay, I think I got it now. But who gets to decide who goes first?",
-								"Ah, see, here’s the thing. Each player on the field has a certain amount of stamina.",
-								"The player with the highest stamina goes first. Then the player with the second-highest stamina goes next, and so on.",
-								"Once all the players have decided their actions, we leave the planning phase and enter the execution phase.",
-								"That <i>kind of</i> makes sense to me...",
-								"Whether it makes sense or not, that’s the rule.",
-								"That’s why you went first on the first turn.",
-								"All right, I think I got that. But what’s the goal of the game?",
-								"The goal is to knock out all the enemies.",
-								"If a player’s stamina is at 25% or lower, they can get knocked out of the game, even if their stamina hasn’t reached 0 yet.",
-								"Each player’s health is located under their portrait.",
-								"Anything else I should know?",
-								"Ah, yes, between rounds players gather balls automatically. That always ensures that you can at least throw at an enemy.",
-								"I see.",
-								"And here’s a tip for you if you want to win. Keep track of your enemies' actions. ",
-								"knowing what the enemies’ actions are lets you see what effects they’ll have on you.",
-								"Actions are automatically listed on the white box right here. ",
-								"To keep track of what actions have been done, look at the Battle Log right here.",
-								"Only one thing left to cover. Each player is one of three classes: <b><color=red>thrower</color>, <color=blue>catcher</color>, or <color=yellow>supporter</color></b>.",
-								"Oh yeah! If I remember correctly I’m a <color=yellow>supporter</color>!",
-								"Oh, really? That’s good! I’m a <color=red>thrower</color>, which means that I excel at dealing damage to enemies.",
-								"Clemence is a <color=blue>catcher</color>, which means that he is good at catching for himself and teammates.",
-								"And you’re a <color=yellow>supporter</color>, which means that you can help your teammates by buffing, healing, etc.",
-								"Now is that all?",
-								"I think so Let’s play!"};
+	static string[,] tutorialDialogue = new string[,]{
 
+		// {
+		//	"Character speaking, or point of interest. EX: "Character0" or "POI0",
+		//	"Dialogue",
+		//	"Advancement check: "", "Action", "Target" ("" means click to continue)",
+		//  "Advancement character"
+		//	"Advancement condition. EX: "Throw" or "Character3" ",
+		//  "Error Dialogue" 
+		//	"Style: "Character" or "Narrator" (defaults to Chracter)"
+		//  "Special condition: Action, Target, Status"
+		//  "Special Argument1: The one the effect is being applied to",
+		//  "Special Argument2: The effect being applied"
+		// }
 
-	string[] errorDialogue = { "Looks like you chose the wrong action.\nPress the \"Back\" button.", // Error 1: Shiro didn't catch
-							   "Ok...That's the wrong target too...\nLet's go back a step.",				 // Error 2: Shiro didn't target Trevor
-							   "Hold up, that's the wrong action, let's try again.",				 // Error 3: Clemence didn't catch
-							   "I feel like I should be using Skill 1...",							 // Error 4: Theodore didn't choose skill 1
-							   "Why do I have the sudden urge to <b>NOT</> do that?"};				 // Error 5: Theodore didn't target Trevor
+		// POI0 = Action wheel
+		// POI1 = Character Portrait
+		{//	0
+			"Shiro", "The rules of dodgeball are a bit hazy for me, think you could give me a run-down?", 
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	1
+			"Theodore", "So you don’t know how to play <b>dodgeball</b>?",
+			"Click","","", "",
+			"", 
+			"", "",	""
+		},
+		{// 2
+			"Shiro", "You got me there.",
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	3
+			"Theodore", "Then listen well! First, when it is a player’s turn, they can do three actions.",
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	4
+			"Theodore", "One: throw a ball at an enemy!",
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	5
+			"Theodore", "Two: catch when an enemy throws at them!",
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	6
+			"Theodore", "And three: use special skills for great effect, but with a cost, of course!",
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	7
+			"Action", "The three actions can be chosen here.",
+			"Click", "", "", "",
+			"", 
+			"", "",	""
+		},
+		{//	8
+			"Character0 Portrait", "To check out how many balls a player has, look at the number on the player’s portrait.",
+			"Click", "", "", "",
+			"OutOfCharacter", 
+			"", "", ""
+		},
+		{//	9
+			"Shiro", "It is now Shiro’s turn. Click the Throw button and aim at Trevor.",
+			"Action", "Shiro", "Throw", "Looks like you chose the wrong action.\nPress the \"Back\" button.",
+			"OutOfCharacter", 
+			"", "", ""
+		},
+		{//	10
+			"Shiro", "It is now Shiro’s turn. Click the Throw button and aim at Trevor.",
+			"Target", "Shiro", "Trevor", "Ok...That's the wrong target too...\nLet's go back a step.",
+			"OutOfCharacter", 
+			"", "", ""
+		},
+		{//	11
+			"Action", "Now, it is Clemence’s turn. Press the Catch button.",
+			"Action", "Clemence", "Catch", "Hold up, that's the wrong action, let's try again.",
+			"OutOfCharacter", 
+			"", "", ""
+		},
+		{//	12
+			"Action", "Now, it is Clemence’s turn. Press the Catch button.",
+			"Phase", "Clemence", "Conflict", "Hold up, that's the wrong action, let's try again.",
+			"OutOfCharacter", 
+			"", "", ""
+		},
+		{//	13
+			"Action", "Now, it is Clemence’s turn. Press the Catch button.",
+			"", "Frank", "", "",
+			"OutOfCharacter", 
+			"", "", ""
+		},
+		{//	14
+			"Clemence", "The box above a character indicates what type of action that character will do.",
+			"Click", "", "", "",
+			"OutOfCharacter", 
+			"Action", "Character3", "Throw"
+		},
+		{//	15
+			"Enemy1", "Shiro and Trevor chose to attack, so they have red icons above them. ",
+			"Click", "", "", "",
+			"OutOfCharacter", 
+			"Action", "Character4", "Catch"
+		},
+		{//	16
+			"Enemy2", "Clemence, Frank, and Greg chose to defend, and so their icons are blue instead.", 
+			"Click", "", "", "",
+			"OutOfCharacter", 
+			"Action", "Character5", "Catch"
+		},
+		{//	17
+			"Theodore", "Now, it is Theodore’s turn. Try using skill 1 against Trevor. Once you do that, look at his portrait carefully.",
+			"Action", "Theodore", "Skill1", "I feel like I should be using Skill 1...",
+			"OutOfCharacter", 
+			"", "",	""
+		},
+		{//	18
+			"Theodore", "Now, it is Theodore’s turn. Try using skill 1 against Trevor. Once you do that, look at his portrait carefully.",
+			"Target", "Theodore", "Trevor", "Why do I have the sudden urge to <b>NOT</> do that?",
+			"OutOfCharacter", 
+			"", "",	""
+		},
+		{//	19
+			"Character1 Portrait", "Notice that the number of balls Theodore holds has changed because he used a skill that costs balls.",
+			"Click","","","",
+			"OutOfCharacter",
+			"","",""
+		},
+		{//	20
+			"Shiro", "Okay, I think I got it now. But what decides who goes first?",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	21
+			"Theodore", "Ah, see, here’s the thing. Each player on the field has a certain amount of stamina.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	22
+			"Theodore", "The player with the highest stamina goes first. Then the player with the second-highest stamina goes next, and so on.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	23
+			"Theodore", "Once all the players have decided their actions, we leave the planning phase and enter the execution phase.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	24
+			"Shiro", "That <i>kind of</i> makes sense to me...",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	25
+			"Theodore", "Whether it makes sense or not, that’s the rule.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	26
+			"Theodore", "That’s why you went first on the first turn.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	27
+			"Shiro", "All right, I think I got that. But what’s the goal of the game?",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	28
+			"Theodore", "The goal is to knock out all the enemies.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	29
+			"Character0 Portrait", "If a player’s stamina is at 25% or lower, they can get knocked out of the game, even if their stamina hasn’t reached 0 yet.",
+			"Click","","","",
+			"OutOfCharacter",
+			"","",""
+		},
+		{//	30
+			"Character0 Portrait", "Each player’s health is located under their portrait.",
+			"Click","","","",
+			"OutOfCharacter",
+			"","",""
+		},
+		{//	31
+			"Shiro", "Anything else I should know?",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	32
+			"Theodore", "Ah, yes, between rounds players gather balls automatically. That always ensures that you can at least throw at an enemy.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	33
+			"Shiro", "I see.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	34
+			"Theodore", "And here’s a tip for you if you want to win. Keep track of your enemies' skills. ",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	35
+			"Theodore", "knowing what the enemies’ skills are lets you see what effects they’ll have on you.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	36
+			"Character0 Portrait", "Skills are listed when you hover over a character's portrait.",
+			"Click","","","",
+			"OutOfCharacter",
+			"","",""
+		},
+		{//	37
+			"Battle Log", "To keep track of what actions have been done, look at the Battle Log right here.",
+			"Click","","","",
+			"OutOfCharacter",
+			"","",""
+		},
+		{//	38
+			"Theodore", "Only one thing left to cover. Each player is one of three classes: <b><color=red>thrower</color>, <color=blue>catcher</color>, or <color=yellow>supporter</color></b>.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	39
+			"Shiro", "Oh yeah! If I remember correctly I’m a <color=yellow>supporter</color>!",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	40
+			"Theodore", "Oh, really? That’s good! I’m a <color=red>thrower</color>, which means that I excel at dealing damage to enemies.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	41
+			"Clemence", "And I'm a <color=blue>catcher</color>, which means I'm good at catching for myself and teammates.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	42
+			"Theodore", "And you’re a <color=yellow>supporter</color>, which means that you can help your teammates by buffing, healing, etc.",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	43
+			"Shiro", "Now is that all?",
+			"Click","","","",
+			"",
+			"","",""
+		},
+		{//	44
+			"Theodore", "I think so Let’s play!",
+			"Click","","","",
+			"",
+			"","", ""
+		},
+		{//	45
+			"", "",
+			"","","","",
+			"",
+			"Transition","Scenes/MapScreen", ""
+		}
+	};
+		
 	public bool control;
 	public bool display;
 
 
 	// Use this for initialization
 	void Start () {
-		control = true;
+		control = false;
 		display = true;
 		CM = GameObject.Find ("CombatManager").GetComponent<CombatManager>();
 	}
 
     // Update is called once per frame
     void Update() {
-		if(CM.currentPhase == CombatManager.PHASE.ACTION && control)
+		if(control)
 		{
-			control = false;
-			StartCoroutine (CombatManagerControl(.1f));
+			CM.combatControl = false;
 		}
-		if(count == dialogue.Length)
+		else
 		{
-			UnityEngine.SceneManagement.SceneManager.LoadScene("Scenes/MapScreen");
+			CM.combatControl = true;
 		}
-
-		// error conditions
-		error = (CheckErrors(9, "Shiro", "Throw", "Trevor")+
-				  CheckErrors (10, "Clemence", "Catch")+
-				  CheckErrors (14, "Theodore", "Skill1", "Trevor"));
-
-		if(error == 0)
+		if(tutorialDialogue[count, 7] == "Transition")
 		{
-			if (count != 9 && count != 10 && count != 14 && 
-				Input.GetMouseButtonDown(0) == true)
+			UnityEngine.SceneManagement.SceneManager.LoadScene (tutorialDialogue[count, 8]);
+		}
+		if(AdvanceDialogue(tutorialDialogue[count, 2], tutorialDialogue[count, 4]))
+		{
+			count++;
+		}
+		if(count != 0 && CM.currentCharacter != 0)
+		{
+			if(CheckErrors(tutorialDialogue[count-1, 3], tutorialDialogue[count-1, 2], tutorialDialogue[count-1, 4]))
 			{
-				count++;
-				display = true;
+				DisplayDialogue (tutorialDialogue[count, 1], tutorialDialogue[count, 0], tutorialDialogue[count, 6]);
+				correction = false;
 			}
-			if(count == 9 && 
-			   CM.combatQueue[CM.currentCharacter].Name == "Shiro" && 
-			   CM.combatQueue[CM.currentCharacter].action == "Throw" && 
-			   CM.combatQueue[CM.currentCharacter].Target[0].Name == "Trevor")
+			else
 			{
-				count++;
-				display = true;
-				control = true;
-				StartCoroutine (CombatManagerControl(.1f));
-			}
-			if(count == 10 && 
-				CM.combatQueue[CM.currentCharacter].Name == "Clemence" && 
-				CM.combatQueue[CM.currentCharacter].action == "Catch" && 
-				CM.currentPhase == CombatManager.PHASE.CONFLICT)
-			{
-				count++;
-				display = true;
-				control = true;
-				StartCoroutine (CombatManagerControl(.1f));
-			}
-			if(count == 14 && 
-				CM.combatQueue[CM.currentCharacter].Name == "Theodore" && 
-				CM.combatQueue[CM.currentCharacter].action == "Skill1" && 
-				CM.combatQueue[CM.currentCharacter].Target[0].Name == "Trevor")
-			{
-				count++;
-				display = true;
-				control = true;
-				StartCoroutine (CombatManagerControl(.1f));
+				control = false;
+				DisplayDialogue (tutorialDialogue[count-1, 5], tutorialDialogue[count-1, 0], tutorialDialogue[count-1, 6]);
+				// Correct Errors
 			}
 		}
-		// Error if the action is wrong
-		else if(error == 1)
+		else
 		{
-			// Error conditions
-			if (count != 10 && count != 11 && count != 15 && 
-				Input.GetMouseButtonDown(0) == true)
-			{
-				count--;
-				display = true;
-			}
+			DisplayDialogue (tutorialDialogue[count, 1], tutorialDialogue[count, 0], tutorialDialogue[count, 6]);
+			correction = false;
 		}
-		// Error if the target is wrong
-		else if(error == 2)
-		{
-			
-		}
-		// Critical error, THE ACTING CHARACTER IS WRONG!
-		else if(error == 3)
-		{
-			
-		}
-		textOverlay.SetActive(true);
-		textOverlayT.enabled = true;
-		if (display) 
-		{
-			textOverlayT.text = dialogue[count];
-			display = false;
-		}
+		SpecialInstructions (tutorialDialogue[count, 7], tutorialDialogue[count, 8], tutorialDialogue[count, 9]);
     }
-
-	void NextDialogue(int whatToSay, Vector3 newPosition) 
+		
+	bool AdvanceDialogue(string statement, string condition)
 	{
-		textOverlay.SetActive (true);
-		textOverlayT.enabled = true;
-		textOverlay.transform.position = newPosition;
-		textOverlayT.GetComponent<Text> ().text = dialogue[whatToSay];
-	}
-
-	void NextDialogue(int whatToSay, Vector3 offSet, Transform origin) 
-	{
-		textOverlay.SetActive (true);
-		textOverlayT.enabled = true;
-		textOverlay.transform.position = origin.transform.position + offSet;
-		textOverlayT.GetComponent<Text> ().text = dialogue[whatToSay];
-	}
-
-	void ClearDialogue()
-	{
-		textOverlay.SetActive (false);
-		textOverlayT.enabled = false;
-	}
-
-	int CheckErrors(int line, string name, string action, string target)
-	{
-		Debug.Log ("Count: "+count+", Checking for line: "+line+
-			"\nIn CheckErrors, currentCharacter: "+CM.combatQueue [CM.currentCharacter].Name+", name should be: "+name+
-			"\nAction: "+CM.combatQueue [CM.currentCharacter].action+", checking for: "+action+
-			"\nTarget: "+CM.combatQueue [CM.currentCharacter].Target[0].Name+", checking for: "+target);
-		Character currentCharacter = CM.combatQueue [CM.currentCharacter];
-		if(count == line)
+		switch(statement)
 		{
-			if(currentCharacter.Name != name)
+			case("Click"):
+				control = true;
+				if(Input.GetMouseButtonDown(0))
+				{
+					return true;
+				}
+				break;
+			case("Action"):
+				control = false;
+				if(CM.combatQueue[CM.currentCharacter].action == condition)
+				{
+					return true;
+				}
+				break;
+			case("Target"):
+				control = false;
+				if(CM.combatQueue[CM.currentCharacter].Target[0].Name == condition)
+				{
+					return true;
+				}
+				break;
+			case("Phase"):
+				control = false;
+				switch(condition)
+				{
+				case("Start"):
+					return CM.currentPhase == CombatManager.PHASE.START;
+					break;
+				case("Conflict"):
+					return CM.currentPhase == CombatManager.PHASE.CONFLICT;
+					break;
+				case("Select"):
+					return CM.currentPhase == CombatManager.PHASE.SELECT;
+					break;
+				case("Action"):
+					return CM.currentPhase == CombatManager.PHASE.ACTION;
+					break;
+				case("Target"):
+					return CM.currentPhase == CombatManager.PHASE.TARGET;
+					break;
+				case("Execute"):
+					return CM.currentPhase == CombatManager.PHASE.EXECUTE;
+					break;
+				case("Results"):
+					return CM.currentPhase == CombatManager.PHASE.RESULTS;
+					break;
+				default:
+					Debug.Log ("No phase passed in AdvanceDialogue");
+					return true;
+					break;
+				}
+				break;
+			default:
+				Debug.Log ("AdvanceDialogue called on line " + count + " with statement: " + statement + " and condition: " + condition);
+				control = true;
+				return true;
+				break;
+		}
+		return false;
+	}
+
+	bool CheckErrors(string name, string statement, string condition)
+	{
+		if(statement == "Click")
+		{
+			return true;
+		}
+		if(CM.currentPhase == CombatManager.PHASE.CONFLICT || CM.currentPhase == CombatManager.PHASE.TARGET)
+		{
+			control = true;
+		}
+
+		Character activeCharacter = CM.combatQueue [CM.currentCharacter];
+		if(activeCharacter.Name != name)
+		{
+			activeCharacter = CM.combatQueue [CM.currentCharacter - 1];
+			if(activeCharacter.Name != name)
 			{
-				return 3;
+				Debug.Log ("No character with name: "+name+" was found");
+				if(!correction)
+				{
+					StartCoroutine (CorrectErrors(activeCharacter));
+				}
+				return false;
 			}
 			else
 			{
-				if(currentCharacter.action != action &&
-					currentCharacter.action != "None")
+				switch(statement)
 				{
-					Debug.Log ("error 1 found");
-					return 1;
-				}
-				else
-				{
-					if(currentCharacter.Target[0].Name != target && 
-						currentCharacter.Target[0].Name != currentCharacter.Name)
+				case("Action"):
+					if(condition == "Any")
 					{
-						return 2;
+						return true;
 					}
+					return activeCharacter.action == condition;
+					// correct errors
+					break;
+				case("Target"):
+					if(condition == "Any")
+					{
+						return true;
+					}
+					return activeCharacter.Target [0].Name == condition;
+					// correct errors
+					break;
+				default:
+					Debug.Log ("No statement given");
+					return true;
+					break;
+
 				}
 			}
+			if(!correction)
+			{
+				StartCoroutine (CorrectErrors(activeCharacter));
+			}
+			return false;
 		}
-		return 0;
-	}
-
-	int CheckErrors(int line, string name, string action)
-	{
-		Debug.Log ("Count: "+count+", Checking for line: "+line+
-					"\nIn CheckErrors, currentCharacter: "+CM.combatQueue [CM.currentCharacter].Name+", name should be: "+name+
-					"\nAction: "+CM.combatQueue [CM.currentCharacter].action+", checking for: "+action);
-		Character currentCharacter = CM.combatQueue [CM.currentCharacter];
-		if(count == line)
+		else
 		{
-			if(currentCharacter.Name != name)
+			switch(statement)
 			{
-				return 3;
-			}
-			else
-			{
-				if(currentCharacter.action != action &&
-					currentCharacter.action != "None")
-				{
-					Debug.Log ("error 1 found");
-					return 1;
-				}
+				case("Action"):
+					if(condition == "Any")
+					{
+						return true;
+					}
+					return activeCharacter.action == condition;
+					// correct errors
+					break;
+				case("Target"):
+					if(condition == "Any")
+					{
+						return true;
+					}
+					return activeCharacter.Target [0].Name == condition;
+					// correct errors
+					break;
+				default:
+					Debug.Log ("No statement given");
+					return true;
+					break;
 			}
 		}
-		return 0;
 	}
 
-	IEnumerator CombatManagerControl(float delay)
+
+	void DisplayDialogue(string line, string target, string style)
 	{
-		yield return new WaitForSeconds (delay);
-		CM.enabled = !CM.enabled;
+		switch(target)
+		{
+			case("Shiro"):
+				textOverlay.transform.position = new Vector3 (characters[0].transform.position.x, 
+															  characters[0].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Theodore"):
+				textOverlay.transform.position = new Vector3 (characters[1].transform.position.x, 
+															  characters[1].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Clemence"):
+				textOverlay.transform.position = new Vector3 (characters[2].transform.position.x, 
+															  characters[2].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Enemy1"):
+				textOverlay.transform.position = new Vector3 (characters[3].transform.position.x, 
+															  characters[3].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Enemy2"):
+				textOverlay.transform.position = new Vector3 (characters[4].transform.position.x, 
+															  characters[4].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Enemy3"):
+				textOverlay.transform.position = new Vector3 (characters[5].transform.position.x, 
+															  characters[5].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Action"):
+				textOverlay.transform.position = new Vector3 (pointOfInterest[0].transform.position.x, 
+															  pointOfInterest[0].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Character0 Portrait"):
+				textOverlay.transform.position = new Vector3 (pointOfInterest[1].transform.position.x, 
+				pointOfInterest[1].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Character1 Portrait"):
+				textOverlay.transform.position = new Vector3 (pointOfInterest[2].transform.position.x, 
+															  pointOfInterest[2].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Character2 Portrait"):
+				textOverlay.transform.position = new Vector3 (pointOfInterest[3].transform.position.x, 
+															  pointOfInterest[3].transform.position.y + 3.5f, 
+															  this.transform.position.z);
+				break;
+			case("Battle Log"):
+				textOverlay.transform.position = new Vector3 (pointOfInterest[4].transform.position.x, 
+															  pointOfInterest[4].transform.position.y - 3.5f, 
+															  this.transform.position.z);
+				break;
+			default:
+				Debug.Log ("No target given for dialogue on line "+count);
+				break;
+		}
+		switch(style)
+		{
+			case("InCharacter"):
+				break;
+			case("OutOfCharacter"):
+				break;
+			default:
+			break;
+		}
+		textOverlayT.text = line;
+	}
+		
+	void SpecialInstructions(string instruction, string arg1, string arg2)
+	{
+		switch(instruction)
+		{
+			case("Action"):
+				switch(arg1)
+				{
+					case("Any"):
+						break;
+					default:
+						Character actor = GameObject.Find (arg1).GetComponent<Character> ();
+						for(int i = 0; i < actor.actions.Length; i++)
+						{
+							if(actor.actions[i] == arg2)
+							{
+								actor.actionType = actor.actionTypes [i];
+								actor.CallTell ();
+							}
+						}
+						actor.action = arg2;
+						break;
+				}
+				break;
+			case("Target"):
+			switch(arg2)
+			{
+				case("Any"):
+					break;
+				default:
+					Character actor = GameObject.Find (arg1).GetComponent<Character> ();
+					Character target = GameObject.Find (arg2).GetComponent<Character> ();
+					for(int i =0; i < actor.Target.Length; i++)
+					{
+						actor.Target [i] = target;
+					}
+					break;
+			}
+				break;
+			default:
+				break;
+		}
 	}
 
-	IEnumerator CorrectTarget(Character mistake, int dialogueLine)
-	{
-		textOverlayT.GetComponent<Text> ().text = dialogue[dialogueLine];
-		mistake.Target [0] = mistake;
-		CM.currentPhase = CombatManager.PHASE.TARGET;
-		yield return new WaitForSeconds (.5f);
-	}
 
-	IEnumerator CorrectAction(Character mistake, string whatToSay)
+	IEnumerator CorrectErrors(Character activeCharacter)
 	{
-		textOverlayT.GetComponent<Text> ().text = whatToSay;
-		CM.currentPhase = CombatManager.PHASE.ACTION;
-		mistake.action = "None";
-		yield return new WaitForSeconds (.5f);
+		correction = true;
+		yield return new WaitForSeconds (.9f);
+		activeCharacter.action = "None";
+		for(int i = 0; i < 3; i++)
+		{
+			activeCharacter.Target [i] = activeCharacter;
+		}
+		count--;
+		control = false;
+		yield return new WaitForSeconds (.1f);
+		correction = false;
 	}
 }

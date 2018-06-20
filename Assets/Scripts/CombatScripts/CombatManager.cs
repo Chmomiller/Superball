@@ -83,8 +83,8 @@ public class CombatManager : MonoBehaviour
 			// Set the character's positions to the buttons
 			Player[i].transform.position = new Vector3(playerSelect [i].transform.position.x, playerSelect [i].transform.position.y, 98);
 			Enemy [i].transform.position = new Vector3(enemySelect [i].transform.position.x, enemySelect [i].transform.position.y, 98);
-		}  
 
+		}  
 		// Get the action buttons and set them up
 		Button[] action = new Button[5];
 		action [0] = GameObject.Find ("ThrowButton").GetComponent<Button> ();
@@ -201,7 +201,7 @@ public class CombatManager : MonoBehaviour
 		}
 		else
 		{
-			currentPhase = PHASE.CONFLICT;
+			//currentPhase = PHASE.CONFLICT;
 		}
 	}
 

@@ -325,16 +325,16 @@ public class DialogueManager : MonoBehaviour {
 			//insert scene change here
 			switch(sceneTitle)
 			{
-				case("What Punks"):
-				GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittDialogue = true;
+				case("Salt Pitt Prebattle"):
+					GameObject.Find ("GameManager").GetComponent<SaveManager> ().SaltPittDialogue = true;
 					break;
-				case("Magical Match"):
+				case("Schola Grandis Prebattle"):
 					GameObject.Find ("GameManager").GetComponent<SaveManager> ().ScholaGrandisDialog = true;
 					break;
-				case("Fight Against the Military"):
+				case("Mightmain Prebattle"):
 					GameObject.Find ("GameManager").GetComponent<SaveManager> ().MightMainDialog = true;
 					break;
-				case("Kuro's Trump Card"):
+				case("Mightmain Interbattle"):
 					GameObject.Find ("GameManager").GetComponent<SaveManager> ().yamatoDialog = true;
 					break;
 				default:

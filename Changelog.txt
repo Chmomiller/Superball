@@ -177,3 +177,7 @@ Tristian:
 6/14/18:
 	Finally removed Skill4-6 buttons and page skill buttons and references to them
 	Changed CombatManager, CharacterSelect, CursorManager, and ConflictCursor so that the player must now always select the character before selecting their action, and the cursor now hovers over the center during the action phase
+6/19/18:
+	Overhauled the tutorial dialogue system to be similar to the Dialogue system
+	tutorial is now functional tutorail added to Map Screen
+	Added buttons to Main Menu to start a new game or continue an existing one

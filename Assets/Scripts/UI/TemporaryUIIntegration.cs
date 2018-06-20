@@ -16,14 +16,14 @@ public class TemporaryUIIntegration : MonoBehaviour
 	{
 		HealthBar = gameObject.GetComponent<RectTransform> ();
 		StaminaBar = HealthBar.localScale.x;
-		HealthText = HealthBar.GetComponentInChildren<Text> ();
+		//HealthText = HealthBar.GetComponentInChildren<Text> ();
 	}
 
 	public void Init(Character copyCharacter)
 	{
 		HealthBar = gameObject.GetComponent<RectTransform> ();
 		StaminaBar = HealthBar.localScale.x;
-		HealthText = HealthBar.GetComponentInChildren<Text> ();
+		//HealthText = HealthBar.GetComponentInChildren<Text> ();
 		Player = copyCharacter;
 		HealthMax = Player.maxStamina;
 		HealthText.text = "" + Player.maxStamina + " / " + Player.maxStamina;

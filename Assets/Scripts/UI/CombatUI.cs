@@ -135,10 +135,6 @@ public class CombatUI : MonoBehaviour
 				skillButton [i].GetComponent<Button> ().enabled = true;
 				skillButton [i].GetComponentInChildren<Text> ().enabled = true;
 				skillButton [i].GetComponent<PolygonCollider2D> ().enabled = true;
-				skillButton [i+3].GetComponent<Image> ().enabled = false;
-				skillButton [i+3].GetComponent<Button> ().enabled = false;
-				skillButton [i+3].GetComponentInChildren<Text> ().enabled = false;
-				skillButton [i+3].GetComponent<PolygonCollider2D> ().enabled = false;
 			}
 		}
 		/*
@@ -183,12 +179,10 @@ public class CombatUI : MonoBehaviour
 		if(openMenu == 1)
 		{
 			openMenu = 0;
-			pageNextButton.enabled = false;
 		}
 		else
 		{
 			openMenu = 1;
-			pageNextButton.enabled = true;
 		}
 	}
 
