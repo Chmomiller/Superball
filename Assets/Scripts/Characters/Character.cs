@@ -112,6 +112,14 @@ public class Character : MonoBehaviour
 		{
 			this.Stamina = 0;
             this.dead = true;
+			if(this.tag == "Player")
+			{
+				gameObject.transform.eulerAngles = new Vector3 (0f, 0f, 90f);
+			}
+			else
+			{
+				gameObject.transform.eulerAngles = new Vector3 (0f, 0f, -90f);
+			}
 		}
 	}
     public void gainStamina(int staminaGain) 
@@ -145,6 +153,7 @@ public class Character : MonoBehaviour
 
     protected void Update()
 	{
+		/*
 		if(dead)
 		{
 			if(this.tag == "Player")
@@ -160,6 +169,7 @@ public class Character : MonoBehaviour
 		{
 			gameObject.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
 		}
+		*/
 	}
 
 
@@ -324,8 +334,16 @@ public class Character : MonoBehaviour
 				{
 					this.heldBalls++;
 				}
+				if(GameObject.FindObjectOfType<Dodgeball>() != null)
+				{
+					GameObject DB = Instantiate (dodgeball, attacker.transform.position, Quaternion.identity);
+					DB.transform.localScale = new Vector3(.125f, .125f, 1f);
+					DB.GetComponent<Dodgeball> ().target = this;
+					attacker.playThrow ();
+					//DB.GetComponent<Dodgeball> ().hit = true;
+				}
 				playThrow ();
-
+				// If this fails to return true it's because of the next line
 				return true;
 			}
 		}
@@ -342,6 +360,7 @@ public class Character : MonoBehaviour
 		if(!dead)
 		{
 			playDodge ();
+			//GameObject.FindObjectOfType<Dodgeball> ().hit = true;
 		}
         return false;
     }
@@ -357,7 +376,7 @@ public class Character : MonoBehaviour
 		int damage = 0;
 		this.heldBalls--;
 		float variance = UnityEngine.Random.Range(0.8f, 1.2f);
-		target.dodgeBall (this);
+		DB.GetComponent<Dodgeball>().hit = target.dodgeBall (this);
 		damage = (int)(this.Damage * variance * attackMultiplier * target.defenseMultiplier);
 		target.loseStamina(damage);
 		return damage;
